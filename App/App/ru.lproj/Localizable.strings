@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  App
+
+  Created by Denis Shkultetskyy on 22.02.2024.
+  
+*/
+"tooltip_bets_title" = "ТЕКУЩИЕ ПРОГНОЗЫ";
+"tooltip_teams_title" = "КОМАНДЫ";
+"tooltip_paid_title" = "ПОКУПКИ";
+"tooltip_faq_title" = "ВОПРОСЫ";
+"picks" = "Прогнозы";
+"teams_cap" = "Команды";
+"paid_cap" = "Покупки";
+"questions" = "Вопросы";

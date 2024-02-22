@@ -1,15 +1,13 @@
 //
-//  ViewController.swift
+//  PicksVController.swift
 //  App
 //
-//  Created by Denis Shkultetskyy on 21.02.2024.
+//  Created by Denis Shkultetskyy on 22.02.2024.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-    
-    let label = UILabel()
+class PicksVController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,13 +15,15 @@ class ViewController: UIViewController {
     }
 
     func initUI() {
+        let label = UILabel()
         view.backgroundColor = UIColor.white
-        label.text = "Прогнозы"
+        label.text = labelName()
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
-
+    func labelName() -> String {
+        R.string.localizable.tooltip_bets_title()
+    }
 }
-

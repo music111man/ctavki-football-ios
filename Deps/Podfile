@@ -6,9 +6,16 @@ use_frameworks!
 inhibit_all_warnings!
 workspace '../Ctavki.football.forecast'
 
+load 'Defs.rb'
+
 target 'App' do
-  project '../App/App.xcodeproj'
-  pod 'SwiftLint'
+  project_app_path
+  swiftlint
+  swinject
+  rswift
+  rxSwift
+  rxCocoa
+  coordinator
 end
 
 # post install

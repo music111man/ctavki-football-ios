@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  App
+
+  Created by Denis Shkultetskyy on 22.02.2024.
+  
+*/
+"tooltip_bets_title" = "PREDICTIONS";
+"tooltip_teams_title" = "TEAMS";
+"tooltip_paid_title" = "PURCHASES";
+"tooltip_faq_title" = "QUESTIONS";
+"picks" = "Picks";
+"teams_cap" = "Teams";
+"paid_cap" = "Purchases";
+"questions" = "Questions";
