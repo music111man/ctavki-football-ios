@@ -18,6 +18,12 @@
 		F22CE0A42B87C87F00732FFB /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22CE0A32B87C87F00732FFB /* MainView.xib */; };
 		F22CE0A72B87D3C100732FFB /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0A62B87D3C100732FFB /* MenuButton.swift */; };
 		F22CE0A92B87DBB100732FFB /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0A82B87DBB100732FFB /* ToolBarView.swift */; };
+		F22CE0AF2B889B8500732FFB /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0AE2B889B8500732FFB /* UIView.swift */; };
+		F22CE0B12B88BC6E00732FFB /* PicksFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B02B88BC6E00732FFB /* PicksFactory.swift */; };
+		F22CE0B32B88BE4D00732FFB /* VCFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B22B88BE4D00732FFB /* VCFactory.swift */; };
+		F22CE0B52B88C20900732FFB /* TeamsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B42B88C20900732FFB /* TeamsFactory.swift */; };
+		F22CE0B72B88C28100732FFB /* PurchesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B62B88C28100732FFB /* PurchesFactory.swift */; };
+		F22CE0B92B88C2FD00732FFB /* FaqFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B82B88C2FD00732FFB /* FaqFactory.swift */; };
 		F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC033D2B867809001C6BB3 /* AppDelegate.swift */; };
 		F2FC03422B867809001C6BB3 /* MainVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC03412B867809001C6BB3 /* MainVController.swift */; };
 		F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2FC03462B86780B001C6BB3 /* Assets.xcassets */; };
@@ -39,6 +45,12 @@
 		F22CE0A32B87C87F00732FFB /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		F22CE0A62B87D3C100732FFB /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		F22CE0A82B87DBB100732FFB /* ToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
+		F22CE0AE2B889B8500732FFB /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		F22CE0B02B88BC6E00732FFB /* PicksFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicksFactory.swift; sourceTree = "<group>"; };
+		F22CE0B22B88BE4D00732FFB /* VCFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCFactory.swift; sourceTree = "<group>"; };
+		F22CE0B42B88C20900732FFB /* TeamsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsFactory.swift; sourceTree = "<group>"; };
+		F22CE0B62B88C28100732FFB /* PurchesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchesFactory.swift; sourceTree = "<group>"; };
+		F22CE0B82B88C2FD00732FFB /* FaqFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqFactory.swift; sourceTree = "<group>"; };
 		F2F186C72B87754F00FBDD22 /* Utilites.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utilites.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FC033A2B867809001C6BB3 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FC033D2B867809001C6BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +94,8 @@
 		F207046F2B878B8C00DD6364 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
+				F22CE0932B87B87400732FFB /* MainCoordinator.swift */,
+				F22CE0B22B88BE4D00732FFB /* VCFactory.swift */,
 			);
 			path = Utilites;
 			sourceTree = "<group>";
@@ -89,7 +103,6 @@
 		F20704702B878BAF00DD6364 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F22CE0932B87B87400732FFB /* MainCoordinator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -119,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				F22CE09B2B87BEDA00732FFB /* PicksVController.swift */,
+				F22CE0B02B88BC6E00732FFB /* PicksFactory.swift */,
 			);
 			path = Picks;
 			sourceTree = "<group>";
@@ -127,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				F22CE09D2B87C53700732FFB /* TeamsVController.swift */,
+				F22CE0B42B88C20900732FFB /* TeamsFactory.swift */,
 			);
 			path = Teams;
 			sourceTree = "<group>";
@@ -135,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				F22CE09F2B87C5AF00732FFB /* PurchesVController.swift */,
+				F22CE0B62B88C28100732FFB /* PurchesFactory.swift */,
 			);
 			path = Purches;
 			sourceTree = "<group>";
@@ -143,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				F22CE0A12B87C5F900732FFB /* FaqVController.swift */,
+				F22CE0B82B88C2FD00732FFB /* FaqFactory.swift */,
 			);
 			path = FAQ;
 			sourceTree = "<group>";
@@ -150,10 +167,27 @@
 		F22CE0A52B87D1CE00732FFB /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				F22CE0AD2B889B5D00732FFB /* Controls */,
+				F22CE0AC2B889B4A00732FFB /* Extensions */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		F22CE0AC2B889B4A00732FFB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F22CE0AE2B889B8500732FFB /* UIView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F22CE0AD2B889B5D00732FFB /* Controls */ = {
+			isa = PBXGroup;
+			children = (
 				F22CE0A62B87D3C100732FFB /* MenuButton.swift */,
 				F22CE0A82B87DBB100732FFB /* ToolBarView.swift */,
 			);
-			path = UIComponents;
+			path = Controls;
 			sourceTree = "<group>";
 		};
 		F2FC03312B867809001C6BB3 = {
@@ -334,12 +368,18 @@
 				F22CE0A22B87C5F900732FFB /* FaqVController.swift in Sources */,
 				F22CE0A92B87DBB100732FFB /* ToolBarView.swift in Sources */,
 				F22CE09C2B87BEDA00732FFB /* PicksVController.swift in Sources */,
+				F22CE0B32B88BE4D00732FFB /* VCFactory.swift in Sources */,
 				F22CE0A02B87C5AF00732FFB /* PurchesVController.swift in Sources */,
 				F22CE0942B87B87400732FFB /* MainCoordinator.swift in Sources */,
+				F22CE0B52B88C20900732FFB /* TeamsFactory.swift in Sources */,
 				F22CE0A72B87D3C100732FFB /* MenuButton.swift in Sources */,
 				F22CE09E2B87C53700732FFB /* TeamsVController.swift in Sources */,
+				F22CE0B72B88C28100732FFB /* PurchesFactory.swift in Sources */,
+				F22CE0B92B88C2FD00732FFB /* FaqFactory.swift in Sources */,
+				F22CE0AF2B889B8500732FFB /* UIView.swift in Sources */,
 				F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */,
 				F20704882B87A43500DD6364 /* R.generated.swift in Sources */,
+				F22CE0B12B88BC6E00732FFB /* PicksFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

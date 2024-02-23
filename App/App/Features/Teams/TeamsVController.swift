@@ -12,4 +12,7 @@ final class TeamsVController:PicksVController {
     override func labelName() -> String {
         R.string.localizable.tooltip_teams_title()
     }
+    override func createVC() -> UIViewController {
+        TeamsVController()
+    }
 }

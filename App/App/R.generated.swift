@@ -105,10 +105,34 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 1 colors.
+  /// This `R.color` struct is generated, and contains static references to 13 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
+    /// Color `background_light`.
+    static let background_light = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_light")
+    /// Color `background_main`.
+    static let background_main = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_main")
+    /// Color `green_blue_end`.
+    static let green_blue_end = Rswift.ColorResource(bundle: R.hostingBundle, name: "green_blue_end")
+    /// Color `green_blue_start`.
+    static let green_blue_start = Rswift.ColorResource(bundle: R.hostingBundle, name: "green_blue_start")
+    /// Color `red_end`.
+    static let red_end = Rswift.ColorResource(bundle: R.hostingBundle, name: "red_end")
+    /// Color `red_start`.
+    static let red_start = Rswift.ColorResource(bundle: R.hostingBundle, name: "red_start")
+    /// Color `selected_toolbar_item`.
+    static let selected_toolbar_item = Rswift.ColorResource(bundle: R.hostingBundle, name: "selected_toolbar_item")
+    /// Color `slide_circle`.
+    static let slide_circle = Rswift.ColorResource(bundle: R.hostingBundle, name: "slide_circle")
+    /// Color `text`.
+    static let text = Rswift.ColorResource(bundle: R.hostingBundle, name: "text")
+    /// Color `toolbarItem`.
+    static let toolbarItem = Rswift.ColorResource(bundle: R.hostingBundle, name: "toolbarItem")
+    /// Color `violet_end`.
+    static let violet_end = Rswift.ColorResource(bundle: R.hostingBundle, name: "violet_end")
+    /// Color `viotet_start`.
+    static let viotet_start = Rswift.ColorResource(bundle: R.hostingBundle, name: "viotet_start")
 
     #if os(iOS) || os(tvOS)
     /// `UIColor(named: "AccentColor", bundle: ..., traitCollection: ...)`
@@ -119,11 +143,215 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "background_light", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func background_light(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.background_light, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "background_main", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func background_main(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.background_main, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "green_blue_end", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func green_blue_end(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.green_blue_end, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "green_blue_start", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func green_blue_start(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.green_blue_start, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "red_end", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func red_end(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.red_end, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "red_start", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func red_start(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.red_start, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "selected_toolbar_item", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func selected_toolbar_item(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.selected_toolbar_item, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "slide_circle", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func slide_circle(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.slide_circle, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "text", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func text(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.text, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "toolbarItem", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func toolbarItem(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.toolbarItem, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "violet_end", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func violet_end(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.violet_end, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "viotet_start", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func viotet_start(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.viotet_start, compatibleWith: traitCollection)
+    }
+    #endif
+
     #if os(watchOS)
     /// `UIColor(named: "AccentColor", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func accentColor(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.accentColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "background_light", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func background_light(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.background_light.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "background_main", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func background_main(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.background_main.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "green_blue_end", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func green_blue_end(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.green_blue_end.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "green_blue_start", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func green_blue_start(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.green_blue_start.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "red_end", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func red_end(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.red_end.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "red_start", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func red_start(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.red_start.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "selected_toolbar_item", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func selected_toolbar_item(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.selected_toolbar_item.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "slide_circle", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func slide_circle(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.slide_circle.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "text", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func text(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.text.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "toolbarItem", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func toolbarItem(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.toolbarItem.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "violet_end", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func violet_end(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.violet_end.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "viotet_start", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func viotet_start(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.viotet_start.name)
     }
     #endif
 
