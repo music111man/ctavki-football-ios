@@ -2,41 +2,37 @@
 //  MainCoordinator.swift
 //  App
 //
-//  Created by Denis Shkultetskyy on 22.02.2024.
+//  Created by Denis Shkultetskyy on 26.02.2024.
 //
 
-import Foundation
 import UIKit
 
-protocol PMainCoordinator {
-    func start()
+protocol MainCoordinatorDelegate: AnyObject {
+    func startGuidTour()
 }
 
-final class MainCoordinator: PMainCoordinator {
-    var window: UIWindow?
+final class MainCoordinator {
+    let router: UINavigationController
     var factories: [PVCFactory] = [PicksFactory(), TeamsFactory(), PurchesFactory(), FaqFactory()]
     let mainVC = MainVController()
+    weak var delegate: MainCoordinatorDelegate?
+    
     init() {
-        
-    }
-    
-    func start() {
-        let window = UIWindow(frame: UIScreen.main.bounds)
+        self.router = UINavigationController(rootViewController: mainVC)
         mainVC.delegate = self
-        window.rootViewController = mainVC
-        window.makeKeyAndVisible()
-        pushView(.bets)
-        self.window = window
     }
     
-    private func addBetsVC() {
+    func start() -> UINavigationController {
+        mainVC.setChildVC(vc: factories[0].create()) {[weak self] in
+            self?.delegate?.startGuidTour()
+        }
         
+        return router
     }
 }
 
 extension MainCoordinator: MainViewDelegate {
     func pushView(_ action: ToolBarView.MenuAction) {
-        print("tap \(action)")
         factories.forEach { $0.clear() }
         switch action {
         case .bets:
@@ -49,6 +45,4 @@ extension MainCoordinator: MainViewDelegate {
             mainVC.setChildVC(vc: factories[3].create())
         }
     }
-    
-    
 }

@@ -10,10 +10,10 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var mainCoordinator: PMainCoordinator!
+    var mainCoordinator: PCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        mainCoordinator = MainCoordinator()
+        mainCoordinator = AppCoordinator()
         mainCoordinator.start()
         
         return true

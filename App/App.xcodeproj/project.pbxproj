@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1467024DB7CCF9E9DDD8C724 /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A862FB8A74992E1BEBD67C /* Pods_App.framework */; };
+		F2040C612B8C9D4700DE01CE /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2040C602B8C9D4700DE01CE /* MainCoordinator.swift */; };
 		F20704832B87A33800DD6364 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F20704852B87A33800DD6364 /* Localizable.strings */; };
 		F20704882B87A43500DD6364 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20704872B87A43500DD6364 /* R.generated.swift */; };
-		F22CE0942B87B87400732FFB /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0932B87B87400732FFB /* MainCoordinator.swift */; };
+		F22CE0942B87B87400732FFB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0932B87B87400732FFB /* AppCoordinator.swift */; };
 		F22CE09C2B87BEDA00732FFB /* PicksVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE09B2B87BEDA00732FFB /* PicksVController.swift */; };
 		F22CE09E2B87C53700732FFB /* TeamsVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE09D2B87C53700732FFB /* TeamsVController.swift */; };
 		F22CE0A02B87C5AF00732FFB /* PurchesVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE09F2B87C5AF00732FFB /* PurchesVController.swift */; };
 		F22CE0A22B87C5F900732FFB /* FaqVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0A12B87C5F900732FFB /* FaqVController.swift */; };
-		F22CE0A42B87C87F00732FFB /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22CE0A32B87C87F00732FFB /* MainView.xib */; };
 		F22CE0A72B87D3C100732FFB /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0A62B87D3C100732FFB /* MenuButton.swift */; };
 		F22CE0A92B87DBB100732FFB /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0A82B87DBB100732FFB /* ToolBarView.swift */; };
 		F22CE0AF2B889B8500732FFB /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0AE2B889B8500732FFB /* UIView.swift */; };
@@ -24,6 +24,7 @@
 		F22CE0B52B88C20900732FFB /* TeamsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B42B88C20900732FFB /* TeamsFactory.swift */; };
 		F22CE0B72B88C28100732FFB /* PurchesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B62B88C28100732FFB /* PurchesFactory.swift */; };
 		F22CE0B92B88C2FD00732FFB /* FaqFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B82B88C2FD00732FFB /* FaqFactory.swift */; };
+		F22CE0BC2B88F0D200732FFB /* TourGuidVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0BB2B88F0D200732FFB /* TourGuidVController.swift */; };
 		F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC033D2B867809001C6BB3 /* AppDelegate.swift */; };
 		F2FC03422B867809001C6BB3 /* MainVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC03412B867809001C6BB3 /* MainVController.swift */; };
 		F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2FC03462B86780B001C6BB3 /* Assets.xcassets */; };
@@ -34,15 +35,15 @@
 		57EB93648591D4F6970B396F /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
 		AE27349C0530710519C5E702 /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
 		D9A862FB8A74992E1BEBD67C /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2040C602B8C9D4700DE01CE /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		F20704842B87A33800DD6364 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F20704862B87A33A00DD6364 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F20704872B87A43500DD6364 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
-		F22CE0932B87B87400732FFB /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		F22CE0932B87B87400732FFB /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F22CE09B2B87BEDA00732FFB /* PicksVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicksVController.swift; sourceTree = "<group>"; };
 		F22CE09D2B87C53700732FFB /* TeamsVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsVController.swift; sourceTree = "<group>"; };
 		F22CE09F2B87C5AF00732FFB /* PurchesVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchesVController.swift; sourceTree = "<group>"; };
 		F22CE0A12B87C5F900732FFB /* FaqVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqVController.swift; sourceTree = "<group>"; };
-		F22CE0A32B87C87F00732FFB /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		F22CE0A62B87D3C100732FFB /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		F22CE0A82B87DBB100732FFB /* ToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
 		F22CE0AE2B889B8500732FFB /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 		F22CE0B42B88C20900732FFB /* TeamsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsFactory.swift; sourceTree = "<group>"; };
 		F22CE0B62B88C28100732FFB /* PurchesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchesFactory.swift; sourceTree = "<group>"; };
 		F22CE0B82B88C2FD00732FFB /* FaqFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqFactory.swift; sourceTree = "<group>"; };
+		F22CE0BB2B88F0D200732FFB /* TourGuidVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourGuidVController.swift; sourceTree = "<group>"; };
 		F2F186C72B87754F00FBDD22 /* Utilites.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utilites.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FC033A2B867809001C6BB3 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FC033D2B867809001C6BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,7 +96,7 @@
 		F207046F2B878B8C00DD6364 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
-				F22CE0932B87B87400732FFB /* MainCoordinator.swift */,
+				F22CE0932B87B87400732FFB /* AppCoordinator.swift */,
 				F22CE0B22B88BE4D00732FFB /* VCFactory.swift */,
 			);
 			path = Utilites;
@@ -110,6 +112,7 @@
 		F22CE0952B87B91D00732FFB /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F22CE0BA2B88F07900732FFB /* ToureGuid */,
 				F22CE09A2B87BEA100732FFB /* FAQ */,
 				F22CE0992B87BE8700732FFB /* Purches */,
 				F22CE0982B87BE7900732FFB /* Teams */,
@@ -123,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				F2FC03412B867809001C6BB3 /* MainVController.swift */,
-				F22CE0A32B87C87F00732FFB /* MainView.xib */,
+				F2040C602B8C9D4700DE01CE /* MainCoordinator.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -188,6 +191,14 @@
 				F22CE0A82B87DBB100732FFB /* ToolBarView.swift */,
 			);
 			path = Controls;
+			sourceTree = "<group>";
+		};
+		F22CE0BA2B88F07900732FFB /* ToureGuid */ = {
+			isa = PBXGroup;
+			children = (
+				F22CE0BB2B88F0D200732FFB /* TourGuidVController.swift */,
+			);
+			path = ToureGuid;
 			sourceTree = "<group>";
 		};
 		F2FC03312B867809001C6BB3 = {
@@ -288,7 +299,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2FC034A2B86780B001C6BB3 /* LaunchScreen.storyboard in Resources */,
-				F22CE0A42B87C87F00732FFB /* MainView.xib in Resources */,
 				F20704832B87A33800DD6364 /* Localizable.strings in Resources */,
 				F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */,
 			);
@@ -370,10 +380,12 @@
 				F22CE09C2B87BEDA00732FFB /* PicksVController.swift in Sources */,
 				F22CE0B32B88BE4D00732FFB /* VCFactory.swift in Sources */,
 				F22CE0A02B87C5AF00732FFB /* PurchesVController.swift in Sources */,
-				F22CE0942B87B87400732FFB /* MainCoordinator.swift in Sources */,
+				F22CE0942B87B87400732FFB /* AppCoordinator.swift in Sources */,
+				F2040C612B8C9D4700DE01CE /* MainCoordinator.swift in Sources */,
 				F22CE0B52B88C20900732FFB /* TeamsFactory.swift in Sources */,
 				F22CE0A72B87D3C100732FFB /* MenuButton.swift in Sources */,
 				F22CE09E2B87C53700732FFB /* TeamsVController.swift in Sources */,
+				F22CE0BC2B88F0D200732FFB /* TourGuidVController.swift in Sources */,
 				F22CE0B72B88C28100732FFB /* PurchesFactory.swift in Sources */,
 				F22CE0B92B88C2FD00732FFB /* FaqFactory.swift in Sources */,
 				F22CE0AF2B889B8500732FFB /* UIView.swift in Sources */,
@@ -534,7 +546,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -564,7 +576,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;

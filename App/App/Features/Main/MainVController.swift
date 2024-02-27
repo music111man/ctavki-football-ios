@@ -11,16 +11,12 @@ protocol MainViewDelegate {
     func pushView(_ action: ToolBarView.MenuAction)
 }
 
-protocol PMainController: AnyObject {
-    var delegate: MainViewDelegate? {get}
-    func setChildVC(vc: UIViewController)
-}
+final class MainVController: UIViewController {
 
-final class MainVController: UIViewController, PMainController {
-    
     var delegate: MainViewDelegate?
     private let toolBar = ToolBarView()
     private let containerView = UIView()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,19 +67,18 @@ final class MainVController: UIViewController, PMainController {
         ])
         vc.didMove(toParent: self)
     }
-}
 
-extension MainVController {
-    func setChildVC(vc: UIViewController) {
+    func setChildVC(vc: UIViewController,_ complite: (() -> Void)? = nil) {
         UIView.animate(withDuration: 0.3, animations: {[weak self] in
             self?.containerView.layer.opacity = 0
         }, completion: {[weak self] _ in
             self?.add(vc: vc)
-            UIView.animate(withDuration: 0.3) {[weak self] in
+            UIView.animate(withDuration: 0.3, animations: {[weak self] in
                 self?.containerView.layer.opacity = 1
-            }
+            }, completion: { _ in
+                complite?()
+            })
         })
     }
-    
     
 }

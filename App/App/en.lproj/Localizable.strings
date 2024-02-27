@@ -5,6 +5,8 @@
   Created by Denis Shkultetskyy on 22.02.2024.
   
 */
+"my_balance" = "my\nbal.";
+
 "tooltip_bets_title" = "PREDICTIONS";
 "tooltip_teams_title" = "TEAMS";
 "tooltip_paid_title" = "PURCHASES";
@@ -13,3 +15,10 @@
 "teams_cap" = "Teams";
 "paid_cap" = "Purchases";
 "questions" = "Questions";
+
+"guid_login" = "To see free predictions you got to sign in with your Apple or Telegram account!";
+"guid_picks" = "Here are matches and odds which our service provides predictions on!";
+"guid_results" = "Here are results of our predictions. More more information, tap on the match\' odds circle!";
+"guid_teams" = "You can find here history of our past predictions sorted by teams.";
+"guid_paid_plans" = "If you like our free predictions, you can purchase our paid service!";
+"guid_faq" = "Answers to frequently asked questions related to the operation of our service can be found here.";

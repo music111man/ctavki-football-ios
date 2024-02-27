@@ -105,14 +105,26 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 13 colors.
+  /// This `R.color` struct is generated, and contains static references to 19 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
+    /// Color `authorize_btn`.
+    static let authorize_btn = Rswift.ColorResource(bundle: R.hostingBundle, name: "authorize_btn")
     /// Color `background_light`.
     static let background_light = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_light")
     /// Color `background_main`.
     static let background_main = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_main")
+    /// Color `blue_gray_100`.
+    static let blue_gray_100 = Rswift.ColorResource(bundle: R.hostingBundle, name: "blue_gray_100")
+    /// Color `blue_gray_200`.
+    static let blue_gray_200 = Rswift.ColorResource(bundle: R.hostingBundle, name: "blue_gray_200")
+    /// Color `blue_gray_250`.
+    static let blue_gray_250 = Rswift.ColorResource(bundle: R.hostingBundle, name: "blue_gray_250")
+    /// Color `blue_gray_300`.
+    static let blue_gray_300 = Rswift.ColorResource(bundle: R.hostingBundle, name: "blue_gray_300")
+    /// Color `blue_gray_400`.
+    static let blue_gray_400 = Rswift.ColorResource(bundle: R.hostingBundle, name: "blue_gray_400")
     /// Color `green_blue_end`.
     static let green_blue_end = Rswift.ColorResource(bundle: R.hostingBundle, name: "green_blue_end")
     /// Color `green_blue_start`.
@@ -144,6 +156,15 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "authorize_btn", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func authorize_btn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.authorize_btn, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "background_light", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
@@ -158,6 +179,51 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func background_main(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.background_main, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "blue_gray_100", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func blue_gray_100(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.blue_gray_100, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "blue_gray_200", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func blue_gray_200(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.blue_gray_200, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "blue_gray_250", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func blue_gray_250(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.blue_gray_250, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "blue_gray_300", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func blue_gray_300(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.blue_gray_300, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "blue_gray_400", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func blue_gray_400(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.blue_gray_400, compatibleWith: traitCollection)
     }
     #endif
 
@@ -260,6 +326,14 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
+    /// `UIColor(named: "authorize_btn", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func authorize_btn(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.authorize_btn.name)
+    }
+    #endif
+
+    #if os(watchOS)
     /// `UIColor(named: "background_light", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func background_light(_: Void = ()) -> UIKit.UIColor? {
@@ -272,6 +346,46 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func background_main(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.background_main.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "blue_gray_100", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func blue_gray_100(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.blue_gray_100.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "blue_gray_200", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func blue_gray_200(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.blue_gray_200.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "blue_gray_250", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func blue_gray_250(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.blue_gray_250.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "blue_gray_300", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func blue_gray_300(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.blue_gray_300.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "blue_gray_400", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func blue_gray_400(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.blue_gray_400.name)
     }
     #endif
 
@@ -358,10 +472,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 6 images.
+  /// This `R.image` struct is generated, and contains static references to 7 images.
   struct image {
     /// Image `bets`.
     static let bets = Rswift.ImageResource(bundle: R.hostingBundle, name: "bets")
+    /// Image `done`.
+    static let done = Rswift.ImageResource(bundle: R.hostingBundle, name: "done")
     /// Image `faq`.
     static let faq = Rswift.ImageResource(bundle: R.hostingBundle, name: "faq")
     /// Image `logo`.
@@ -377,6 +493,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "bets", bundle: ..., traitCollection: ...)`
     static func bets(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.bets, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "done", bundle: ..., traitCollection: ...)`
+    static func done(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.done, compatibleWith: traitCollection)
     }
     #endif
 
@@ -418,30 +541,26 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
-  struct nib {
-    /// Nib `MainView`.
-    static let mainView = _R.nib._MainView()
-
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "MainView", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.mainView) instead")
-    static func mainView(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.mainView)
-    }
-    #endif
-
-    static func mainView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-      return R.nib.mainView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-    }
-
-    fileprivate init() {}
-  }
-
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 8 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 15 localization keys.
     struct localizable {
+      /// en translation: Answers to frequently asked questions related to the operation of our service can be found here.
+      ///
+      /// Locales: en, ru
+      static let guid_faq = Rswift.StringResource(key: "guid_faq", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Here are matches and odds which our service provides predictions on!
+      ///
+      /// Locales: en, ru
+      static let guid_picks = Rswift.StringResource(key: "guid_picks", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Here are results of our predictions. More more information, tap on the match' odds circle!
+      ///
+      /// Locales: en, ru
+      static let guid_results = Rswift.StringResource(key: "guid_results", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: If you like our free predictions, you can purchase our paid service!
+      ///
+      /// Locales: en, ru
+      static let guid_paid_plans = Rswift.StringResource(key: "guid_paid_plans", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: PREDICTIONS
       ///
       /// Locales: en, ru
@@ -474,6 +593,78 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let teams_cap = Rswift.StringResource(key: "teams_cap", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: To see free predictions you got to sign in with your Apple or Telegram account!
+      ///
+      /// Locales: en, ru
+      static let guid_login = Rswift.StringResource(key: "guid_login", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: You can find here history of our past predictions sorted by teams.
+      ///
+      /// Locales: en, ru
+      static let guid_teams = Rswift.StringResource(key: "guid_teams", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: my bal.
+      ///
+      /// Locales: en, ru
+      static let my_balance = Rswift.StringResource(key: "my_balance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+
+      /// en translation: Answers to frequently asked questions related to the operation of our service can be found here.
+      ///
+      /// Locales: en, ru
+      static func guid_faq(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("guid_faq", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "guid_faq"
+        }
+
+        return NSLocalizedString("guid_faq", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Here are matches and odds which our service provides predictions on!
+      ///
+      /// Locales: en, ru
+      static func guid_picks(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("guid_picks", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "guid_picks"
+        }
+
+        return NSLocalizedString("guid_picks", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Here are results of our predictions. More more information, tap on the match' odds circle!
+      ///
+      /// Locales: en, ru
+      static func guid_results(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("guid_results", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "guid_results"
+        }
+
+        return NSLocalizedString("guid_results", bundle: bundle, comment: "")
+      }
+
+      /// en translation: If you like our free predictions, you can purchase our paid service!
+      ///
+      /// Locales: en, ru
+      static func guid_paid_plans(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("guid_paid_plans", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "guid_paid_plans"
+        }
+
+        return NSLocalizedString("guid_paid_plans", bundle: bundle, comment: "")
+      }
 
       /// en translation: PREDICTIONS
       ///
@@ -595,6 +786,51 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("teams_cap", bundle: bundle, comment: "")
       }
 
+      /// en translation: To see free predictions you got to sign in with your Apple or Telegram account!
+      ///
+      /// Locales: en, ru
+      static func guid_login(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("guid_login", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "guid_login"
+        }
+
+        return NSLocalizedString("guid_login", bundle: bundle, comment: "")
+      }
+
+      /// en translation: You can find here history of our past predictions sorted by teams.
+      ///
+      /// Locales: en, ru
+      static func guid_teams(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("guid_teams", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "guid_teams"
+        }
+
+        return NSLocalizedString("guid_teams", bundle: bundle, comment: "")
+      }
+
+      /// en translation: my bal.
+      ///
+      /// Locales: en, ru
+      static func my_balance(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("my_balance", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "my_balance"
+        }
+
+        return NSLocalizedString("my_balance", bundle: bundle, comment: "")
+      }
+
       fileprivate init() {}
     }
 
@@ -617,42 +853,9 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     #if os(iOS) || os(tvOS)
-    try nib.validate()
-    #endif
-    #if os(iOS) || os(tvOS)
     try storyboard.validate()
     #endif
   }
-
-  #if os(iOS) || os(tvOS)
-  struct nib: Rswift.Validatable {
-    static func validate() throws {
-      try _MainView.validate()
-    }
-
-    struct _MainView: Rswift.NibResourceType, Rswift.Validatable {
-      let bundle = R.hostingBundle
-      let name = "MainView"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-
-      static func validate() throws {
-        if UIKit.UIImage(named: "bets", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'bets' is used in nib 'MainView', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "faq", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'faq' is used in nib 'MainView', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "pay", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'pay' is used in nib 'MainView', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "teams", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'teams' is used in nib 'MainView', but couldn't be loaded.") }
-        if #available(iOS 11.0, tvOS 11.0, *) {
-        }
-      }
-
-      fileprivate init() {}
-    }
-
-    fileprivate init() {}
-  }
-  #endif
 
   #if os(iOS) || os(tvOS)
   struct storyboard: Rswift.Validatable {
