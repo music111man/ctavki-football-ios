@@ -290,7 +290,7 @@ class TourGuidVController: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nextGuidStep)))
         guidViews.forEach { view in
 //            view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(noAction)))
-            view.transformToHide()
+            view.hide()
             view.isHidden = true
         }
         iconViews.forEach({ $0.isHidden = true })
@@ -575,7 +575,7 @@ class TourGuidVController: UIViewController {
         betsGuidView.isHidden = false
         addAnimation(betsGuidIconContainer) {[weak self] in
             guard let self = self else { return }
-            self.betsGuidView.transformToRestore()
+            self.betsGuidView.show()
             self.betsGuidView.roundCorners()
         }
     }
@@ -586,9 +586,9 @@ class TourGuidVController: UIViewController {
         self.teamsGuidView.isHidden = false
         addAnimation(teamsGuidIconContainer, animation: {[weak self] in
             guard let self = self else { return }
-            self.resultGuidView.transformToHide()
+            self.resultGuidView.hide()
             self.resultIconContainer.layer.opacity = 0
-            self.teamsGuidView.transformToRestore()
+            self.teamsGuidView.show()
             self.teamsGuidView.roundCorners()
         }) {
             self.resultGuidView.isHidden = true
@@ -600,9 +600,9 @@ class TourGuidVController: UIViewController {
         payGuidView.isHidden = false
         addAnimation(payGuidIconContainer, animation: {[weak self] in
             guard let self = self else { return }
-            self.teamsGuidView.transformToHide()
+            self.teamsGuidView.hide()
             self.teamsGuidIconContainer.layer.opacity = 0
-            self.payGuidView.transformToRestore()
+            self.payGuidView.show()
             self.payGuidView.roundCorners()
         }) {
             self.teamsGuidView.isHidden = true
@@ -614,9 +614,9 @@ class TourGuidVController: UIViewController {
         faqGuidView.isHidden = false
         addAnimation(faqGuidIconContainer, animation: {[weak self] in
             guard let self = self else { return }
-            self.payGuidView.layer.opacity = 0
+            self.payGuidView.hide()
             self.payGuidIconContainer.layer.opacity = 0
-            self.faqGuidView.transform = CGAffineTransform.identity
+            self.faqGuidView.show()
             self.faqGuidView.roundCorners()
         }) {
             self.payGuidView.isHidden = true
@@ -628,9 +628,9 @@ class TourGuidVController: UIViewController {
         self.authorizeGuidView.isHidden = false
         addAnimation(authorizeIconContainer, animation: {[weak self] in
             guard let self = self else { return }
-            self.betsGuidView.transform = CGAffineTransform.init(scaleX: 0, y: 0)
+            self.betsGuidView.hide()
             self.betsGuidIconContainer.layer.opacity = 0
-            self.authorizeGuidView.transform = CGAffineTransform.identity
+            self.authorizeGuidView.show()
             self.authorizeGuidView.roundCorners()
         }) {
             self.betsGuidView.isHidden = true
@@ -643,8 +643,8 @@ class TourGuidVController: UIViewController {
         addAnimation(resultIconContainer, animation: {[weak self] in
             guard let self = self else { return }
             self.authorizeGuidView.layer.opacity = 0
-            self.authorizeGuidView.transform = CGAffineTransform.init(scaleX: 0, y: 0)
-            self.resultGuidView.transform = CGAffineTransform.identity
+            self.authorizeGuidView.hide()
+            self.resultGuidView.show()
             self.resultGuidView.roundCorners()
         }) {
             self.authorizeGuidView.isHidden = true
@@ -655,7 +655,7 @@ class TourGuidVController: UIViewController {
     func endGuid() {
         UIView.animate(withDuration: 0.5, animations: {[weak self] in
             self?.faqGuidIconContainer.layer.opacity = 0
-            self?.faqGuidView.layer.opacity = 0
+            self?.faqGuidView.hide()
         }, completion: { [weak self] _ in
             self?.endAction?()
         })
@@ -682,21 +682,18 @@ class TourGuidVController: UIViewController {
 
 private extension UIView {
     
-    func transformToHide() {
-        transform = CGAffineTransform.init(scaleX: 0, y: 0 )
+    func hide() {
+        transform = CGAffineTransform.init(scaleX: 0.01, y: 0.01 )
+        layer.opacity = 0
     }
-    func transformToRestore() {
+    func show() {
+        layer.opacity = 1
         transform = CGAffineTransform.identity
     }
     
-    func roundCorners() {
-        layer.cornerRadius = frame.width / 2
-    }
-    
     func roundSubViewCorners() {
-        guard let width = subviews.first?.frame.width else { return }
-        animationView?.layer.cornerRadius = width / 2
-        iconView?.layer.cornerRadius = width / 2
+        animationView?.roundCorners()
+        iconView?.roundCorners()
     }
     
     var animationView: UIView? {
