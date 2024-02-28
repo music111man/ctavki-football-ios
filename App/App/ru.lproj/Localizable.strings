@@ -6,8 +6,10 @@
   
 */
 "my_balance" = "мой\nсчет";
-
+"sign_in" = "Вход";
 "tooltip_bets_title" = "ТЕКУЩИЕ ПРОГНОЗЫ";
+"tooltip_login_title" = "ВХОД";
+"tooltip_results_title" = "РЕЗУЛЬТАТЫ";
 "tooltip_teams_title" = "КОМАНДЫ";
 "tooltip_paid_title" = "ПОКУПКИ";
 "tooltip_faq_title" = "ВОПРОСЫ";

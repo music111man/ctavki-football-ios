@@ -50,41 +50,28 @@ class TourGuidVController: UIViewController {
         super.viewDidLoad()
         iconViews.append(contentsOf: [betsGuidIconContainer, teamsGuidIconContainer, payGuidIconContainer, faqGuidIconContainer])
         guidViews.append(contentsOf: [betsGuidView, authorizeGuidView, resultGuidView, teamsGuidView, payGuidView, faqGuidView])
+        guidAnimations.append(contentsOf: [betsGuid,
+                                           authGuid,
+                                           resultGuid,
+                                           teamsGuid,
+                                           payGuid,
+                                           faqGuid,
+                                           endGuid])
         initUI()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        betsGuidIconContainer.layer.cornerRadius = betsGuidIconContainer.frame.width / 2
+        betsGuidIconContainer.roundCorners()
         authorizeIconContainer.subviews.forEach { $0.layer.cornerRadius = 40 }
-        resultIconContainer.subviews.forEach({ $0.layer.cornerRadius = $0.frame.width / 2 })
-        iconViews.forEach { $0.roundCorners() }
-        betsGuidView.layer.cornerRadius = betsGuidView.frame.width / 3
-        authorizeGuidView.layer.cornerRadius = authorizeGuidView.frame.width / 3
-        resultGuidView.layer.cornerRadius = resultGuidView.frame.height / 2
-        teamsGuidView.layer.cornerRadius = teamsGuidView.frame.width / 2
-        payGuidView.layer.cornerRadius = payGuidView.frame.width / 2
-        faqGuidView.layer.cornerRadius = faqGuidView.frame.width / 3
+        resultIconContainer.subviews.forEach({ $0.roundCorners() })
+        iconViews.forEach { $0.roundSubViewCorners() }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        betsGuidView.isHidden = true
-        betsGuidView.transform = CGAffineTransform.init(translationX: -betsGuidView.frame.width, y: -betsGuidView.frame.height)
-        authorizeGuidView.isHidden = true
-        authorizeGuidView.transform = CGAffineTransform.init(translationX: authorizeGuidView.frame.width, y: -authorizeGuidView.frame.height)
-        teamsGuidView.isHidden = true
-        teamsGuidView.transform = CGAffineTransform.init(translationX: 0, y: teamsGuidView.frame.height)
-        payGuidView.isHidden = true
-        payGuidView.transform = CGAffineTransform.init(translationX: 0, y: payGuidView.frame.height)
-        faqGuidView.isHidden = true
-        faqGuidView.transform = CGAffineTransform.init(translationX: payGuidView.frame.width, y: payGuidView.frame.height)
-        iconViews.forEach({ $0.isHidden = true })
         authorizeIconContainer.isHidden = true
-        
         resultIconContainer.isHidden = true
-        resultGuidView.isHidden = true
-        resultGuidView.transform = CGAffineTransform.init(translationX: -resultGuidView.frame.width, y: 0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -95,14 +82,15 @@ class TourGuidVController: UIViewController {
     private func initMenuItem(_ title: String, _ image: UIImage?) -> UIView {
         let container = UIView()
         container.backgroundColor = .white
-        let icon = UIImageView(image: image)
+        let icon = UIImageView(image: image?.withRenderingMode(.alwaysTemplate))
+        icon.tintColor =  R.color.selected_toolbar_item()
         icon.contentMode = .scaleToFill
         icon.translatesAutoresizingMaskIntoConstraints = false
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = title
         label.textAlignment = .center
-        label.textColor = .black
+        label.textColor = R.color.selected_toolbar_item()
         label.font = UIFont.systemFont(ofSize: 12.0)
         container.addSubview(icon)
         container.addSubview(label)
@@ -166,9 +154,10 @@ class TourGuidVController: UIViewController {
             animationView.trailingAnchor.constraint(equalTo: betsGuidIconContainer.trailingAnchor),
             animationView.leadingAnchor.constraint(equalTo: betsGuidIconContainer.leadingAnchor)
         ])
-        let betsIcon = UIImageView(image: R.image.bets())
+        let betsIcon = UIImageView(image: R.image.bets()?.withRenderingMode(.alwaysTemplate))
         betsIcon.translatesAutoresizingMaskIntoConstraints = false
         betsIcon.contentMode = .scaleToFill
+        betsIcon.tintColor =  R.color.selected_toolbar_item()
         betsGuidIconContainer.addSubview(betsIcon)
         NSLayoutConstraint.activate([
             betsIcon.widthAnchor.constraint(equalToConstant: 30),
@@ -186,8 +175,8 @@ class TourGuidVController: UIViewController {
         NSLayoutConstraint.activate([
             resultIconContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 17),
             resultIconContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            resultIconContainer.widthAnchor.constraint(equalToConstant: 35),
-            resultIconContainer.heightAnchor.constraint(equalToConstant: 35)
+            resultIconContainer.widthAnchor.constraint(equalToConstant: 50),
+            resultIconContainer.heightAnchor.constraint(equalToConstant: 50)
         ])
         let animationView = UIView()
         animationView.backgroundColor = .white
@@ -200,7 +189,7 @@ class TourGuidVController: UIViewController {
             animationView.leadingAnchor.constraint(equalTo: resultIconContainer.leadingAnchor)
         ])
         let iconView = UIView()
-        iconView.backgroundColor = R.color.blue_gray_400()
+        iconView.backgroundColor = .white
         iconView.translatesAutoresizingMaskIntoConstraints = false
         resultIconContainer.addSubview(iconView)
         NSLayoutConstraint.activate([
@@ -209,7 +198,7 @@ class TourGuidVController: UIViewController {
             iconView.trailingAnchor.constraint(equalTo: resultIconContainer.trailingAnchor),
             iconView.leadingAnchor.constraint(equalTo: resultIconContainer.leadingAnchor)
         ])
-        let icon = UIImageView(image: R.image.done())
+        let icon = UIImageView(image: R.image.done()?.withRenderingMode(.alwaysTemplate))
         icon.translatesAutoresizingMaskIntoConstraints = false
         icon.contentMode = .scaleToFill
         resultIconContainer.addSubview(icon)
@@ -229,7 +218,7 @@ class TourGuidVController: UIViewController {
         NSLayoutConstraint.activate([
             authorizeIconContainer.widthAnchor.constraint(equalToConstant: 80),
             authorizeIconContainer.heightAnchor.constraint(equalToConstant: 80),
-            authorizeIconContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 40),
+            authorizeIconContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
             authorizeIconContainer.centerYAnchor.constraint(equalTo: betsGuidIconContainer.centerYAnchor)
         ])
         let animationView = UIView()
@@ -244,7 +233,7 @@ class TourGuidVController: UIViewController {
             animationView.leadingAnchor.constraint(equalTo: authorizeIconContainer.leadingAnchor)
         ])
         let iconView = UIView()
-        iconView.backgroundColor = R.color.authorize_btn()
+        iconView.backgroundColor = .white
         iconView.layer.cornerRadius = 40
         iconView.translatesAutoresizingMaskIntoConstraints = false
         authorizeIconContainer.addSubview(iconView)
@@ -256,8 +245,8 @@ class TourGuidVController: UIViewController {
         ])
         
         let label = UILabel()
-        label.text = R.string.localizable.my_balance()
-        label.textColor = .white
+        label.text = R.string.localizable.sign_in()
+        label.textColor = R.color.selected_toolbar_item()
         label.font = UIFont.systemFont(ofSize: 12.0)
         label.textAlignment = .right
         label.lineBreakMode = .byWordWrapping
@@ -265,7 +254,7 @@ class TourGuidVController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         iconView.addSubview(label)
         NSLayoutConstraint.activate([
-            label.leftAnchor.constraint(equalTo: iconView.leftAnchor, constant: 10),
+            label.centerXAnchor.constraint(equalTo: iconView.centerXAnchor),
             label.centerYAnchor.constraint(equalTo: iconView.centerYAnchor)
         ])
     }
@@ -274,6 +263,7 @@ class TourGuidVController: UIViewController {
 
         view.backgroundColor = .clear
         view.isOpaque = true
+        guidViews.forEach { $0.backgroundColor = R.color.green_blue_start()?.withAlphaComponent(0.95) }
         initBetsIcon()
         initAuthorizeIcon()
         initResultIcon()
@@ -296,72 +286,102 @@ class TourGuidVController: UIViewController {
         initTeamsGuid()
         initPayGuid()
         initFaqGuid()
-        
-        guidAnimations.append(contentsOf: [betsGuid,
-                                           authGuid,
-                                           resultGuid,
-                                           teamsGuid,
-                                           payGuid,
-                                           faqGuid,
-                                           endGuid])
+
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(nextGuidStep)))
         guidViews.forEach { view in
-            view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(noAction)))
+//            view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(noAction)))
+            view.transformToHide()
+            view.isHidden = true
         }
+        iconViews.forEach({ $0.isHidden = true })
         view.layoutIfNeeded()
     }
     
     func initBetsGuid() {
         betsGuidView.translatesAutoresizingMaskIntoConstraints = false
         view.insertSubview(betsGuidView, at: 0)
-        betsGuidView.backgroundColor = R.color.green_blue_start()
-        betsGuidView.layer.maskedCorners = [.layerMaxXMaxYCorner]
         NSLayoutConstraint.activate([
-            betsGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-            betsGuidView.heightAnchor.constraint(equalTo: betsGuidView.widthAnchor, multiplier: 0.7),
-            betsGuidView.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),
-            betsGuidView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -10)
+            betsGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.8),
+            betsGuidView.heightAnchor.constraint(equalTo: betsGuidView.widthAnchor),
+            betsGuidView.centerXAnchor.constraint(equalTo: betsGuidIconContainer.centerXAnchor),
+            betsGuidView.centerYAnchor.constraint(equalTo: betsGuidIconContainer.centerYAnchor)
+        ])
+        let textContainer = UIView()
+        textContainer.translatesAutoresizingMaskIntoConstraints = false
+        betsGuidView.addSubview(textContainer)
+        NSLayoutConstraint.activate([
+            textContainer.heightAnchor.constraint(equalTo: betsGuidView.heightAnchor, multiplier: 0.5),
+            textContainer.widthAnchor.constraint(equalTo: textContainer.heightAnchor),
+            textContainer.bottomAnchor.constraint(equalTo: betsGuidView.bottomAnchor),
+            textContainer.rightAnchor.constraint(equalTo: betsGuidView.rightAnchor)
+        ])
+        let title = UILabel()
+        title.text = R.string.localizable.tooltip_bets_title()
+        title.textColor = .white
+        title.font = UIFont.boldSystemFont(ofSize: 17.0)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        textContainer.addSubview(title)
+        NSLayoutConstraint.activate([
+            title.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 10),
+            title.topAnchor.constraint(equalTo: textContainer.topAnchor, constant: 60)
         ])
         let label = UILabel()
         label.text = R.string.localizable.guid_picks()
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 12.0)
+        label.textColor = .white.withAlphaComponent(0.7)
+        label.font = UIFont.systemFont(ofSize: 14.0)
         label.textAlignment = .left
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        betsGuidView.addSubview(label)
+        textContainer.addSubview(label)
         NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalTo: betsGuidView.widthAnchor, multiplier: 0.6),
-            label.rightAnchor.constraint(equalTo: betsGuidView.rightAnchor, constant: -20),
-            label.bottomAnchor.constraint(equalTo: betsGuidView.bottomAnchor, constant: -45)
+            label.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 10),
+            label.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
+            label.rightAnchor.constraint(equalTo: textContainer.rightAnchor, constant: -50)
         ])
     }
     
     func initAuthorizeGuid() {
         authorizeGuidView.translatesAutoresizingMaskIntoConstraints = false
         view.insertSubview(authorizeGuidView, at: 0)
-        authorizeGuidView.backgroundColor = R.color.green_blue_start()
-        authorizeGuidView.layer.maskedCorners = [.layerMinXMaxYCorner]
         NSLayoutConstraint.activate([
-            authorizeGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65),
-            authorizeGuidView.heightAnchor.constraint(equalTo: authorizeGuidView.widthAnchor, multiplier: 0.7),
-            authorizeGuidView.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),
-            authorizeGuidView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10)
+            authorizeGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.75),
+            authorizeGuidView.heightAnchor.constraint(equalTo: authorizeGuidView.widthAnchor),
+            authorizeGuidView.centerXAnchor.constraint(equalTo: authorizeIconContainer.centerXAnchor),
+            authorizeGuidView.centerYAnchor.constraint(equalTo: authorizeIconContainer.centerYAnchor)
+        ])
+        let textContainer = UIView()
+        textContainer.translatesAutoresizingMaskIntoConstraints = false
+        authorizeGuidView.addSubview(textContainer)
+        NSLayoutConstraint.activate([
+            textContainer.heightAnchor.constraint(equalTo: authorizeGuidView.heightAnchor, multiplier: 0.5),
+            textContainer.widthAnchor.constraint(equalTo: textContainer.heightAnchor),
+            textContainer.bottomAnchor.constraint(equalTo: authorizeGuidView.bottomAnchor),
+            textContainer.leftAnchor.constraint(equalTo: authorizeGuidView.leftAnchor)
+        ])
+        let title = UILabel()
+        title.text = R.string.localizable.tooltip_login_title()
+        title.textColor = .white
+        title.font = UIFont.boldSystemFont(ofSize: 17.0)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        textContainer.addSubview(title)
+        NSLayoutConstraint.activate([
+            title.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 50),
+            title.topAnchor.constraint(equalTo: textContainer.topAnchor, constant: 60)
         ])
         let label = UILabel()
         label.text = R.string.localizable.guid_login()
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 12.0)
-        label.textAlignment = .right
+        label.textColor = .white.withAlphaComponent(0.7)
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.textAlignment = .left
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        authorizeGuidView.addSubview(label)
+        textContainer.addSubview(label)
         NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalTo: authorizeGuidView.widthAnchor, multiplier: 0.6),
-            label.leftAnchor.constraint(equalTo: authorizeGuidView.leftAnchor, constant: 30),
-            label.bottomAnchor.constraint(equalTo: authorizeGuidView.bottomAnchor, constant: -20)
+            label.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 50),
+            label.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
+            label.rightAnchor.constraint(equalTo: textContainer.rightAnchor, constant: -10)
         ])
     }
     
@@ -371,107 +391,176 @@ class TourGuidVController: UIViewController {
         resultGuidView.backgroundColor = R.color.green_blue_start()
         resultGuidView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         NSLayoutConstraint.activate([
-            resultGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-            resultGuidView.heightAnchor.constraint(equalTo: resultGuidView.widthAnchor, multiplier: 0.4),
+            resultGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.5),
+            resultGuidView.heightAnchor.constraint(equalTo: resultGuidView.widthAnchor),
             resultGuidView.centerYAnchor.constraint(equalTo: resultIconContainer.centerYAnchor),
-            resultGuidView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
+            resultGuidView.centerXAnchor.constraint(equalTo: resultIconContainer.centerXAnchor)
+        ])
+        let textContainer = UIView()
+        textContainer.translatesAutoresizingMaskIntoConstraints = false
+        resultGuidView.addSubview(textContainer)
+        NSLayoutConstraint.activate([
+            textContainer.widthAnchor.constraint(equalTo: resultGuidView.widthAnchor, multiplier: 0.52),
+            textContainer.heightAnchor.constraint(equalTo: textContainer.widthAnchor, multiplier: 0.5),
+            textContainer.centerYAnchor.constraint(equalTo: resultGuidView.centerYAnchor),
+            textContainer.rightAnchor.constraint(equalTo: resultGuidView.rightAnchor)
+        ])
+        let title = UILabel()
+        title.text = R.string.localizable.tooltip_results_title()
+        title.textColor = .white
+        title.font = UIFont.boldSystemFont(ofSize: 17.0)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        textContainer.addSubview(title)
+        NSLayoutConstraint.activate([
+            title.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 60),
+            title.topAnchor.constraint(equalTo: textContainer.topAnchor, constant: 10)
         ])
         let label = UILabel()
         label.text = R.string.localizable.guid_results()
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 12.0)
+        label.textColor = .white.withAlphaComponent(0.7)
+        label.font = UIFont.systemFont(ofSize: 14.0)
         label.textAlignment = .left
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        resultGuidView.addSubview(label)
+        textContainer.addSubview(label)
         NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalTo: resultGuidView.widthAnchor, multiplier: 0.6),
-            label.rightAnchor.constraint(equalTo: resultGuidView.rightAnchor, constant: -30),
-            label.centerYAnchor.constraint(equalTo: resultGuidView.centerYAnchor)
+            label.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 60),
+            label.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
+            label.rightAnchor.constraint(equalTo: textContainer.rightAnchor, constant: -30)
         ])
     }
     
     func initTeamsGuid() {
         teamsGuidView.translatesAutoresizingMaskIntoConstraints = false
-        teamsGuidView.backgroundColor = R.color.green_blue_start()
-        teamsGuidView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.insertSubview(teamsGuidView, at: 0)
-        
         NSLayoutConstraint.activate([
-            teamsGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.35),
-            teamsGuidView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.27),
-            teamsGuidView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            teamsGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.1),
+            teamsGuidView.heightAnchor.constraint(equalTo: teamsGuidView.widthAnchor),
+            teamsGuidView.centerYAnchor.constraint(equalTo: teamsGuidIconContainer.centerYAnchor),
             teamsGuidView.centerXAnchor.constraint(equalTo: teamsGuidIconContainer.centerXAnchor)
+        ])
+        let textContainer = UIView()
+        textContainer.translatesAutoresizingMaskIntoConstraints = false
+        teamsGuidView.addSubview(textContainer)
+        NSLayoutConstraint.activate([
+            textContainer.widthAnchor.constraint(equalTo: teamsGuidView.widthAnchor, multiplier: 0.7),
+            textContainer.heightAnchor.constraint(equalTo: textContainer.widthAnchor),
+            textContainer.centerXAnchor.constraint(equalTo: teamsGuidView.centerXAnchor),
+            textContainer.topAnchor.constraint(equalTo: teamsGuidView.topAnchor, constant: 20)
+        ])
+        let title = UILabel()
+        title.text = R.string.localizable.tooltip_teams_title()
+        title.textColor = .white
+        title.font = UIFont.boldSystemFont(ofSize: 17.0)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        textContainer.addSubview(title)
+        NSLayoutConstraint.activate([
+            title.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 40),
+            title.topAnchor.constraint(equalTo: textContainer.topAnchor, constant: 40)
         ])
         let label = UILabel()
         label.text = R.string.localizable.guid_teams()
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 12.0)
+        label.textColor = .white.withAlphaComponent(0.7)
+        label.font = UIFont.systemFont(ofSize: 14.0)
         label.textAlignment = .left
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        teamsGuidView.addSubview(label)
+        textContainer.addSubview(label)
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: teamsGuidView.leadingAnchor, constant: 15),
-            label.trailingAnchor.constraint(equalTo: teamsGuidView.trailingAnchor, constant: -15),
-            label.topAnchor.constraint(equalTo: teamsGuidView.topAnchor, constant: 40)
+            label.widthAnchor.constraint(equalTo: textContainer.widthAnchor, multiplier: 0.7),
+            label.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 40),
+            label.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10)
         ])
     }
     
     func initPayGuid() {
         payGuidView.translatesAutoresizingMaskIntoConstraints = false
-        payGuidView.backgroundColor = R.color.green_blue_start()
-        payGuidView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.insertSubview(payGuidView, at: 0)
         
         NSLayoutConstraint.activate([
-            payGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.39),
-            payGuidView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.32),
-            payGuidView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            payGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.1),
+            payGuidView.heightAnchor.constraint(equalTo: payGuidView.widthAnchor),
+            payGuidView.centerYAnchor.constraint(equalTo: payGuidIconContainer.centerYAnchor),
             payGuidView.centerXAnchor.constraint(equalTo: payGuidIconContainer.centerXAnchor)
+        ])
+        let textContainer = UIView()
+        textContainer.translatesAutoresizingMaskIntoConstraints = false
+        payGuidView.addSubview(textContainer)
+        NSLayoutConstraint.activate([
+            textContainer.widthAnchor.constraint(equalTo: payGuidView.widthAnchor, multiplier: 0.7),
+            textContainer.heightAnchor.constraint(equalTo: textContainer.widthAnchor),
+            textContainer.centerXAnchor.constraint(equalTo: payGuidView.centerXAnchor),
+            textContainer.topAnchor.constraint(equalTo: payGuidView.topAnchor, constant: 20)
+        ])
+        let title = UILabel()
+        title.text = R.string.localizable.tooltip_paid_title()
+        title.textColor = .white
+        title.font = UIFont.boldSystemFont(ofSize: 17.0)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        textContainer.addSubview(title)
+        NSLayoutConstraint.activate([
+            title.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 40),
+            title.topAnchor.constraint(equalTo: textContainer.topAnchor, constant: 40)
         ])
         let label = UILabel()
         label.text = R.string.localizable.guid_paid_plans()
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 12.0)
+        label.textColor = .white.withAlphaComponent(0.7)
+        label.font = UIFont.systemFont(ofSize: 14.0)
         label.textAlignment = .left
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        payGuidView.addSubview(label)
+        textContainer.addSubview(label)
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: payGuidView.leadingAnchor, constant: 17),
-            label.trailingAnchor.constraint(equalTo: payGuidView.trailingAnchor, constant: -15),
-            label.topAnchor.constraint(equalTo: payGuidView.topAnchor, constant: 55)
+            label.widthAnchor.constraint(equalTo: textContainer.widthAnchor, multiplier: 0.7),
+            label.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 40),
+            label.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10)
         ])
     }
     
     func initFaqGuid() {
         faqGuidView.translatesAutoresizingMaskIntoConstraints = false
         view.insertSubview(faqGuidView, at: 0)
-        faqGuidView.backgroundColor = R.color.green_blue_start()
-        faqGuidView.layer.maskedCorners = [.layerMinXMinYCorner]
         NSLayoutConstraint.activate([
-            faqGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            faqGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.3),
             faqGuidView.heightAnchor.constraint(equalTo: faqGuidView.widthAnchor),
-            faqGuidView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10),
-            faqGuidView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10)
+            faqGuidView.centerXAnchor.constraint(equalTo: faqGuidIconContainer.centerXAnchor),
+            faqGuidView.centerYAnchor.constraint(equalTo: faqGuidIconContainer.centerYAnchor)
+        ])
+        let textContainer = UIView()
+        textContainer.translatesAutoresizingMaskIntoConstraints = false
+        faqGuidView.addSubview(textContainer)
+        NSLayoutConstraint.activate([
+            textContainer.widthAnchor.constraint(equalTo: faqGuidView.widthAnchor, multiplier: 0.7),
+            textContainer.heightAnchor.constraint(equalTo: textContainer.widthAnchor),
+            textContainer.centerXAnchor.constraint(equalTo: faqGuidView.centerXAnchor, constant: -20),
+            textContainer.topAnchor.constraint(equalTo: faqGuidView.topAnchor, constant: 50)
+        ])
+        let title = UILabel()
+        title.text = R.string.localizable.tooltip_faq_title()
+        title.textColor = .white
+        title.font = UIFont.boldSystemFont(ofSize: 17.0)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        textContainer.addSubview(title)
+        NSLayoutConstraint.activate([
+            title.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 40),
+            title.topAnchor.constraint(equalTo: textContainer.topAnchor, constant: 40)
         ])
         let label = UILabel()
         label.text = R.string.localizable.guid_faq()
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 12.0)
-        label.textAlignment = .right
+        label.textColor = .white.withAlphaComponent(0.7)
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.textAlignment = .left
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        faqGuidView.addSubview(label)
+        textContainer.addSubview(label)
         NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalTo: faqGuidView.widthAnchor, multiplier: 0.6),
-            label.leftAnchor.constraint(equalTo: faqGuidView.leftAnchor, constant: 30),
-            label.topAnchor.constraint(equalTo: faqGuidView.topAnchor, constant: 20)
+            label.widthAnchor.constraint(equalTo: textContainer.widthAnchor, multiplier: 0.7),
+            label.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 40),
+            label.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10)
         ])
     }
     
@@ -485,7 +574,9 @@ class TourGuidVController: UIViewController {
     func betsGuid() {
         betsGuidView.isHidden = false
         addAnimation(betsGuidIconContainer) {[weak self] in
-            self?.betsGuidView.transform = CGAffineTransform.identity
+            guard let self = self else { return }
+            self.betsGuidView.transformToRestore()
+            self.betsGuidView.roundCorners()
         }
     }
     
@@ -495,9 +586,10 @@ class TourGuidVController: UIViewController {
         self.teamsGuidView.isHidden = false
         addAnimation(teamsGuidIconContainer, animation: {[weak self] in
             guard let self = self else { return }
-            self.resultGuidView.layer.opacity = 0
+            self.resultGuidView.transformToHide()
             self.resultIconContainer.layer.opacity = 0
-            self.teamsGuidView.transform = CGAffineTransform.identity
+            self.teamsGuidView.transformToRestore()
+            self.teamsGuidView.roundCorners()
         }) {
             self.resultGuidView.isHidden = true
             self.resultIconContainer.isHidden = true
@@ -508,9 +600,10 @@ class TourGuidVController: UIViewController {
         payGuidView.isHidden = false
         addAnimation(payGuidIconContainer, animation: {[weak self] in
             guard let self = self else { return }
-            self.teamsGuidView.layer.opacity = 0
+            self.teamsGuidView.transformToHide()
             self.teamsGuidIconContainer.layer.opacity = 0
-            self.payGuidView.transform = CGAffineTransform.identity
+            self.payGuidView.transformToRestore()
+            self.payGuidView.roundCorners()
         }) {
             self.teamsGuidView.isHidden = true
             self.teamsGuidIconContainer.isHidden = true
@@ -524,6 +617,7 @@ class TourGuidVController: UIViewController {
             self.payGuidView.layer.opacity = 0
             self.payGuidIconContainer.layer.opacity = 0
             self.faqGuidView.transform = CGAffineTransform.identity
+            self.faqGuidView.roundCorners()
         }) {
             self.payGuidView.isHidden = true
             self.payGuidIconContainer.isHidden = true
@@ -534,9 +628,10 @@ class TourGuidVController: UIViewController {
         self.authorizeGuidView.isHidden = false
         addAnimation(authorizeIconContainer, animation: {[weak self] in
             guard let self = self else { return }
-            self.betsGuidView.layer.opacity = 0
+            self.betsGuidView.transform = CGAffineTransform.init(scaleX: 0, y: 0)
             self.betsGuidIconContainer.layer.opacity = 0
             self.authorizeGuidView.transform = CGAffineTransform.identity
+            self.authorizeGuidView.roundCorners()
         }) {
             self.betsGuidView.isHidden = true
             self.betsGuidIconContainer.isHidden = true
@@ -548,8 +643,9 @@ class TourGuidVController: UIViewController {
         addAnimation(resultIconContainer, animation: {[weak self] in
             guard let self = self else { return }
             self.authorizeGuidView.layer.opacity = 0
-            self.authorizeIconContainer.layer.opacity = 0
+            self.authorizeGuidView.transform = CGAffineTransform.init(scaleX: 0, y: 0)
             self.resultGuidView.transform = CGAffineTransform.identity
+            self.resultGuidView.roundCorners()
         }) {
             self.authorizeGuidView.isHidden = true
             self.authorizeIconContainer.isHidden = true
@@ -576,8 +672,8 @@ class TourGuidVController: UIViewController {
             view.animationView?.layer.opacity = 1
             complation?()
             view.superview?.layer.removeAllAnimations()
-            UIView.animate(withDuration: 0.5, delay: 0, options: [.repeat]) {
-                view.animationView?.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
+            UIView.animate(withDuration: 0.8, delay: 0, options: [.repeat]) {
+                view.animationView?.transform = CGAffineTransform.init(scaleX: 2, y: 2)
                 view.animationView?.layer.opacity = 0
             }
         })
@@ -586,7 +682,18 @@ class TourGuidVController: UIViewController {
 
 private extension UIView {
     
+    func transformToHide() {
+        transform = CGAffineTransform.init(scaleX: 0, y: 0 )
+    }
+    func transformToRestore() {
+        transform = CGAffineTransform.identity
+    }
+    
     func roundCorners() {
+        layer.cornerRadius = frame.width / 2
+    }
+    
+    func roundSubViewCorners() {
         guard let width = subviews.first?.frame.width else { return }
         animationView?.layer.cornerRadius = width / 2
         iconView?.layer.cornerRadius = width / 2

@@ -105,10 +105,12 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 19 colors.
+  /// This `R.color` struct is generated, and contains static references to 20 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
+    /// Color `Color`.
+    static let color = Rswift.ColorResource(bundle: R.hostingBundle, name: "Color")
     /// Color `authorize_btn`.
     static let authorize_btn = Rswift.ColorResource(bundle: R.hostingBundle, name: "authorize_btn")
     /// Color `background_light`.
@@ -152,6 +154,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func accentColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.accentColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "Color", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.color, compatibleWith: traitCollection)
     }
     #endif
 
@@ -322,6 +333,14 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func accentColor(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.accentColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "Color", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func color(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.color.name)
     }
     #endif
 
@@ -543,7 +562,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 15 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 18 localization keys.
     struct localizable {
       /// en translation: Answers to frequently asked questions related to the operation of our service can be found here.
       ///
@@ -561,6 +580,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let guid_paid_plans = Rswift.StringResource(key: "guid_paid_plans", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: LOGIN
+      ///
+      /// Locales: en, ru
+      static let tooltip_login_title = Rswift.StringResource(key: "tooltip_login_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: PREDICTIONS
       ///
       /// Locales: en, ru
@@ -585,6 +608,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let questions = Rswift.StringResource(key: "questions", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: RESULTS
+      ///
+      /// Locales: en, ru
+      static let tooltip_results_title = Rswift.StringResource(key: "tooltip_results_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Sign In
+      ///
+      /// Locales: en, ru
+      static let sign_in = Rswift.StringResource(key: "sign_in", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: TEAMS
       ///
       /// Locales: en, ru
@@ -664,6 +695,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("guid_paid_plans", bundle: bundle, comment: "")
+      }
+
+      /// en translation: LOGIN
+      ///
+      /// Locales: en, ru
+      static func tooltip_login_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("tooltip_login_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "tooltip_login_title"
+        }
+
+        return NSLocalizedString("tooltip_login_title", bundle: bundle, comment: "")
       }
 
       /// en translation: PREDICTIONS
@@ -754,6 +800,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("questions", bundle: bundle, comment: "")
+      }
+
+      /// en translation: RESULTS
+      ///
+      /// Locales: en, ru
+      static func tooltip_results_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("tooltip_results_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "tooltip_results_title"
+        }
+
+        return NSLocalizedString("tooltip_results_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Sign In
+      ///
+      /// Locales: en, ru
+      static func sign_in(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("sign_in", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "sign_in"
+        }
+
+        return NSLocalizedString("sign_in", bundle: bundle, comment: "")
       }
 
       /// en translation: TEAMS

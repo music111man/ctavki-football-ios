@@ -6,8 +6,10 @@
   
 */
 "my_balance" = "my\nbal.";
-
+"sign_in" = "Sign\nIn";
+"tooltip_login_title" = "LOGIN";
 "tooltip_bets_title" = "PREDICTIONS";
+"tooltip_results_title" = "RESULTS";
 "tooltip_teams_title" = "TEAMS";
 "tooltip_paid_title" = "PURCHASES";
 "tooltip_faq_title" = "QUESTIONS";
