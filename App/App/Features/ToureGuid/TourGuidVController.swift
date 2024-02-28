@@ -524,7 +524,7 @@ class TourGuidVController: UIViewController {
         faqGuidView.translatesAutoresizingMaskIntoConstraints = false
         view.insertSubview(faqGuidView, at: 0)
         NSLayoutConstraint.activate([
-            faqGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.3),
+            faqGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.4),
             faqGuidView.heightAnchor.constraint(equalTo: faqGuidView.widthAnchor),
             faqGuidView.centerXAnchor.constraint(equalTo: faqGuidIconContainer.centerXAnchor),
             faqGuidView.centerYAnchor.constraint(equalTo: faqGuidIconContainer.centerYAnchor)
@@ -533,9 +533,9 @@ class TourGuidVController: UIViewController {
         textContainer.translatesAutoresizingMaskIntoConstraints = false
         faqGuidView.addSubview(textContainer)
         NSLayoutConstraint.activate([
-            textContainer.widthAnchor.constraint(equalTo: faqGuidView.widthAnchor, multiplier: 0.7),
+            textContainer.widthAnchor.constraint(equalTo: faqGuidView.widthAnchor, multiplier: 0.5),
             textContainer.heightAnchor.constraint(equalTo: textContainer.widthAnchor),
-            textContainer.centerXAnchor.constraint(equalTo: faqGuidView.centerXAnchor, constant: -20),
+            textContainer.leftAnchor.constraint(equalTo: faqGuidView.leftAnchor, constant: 70),
             textContainer.topAnchor.constraint(equalTo: faqGuidView.topAnchor, constant: 50)
         ])
         let title = UILabel()
