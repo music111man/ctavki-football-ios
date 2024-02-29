@@ -28,6 +28,10 @@ end
 #    pod 'FastEasyMapping', "~> 1.0"
 #end
 
+def moya
+    pod 'Moya'
+end
+
 def swinject
     pod 'Swinject', '~> 2.5.0'
 end

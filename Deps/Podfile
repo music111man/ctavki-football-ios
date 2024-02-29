@@ -11,11 +11,10 @@ load 'Defs.rb'
 target 'App' do
   project_app_path
   swiftlint
-  swinject
   rswift
   rxSwift
   rxCocoa
-  coordinator
+  moya
 end
 
 # post install

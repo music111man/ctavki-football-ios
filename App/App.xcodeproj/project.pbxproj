@@ -25,6 +25,19 @@
 		F22CE0B72B88C28100732FFB /* PurchesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B62B88C28100732FFB /* PurchesFactory.swift */; };
 		F22CE0B92B88C2FD00732FFB /* FaqFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B82B88C2FD00732FFB /* FaqFactory.swift */; };
 		F22CE0BC2B88F0D200732FFB /* TourGuidVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0BB2B88F0D200732FFB /* TourGuidVController.swift */; };
+		F2DBFAEF2B8F7D7B00FC5069 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DBFAEE2B8F7D7B00FC5069 /* Bet.swift */; };
+		F2EA78C82B908DA6006B3A1C /* BetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78C72B908DA6006B3A1C /* BetType.swift */; };
+		F2EA78CA2B908ED2006B3A1C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78C92B908ED2006B3A1C /* Team.swift */; };
+		F2EA78CC2B909122006B3A1C /* Faq.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78CB2B909122006B3A1C /* Faq.swift */; };
+		F2EA78CE2B90935D006B3A1C /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78CD2B90935D006B3A1C /* String.swift */; };
+		F2EA78D02B90941D006B3A1C /* ApiResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78CF2B90941D006B3A1C /* ApiResponseData.swift */; };
+		F2EA78D22B90ABD2006B3A1C /* NetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78D12B90ABD2006B3A1C /* NetProvider.swift */; };
+		F2EA78D52B90B60E006B3A1C /* BetOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78D42B90B60E006B3A1C /* BetOutcome.swift */; };
+		F2EA78D72B90B97D006B3A1C /* AppUpdateAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78D62B90B97D006B3A1C /* AppUpdateAvailable.swift */; };
+		F2EA78D92B90C8B0006B3A1C /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78D82B90C8B0006B3A1C /* ApiRequest.swift */; };
+		F2EA78DC2B90CA29006B3A1C /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78DB2B90CA29006B3A1C /* AppSettings.swift */; };
+		F2EA78DE2B910013006B3A1C /* JSONWrapHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78DD2B910013006B3A1C /* JSONWrapHelpers.swift */; };
+		F2EA78E02B9103F5006B3A1C /* ValueTypeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78DF2B9103F5006B3A1C /* ValueTypeExt.swift */; };
 		F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC033D2B867809001C6BB3 /* AppDelegate.swift */; };
 		F2FC03422B867809001C6BB3 /* MainVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC03412B867809001C6BB3 /* MainVController.swift */; };
 		F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2FC03462B86780B001C6BB3 /* Assets.xcassets */; };
@@ -53,6 +66,19 @@
 		F22CE0B62B88C28100732FFB /* PurchesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchesFactory.swift; sourceTree = "<group>"; };
 		F22CE0B82B88C2FD00732FFB /* FaqFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqFactory.swift; sourceTree = "<group>"; };
 		F22CE0BB2B88F0D200732FFB /* TourGuidVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourGuidVController.swift; sourceTree = "<group>"; };
+		F2DBFAEE2B8F7D7B00FC5069 /* Bet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
+		F2EA78C72B908DA6006B3A1C /* BetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetType.swift; sourceTree = "<group>"; };
+		F2EA78C92B908ED2006B3A1C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		F2EA78CB2B909122006B3A1C /* Faq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Faq.swift; sourceTree = "<group>"; };
+		F2EA78CD2B90935D006B3A1C /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		F2EA78CF2B90941D006B3A1C /* ApiResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponseData.swift; sourceTree = "<group>"; };
+		F2EA78D12B90ABD2006B3A1C /* NetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetProvider.swift; sourceTree = "<group>"; };
+		F2EA78D42B90B60E006B3A1C /* BetOutcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetOutcome.swift; sourceTree = "<group>"; };
+		F2EA78D62B90B97D006B3A1C /* AppUpdateAvailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateAvailable.swift; sourceTree = "<group>"; };
+		F2EA78D82B90C8B0006B3A1C /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
+		F2EA78DB2B90CA29006B3A1C /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		F2EA78DD2B910013006B3A1C /* JSONWrapHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONWrapHelpers.swift; sourceTree = "<group>"; };
+		F2EA78DF2B9103F5006B3A1C /* ValueTypeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTypeExt.swift; sourceTree = "<group>"; };
 		F2F186C72B87754F00FBDD22 /* Utilites.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utilites.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FC033A2B867809001C6BB3 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FC033D2B867809001C6BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,8 +122,10 @@
 		F207046F2B878B8C00DD6364 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
+				F2EA78D32B90ACD3006B3A1C /* Net */,
 				F22CE0932B87B87400732FFB /* AppCoordinator.swift */,
 				F22CE0B22B88BE4D00732FFB /* VCFactory.swift */,
+				F2EA78DB2B90CA29006B3A1C /* AppSettings.swift */,
 			);
 			path = Utilites;
 			sourceTree = "<group>";
@@ -171,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				F22CE0AD2B889B5D00732FFB /* Controls */,
-				F22CE0AC2B889B4A00732FFB /* Extensions */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -180,6 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				F22CE0AE2B889B8500732FFB /* UIView.swift */,
+				F2EA78CD2B90935D006B3A1C /* String.swift */,
+				F2EA78DF2B9103F5006B3A1C /* ValueTypeExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -199,6 +228,38 @@
 				F22CE0BB2B88F0D200732FFB /* TourGuidVController.swift */,
 			);
 			path = ToureGuid;
+			sourceTree = "<group>";
+		};
+		F2DBFAEB2B8F7B6200FC5069 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F2DBFAEC2B8F7B6F00FC5069 /* Models */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		F2DBFAEC2B8F7B6F00FC5069 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F2DBFAEE2B8F7D7B00FC5069 /* Bet.swift */,
+				F2EA78C72B908DA6006B3A1C /* BetType.swift */,
+				F2EA78C92B908ED2006B3A1C /* Team.swift */,
+				F2EA78CB2B909122006B3A1C /* Faq.swift */,
+				F2EA78CF2B90941D006B3A1C /* ApiResponseData.swift */,
+				F2EA78D42B90B60E006B3A1C /* BetOutcome.swift */,
+				F2EA78D62B90B97D006B3A1C /* AppUpdateAvailable.swift */,
+				F2EA78DD2B910013006B3A1C /* JSONWrapHelpers.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F2EA78D32B90ACD3006B3A1C /* Net */ = {
+			isa = PBXGroup;
+			children = (
+				F2EA78D12B90ABD2006B3A1C /* NetProvider.swift */,
+				F2EA78D82B90C8B0006B3A1C /* ApiRequest.swift */,
+			);
+			path = Net;
 			sourceTree = "<group>";
 		};
 		F2FC03312B867809001C6BB3 = {
@@ -222,6 +283,8 @@
 		F2FC033C2B867809001C6BB3 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				F22CE0AC2B889B4A00732FFB /* Extensions */,
+				F2DBFAEB2B8F7B6200FC5069 /* Data */,
 				F22CE0A52B87D1CE00732FFB /* UIComponents */,
 				F22CE0952B87B91D00732FFB /* Features */,
 				F20704702B878BAF00DD6364 /* Services */,
@@ -374,23 +437,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2DBFAEF2B8F7D7B00FC5069 /* Bet.swift in Sources */,
 				F2FC03422B867809001C6BB3 /* MainVController.swift in Sources */,
+				F2EA78CE2B90935D006B3A1C /* String.swift in Sources */,
 				F22CE0A22B87C5F900732FFB /* FaqVController.swift in Sources */,
 				F22CE0A92B87DBB100732FFB /* ToolBarView.swift in Sources */,
 				F22CE09C2B87BEDA00732FFB /* PicksVController.swift in Sources */,
+				F2EA78C82B908DA6006B3A1C /* BetType.swift in Sources */,
 				F22CE0B32B88BE4D00732FFB /* VCFactory.swift in Sources */,
 				F22CE0A02B87C5AF00732FFB /* PurchesVController.swift in Sources */,
+				F2EA78CC2B909122006B3A1C /* Faq.swift in Sources */,
+				F2EA78DC2B90CA29006B3A1C /* AppSettings.swift in Sources */,
 				F22CE0942B87B87400732FFB /* AppCoordinator.swift in Sources */,
+				F2EA78CA2B908ED2006B3A1C /* Team.swift in Sources */,
 				F2040C612B8C9D4700DE01CE /* MainCoordinator.swift in Sources */,
 				F22CE0B52B88C20900732FFB /* TeamsFactory.swift in Sources */,
 				F22CE0A72B87D3C100732FFB /* MenuButton.swift in Sources */,
 				F22CE09E2B87C53700732FFB /* TeamsVController.swift in Sources */,
+				F2EA78DE2B910013006B3A1C /* JSONWrapHelpers.swift in Sources */,
 				F22CE0BC2B88F0D200732FFB /* TourGuidVController.swift in Sources */,
+				F2EA78D22B90ABD2006B3A1C /* NetProvider.swift in Sources */,
 				F22CE0B72B88C28100732FFB /* PurchesFactory.swift in Sources */,
 				F22CE0B92B88C2FD00732FFB /* FaqFactory.swift in Sources */,
 				F22CE0AF2B889B8500732FFB /* UIView.swift in Sources */,
 				F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */,
+				F2EA78D52B90B60E006B3A1C /* BetOutcome.swift in Sources */,
+				F2EA78E02B9103F5006B3A1C /* ValueTypeExt.swift in Sources */,
 				F20704882B87A43500DD6364 /* R.generated.swift in Sources */,
+				F2EA78D72B90B97D006B3A1C /* AppUpdateAvailable.swift in Sources */,
+				F2EA78D02B90941D006B3A1C /* ApiResponseData.swift in Sources */,
+				F2EA78D92B90C8B0006B3A1C /* ApiRequest.swift in Sources */,
 				F22CE0B12B88BC6E00732FFB /* PicksFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
