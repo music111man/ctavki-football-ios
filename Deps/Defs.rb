@@ -28,6 +28,10 @@ end
 #    pod 'FastEasyMapping', "~> 1.0"
 #end
 
+def sqlite
+  pod 'SQLite.swift'
+end 
+
 def moya
     pod 'Moya'
 end

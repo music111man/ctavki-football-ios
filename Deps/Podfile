@@ -15,6 +15,7 @@ target 'App' do
   rxSwift
   rxCocoa
   moya
+  sqlite
 end
 
 # post install

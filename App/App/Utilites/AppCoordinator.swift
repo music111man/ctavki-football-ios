@@ -15,6 +15,7 @@ protocol PCoordinator {
 final class AppCoordinator: PCoordinator {
     let window: UIWindow
     let mainCoordinator: MainCoordinator
+    let syncService = SyncService()
     
     var router: UINavigationController? {
         window.rootViewController as? UINavigationController
@@ -27,12 +28,8 @@ final class AppCoordinator: PCoordinator {
     }
     
     func start() {
-        NetProvider.makeRequest(ApiResponseData.self, .checkForUpdates) { responseData in
-            print("update=\(responseData.isSubscribedToTgChannel), bets count=\(responseData.bets.count)")
-            print("lastUpdate=\(responseData.newLastTimeDataUpdated), teams count=\(responseData.teams.count)")
-            print("bet type count=\(responseData.betTypes.count), event date=\(responseData.bets[0].outcome ?? .lost )")
-            print("faq count=\(responseData.faqs.count)")
-        }
+        syncService.startRefreshCircle()
+        
         window.rootViewController = mainCoordinator.start()
         router?.navigationBar.isHidden = true
         window.makeKeyAndVisible()

@@ -11,7 +11,13 @@ class PicksVController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.post(name: Notification.Name.tryToRefreshData, object: nil)
     }
 
     func initUI() {

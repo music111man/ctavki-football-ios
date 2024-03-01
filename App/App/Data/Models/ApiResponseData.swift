@@ -12,7 +12,7 @@ struct ApiResponseData: Decodable {
     let appupdate: AppUpdateAvailable
     @StringDecodable 
     var defaultFreeBetsCount: Int
-    @StringDecodable 
+    @StringDecodable
     var giftFreeBetsCount: Int
     let newLastTimeDataUpdated: String
     let userBetsLeft: Int

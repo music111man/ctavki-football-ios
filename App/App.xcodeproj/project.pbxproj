@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1467024DB7CCF9E9DDD8C724 /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A862FB8A74992E1BEBD67C /* Pods_App.framework */; };
 		F2040C612B8C9D4700DE01CE /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2040C602B8C9D4700DE01CE /* MainCoordinator.swift */; };
+		F2041A322B91D05C00DA42BB /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2041A312B91D05C00DA42BB /* Repository.swift */; };
+		F2041A342B92335800DA42BB /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2041A332B92335800DA42BB /* SyncService.swift */; };
 		F20704832B87A33800DD6364 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F20704852B87A33800DD6364 /* Localizable.strings */; };
 		F20704882B87A43500DD6364 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20704872B87A43500DD6364 /* R.generated.swift */; };
 		F22CE0942B87B87400732FFB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0932B87B87400732FFB /* AppCoordinator.swift */; };
@@ -49,6 +51,8 @@
 		AE27349C0530710519C5E702 /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
 		D9A862FB8A74992E1BEBD67C /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2040C602B8C9D4700DE01CE /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		F2041A312B91D05C00DA42BB /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		F2041A332B92335800DA42BB /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
 		F20704842B87A33800DD6364 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F20704862B87A33A00DD6364 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F20704872B87A43500DD6364 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
@@ -119,9 +123,18 @@
 			path = ../Deps/Pods;
 			sourceTree = "<group>";
 		};
+		F2041A302B91D04400DA42BB /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				F2041A312B91D05C00DA42BB /* Repository.swift */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
 		F207046F2B878B8C00DD6364 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
+				F2041A302B91D04400DA42BB /* DB */,
 				F2EA78D32B90ACD3006B3A1C /* Net */,
 				F22CE0932B87B87400732FFB /* AppCoordinator.swift */,
 				F22CE0B22B88BE4D00732FFB /* VCFactory.swift */,
@@ -133,6 +146,7 @@
 		F20704702B878BAF00DD6364 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F2041A332B92335800DA42BB /* SyncService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -439,6 +453,7 @@
 			files = (
 				F2DBFAEF2B8F7D7B00FC5069 /* Bet.swift in Sources */,
 				F2FC03422B867809001C6BB3 /* MainVController.swift in Sources */,
+				F2041A342B92335800DA42BB /* SyncService.swift in Sources */,
 				F2EA78CE2B90935D006B3A1C /* String.swift in Sources */,
 				F22CE0A22B87C5F900732FFB /* FaqVController.swift in Sources */,
 				F22CE0A92B87DBB100732FFB /* ToolBarView.swift in Sources */,
@@ -448,6 +463,7 @@
 				F22CE0A02B87C5AF00732FFB /* PurchesVController.swift in Sources */,
 				F2EA78CC2B909122006B3A1C /* Faq.swift in Sources */,
 				F2EA78DC2B90CA29006B3A1C /* AppSettings.swift in Sources */,
+				F2041A322B91D05C00DA42BB /* Repository.swift in Sources */,
 				F22CE0942B87B87400732FFB /* AppCoordinator.swift in Sources */,
 				F2EA78CA2B908ED2006B3A1C /* Team.swift in Sources */,
 				F2040C612B8C9D4700DE01CE /* MainCoordinator.swift in Sources */,

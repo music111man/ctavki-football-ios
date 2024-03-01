@@ -38,7 +38,7 @@ extension ApiRequest: TargetType {
     var task: Moya.Task {
         switch self {
         case .checkForUpdates:
-            return Moya.Task.requestParameters(parameters: ["lastTimeSynced" : AppSettings.lastTimeSynced,
+            return Moya.Task.requestParameters(parameters: ["lastTimeSynced" : AppSettings.lastTimeForUpdate,
                                                             "fcmToken" : AppSettings.fcmToken], 
                                                encoding: URLEncoding.default)
         }

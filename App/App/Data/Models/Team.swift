@@ -6,8 +6,37 @@
 //
 
 import Foundation
+import SQLite
 
 struct Team: Decodable {
+    
     @StringDecodable var id: Int
     let title: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+    }
+}
+
+extension Team: DBComparable {
+    
+    static var table: Table { Table("teams") }
+    
+    static var idField: Expression<Int> { Expression<Int>(CodingKeys.id.rawValue) }
+    static var titleField: Expression<String> { Expression<String>(CodingKeys.title.rawValue) }
+    
+    static func createTable(db: Connection) throws {
+        try db.run(Self.table.create(ifNotExists: true) { table in
+            table.column(idField, primaryKey: true)
+            table.column(titleField)
+        })
+    }
+    
+    var setters: [Setter] {
+        [
+            Self.idField <- id,
+            Self.titleField <- title
+        ]
+    }
 }
