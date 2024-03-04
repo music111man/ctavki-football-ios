@@ -29,6 +29,7 @@ class VCFactory: PVCFactory {
     func getNavigator() -> UINavigationController {
         guard let navigator = self.navigator else {
             let navigator = UINavigationController()
+            navigator.isNavigationBarHidden = true
             self.navigator = navigator
             
             return navigator

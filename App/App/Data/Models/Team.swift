@@ -10,7 +10,8 @@ import SQLite
 
 struct Team: Decodable {
     
-    @StringDecodable var id: Int
+    @StringDecodable
+    var id: Int
     let title: String
     
     enum CodingKeys: String, CodingKey {
@@ -20,17 +21,20 @@ struct Team: Decodable {
 }
 
 extension Team: DBComparable {
+    init(row: SQLite.Row) {
+        _id = StringDecodable(row[Self.idField])
+        title = row[Self.titleField]
+    }
+    
     
     static var table: Table { Table("teams") }
     
     static var idField: Expression<Int> { Expression<Int>(CodingKeys.id.rawValue) }
     static var titleField: Expression<String> { Expression<String>(CodingKeys.title.rawValue) }
     
-    static func createTable(db: Connection) throws {
-        try db.run(Self.table.create(ifNotExists: true) { table in
-            table.column(idField, primaryKey: true)
-            table.column(titleField)
-        })
+    static func createColumns(builder: TableBuilder) {
+        builder.column(idField, primaryKey: true)
+        builder.column(titleField)
     }
     
     var setters: [Setter] {

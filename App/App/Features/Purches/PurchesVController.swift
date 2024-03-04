@@ -8,8 +8,11 @@
 import Foundation
 import UIKit
 
-final class PurchesVController: PicksVController {
-    override func labelName() -> String {
+final class PurchesVController: FeaureVController {
+    override func titleName() -> String {
         R.string.localizable.tooltip_paid_title()
+    }
+    override func icon() -> UIImage? {
+        R.image.pay()
     }
 }

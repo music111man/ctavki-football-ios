@@ -16,6 +16,7 @@ target 'App' do
   rxCocoa
   moya
   sqlite
+  rxDataSources
 end
 
 # post install

@@ -23,11 +23,14 @@ struct StringDecodable<Wrapped: LosslessStringConvertible>: Decodable {
             )
         }
     }
+    init(_ value: Wrapped) {
+        wrappedValue = value
+    }
 }
 
 @propertyWrapper
 struct MutableStringDecodable<Wrapped: LosslessStringConvertible>: Decodable {
-    let wrappedValue: Wrapped?
+    var wrappedValue: Wrapped?
 
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -45,6 +48,10 @@ struct MutableStringDecodable<Wrapped: LosslessStringConvertible>: Decodable {
             }
         }
     }
+    
+    init(_ value: Wrapped?) {
+        wrappedValue = value
+    }
 }
 
 @propertyWrapper
@@ -54,6 +61,10 @@ struct IntToBoolDecodable: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         wrappedValue = try container.decode(Int.self) > 0
+    }
+    
+    init(_ value: Bool) {
+        wrappedValue = value
     }
 }
 
@@ -65,5 +76,8 @@ struct StringDateDecodable: Decodable {
         let container = try decoder.singleValueContainer()
         let str = try container.decode(String.self)
         wrappedValue = Date(timeIntervalSince1970: Double(str) ?? 0)
+    }
+    init(_ value: Date) {
+        wrappedValue = value
     }
 }

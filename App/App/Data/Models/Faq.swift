@@ -10,7 +10,8 @@ import SQLite
 
 struct Faq: Decodable {
     
-    @StringDecodable var id: Int
+    @StringDecodable
+    var id: Int
     let question: String
     let answer: String
     
@@ -19,11 +20,15 @@ struct Faq: Decodable {
         case question
         case answer
     }
-    
-    
 }
 
 extension Faq: DBComparable {
+    init(row: SQLite.Row) {
+        _id = StringDecodable(row[Self.idField])
+        question = row[Self.questionField]
+        answer = row[Self.answerField]
+    }
+    
     
     static var table: Table { Table("faqs") }
     
@@ -31,12 +36,10 @@ extension Faq: DBComparable {
     static var questionField: Expression<String> { Expression<String>(CodingKeys.question.rawValue) }
     static var answerField: Expression<String> { Expression<String>(CodingKeys.answer.rawValue) }
     
-    static func createTable(db: Connection) throws {
-        try db.run(Self.table.create(ifNotExists: true) { table in
-            table.column(idField, primaryKey: true)
-            table.column(questionField)
-            table.column(answerField)
-        })
+    static func createColumns(builder: TableBuilder) {
+        builder.column(idField, primaryKey: true)
+        builder.column(questionField)
+        builder.column(answerField)
     }
     
     var setters: [Setter] {

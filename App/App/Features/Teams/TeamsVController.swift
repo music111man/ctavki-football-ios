@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-final class TeamsVController:PicksVController {
-    override func labelName() -> String {
+final class TeamsVController: FeaureVController {
+    override func titleName() -> String {
         R.string.localizable.tooltip_teams_title()
     }
-    override func createVC() -> UIViewController {
-        TeamsVController()
+    override func icon() -> UIImage? {
+        R.image.teams()
     }
 }

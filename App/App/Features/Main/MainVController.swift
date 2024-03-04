@@ -33,14 +33,11 @@ final class MainVController: UIViewController {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
         view.addSubview(toolBar)
-        let window = UIApplication.shared.windows[0]
-        let safeFrame = window.safeAreaLayoutGuide.layoutFrame
-        let bottomSafeAreaHeight = window.frame.maxY - safeFrame.maxY
         let margin = 0.0
         NSLayoutConstraint.activate([
             toolBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margin),
             toolBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margin),
-            toolBar.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -bottomSafeAreaHeight),
+            toolBar.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -UIView.safeAreaHeight),
             toolBar.heightAnchor.constraint(equalToConstant: 58),
             containerView.topAnchor.constraint(equalTo: view.topAnchor),
             containerView.bottomAnchor.constraint(equalTo: toolBar.topAnchor),

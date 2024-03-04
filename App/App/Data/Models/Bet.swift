@@ -10,7 +10,6 @@ import UIKit
 import SQLite
 
 struct Bet: Decodable {
-    
     @StringDecodable
     var id: Int
     @StringDateDecodable
@@ -50,6 +49,20 @@ struct Bet: Decodable {
 }
 
 extension Bet: DBComparable {
+    init(row: SQLite.Row) {
+        self._id = StringDecodable(row[Self.idField])
+        self._eventDate = StringDateDecodable(row[Self.eventDateField])
+        self._team1Id = StringDecodable(row[Self.team1IdField])
+        self._team2Id = StringDecodable(row[Self.team2IdField])
+        self._homeTeamId = StringDecodable(row[Self.homeTeamIdField])
+        self._typeId = MutableStringDecodable(row[Self.typeIdField])
+        self._typeArg = MutableStringDecodable(row[Self.typeArgField])
+        self._factor = MutableStringDecodable(row[Self.factorField])
+        self.outcome = BetOutcome.init(rawValue: row[Self.outcomeField] ?? "")
+        self._reliability = StringDecodable(row[Self.reliabilityField])
+    }
+    
+   
     static var table: Table { Table("bets") }
     
     static var idField: Expression<Int> { Expression<Int>(CodingKeys.id.rawValue) }
@@ -63,19 +76,17 @@ extension Bet: DBComparable {
     static var outcomeField: Expression<String?> { Expression<String?>(CodingKeys.outcome.rawValue) }
     static var reliabilityField: Expression<Int> { Expression<Int>(CodingKeys.reliability.rawValue) }
     
-    static func createTable(db: Connection) throws {
-        try db.run(Self.table.create(ifNotExists: true) { table in
-            table.column(Self.idField, primaryKey: true)
-            table.column(eventDateField)
-            table.column(team1IdField)
-            table.column(team2IdField)
-            table.column(homeTeamIdField)
-            table.column(typeIdField)
-            table.column(typeArgField)
-            table.column(factorField)
-            table.column(outcomeField)
-            table.column(reliabilityField)
-        })
+    static func createColumns(builder: TableBuilder) {
+        builder.column(Self.idField, primaryKey: true)
+        builder.column(eventDateField)
+        builder.column(team1IdField)
+        builder.column(team2IdField)
+        builder.column(homeTeamIdField)
+        builder.column(typeIdField)
+        builder.column(typeArgField)
+        builder.column(factorField)
+        builder.column(outcomeField)
+        builder.column(reliabilityField)
     }
     
     var setters: [Setter] {

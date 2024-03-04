@@ -22,10 +22,6 @@ final class Repository {
                 .appendingPathComponent(Self.dbName)
             print("Open db \(fileUrl.path)")
             Self.con = try Connection(fileUrl.path)
-            try Team.createTable(db: Self.con!)
-            try Faq.createTable(db: Self.con!)
-            try Bet.createTable(db: Self.con!)
-            try BetType.createTable(db: Self.con!)
         } catch let error {
             print(error)
         }
@@ -41,6 +37,10 @@ final class Repository {
         if items.isEmpty { return false }
         do {
             try Self.connection?.transaction {
+                try Self.connection?.run(T.table.create(ifNotExists: true) { builder in
+                    T.createColumns(builder: builder)
+                })
+                
                 deletedCount = try Self.connection?.run(T.table.filter(T.idField < items.min(by: { item1, item2 in
                     item1.id < item2.id
                 })?.id ?? 0 ).delete()) ?? 0
@@ -52,13 +52,36 @@ final class Repository {
         } catch let error {
             print(error)
         }
-        return (Int64(deletedCount) + insertCount) > 0
+        
+        return deletedCount + Int(insertCount) > 0
+    }
+    
+    static func selectData<T: DBComparable>(_ selectQuery: Table? = nil) -> [T]  {
+        defer { semaphore.signal() }
+        semaphore.wait()
+        var result = [T]()
+        do {
+            let mapRowIterator = try connection?.prepareRowIterator(selectQuery ?? T.table)
+            while let row = try mapRowIterator?.failableNext() {
+                result.append(T(row: row))
+            }
+            
+        } catch let error {
+            print(error)
+            return []
+        }
+        
+        return result
     }
 }
 
 protocol DBComparable {
     static var table: Table { get }
     static var idField: Expression<Int> { get }
+    
+    static func createColumns(builder: TableBuilder)
+    
+    init(row: Row)
     
     var setters: [Setter] { get }
     var id: Int { get }

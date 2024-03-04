@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxCocoa
 
 @propertyWrapper
 struct Storage<T> {
@@ -70,4 +71,16 @@ final class AppSettings {
     
     @Storage(key: "isSubscribedToTgChannel", defaultValue: false)
     static var isSubscribedToTgChannel: Bool
+
+    static var userToken: String {
+        get {
+            return UserDefaults.standard.string(forKey: "userToken") ?? ""
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "userToken")
+            isAutorized.accept(newValue.isEmpty)
+        }
+    }
+    
+    static var isAutorized = BehaviorRelay<Bool>(value: !userToken.isEmpty)
 }

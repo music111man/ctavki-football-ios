@@ -27,6 +27,9 @@ end
 #def fastEasyMapping
 #    pod 'FastEasyMapping', "~> 1.0"
 #end
+def rxDataSources
+    pod 'RxDataSources', '~> 5.0'
+end
 
 def sqlite
   pod 'SQLite.swift'

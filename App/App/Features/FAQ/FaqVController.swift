@@ -8,8 +8,12 @@
 import Foundation
 import UIKit
 
-final class FaqVController: PicksVController {
-    override func labelName() -> String {
+final class FaqVController: FeaureVController {
+    override func titleName() -> String {
         R.string.localizable.tooltip_faq_title()
+    }
+    
+    override func icon() -> UIImage? {
+        R.image.faq()
     }
 }

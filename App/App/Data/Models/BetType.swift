@@ -9,7 +9,6 @@ import Foundation
 import SQLite
 
 struct BetType: Decodable {
-
     @StringDecodable
     var id: Int
     let shortTitle: String
@@ -22,11 +21,16 @@ struct BetType: Decodable {
         case longTitle = "long_title"
         case description
     }
-    
-    
 }
 
 extension BetType: DBComparable {
+    init(row: SQLite.Row) {
+        _id = StringDecodable(row[Self.idField])
+        shortTitle = row[Self.shortTitleField]
+        longTitle = row[Self.longTitleField]
+        description = row[Self.descriptionField]
+    }
+    
     static var table: Table { Table("bet_types")}
     
     static var idField: Expression<Int> { Expression<Int>(CodingKeys.id.rawValue) }
@@ -34,13 +38,11 @@ extension BetType: DBComparable {
     static var longTitleField: Expression<String> { Expression<String>(CodingKeys.longTitle.rawValue) }
     static var descriptionField: Expression<String> { Expression<String>(CodingKeys.description.rawValue) }
     
-    static func createTable(db: Connection) throws {
-        try db.run(Self.table.create(ifNotExists: true) { table in
-            table.column(idField, primaryKey: true)
-            table.column(shortTitleField)
-            table.column(longTitleField)
-            table.column(descriptionField)
-        })
+    static func createColumns(builder: TableBuilder) {
+        builder.column(idField, primaryKey: true)
+        builder.column(shortTitleField)
+        builder.column(longTitleField)
+        builder.column(descriptionField)
     }
     
     var setters: [Setter] {

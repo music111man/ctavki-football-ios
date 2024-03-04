@@ -109,8 +109,6 @@ struct R: Rswift.Validatable {
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
-    /// Color `Color`.
-    static let color = Rswift.ColorResource(bundle: R.hostingBundle, name: "Color")
     /// Color `authorize_btn`.
     static let authorize_btn = Rswift.ColorResource(bundle: R.hostingBundle, name: "authorize_btn")
     /// Color `background_light`.
@@ -141,6 +139,8 @@ struct R: Rswift.Validatable {
     static let slide_circle = Rswift.ColorResource(bundle: R.hostingBundle, name: "slide_circle")
     /// Color `text`.
     static let text = Rswift.ColorResource(bundle: R.hostingBundle, name: "text")
+    /// Color `title_color`.
+    static let title_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "title_color")
     /// Color `toolbarItem`.
     static let toolbarItem = Rswift.ColorResource(bundle: R.hostingBundle, name: "toolbarItem")
     /// Color `violet_end`.
@@ -154,15 +154,6 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func accentColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.accentColor, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "Color", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.color, compatibleWith: traitCollection)
     }
     #endif
 
@@ -302,6 +293,15 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "title_color", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func title_color(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.title_color, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "toolbarItem", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
@@ -333,14 +333,6 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func accentColor(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.accentColor.name)
-    }
-    #endif
-
-    #if os(watchOS)
-    /// `UIColor(named: "Color", bundle: ..., traitCollection: ...)`
-    @available(watchOSApplicationExtension 4.0, *)
-    static func color(_: Void = ()) -> UIKit.UIColor? {
-      return UIKit.UIColor(named: R.color.color.name)
     }
     #endif
 
@@ -465,6 +457,14 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
+    /// `UIColor(named: "title_color", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func title_color(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.title_color.name)
+    }
+    #endif
+
+    #if os(watchOS)
     /// `UIColor(named: "toolbarItem", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func toolbarItem(_: Void = ()) -> UIKit.UIColor? {
@@ -491,7 +491,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 7 images.
+  /// This `R.image` struct is generated, and contains static references to 8 images.
   struct image {
     /// Image `bets`.
     static let bets = Rswift.ImageResource(bundle: R.hostingBundle, name: "bets")
@@ -499,6 +499,8 @@ struct R: Rswift.Validatable {
     static let done = Rswift.ImageResource(bundle: R.hostingBundle, name: "done")
     /// Image `faq`.
     static let faq = Rswift.ImageResource(bundle: R.hostingBundle, name: "faq")
+    /// Image `left_arrow`.
+    static let left_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "left_arrow")
     /// Image `logo`.
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "logo")
     /// Image `notification`.
@@ -530,6 +532,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "left_arrow", bundle: ..., traitCollection: ...)`
+    static func left_arrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.left_arrow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "logo", bundle: ..., traitCollection: ...)`
     static func logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.logo, compatibleWith: traitCollection)
@@ -556,6 +565,26 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.teams, compatibleWith: traitCollection)
     }
     #endif
+
+    fileprivate init() {}
+  }
+
+  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  struct nib {
+    /// Nib `ActualBetCell`.
+    static let actualBetCell = _R.nib._ActualBetCell()
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "ActualBetCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.actualBetCell) instead")
+    static func actualBetCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.actualBetCell)
+    }
+    #endif
+
+    static func actualBetCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ActualBetCell? {
+      return R.nib.actualBetCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ActualBetCell
+    }
 
     fileprivate init() {}
   }
@@ -932,6 +961,23 @@ struct _R: Rswift.Validatable {
     try storyboard.validate()
     #endif
   }
+
+  #if os(iOS) || os(tvOS)
+  struct nib {
+    struct _ActualBetCell: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "ActualBetCell"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ActualBetCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ActualBetCell
+      }
+
+      fileprivate init() {}
+    }
+
+    fileprivate init() {}
+  }
+  #endif
 
   #if os(iOS) || os(tvOS)
   struct storyboard: Rswift.Validatable {

@@ -29,12 +29,6 @@ class TourGuidVController: UIViewController {
     let authorizeGuidView = UIView()
     let authorizeIconContainer = UIView()
 
-    lazy var safeAreaHeight: CGFloat = {
-        let window = UIApplication.shared.windows[0]
-        let safeFrame = window.safeAreaLayoutGuide.layoutFrame
-        return window.frame.maxY - safeFrame.maxY
-    }()
-    
     class func create() -> TourGuidVController? {
         TourGuidVController()
     }
@@ -139,8 +133,8 @@ class TourGuidVController: UIViewController {
         betsGuidIconContainer.backgroundColor = .white
         view.addSubview(betsGuidIconContainer)
         NSLayoutConstraint.activate([
-            betsGuidIconContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            betsGuidIconContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: safeAreaHeight + 20),
+            betsGuidIconContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            betsGuidIconContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: UIView.safeAreaHeight + 15),
             betsGuidIconContainer.widthAnchor.constraint(equalToConstant: 50),
             betsGuidIconContainer.heightAnchor.constraint(equalToConstant: 50)
         ])
@@ -203,8 +197,8 @@ class TourGuidVController: UIViewController {
         icon.contentMode = .scaleToFill
         resultIconContainer.addSubview(icon)
         NSLayoutConstraint.activate([
-            icon.widthAnchor.constraint(equalToConstant: 30),
-            icon.heightAnchor.constraint(equalToConstant: 30),
+            icon.widthAnchor.constraint(equalToConstant: 40),
+            icon.heightAnchor.constraint(equalToConstant: 40),
             icon.centerXAnchor.constraint(equalTo: resultIconContainer.centerXAnchor),
             icon.centerYAnchor.constraint(equalTo: resultIconContainer.centerYAnchor)
         ])
@@ -218,8 +212,8 @@ class TourGuidVController: UIViewController {
         NSLayoutConstraint.activate([
             authorizeIconContainer.widthAnchor.constraint(equalToConstant: 80),
             authorizeIconContainer.heightAnchor.constraint(equalToConstant: 80),
-            authorizeIconContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
-            authorizeIconContainer.centerYAnchor.constraint(equalTo: betsGuidIconContainer.centerYAnchor)
+            authorizeIconContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 15),
+            authorizeIconContainer.centerYAnchor.constraint(equalTo: betsGuidIconContainer.centerYAnchor, constant: -2)
         ])
         let animationView = UIView()
         animationView.backgroundColor = .white
