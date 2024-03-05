@@ -27,11 +27,13 @@
 		F22CE0B72B88C28100732FFB /* PurchesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B62B88C28100732FFB /* PurchesFactory.swift */; };
 		F22CE0B92B88C2FD00732FFB /* FaqFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B82B88C2FD00732FFB /* FaqFactory.swift */; };
 		F22CE0BC2B88F0D200732FFB /* TourGuidVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0BB2B88F0D200732FFB /* TourGuidVController.swift */; };
+		F251D6392B974EBD009ABC86 /* BetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F251D6382B974EBD009ABC86 /* BetView.swift */; };
+		F251D63B2B977389009ABC86 /* BetGroupsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F251D63A2B977389009ABC86 /* BetGroupsHeaderView.swift */; };
 		F291F1342B95F96C00BB8E58 /* NavigationTopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1332B95F96C00BB8E58 /* NavigationTopBarView.swift */; };
 		F291F1362B96250D00BB8E58 /* FeaureVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1352B96250D00BB8E58 /* FeaureVController.swift */; };
 		F291F1382B96355B00BB8E58 /* BetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1372B96355B00BB8E58 /* BetsViewModel.swift */; };
-		F291F13C2B9654CD00BB8E58 /* ActualBetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F13A2B9654CD00BB8E58 /* ActualBetCell.swift */; };
-		F291F13D2B9654CD00BB8E58 /* ActualBetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F291F13B2B9654CD00BB8E58 /* ActualBetCell.xib */; };
+		F291F13C2B9654CD00BB8E58 /* BetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F13A2B9654CD00BB8E58 /* BetsCell.swift */; };
+		F291F13D2B9654CD00BB8E58 /* BetsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F291F13B2B9654CD00BB8E58 /* BetsCell.xib */; };
 		F2DBFAEF2B8F7D7B00FC5069 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DBFAEE2B8F7D7B00FC5069 /* Bet.swift */; };
 		F2EA78C82B908DA6006B3A1C /* BetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78C72B908DA6006B3A1C /* BetType.swift */; };
 		F2EA78CA2B908ED2006B3A1C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78C92B908ED2006B3A1C /* Team.swift */; };
@@ -75,11 +77,13 @@
 		F22CE0B62B88C28100732FFB /* PurchesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchesFactory.swift; sourceTree = "<group>"; };
 		F22CE0B82B88C2FD00732FFB /* FaqFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqFactory.swift; sourceTree = "<group>"; };
 		F22CE0BB2B88F0D200732FFB /* TourGuidVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourGuidVController.swift; sourceTree = "<group>"; };
+		F251D6382B974EBD009ABC86 /* BetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetView.swift; sourceTree = "<group>"; };
+		F251D63A2B977389009ABC86 /* BetGroupsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetGroupsHeaderView.swift; sourceTree = "<group>"; };
 		F291F1332B95F96C00BB8E58 /* NavigationTopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTopBarView.swift; sourceTree = "<group>"; };
 		F291F1352B96250D00BB8E58 /* FeaureVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaureVController.swift; sourceTree = "<group>"; };
 		F291F1372B96355B00BB8E58 /* BetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsViewModel.swift; sourceTree = "<group>"; };
-		F291F13A2B9654CD00BB8E58 /* ActualBetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActualBetCell.swift; sourceTree = "<group>"; };
-		F291F13B2B9654CD00BB8E58 /* ActualBetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActualBetCell.xib; sourceTree = "<group>"; };
+		F291F13A2B9654CD00BB8E58 /* BetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsCell.swift; sourceTree = "<group>"; };
+		F291F13B2B9654CD00BB8E58 /* BetsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetsCell.xib; sourceTree = "<group>"; };
 		F2DBFAEE2B8F7D7B00FC5069 /* Bet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
 		F2EA78C72B908DA6006B3A1C /* BetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetType.swift; sourceTree = "<group>"; };
 		F2EA78C92B908ED2006B3A1C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -261,8 +265,10 @@
 		F291F1392B96549600BB8E58 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				F291F13A2B9654CD00BB8E58 /* ActualBetCell.swift */,
-				F291F13B2B9654CD00BB8E58 /* ActualBetCell.xib */,
+				F291F13A2B9654CD00BB8E58 /* BetsCell.swift */,
+				F291F13B2B9654CD00BB8E58 /* BetsCell.xib */,
+				F251D6382B974EBD009ABC86 /* BetView.swift */,
+				F251D63A2B977389009ABC86 /* BetGroupsHeaderView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -401,7 +407,7 @@
 				F2FC034A2B86780B001C6BB3 /* LaunchScreen.storyboard in Resources */,
 				F20704832B87A33800DD6364 /* Localizable.strings in Resources */,
 				F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */,
-				F291F13D2B9654CD00BB8E58 /* ActualBetCell.xib in Resources */,
+				F291F13D2B9654CD00BB8E58 /* BetsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,7 +507,9 @@
 				F22CE0B92B88C2FD00732FFB /* FaqFactory.swift in Sources */,
 				F22CE0AF2B889B8500732FFB /* UIView.swift in Sources */,
 				F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */,
-				F291F13C2B9654CD00BB8E58 /* ActualBetCell.swift in Sources */,
+				F251D6392B974EBD009ABC86 /* BetView.swift in Sources */,
+				F251D63B2B977389009ABC86 /* BetGroupsHeaderView.swift in Sources */,
+				F291F13C2B9654CD00BB8E58 /* BetsCell.swift in Sources */,
 				F2EA78D52B90B60E006B3A1C /* BetOutcome.swift in Sources */,
 				F291F1362B96250D00BB8E58 /* FeaureVController.swift in Sources */,
 				F2EA78E02B9103F5006B3A1C /* ValueTypeExt.swift in Sources */,

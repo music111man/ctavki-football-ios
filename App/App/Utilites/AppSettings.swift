@@ -78,9 +78,13 @@ final class AppSettings {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "userToken")
-            isAutorized.accept(newValue.isEmpty)
+            authorizeEvent.accept(newValue.isEmpty)
         }
     }
     
-    static var isAutorized = BehaviorRelay<Bool>(value: !userToken.isEmpty)
+    static var isAuthorized: Bool {
+        !Self.userToken.isEmpty
+    }
+    
+    static var authorizeEvent = BehaviorRelay<Bool>(value: !userToken.isEmpty)
 }

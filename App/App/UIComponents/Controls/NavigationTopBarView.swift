@@ -15,11 +15,13 @@ extension Notification.Name {
 }
 
 final class NavigationTopBarView: UIView {
-    
+    static let height = UIView.safeAreaHeight + 90
     private let titleLabel = UILabel()
     private let tapAuthAnimate = UIView()
     private let tapBackAnimate = UIView()
     private let disposeBag = DisposeBag()
+    var heightConstraint: NSLayoutConstraint!
+    
     
     var title: String {
         set {
@@ -36,16 +38,61 @@ final class NavigationTopBarView: UIView {
         tapAuthAnimate.roundCorners()
         tapBackAnimate.roundCorners()
     }
+    var animated = false
+    func makeHide(animate: Bool = true) {
+        if layer.opacity == 0 { return }
+        
+        if animated { return }
+        animated = true
+        if animate {
+            
+            UIView.animate(withDuration: 0.4, animations: {
+                self.heightConstraint.constant = UIView.safeAreaHeight
+                self.layer.opacity = 0
+            }) { _ in
+                
+                self.animated = false
+                
+            }
+        } else {
+//            self.heightConstraint.constant = 0
+//            self.layoutIfNeeded()
+        }
+        
+    }
+    
+    func show(animate: Bool = true) {
+        if layer.opacity == 1 { return }
+        if animated { return }
+        animated = true
+        self.heightConstraint.constant = UIView.safeAreaHeight + 90
+        if animate {
+            
+            UIView.animate(withDuration: 0.4, animations: {
+                self.layer.opacity = 1
+                self.layoutIfNeeded()
+            }) { _ in
+                self.animated = false
+            }
+        } else {
+            heightConstraint.constant = UIView.safeAreaHeight + 90
+        }
+        
+    }
     
     func initUI(parent: UIView, title: String, icon: UIImage?,_ callback: (() -> ())?) {
+        
         translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(self)
         NSLayoutConstraint.activate([
             topAnchor.constraint(equalTo: parent.topAnchor),
             leftAnchor.constraint(equalTo: parent.leftAnchor),
-            rightAnchor.constraint(equalTo: parent.rightAnchor),
-            heightAnchor.constraint(equalToConstant: UIView.safeAreaHeight + 90)
+            rightAnchor.constraint(equalTo: parent.rightAnchor)
+            
         ])
+        heightConstraint = heightAnchor.constraint(equalToConstant: UIView.safeAreaHeight + 90)
+        heightConstraint.isActive = true
+        setGradient(start: R.color.green_blue_start()!, end: R.color.green_blue_end()!, isLine: true)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = title
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
@@ -54,7 +101,9 @@ final class NavigationTopBarView: UIView {
         addSubview(titleLabel)
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 10)
+            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 15),
+            titleLabel.heightAnchor.constraint(equalToConstant: 40)
+            
         ])
         
         let iconView = UIImageView(image: icon?.withRenderingMode(.alwaysTemplate) ?? R.image.left_arrow()?.withRenderingMode(.alwaysTemplate))
@@ -146,11 +195,8 @@ final class NavigationTopBarView: UIView {
         }.disposed(by: disposeBag)
         tapAutorizeView.addGestureRecognizer(tapGestore)
         
-        AppSettings.isAutorized.bind { isAutorize in
+        AppSettings.authorizeEvent.bind { isAutorize in
             rightLabel.text = isAutorize ? R.string.localizable.my_balance() : R.string.localizable.sign_in()
         }.disposed(by: disposeBag)
-        
-        setGradient(start: R.color.green_blue_start()!, end: R.color.green_blue_end()!, isLine: true)
-        layoutIfNeeded()
     }
 }

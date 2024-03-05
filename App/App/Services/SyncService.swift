@@ -66,10 +66,12 @@ final class SyncService {
                 NotificationCenter.default.post(name: NSNotification.Name.wasSyncBetTypeData, object: nil)
             }
             
-            let bets:[Bet] = Repository.selectData(Bet.table.where(Bet.team1IdField == 29 && Bet.team2IdField == 289))
-            for bet in bets {
-                print("\(bet.eventDate) \(bet.typeId ?? 0)")
-            }
+//            let bets:[Bet] = Repository.selectData(Bet.table.order(Bet.eventDateField.desc))
+//            for bet in bets.sorted(by: { b1, b2 in
+//                b1.eventDate < b2.eventDate
+//            }) {
+//                print("\(bet.eventDate) \(bet.typeId ?? 0)")
+//            }
         }
     }
     

@@ -34,6 +34,16 @@ struct Bet: Decodable {
         typeId != nil
     }
     
+    var isActive: Bool {
+        outcome == nil && Date() < eventDate
+    }
+    
+    var result: Int {
+        guard let outcome = self.outcome, let factor = self.factor, outcome != .return else { return 0 }
+        
+        return outcome == .lost ? 100 : Int((factor * 100.0) - 100.0)
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id
         case eventDate = "event_date"

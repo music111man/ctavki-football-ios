@@ -560,6 +560,9 @@ class TourGuidVController: UIViewController {
     
     @objc
     func nextGuidStep() {
+        if guidAnimations.isEmpty {
+            return
+        }
         guidAnimations.removeFirst()()
     }
     @objc
@@ -647,6 +650,7 @@ class TourGuidVController: UIViewController {
     }
     
     func endGuid() {
+        
         UIView.animate(withDuration: 0.5, animations: {[weak self] in
             self?.faqGuidIconContainer.layer.opacity = 0
             self?.faqGuidView.hide()

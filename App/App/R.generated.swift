@@ -105,7 +105,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 20 colors.
+  /// This `R.color` struct is generated, and contains static references to 28 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
@@ -115,6 +115,12 @@ struct R: Rswift.Validatable {
     static let background_light = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_light")
     /// Color `background_main`.
     static let background_main = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_main")
+    /// Color `bet_group_end`.
+    static let bet_group_end = Rswift.ColorResource(bundle: R.hostingBundle, name: "bet_group_end")
+    /// Color `bet_group_header`.
+    static let bet_group_header = Rswift.ColorResource(bundle: R.hostingBundle, name: "bet_group_header")
+    /// Color `bet_group_start`.
+    static let bet_group_start = Rswift.ColorResource(bundle: R.hostingBundle, name: "bet_group_start")
     /// Color `blue_gray_100`.
     static let blue_gray_100 = Rswift.ColorResource(bundle: R.hostingBundle, name: "blue_gray_100")
     /// Color `blue_gray_200`.
@@ -125,14 +131,20 @@ struct R: Rswift.Validatable {
     static let blue_gray_300 = Rswift.ColorResource(bundle: R.hostingBundle, name: "blue_gray_300")
     /// Color `blue_gray_400`.
     static let blue_gray_400 = Rswift.ColorResource(bundle: R.hostingBundle, name: "blue_gray_400")
+    /// Color `blue_gray_500`.
+    static let blue_gray_500 = Rswift.ColorResource(bundle: R.hostingBundle, name: "blue_gray_500")
     /// Color `green_blue_end`.
     static let green_blue_end = Rswift.ColorResource(bundle: R.hostingBundle, name: "green_blue_end")
     /// Color `green_blue_start`.
     static let green_blue_start = Rswift.ColorResource(bundle: R.hostingBundle, name: "green_blue_start")
+    /// Color `lost`.
+    static let lost = Rswift.ColorResource(bundle: R.hostingBundle, name: "lost")
     /// Color `red_end`.
     static let red_end = Rswift.ColorResource(bundle: R.hostingBundle, name: "red_end")
     /// Color `red_start`.
     static let red_start = Rswift.ColorResource(bundle: R.hostingBundle, name: "red_start")
+    /// Color `return`.
+    static let `return` = Rswift.ColorResource(bundle: R.hostingBundle, name: "return")
     /// Color `selected_toolbar_item`.
     static let selected_toolbar_item = Rswift.ColorResource(bundle: R.hostingBundle, name: "selected_toolbar_item")
     /// Color `slide_circle`.
@@ -147,6 +159,10 @@ struct R: Rswift.Validatable {
     static let violet_end = Rswift.ColorResource(bundle: R.hostingBundle, name: "violet_end")
     /// Color `viotet_start`.
     static let viotet_start = Rswift.ColorResource(bundle: R.hostingBundle, name: "viotet_start")
+    /// Color `won_light`.
+    static let won_light = Rswift.ColorResource(bundle: R.hostingBundle, name: "won_light")
+    /// Color `won`.
+    static let won = Rswift.ColorResource(bundle: R.hostingBundle, name: "won")
 
     #if os(iOS) || os(tvOS)
     /// `UIColor(named: "AccentColor", bundle: ..., traitCollection: ...)`
@@ -181,6 +197,33 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func background_main(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.background_main, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "bet_group_end", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func bet_group_end(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.bet_group_end, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "bet_group_header", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func bet_group_header(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.bet_group_header, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "bet_group_start", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func bet_group_start(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.bet_group_start, compatibleWith: traitCollection)
     }
     #endif
 
@@ -230,6 +273,15 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "blue_gray_500", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func blue_gray_500(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.blue_gray_500, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "green_blue_end", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
@@ -248,6 +300,15 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "lost", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func lost(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.lost, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "red_end", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
@@ -262,6 +323,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func red_start(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.red_start, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "return", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func `return`(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.`return`, compatibleWith: traitCollection)
     }
     #endif
 
@@ -328,6 +398,24 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "won", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func won(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.won, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "won_light", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func won_light(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.won_light, compatibleWith: traitCollection)
+    }
+    #endif
+
     #if os(watchOS)
     /// `UIColor(named: "AccentColor", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
@@ -357,6 +445,30 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func background_main(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.background_main.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "bet_group_end", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func bet_group_end(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.bet_group_end.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "bet_group_header", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func bet_group_header(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.bet_group_header.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "bet_group_start", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func bet_group_start(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.bet_group_start.name)
     }
     #endif
 
@@ -401,6 +513,14 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
+    /// `UIColor(named: "blue_gray_500", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func blue_gray_500(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.blue_gray_500.name)
+    }
+    #endif
+
+    #if os(watchOS)
     /// `UIColor(named: "green_blue_end", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func green_blue_end(_: Void = ()) -> UIKit.UIColor? {
@@ -417,6 +537,14 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
+    /// `UIColor(named: "lost", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func lost(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.lost.name)
+    }
+    #endif
+
+    #if os(watchOS)
     /// `UIColor(named: "red_end", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func red_end(_: Void = ()) -> UIKit.UIColor? {
@@ -429,6 +557,14 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func red_start(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.red_start.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "return", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func `return`(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.`return`.name)
     }
     #endif
 
@@ -485,6 +621,22 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func viotet_start(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.viotet_start.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "won", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func won(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.won.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "won_light", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func won_light(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.won_light.name)
     }
     #endif
 
@@ -571,19 +723,19 @@ struct R: Rswift.Validatable {
 
   /// This `R.nib` struct is generated, and contains static references to 1 nibs.
   struct nib {
-    /// Nib `ActualBetCell`.
-    static let actualBetCell = _R.nib._ActualBetCell()
+    /// Nib `BetsCell`.
+    static let betsCell = _R.nib._BetsCell()
 
     #if os(iOS) || os(tvOS)
-    /// `UINib(name: "ActualBetCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.actualBetCell) instead")
-    static func actualBetCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.actualBetCell)
+    /// `UINib(name: "BetsCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.betsCell) instead")
+    static func betsCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.betsCell)
     }
     #endif
 
-    static func actualBetCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ActualBetCell? {
-      return R.nib.actualBetCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ActualBetCell
+    static func betsCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BetsCell? {
+      return R.nib.betsCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetsCell
     }
 
     fileprivate init() {}
@@ -591,12 +743,16 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 18 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 23 localization keys.
     struct localizable {
       /// en translation: Answers to frequently asked questions related to the operation of our service can be found here.
       ///
       /// Locales: en, ru
       static let guid_faq = Rswift.StringResource(key: "guid_faq", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: BALANCE FOR %@:
+      ///
+      /// Locales: en, ru
+      static let balance_for_month = Rswift.StringResource(key: "balance_for_month", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: Here are matches and odds which our service provides predictions on!
       ///
       /// Locales: en, ru
@@ -613,6 +769,22 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let tooltip_login_title = Rswift.StringResource(key: "tooltip_login_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Match begins in %@
+      ///
+      /// Locales: en, ru
+      static let match_begins_in = Rswift.StringResource(key: "match_begins_in", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Match begins on %@ at %@
+      ///
+      /// Locales: en, ru
+      static let match_begins = Rswift.StringResource(key: "match_begins", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Match begins today at %@
+      ///
+      /// Locales: en, ru
+      static let match_begins_today = Rswift.StringResource(key: "match_begins_today", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Match begins tomorrow at %@
+      ///
+      /// Locales: en, ru
+      static let match_begins_tomorrow = Rswift.StringResource(key: "match_begins_tomorrow", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: PREDICTIONS
       ///
       /// Locales: en, ru
@@ -681,6 +853,23 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("guid_faq", bundle: bundle, comment: "")
       }
 
+      /// en translation: BALANCE FOR %@:
+      ///
+      /// Locales: en, ru
+      static func balance_for_month(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("balance_for_month", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "balance_for_month"
+        }
+
+        let format = NSLocalizedString("balance_for_month", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
       /// en translation: Here are matches and odds which our service provides predictions on!
       ///
       /// Locales: en, ru
@@ -739,6 +928,74 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("tooltip_login_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Match begins in %@
+      ///
+      /// Locales: en, ru
+      static func match_begins_in(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("match_begins_in", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "match_begins_in"
+        }
+
+        let format = NSLocalizedString("match_begins_in", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: Match begins on %@ at %@
+      ///
+      /// Locales: en, ru
+      static func match_begins(_ value1: String, _ value2: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("match_begins", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1, value2)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "match_begins"
+        }
+
+        let format = NSLocalizedString("match_begins", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1, value2)
+      }
+
+      /// en translation: Match begins today at %@
+      ///
+      /// Locales: en, ru
+      static func match_begins_today(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("match_begins_today", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "match_begins_today"
+        }
+
+        let format = NSLocalizedString("match_begins_today", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: Match begins tomorrow at %@
+      ///
+      /// Locales: en, ru
+      static func match_begins_tomorrow(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("match_begins_tomorrow", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "match_begins_tomorrow"
+        }
+
+        let format = NSLocalizedString("match_begins_tomorrow", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
       }
 
       /// en translation: PREDICTIONS
@@ -964,12 +1221,12 @@ struct _R: Rswift.Validatable {
 
   #if os(iOS) || os(tvOS)
   struct nib {
-    struct _ActualBetCell: Rswift.NibResourceType {
+    struct _BetsCell: Rswift.NibResourceType {
       let bundle = R.hostingBundle
-      let name = "ActualBetCell"
+      let name = "BetsCell"
 
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ActualBetCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ActualBetCell
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BetsCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetsCell
       }
 
       fileprivate init() {}

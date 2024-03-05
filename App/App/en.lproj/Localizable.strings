@@ -24,3 +24,10 @@
 "guid_teams" = "You can find here history of our past predictions sorted by teams.";
 "guid_paid_plans" = "If you like our free predictions, you can purchase our paid service!";
 "guid_faq" = "Answers to frequently asked questions related to the operation of our service can be found here.";
+
+"balance_for_month" = "BALANCE FOR %@:";
+"match_begins" = "Match begins on %@ at %@";
+"match_begins_tomorrow" = "Match begins tomorrow at %@";
+"match_begins_today" = "Match begins today at %@";
+"match_begins_in" = "Match begins in %@";
+

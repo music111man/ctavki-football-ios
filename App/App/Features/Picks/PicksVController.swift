@@ -15,6 +15,7 @@ class PicksVController: FeaureVController {
     let tableView = UITableView()
     let betsViewModel = BetsViewModel()
     let disposeBag = DisposeBag()
+    var betSections = [BetSection]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,18 +36,18 @@ class PicksVController: FeaureVController {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        tableView.register(UINib(resource: R.nib.actualBetCell), forCellReuseIdentifier: ActualBetCell.reuseIdentifier)
+        tableView.register(UINib(resource: R.nib.betsCell), forCellReuseIdentifier: BetsCell.reuseIdentifier)
         tableView.separatorStyle = .none
-        betsViewModel.actualBetList.bind(to: tableView.rx.items(cellIdentifier: ActualBetCell.reuseIdentifier)) { (section, item, cell) in
-            
-            let actualBetCell = cell as! ActualBetCell
-            actualBetCell.homeTeamNameLabel.text = item.homeTeam?.title
-            actualBetCell.goustTeamNameLabel.text = item.goustTeam?.title
-            actualBetCell.resultLabel.text = item.result
-            
-        }.disposed(by: disposeBag)
- 
-        betsViewModel.updateData()
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        betsViewModel.updateData() {betSections in
+            DispatchQueue.main.async {[weak self] in
+                self?.betSections = betSections
+                self?.tableView.reloadData()
+            }
+        }
+       
 
     }
     
@@ -59,3 +60,59 @@ class PicksVController: FeaureVController {
     }
 }
 
+extension PicksVController: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentOffset = scrollView.contentOffset.y - UIView.safeAreaHeight
+        
+        
+        let betCount = betSections.first?.bets.count ?? 0
+        let height = CGFloat((betCount *  70) + (betCount * 26))
+        if contentOffset > height {
+            let offset = contentOffset - height
+            if offset < NavigationTopBarView.height { return }
+            navigationBar.heightConstraint.constant = NavigationTopBarView.height - offset
+        } else {
+            let offset = height - contentOffset
+            if offset < 0 { return }
+            navigationBar.heightConstraint.constant = NavigationTopBarView.height - offset
+        }
+        view.layoutIfNeeded()
+        print("scroll \(contentOffset) = \(height)")
+    }
+    
+}
+
+extension PicksVController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        betSections.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        betSections[section].bets.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: BetsCell.reuseIdentifier, for: indexPath) as! BetsCell
+        cell.configure(betSections[indexPath.section].bets[indexPath.row])
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return nil
+        }
+        let view = BetGroupsHeaderView()
+        view.configure(monthName: betSections[section].eventDate!.monthAsString, sum: betSections[section].sum!)
+        
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section == 0 ? 0.0 : 60.0
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(betSections[indexPath.section].bets[indexPath.row].bets.count * 70) + 26.0
+    }
+}
