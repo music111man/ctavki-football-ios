@@ -41,9 +41,7 @@ final class Repository {
                     T.createColumns(builder: builder)
                 })
                 
-                deletedCount = try Self.connection?.run(T.table.filter(T.idField < items.min(by: { item1, item2 in
-                    item1.id < item2.id
-                })?.id ?? 0 ).delete()) ?? 0
+                deletedCount = try Self.connection?.run(T.table.delete()) ?? 0
                 print("delete \(deletedCount) old records from \(T.self)s")
                 insertCount = try Self.connection?.run(T.table.insertMany(or: .replace, items.map({ $0.setters }))) ?? 0
                 print("insert \(insertCount) new records to \(T.self)s")

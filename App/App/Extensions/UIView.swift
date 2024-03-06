@@ -13,9 +13,9 @@ extension UIView {
     }
     
     @discardableResult
-    func setGradient(start: UIColor, end: UIColor, isLine: Bool) -> CALayer {
+    func setGradient(start: UIColor?, end: UIColor?, isLine: Bool) -> CALayer {
         let gradient = CAGradientLayer()
-        gradient.colors = [start.cgColor, end.cgColor]
+        gradient.colors = [(start ?? .clear).cgColor, (end ?? .clear).cgColor]
         gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradient.endPoint = isLine ? CGPoint(x: 1.0, y: 0.0) : CGPoint(x: 1.0, y: 1.0)
         layer.addSublayer(gradient)
@@ -24,9 +24,9 @@ extension UIView {
     }
     
     @discardableResult
-    func setGradient(colors: [UIColor], isLine: Bool) -> CALayer{
+    func setGradient(colors: [UIColor?], isLine: Bool) -> CALayer{
         let gradient = CAGradientLayer()
-        gradient.colors = colors.map { $0.cgColor }
+        gradient.colors = colors.map { ($0 ?? .clear).cgColor }
         gradient.locations = [0.0, 0.5, 1.0]
         gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradient.endPoint = isLine ? CGPoint(x: 1.0, y: 0.0) : CGPoint(x: 1.0, y: 1.0)
@@ -37,9 +37,9 @@ extension UIView {
     
     func setshadow(size: CGSize? = nil) {
         layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.1
+        layer.shadowOpacity = 0.3
         layer.shadowOffset = size ?? CGSize(width: 0, height: 2)
-        layer.shadowRadius = 5
+        layer.shadowRadius = 3
     }
     
     static var safeAreaHeight: CGFloat {

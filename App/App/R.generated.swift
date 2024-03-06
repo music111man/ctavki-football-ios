@@ -743,8 +743,16 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 23 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 27 localization keys.
     struct localizable {
+      /// en translation: %#@VARIABLE@
+      ///
+      /// Locales: en, ru
+      static let hours = Rswift.StringResource(key: "hours", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: %#@VARIABLE@
+      ///
+      /// Locales: en, ru
+      static let minutes = Rswift.StringResource(key: "minutes", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: Answers to frequently asked questions related to the operation of our service can be found here.
       ///
       /// Locales: en, ru
@@ -785,6 +793,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let match_begins_tomorrow = Rswift.StringResource(key: "match_begins_tomorrow", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Match is underway. It's the %@ minute of the match
+      ///
+      /// Locales: en, ru
+      static let match_being_played_n_minute = Rswift.StringResource(key: "match_being_played_n_minute", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: PREDICTIONS
       ///
       /// Locales: en, ru
@@ -825,6 +837,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let teams_cap = Rswift.StringResource(key: "teams_cap", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: The match is already underway, the first half has been played
+      ///
+      /// Locales: en, ru
+      static let match_being_played_break = Rswift.StringResource(key: "match_being_played_break", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: To see free predictions you got to sign in with your Apple or Telegram account!
       ///
       /// Locales: en, ru
@@ -837,6 +853,40 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let my_balance = Rswift.StringResource(key: "my_balance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+
+      /// en translation: %#@VARIABLE@
+      ///
+      /// Locales: en, ru
+      static func hours(variablE value1: Int, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("hours", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "hours"
+        }
+
+        let format = NSLocalizedString("hours", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: %#@VARIABLE@
+      ///
+      /// Locales: en, ru
+      static func minutes(variablE value1: Int, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("minutes", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "minutes"
+        }
+
+        let format = NSLocalizedString("minutes", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
 
       /// en translation: Answers to frequently asked questions related to the operation of our service can be found here.
       ///
@@ -998,6 +1048,23 @@ struct R: Rswift.Validatable {
         return String(format: format, locale: locale, value1)
       }
 
+      /// en translation: Match is underway. It's the %@ minute of the match
+      ///
+      /// Locales: en, ru
+      static func match_being_played_n_minute(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("match_being_played_n_minute", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "match_being_played_n_minute"
+        }
+
+        let format = NSLocalizedString("match_being_played_n_minute", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
       /// en translation: PREDICTIONS
       ///
       /// Locales: en, ru
@@ -1146,6 +1213,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("teams_cap", bundle: bundle, comment: "")
+      }
+
+      /// en translation: The match is already underway, the first half has been played
+      ///
+      /// Locales: en, ru
+      static func match_being_played_break(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("match_being_played_break", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "match_being_played_break"
+        }
+
+        return NSLocalizedString("match_being_played_break", bundle: bundle, comment: "")
       }
 
       /// en translation: To see free predictions you got to sign in with your Apple or Telegram account!

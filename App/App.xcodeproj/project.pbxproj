@@ -34,6 +34,7 @@
 		F291F1382B96355B00BB8E58 /* BetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1372B96355B00BB8E58 /* BetsViewModel.swift */; };
 		F291F13C2B9654CD00BB8E58 /* BetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F13A2B9654CD00BB8E58 /* BetsCell.swift */; };
 		F291F13D2B9654CD00BB8E58 /* BetsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F291F13B2B9654CD00BB8E58 /* BetsCell.xib */; };
+		F2A03FE42B98E9FA00494CD0 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = F2A03FE62B98E9FA00494CD0 /* Localizable.stringsdict */; };
 		F2DBFAEF2B8F7D7B00FC5069 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DBFAEE2B8F7D7B00FC5069 /* Bet.swift */; };
 		F2EA78C82B908DA6006B3A1C /* BetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78C72B908DA6006B3A1C /* BetType.swift */; };
 		F2EA78CA2B908ED2006B3A1C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78C92B908ED2006B3A1C /* Team.swift */; };
@@ -84,6 +85,8 @@
 		F291F1372B96355B00BB8E58 /* BetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsViewModel.swift; sourceTree = "<group>"; };
 		F291F13A2B9654CD00BB8E58 /* BetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsCell.swift; sourceTree = "<group>"; };
 		F291F13B2B9654CD00BB8E58 /* BetsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetsCell.xib; sourceTree = "<group>"; };
+		F2A03FE52B98E9FA00494CD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		F2A03FE72B98E9FC00494CD0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F2DBFAEE2B8F7D7B00FC5069 /* Bet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
 		F2EA78C72B908DA6006B3A1C /* BetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetType.swift; sourceTree = "<group>"; };
 		F2EA78C92B908ED2006B3A1C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -338,6 +341,7 @@
 				F2FC034B2B86780B001C6BB3 /* Info.plist */,
 				F20704872B87A43500DD6364 /* R.generated.swift */,
 				F20704852B87A33800DD6364 /* Localizable.strings */,
+				F2A03FE62B98E9FA00494CD0 /* Localizable.stringsdict */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -407,6 +411,7 @@
 				F2FC034A2B86780B001C6BB3 /* LaunchScreen.storyboard in Resources */,
 				F20704832B87A33800DD6364 /* Localizable.strings in Resources */,
 				F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */,
+				F2A03FE42B98E9FA00494CD0 /* Localizable.stringsdict in Resources */,
 				F291F13D2B9654CD00BB8E58 /* BetsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,6 +538,15 @@
 				F20704862B87A33A00DD6364 /* ru */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		F2A03FE62B98E9FA00494CD0 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2A03FE52B98E9FA00494CD0 /* en */,
+				F2A03FE72B98E9FC00494CD0 /* ru */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 		F2FC03482B86780B001C6BB3 /* LaunchScreen.storyboard */ = {

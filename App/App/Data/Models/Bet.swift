@@ -35,7 +35,7 @@ struct Bet: Decodable {
     }
     
     var isActive: Bool {
-        outcome == nil && Date() < eventDate
+        outcome == nil
     }
     
     var result: Int {

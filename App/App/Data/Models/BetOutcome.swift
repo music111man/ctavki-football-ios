@@ -11,4 +11,5 @@ enum BetOutcome: String, Decodable {
     case won = "1"
     case lost = "2"
     case `return` = "3"
+    case active = "0"
 }

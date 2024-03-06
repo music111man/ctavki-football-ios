@@ -14,38 +14,25 @@ class BetView: UIView {
     let resultLabel = UILabel()
     let resultView = UIView()
     let teamsView = UIView()
-    let shadowView = UIView()
+    var gradients = [BetOutcome: CALayer]()
     
-    var cellHeigth: CGFloat {
-        78
-    }
+    static let cellHeigth: CGFloat = 70.0
     
     override func layoutSubviews() {
         super.layoutSubviews()
         teamsView.subviews.forEach { $0.roundCorners(radius: 10) }
         resultView.roundCorners()
-        shadowView.roundCorners()
-        resultView.layer.sublayers?.forEach { $0.frame = resultView.bounds }
+        gradients.forEach { $0.value.frame = resultView.bounds }
     }
     
     func configure(_ model: BetViewModel) {
         homeTeamNameLabel.text = model.homeTeam?.title
         goustTeamNameLabel.text = model.goustTeam?.title
         resultLabel.text = model.resultText
-        resultView.layer.sublayers?.forEach {$0.opacity = 0}
+        gradients.forEach {$0.value.opacity = 0}
         resultLabel.layer.opacity = 1
-        if let betOutCome = model.betOutCome {
-            switch betOutCome {
-            case .won:
-                resultView.layer.sublayers?[1].opacity = 1
-            case .lost:
-                resultView.layer.sublayers?[2].opacity = 1
-            case .return:
-                resultView.layer.sublayers?[3].opacity = 1
-            }
-        } else {
-            resultView.layer.sublayers?.first?.opacity = 1
-        }
+        let outcom = model.betOutCome ?? .active
+        gradients[outcom]?.opacity = 1
     }
     
     func initUI() {
@@ -82,10 +69,10 @@ class BetView: UIView {
         resultLabel.lineBreakMode = .byTruncatingTail
         resultLabel.numberOfLines = 2
         
-        resultView.setGradient(start: R.color.viotet_start()!, end: R.color.violet_end()!, isLine: false)
-        resultView.setGradient(start: R.color.won_light()!, end: R.color.won()!, isLine: false)
-        resultView.setGradient(start: R.color.red_start()!, end: R.color.lost()!, isLine: false)
-        resultView.setGradient(start: R.color.blue_gray_400()!, end: R.color.return()!, isLine: false)
+        gradients[.active] = resultView.setGradient(start: R.color.viotet_start(), end: R.color.violet_end(), isLine: false)
+        gradients[.won] = resultView.setGradient(start: R.color.won_light(), end: R.color.won(), isLine: false)
+        gradients[.lost] = resultView.setGradient(start: R.color.red_start(), end: R.color.lost(), isLine: false)
+        gradients[.return] = resultView.setGradient(start: R.color.blue_gray_400(), end: R.color.return(), isLine: false)
         resultView.clipsToBounds = true
         resultView.addSubview(resultLabel)
         NSLayoutConstraint.activate([
@@ -93,18 +80,6 @@ class BetView: UIView {
             resultLabel.leftAnchor.constraint(equalTo: resultView.leftAnchor, constant: 2),
             resultLabel.rightAnchor.constraint(equalTo: resultView.rightAnchor, constant: -2)
         ])
-        shadowView.translatesAutoresizingMaskIntoConstraints = false
-        shadowView.backgroundColor = .blue
-        addSubview(shadowView)
-        NSLayoutConstraint.activate([
-            shadowView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            shadowView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            shadowView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            shadowView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            shadowView.heightAnchor.constraint(equalToConstant: 50),
-            shadowView.widthAnchor.constraint(equalToConstant: 50)
-        ])
-        shadowView.setshadow()
         addSubview(resultView)
         NSLayoutConstraint.activate([
             resultView.centerYAnchor.constraint(equalTo: centerYAnchor),

@@ -24,7 +24,9 @@ struct BetViewModel {
 
 struct BetGroup {
     let eventDate: Date
+    let active: Bool
     let bets: [BetViewModel]
+    
     var resaltbetSum: Int {
         var sum: Int = 0
         bets.forEach { bet in
@@ -33,12 +35,20 @@ struct BetGroup {
         
         return sum
     }
+    var cellHeigth: CGFloat {
+        BetsCell.heightOfTitle + BetView.cellHeigth * CGFloat(bets.count)
+    }
 }
 
 struct BetSection {
     let eventDate: Date?
     let sum: Int?
     let bets: [BetGroup]
+    var cellHeight: CGFloat {
+        var height: CGFloat = 0
+        bets.forEach { height += $0.cellHeigth}
+        return height
+    }
 }
 
 final class BetsViewModel {
@@ -60,7 +70,8 @@ final class BetsViewModel {
         DispatchQueue.global(qos: .background).async {[weak self] in
             guard let self = self else { return }
             let allBets: [Bet] = Repository.selectData(Bet.table.order(Bet.eventDateField.desc))
-            let activeBets = allBets.filter { $0.isActive }.sorted { $0.eventDate < $01.eventDate }
+            let matchTime = Date().addingTimeInterval(-105 * 60)
+            let activeBets = allBets.filter { $0.isActive && $0.eventDate > matchTime }.sorted { $0.eventDate < $01.eventDate }
             let bets:[Bet] = allBets.filter { !$0.isActive }
             let teams: [Team] = Repository.selectData(Team.table)
             let betTypes: [BetType] = AppSettings.isAuthorized ? Repository.selectData(BetType.table
@@ -72,7 +83,7 @@ final class BetsViewModel {
                              result: bet.result,
                              eventDate: bet.eventDate,
                              betOutCome: bet.outcome,
-                             homeTeam: teams.first(where: { team in team.id == bet.homeTeamId }),
+                             homeTeam: teams.first(where: { team in team.id == bet.team1Id }),
                              goustTeam: teams.first(where: { team in team.id == bet.team2Id }),
                              resultText: betTypes.first(where: { type in
                                                                 type.id == bet.typeId
@@ -88,10 +99,10 @@ final class BetsViewModel {
                              resultText: "\(bet.result)")
             }
             let activeGroups = activeBetViewModels.map { bet in
-                BetGroup(eventDate: bet.eventDate, bets: [bet])
+                BetGroup(eventDate: bet.eventDate, active: true, bets: [bet])
             }
             let groups = bets.map { $0.eventDate.withoutTimeStamp }.distinct().map { date in
-                BetGroup(eventDate: date, bets: betViewModels.filter { $0.eventDate.withoutTimeStamp == date })
+                BetGroup(eventDate: date, active: false, bets: betViewModels.filter { $0.eventDate.withoutTimeStamp == date })
             }
             
             let betSections = groups.map({$0.eventDate.withoutDays}).distinct().map {date in

@@ -30,4 +30,6 @@
 "match_begins_tomorrow" = "Начало матча завтра в %@";
 "match_begins_today" = "Начало матча сегодня в %@";
 "match_begins_in" = "Начало матча через  %@";
+"match_being_played_n_minute" = "Матч уже играется. Идет %@-я минута матча";
+"match_being_played_break" = "Матч уже играется, сыгран 1 тайм";
 
