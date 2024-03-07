@@ -53,21 +53,23 @@ struct BetSection {
 
 final class BetsViewModel {
     typealias Callback = ([BetSection]) -> ()
+    typealias BeginRefresh = () -> ()
     let disposeBag = DisposeBag()
     var callback: Callback?
+    var beginRefrech: BeginRefresh?
     
     init() {
-        NotificationCenter.default.rx.notification(Notification.Name.wasSyncBetData).subscribe {[weak self] _ in
+        NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
             if self?.callback == nil { return }
+            printAppEvent("call needUpdateBetsScreen at BetsViewModel handler")
             self?.updateData()
         }.disposed(by: disposeBag)
     }
     
-    func updateData(_ callback: Callback? = nil) {
-        if self.callback == nil {
-            self.callback = callback
-        }
+    func updateData() {
+        beginRefrech?()
         DispatchQueue.global(qos: .background).async {[weak self] in
+            sleep(1)
             guard let self = self else { return }
             let allBets: [Bet] = Repository.selectData(Bet.table.order(Bet.eventDateField.desc))
             let matchTime = Date().addingTimeInterval(-105 * 60)

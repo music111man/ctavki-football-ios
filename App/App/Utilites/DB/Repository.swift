@@ -20,7 +20,7 @@ final class Repository {
         do {
             let fileUrl = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
                 .appendingPathComponent(Self.dbName)
-            print("Open db \(fileUrl.path)")
+            printAppEvent("Open db \(fileUrl.path)")
             Self.con = try Connection(fileUrl.path)
         } catch let error {
             print(error)
@@ -28,7 +28,7 @@ final class Repository {
         
         return con
     }
-    
+    @discardableResult
     static func refreshData<T: DBComparable>(_ items: [T]) -> Bool {
         defer { semaphore.signal() }
         semaphore.wait()
@@ -42,9 +42,9 @@ final class Repository {
                 })
                 
                 deletedCount = try Self.connection?.run(T.table.delete()) ?? 0
-                print("delete \(deletedCount) old records from \(T.self)s")
+                printAppEvent("delete \(deletedCount) old records from \(T.self)s")
                 insertCount = try Self.connection?.run(T.table.insertMany(or: .replace, items.map({ $0.setters }))) ?? 0
-                print("insert \(insertCount) new records to \(T.self)s")
+                printAppEvent("insert \(insertCount) new records to \(T.self)s")
             }
             
         } catch let error {

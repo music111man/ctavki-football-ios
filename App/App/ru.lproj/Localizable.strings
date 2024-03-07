@@ -5,6 +5,8 @@
   Created by Denis Shkultetskyy on 22.02.2024.
   
 */
+"update_data_msg" = "Обновляемся...";
+
 "my_balance" = "мой\nсчет";
 "sign_in" = "Вход";
 "tooltip_bets_title" = "ТЕКУЩИЕ ПРОГНОЗЫ";

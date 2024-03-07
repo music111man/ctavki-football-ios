@@ -7,6 +7,10 @@
 
 import UIKit
 
+func printAppEvent(_ event: String) {
+    print("\(Date().format("HH:mm:ss"))->>>\(event)")
+}
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

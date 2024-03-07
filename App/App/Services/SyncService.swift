@@ -14,10 +14,11 @@ extension Notification.Name {
     static let needUpdateApp = Notification.Name("needUpdateApp")
     static let badServerResponse = Notification.Name("badServerResponse")
     static let tryToRefreshData = Notification.Name("tryToRefreshData")
-    static let wasSyncBetData = Notification.Name("wasSyncBetData")
+    static let noDataForBetsScreen = Notification.Name("noDataForBetsScreen")
     static let wasSyncBetTypeData = Notification.Name("wasSyncBetTypeData")
     static let wasSyncTeamData = Notification.Name("wasSyncTeamData")
     static let wasSyncFaqData = Notification.Name("wasSyncFaqData")
+    static let needUpdateBetsScreen = Notification.Name("needUpdateBetsScreen")
 }
 
 final class SyncService {
@@ -34,7 +35,7 @@ final class SyncService {
     }
     
     func refresh() {
-        print("\(Date()) >> start sync")
+        printAppEvent("start sync")
         NetProvider.makeRequest(ApiResponseData.self, .checkForUpdates) { responseData in
             if responseData.code != 200 {
                 NotificationCenter.default.post(name: NSNotification.Name.badServerResponse, object: nil)
@@ -53,25 +54,31 @@ final class SyncService {
             AppSettings.userBetsLeft = responseData.userBetsLeft
             AppSettings.isSubscribedToTgChannel = responseData.isSubscribedToTgChannel
             
-            if Repository.refreshData(responseData.teams) {
-                NotificationCenter.default.post(name: NSNotification.Name.wasSyncTeamData, object: nil)
-            }
-            if Repository.refreshData(responseData.faqs) {
-                NotificationCenter.default.post(name: NSNotification.Name.wasSyncFaqData, object: nil)
-            }
-            if Repository.refreshData(responseData.bets) {
-                NotificationCenter.default.post(name: NSNotification.Name.wasSyncBetData, object: nil)
-            }
-            if Repository.refreshData(responseData.betTypes) {
-                NotificationCenter.default.post(name: NSNotification.Name.wasSyncBetTypeData, object: nil)
-            }
+            Repository.refreshData(responseData.teams)
+            Repository.refreshData(responseData.bets)
+            Repository.refreshData(responseData.faqs)
+            Repository.refreshData(responseData.betTypes)
             
-//            let bets:[Bet] = Repository.selectData(Bet.table.order(Bet.eventDateField.desc))
-//            for bet in bets.sorted(by: { b1, b2 in
-//                b1.eventDate < b2.eventDate
-//            }) {
-//                print("\(bet.eventDate) \(bet.typeId ?? 0)")
+//            if !responseData.teams.isEmpty {
+//                NotificationCenter.default.post(name: NSNotification.Name.wasSyncTeamData, object: nil)
 //            }
+//            if !responseData.faqs.isEmpty {
+//                NotificationCenter.default.post(name: NSNotification.Name.wasSyncFaqData, object: nil)
+//            }
+//            
+//            if !responseData.betTypes.isEmpty {
+//                NotificationCenter.default.post(name: NSNotification.Name.wasSyncBetTypeData, object: nil)
+//            }
+            if !responseData.teams.isEmpty || !responseData.bets.isEmpty || !responseData.betTypes.isEmpty {
+                NotificationCenter.default.post(name: NSNotification.Name.needUpdateBetsScreen, object: nil)
+            } else {
+                NotificationCenter.default.post(name: NSNotification.Name.noDataForBetsScreen, object: nil)
+            }
+            let noData = responseData.teams.isEmpty
+                        && responseData.bets.isEmpty
+                        && responseData.betTypes.isEmpty
+                        && responseData.faqs.isEmpty
+            printAppEvent("Refresh data \(!noData)")
         }
     }
     

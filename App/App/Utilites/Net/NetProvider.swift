@@ -22,13 +22,13 @@ class NetProvider {
             switch result {
             case .success(let response):
                 guard let data = try? JSONDecoder().decode(type, from: response.data) else {
-                    print("-->>>\(target): can not deserialize to \(T.self)")
+                    printAppEvent("\(target): can not deserialize to \(T.self)")
                     NotificationCenter.default.post(name: NSNotification.Name.deserializeError, object: target)
                     break
                 }
                 callback?(data)
             case .failure(let error):
-                print("-->>>\(target): \(error.errorDescription ?? "Unknown net error")")
+                printAppEvent("\(target): \(error.errorDescription ?? "Unknown net error")")
                 NotificationCenter.default.post(name: NSNotification.Name.badNetRequest, object: target)
             }
             

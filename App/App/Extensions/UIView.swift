@@ -47,5 +47,14 @@ extension UIView {
         let safeFrame = window.safeAreaLayoutGuide.layoutFrame
         return window.frame.maxY - safeFrame.maxY
     }
+    
+    func animateOpacity(_ withDuration: TimeInterval, _ value: Float, _ onComplite: (() -> ())? = nil) {
+        UIView.animate(withDuration: withDuration) {[weak self] in
+            self?.layer.opacity = value
+        } completion: { _ in
+            onComplite?()
+        }
+
+    }
 }
 

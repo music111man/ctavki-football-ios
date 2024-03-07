@@ -5,6 +5,8 @@
   Created by Denis Shkultetskyy on 22.02.2024.
   
 */
+"update_data_msg" = "Updating...";
+
 "my_balance" = "my\nbal.";
 "sign_in" = "Sign\nIn";
 "tooltip_login_title" = "LOGIN";

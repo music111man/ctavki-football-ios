@@ -13,31 +13,66 @@ import RxDataSources
 class PicksVController: FeaureVController {
 
     let sectionHeaderView = UIView()
+    var sectionHeaderViewGradient: CALayer!
     let sectionHeaderInfoView = BetGroupsHeaderView()
-    let tableView = UITableView()
     let betsViewModel = BetsViewModel()
-    let disposeBag = DisposeBag()
     var betSections = [BetSection]()
-    
+    var titleSection: Int = 0
+    var isFirstShow = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.rx.notification(Notification.Name.noDataForBetsScreen).subscribe {[weak self] _ in
+            guard let self = self else { return }
+            if self.isFirstShow {
+                self.betsViewModel.updateData()
+            }
+            self.refresher.endRefreshing()
+        }.disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
+            self?.activityView.isHidden = false
+            self?.activityView.animateOpacity(0.4, 1)
+            
+        }.disposed(by: disposeBag)
+        
+        betsViewModel.callback = { betSections in
+            printAppEvent("update bets data in screen")
+            DispatchQueue.main.async {[weak self] in
+                guard let self = self else { return }
+                self.betSections = betSections
+                self.setTitle()
+                self.tableView.reloadData()
+                self.refresher.endRefreshing()
+                if !self.activityView.isHidden {
+                    self.activityView.animateOpacity(0.5, 0) {
+                        self.activityView.isHidden = true
+                    }
+                }
+                self.isFirstShow = false
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.post(name: Notification.Name.tryToRefreshData, object: nil)
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        sectionHeaderView.layer.sublayers?.first?.frame = sectionHeaderView.bounds
+        sectionHeaderViewGradient.frame = sectionHeaderView.bounds
     }
     
     override func initUI() {
         super.initUI()
         sectionHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        sectionHeaderView.setGradient(start: R.color.blue_gray_500(), end: R.color.blue_gray_250(), isLine: true)
+        sectionHeaderViewGradient = sectionHeaderView.setGradient(start: R.color.blue_gray_500(), end: R.color.blue_gray_250(), isLine: true)
         view.insertSubview(sectionHeaderView, at: 0)
         NSLayoutConstraint.activate([
             sectionHeaderView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -63,21 +98,17 @@ class PicksVController: FeaureVController {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
         tableView.register(UINib(resource: R.nib.betsCell), forCellReuseIdentifier: BetsCell.reuseIdentifier)
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
         tableView.showsVerticalScrollIndicator = false
-        
-        betsViewModel.updateData() {betSections in
-            DispatchQueue.main.async {[weak self] in
-                self?.betSections = betSections
-                self?.setTitle()
-                self?.tableView.reloadData()
-            }
-        }
-       
-
+        refresher.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            refresher.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 20),
+            refresher.centerXAnchor.constraint(equalTo: tableView.centerXAnchor)
+        ])
     }
     
     override func titleName() -> String {
@@ -88,7 +119,11 @@ class PicksVController: FeaureVController {
         R.image.bets()
     }
     
-    var titleSection: Int = 0
+    override func refreshData() -> Bool {
+        if isFirstShow { return false }
+        NotificationCenter.default.post(name: Notification.Name.tryToRefreshData, object: nil)
+        return true
+    }
 }
 
 extension PicksVController: UITableViewDelegate {
@@ -113,10 +148,7 @@ extension PicksVController: UITableViewDelegate {
             UIView.animate(withDuration: 0.4) {
                 self.navigationBar.layer.opacity = 1
             }
-//            navigationBar.isHidden = false
         }
-        view.layoutIfNeeded()
-        print("scroll \(contentOffset) = \(height)")
     }
     
     func setTitle() {

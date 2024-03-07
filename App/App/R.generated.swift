@@ -743,7 +743,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 27 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 28 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -845,6 +845,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let guid_login = Rswift.StringResource(key: "guid_login", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Updating...
+      ///
+      /// Locales: en, ru
+      static let update_data_msg = Rswift.StringResource(key: "update_data_msg", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: You can find here history of our past predictions sorted by teams.
       ///
       /// Locales: en, ru
@@ -1243,6 +1247,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("guid_login", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Updating...
+      ///
+      /// Locales: en, ru
+      static func update_data_msg(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("update_data_msg", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "update_data_msg"
+        }
+
+        return NSLocalizedString("update_data_msg", bundle: bundle, comment: "")
       }
 
       /// en translation: You can find here history of our past predictions sorted by teams.
