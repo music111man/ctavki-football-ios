@@ -69,7 +69,6 @@ final class BetsViewModel {
     func updateData() {
         beginRefrech?()
         DispatchQueue.global(qos: .background).async {[weak self] in
-            sleep(1)
             guard let self = self else { return }
             let allBets: [Bet] = Repository.selectData(Bet.table.order(Bet.eventDateField.desc))
             let matchTime = Date().addingTimeInterval(-105 * 60)

@@ -41,10 +41,33 @@ final class AppCoordinator: PCoordinator {
     
     func initNotificationEventHandlers() {
         NotificationCenter.default.rx.notification(Notification.Name.tapAutozire).subscribe {[weak self] _ in
-            let alert = UIAlertController(title: "Autorization", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default))
-            self?.router?.present(alert, animated: true)
+            if !AppSettings.isAuthorized {
+                self?.showAuthScreen()
+            }
         }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(Notification.Name.needOpenBetDetails).subscribe {[weak self] event in
+            guard let betId = event.element?.userInfo?[BetView.betIdKeyForUserInfo] as? Int else { return }
+            printAppEvent("tap to show bet id=\(betId)")
+            self?.showBetDetails(betId: betId)
+        }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(Notification.Name.needOpenActiveBetDetails).subscribe {[weak self] event in
+            guard AppSettings.isAuthorized, let betId = event.element?.userInfo?[BetView.betIdKeyForUserInfo] as? Int else {
+                self?.showAuthScreen()
+                return
+            }
+        }.disposed(by: disposeBag)
+    }
+    
+    func showBetDetails(betId: Int) {
+        let alert = UIAlertController(title: "Wiil be show bet details for id=\(betId)", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.router?.present(alert, animated: true)
+    }
+    
+    func showAuthScreen() {
+        let alert = UIAlertController(title: "Need autorization", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.router?.present(alert, animated: true)
     }
 }
 

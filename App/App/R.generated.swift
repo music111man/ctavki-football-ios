@@ -743,7 +743,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 28 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 34 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -761,19 +761,23 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let balance_for_month = Rswift.StringResource(key: "balance_for_month", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
-      /// en translation: Here are matches and odds which our service provides predictions on!
+      /// en translation: Here are matches and odds which our service provides predictions on. Click on the match you are interested in and find out the details.
       ///
       /// Locales: en, ru
       static let guid_picks = Rswift.StringResource(key: "guid_picks", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
-      /// en translation: Here are results of our predictions. More more information, tap on the match' odds circle!
-      ///
-      /// Locales: en, ru
-      static let guid_results = Rswift.StringResource(key: "guid_results", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
-      /// en translation: If you like our free predictions, you can purchase our paid service!
+      /// en translation: If you have won at the bookmaker's office using our free predictions, then please support our project in this section!
       ///
       /// Locales: en, ru
       static let guid_paid_plans = Rswift.StringResource(key: "guid_paid_plans", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: In this section, the results of our predictions are calculated assuming we placed a $100 bet on each match. A green circle indicates the amount won, a red circle indicates the amount lost, and a grey circle represents the return of the bet.
+      ///
+      /// Locales: en, ru
+      static let guid_results = Rswift.StringResource(key: "guid_results", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: LOGIN
+      ///
+      /// Locales: en, ru
+      static let screen_login_title = Rswift.StringResource(key: "screen_login_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: LOGIN (2/6)
       ///
       /// Locales: en, ru
       static let tooltip_login_title = Rswift.StringResource(key: "tooltip_login_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
@@ -800,8 +804,12 @@ struct R: Rswift.Validatable {
       /// en translation: PREDICTIONS
       ///
       /// Locales: en, ru
+      static let screen_bets_title = Rswift.StringResource(key: "screen_bets_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: PREDICTIONS (1/6)
+      ///
+      /// Locales: en, ru
       static let tooltip_bets_title = Rswift.StringResource(key: "tooltip_bets_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
-      /// en translation: PURCHASES
+      /// en translation: PURCHASES (5/6)
       ///
       /// Locales: en, ru
       static let tooltip_paid_title = Rswift.StringResource(key: "tooltip_paid_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
@@ -809,27 +817,43 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let picks = Rswift.StringResource(key: "picks", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
-      /// en translation: Purchases
-      ///
-      /// Locales: en, ru
-      static let paid_cap = Rswift.StringResource(key: "paid_cap", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
-      /// en translation: QUESTIONS
+      /// en translation: QUESTIONS (6/6)
       ///
       /// Locales: en, ru
       static let tooltip_faq_title = Rswift.StringResource(key: "tooltip_faq_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: QUESTIONS AND ANSWERS
+      ///
+      /// Locales: en, ru
+      static let screen_faq_title = Rswift.StringResource(key: "screen_faq_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: Questions
       ///
       /// Locales: en, ru
       static let questions = Rswift.StringResource(key: "questions", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
-      /// en translation: RESULTS
+      /// en translation: RESULTS (3/6)
       ///
       /// Locales: en, ru
       static let tooltip_results_title = Rswift.StringResource(key: "tooltip_results_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: SKIP
+      ///
+      /// Locales: en, ru
+      static let skip = Rswift.StringResource(key: "skip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: SUPPORT US
+      ///
+      /// Locales: en, ru
+      static let screen_paid_title = Rswift.StringResource(key: "screen_paid_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: Sign In
       ///
       /// Locales: en, ru
       static let sign_in = Rswift.StringResource(key: "sign_in", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Support us
+      ///
+      /// Locales: en, ru
+      static let paid_cap = Rswift.StringResource(key: "paid_cap", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: TEAMS
+      ///
+      /// Locales: en, ru
+      static let screen_teams_title = Rswift.StringResource(key: "screen_teams_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: TEAMS (4/6)
       ///
       /// Locales: en, ru
       static let tooltip_teams_title = Rswift.StringResource(key: "tooltip_teams_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
@@ -924,7 +948,7 @@ struct R: Rswift.Validatable {
         return String(format: format, locale: locale, value1)
       }
 
-      /// en translation: Here are matches and odds which our service provides predictions on!
+      /// en translation: Here are matches and odds which our service provides predictions on. Click on the match you are interested in and find out the details.
       ///
       /// Locales: en, ru
       static func guid_picks(preferredLanguages: [String]? = nil) -> String {
@@ -939,22 +963,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("guid_picks", bundle: bundle, comment: "")
       }
 
-      /// en translation: Here are results of our predictions. More more information, tap on the match' odds circle!
-      ///
-      /// Locales: en, ru
-      static func guid_results(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("guid_results", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "guid_results"
-        }
-
-        return NSLocalizedString("guid_results", bundle: bundle, comment: "")
-      }
-
-      /// en translation: If you like our free predictions, you can purchase our paid service!
+      /// en translation: If you have won at the bookmaker's office using our free predictions, then please support our project in this section!
       ///
       /// Locales: en, ru
       static func guid_paid_plans(preferredLanguages: [String]? = nil) -> String {
@@ -969,7 +978,37 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("guid_paid_plans", bundle: bundle, comment: "")
       }
 
+      /// en translation: In this section, the results of our predictions are calculated assuming we placed a $100 bet on each match. A green circle indicates the amount won, a red circle indicates the amount lost, and a grey circle represents the return of the bet.
+      ///
+      /// Locales: en, ru
+      static func guid_results(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("guid_results", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "guid_results"
+        }
+
+        return NSLocalizedString("guid_results", bundle: bundle, comment: "")
+      }
+
       /// en translation: LOGIN
+      ///
+      /// Locales: en, ru
+      static func screen_login_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("screen_login_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "screen_login_title"
+        }
+
+        return NSLocalizedString("screen_login_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: LOGIN (2/6)
       ///
       /// Locales: en, ru
       static func tooltip_login_title(preferredLanguages: [String]? = nil) -> String {
@@ -1072,6 +1111,21 @@ struct R: Rswift.Validatable {
       /// en translation: PREDICTIONS
       ///
       /// Locales: en, ru
+      static func screen_bets_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("screen_bets_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "screen_bets_title"
+        }
+
+        return NSLocalizedString("screen_bets_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: PREDICTIONS (1/6)
+      ///
+      /// Locales: en, ru
       static func tooltip_bets_title(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("tooltip_bets_title", bundle: hostingBundle, comment: "")
@@ -1084,7 +1138,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("tooltip_bets_title", bundle: bundle, comment: "")
       }
 
-      /// en translation: PURCHASES
+      /// en translation: PURCHASES (5/6)
       ///
       /// Locales: en, ru
       static func tooltip_paid_title(preferredLanguages: [String]? = nil) -> String {
@@ -1114,22 +1168,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("picks", bundle: bundle, comment: "")
       }
 
-      /// en translation: Purchases
-      ///
-      /// Locales: en, ru
-      static func paid_cap(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("paid_cap", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "paid_cap"
-        }
-
-        return NSLocalizedString("paid_cap", bundle: bundle, comment: "")
-      }
-
-      /// en translation: QUESTIONS
+      /// en translation: QUESTIONS (6/6)
       ///
       /// Locales: en, ru
       static func tooltip_faq_title(preferredLanguages: [String]? = nil) -> String {
@@ -1142,6 +1181,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("tooltip_faq_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: QUESTIONS AND ANSWERS
+      ///
+      /// Locales: en, ru
+      static func screen_faq_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("screen_faq_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "screen_faq_title"
+        }
+
+        return NSLocalizedString("screen_faq_title", bundle: bundle, comment: "")
       }
 
       /// en translation: Questions
@@ -1159,7 +1213,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("questions", bundle: bundle, comment: "")
       }
 
-      /// en translation: RESULTS
+      /// en translation: RESULTS (3/6)
       ///
       /// Locales: en, ru
       static func tooltip_results_title(preferredLanguages: [String]? = nil) -> String {
@@ -1172,6 +1226,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("tooltip_results_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: SKIP
+      ///
+      /// Locales: en, ru
+      static func skip(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("skip", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "skip"
+        }
+
+        return NSLocalizedString("skip", bundle: bundle, comment: "")
+      }
+
+      /// en translation: SUPPORT US
+      ///
+      /// Locales: en, ru
+      static func screen_paid_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("screen_paid_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "screen_paid_title"
+        }
+
+        return NSLocalizedString("screen_paid_title", bundle: bundle, comment: "")
       }
 
       /// en translation: Sign In
@@ -1189,7 +1273,37 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("sign_in", bundle: bundle, comment: "")
       }
 
+      /// en translation: Support us
+      ///
+      /// Locales: en, ru
+      static func paid_cap(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("paid_cap", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "paid_cap"
+        }
+
+        return NSLocalizedString("paid_cap", bundle: bundle, comment: "")
+      }
+
       /// en translation: TEAMS
+      ///
+      /// Locales: en, ru
+      static func screen_teams_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("screen_teams_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "screen_teams_title"
+        }
+
+        return NSLocalizedString("screen_teams_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: TEAMS (4/6)
       ///
       /// Locales: en, ru
       static func tooltip_teams_title(preferredLanguages: [String]? = nil) -> String {

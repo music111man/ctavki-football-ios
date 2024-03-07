@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class TourGuidVController: UIViewController {
+    let disposeBag = DisposeBag()
     
     let betsGuidView = UIView()
     let betsGuidIconContainer = UIView()
@@ -333,6 +336,32 @@ class TourGuidVController: UIViewController {
             label.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
             label.rightAnchor.constraint(equalTo: textContainer.rightAnchor, constant: -50)
         ])
+        
+        let labelSkip = UILabel()
+        labelSkip.isUserInteractionEnabled = true
+        labelSkip.text = R.string.localizable.skip()
+        labelSkip.textColor = R.color.won_light()
+        labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
+        labelSkip.translatesAutoresizingMaskIntoConstraints = false
+        textContainer.addSubview(labelSkip)
+        NSLayoutConstraint.activate([
+            labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
+            labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
+        ])
+        let tap = UITapGestureRecognizer()
+        tap.rx.event.bind { [weak self] _ in
+            guard let self = self  else { return }
+            self.guidAnimations.removeAll()
+            labelSkip.animateTpSimulation(value: 0.8) {
+                self.betsGuidIconContainer.layer.opacity = 0
+                self.betsGuidView.animateOpacity(0.3, 0) {
+                    self.endAction?()
+                }
+            }
+            
+        }.disposed(by: disposeBag)
+        
+        labelSkip.addGestureRecognizer(tap)
     }
     
     func initAuthorizeGuid() {
@@ -377,6 +406,31 @@ class TourGuidVController: UIViewController {
             label.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
             label.rightAnchor.constraint(equalTo: textContainer.rightAnchor, constant: -10)
         ])
+        
+        let labelSkip = UILabel()
+        labelSkip.isUserInteractionEnabled = true
+        labelSkip.text = R.string.localizable.skip()
+        labelSkip.textColor = R.color.won_light()
+        labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
+        labelSkip.translatesAutoresizingMaskIntoConstraints = false
+        textContainer.addSubview(labelSkip)
+        NSLayoutConstraint.activate([
+            labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 10),
+            labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
+        ])
+        let tap = UITapGestureRecognizer()
+        tap.rx.event.bind { [weak self] _ in
+            guard let self = self  else { return }
+            self.guidAnimations.removeAll()
+            labelSkip.animateTpSimulation(value: 0.8) {
+                self.authorizeIconContainer.layer.opacity = 0
+                self.authorizeGuidView.animateOpacity(0.3, 0) {
+                    self.endAction?()
+                }
+            }
+            
+        }.disposed(by: disposeBag)
+        labelSkip.addGestureRecognizer(tap)
     }
     
     func initResultGuid() {
@@ -395,7 +449,7 @@ class TourGuidVController: UIViewController {
         resultGuidView.addSubview(textContainer)
         NSLayoutConstraint.activate([
             textContainer.widthAnchor.constraint(equalTo: resultGuidView.widthAnchor, multiplier: 0.52),
-            textContainer.heightAnchor.constraint(equalTo: textContainer.widthAnchor, multiplier: 0.5),
+            textContainer.heightAnchor.constraint(equalTo: textContainer.widthAnchor, multiplier: 1),
             textContainer.centerYAnchor.constraint(equalTo: resultGuidView.centerYAnchor),
             textContainer.rightAnchor.constraint(equalTo: resultGuidView.rightAnchor)
         ])
@@ -423,13 +477,37 @@ class TourGuidVController: UIViewController {
             label.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
             label.rightAnchor.constraint(equalTo: textContainer.rightAnchor, constant: -30)
         ])
+        let labelSkip = UILabel()
+        labelSkip.isUserInteractionEnabled = true
+        labelSkip.text = R.string.localizable.skip()
+        labelSkip.textColor = R.color.won_light()
+        labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
+        labelSkip.translatesAutoresizingMaskIntoConstraints = false
+        textContainer.addSubview(labelSkip)
+        NSLayoutConstraint.activate([
+            labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
+            labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
+        ])
+        let tap = UITapGestureRecognizer()
+        tap.rx.event.bind { [weak self] _ in
+            guard let self = self  else { return }
+            self.guidAnimations.removeAll()
+            labelSkip.animateTpSimulation(value: 0.8) {
+                self.resultIconContainer.layer.opacity = 0
+                self.resultGuidView.animateOpacity(0.3, 0) {
+                    self.endAction?()
+                }
+            }
+            
+        }.disposed(by: disposeBag)
+        labelSkip.addGestureRecognizer(tap)
     }
     
     func initTeamsGuid() {
         teamsGuidView.translatesAutoresizingMaskIntoConstraints = false
         view.insertSubview(teamsGuidView, at: 0)
         NSLayoutConstraint.activate([
-            teamsGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.1),
+            teamsGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.3),
             teamsGuidView.heightAnchor.constraint(equalTo: teamsGuidView.widthAnchor),
             teamsGuidView.centerYAnchor.constraint(equalTo: teamsGuidIconContainer.centerYAnchor),
             teamsGuidView.centerXAnchor.constraint(equalTo: teamsGuidIconContainer.centerXAnchor)
@@ -450,7 +528,7 @@ class TourGuidVController: UIViewController {
         title.translatesAutoresizingMaskIntoConstraints = false
         textContainer.addSubview(title)
         NSLayoutConstraint.activate([
-            title.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 40),
+            title.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 60),
             title.topAnchor.constraint(equalTo: textContainer.topAnchor, constant: 40)
         ])
         let label = UILabel()
@@ -464,9 +542,33 @@ class TourGuidVController: UIViewController {
         textContainer.addSubview(label)
         NSLayoutConstraint.activate([
             label.widthAnchor.constraint(equalTo: textContainer.widthAnchor, multiplier: 0.7),
-            label.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 40),
+            label.leftAnchor.constraint(equalTo: title.leftAnchor),
             label.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10)
         ])
+        let labelSkip = UILabel()
+        labelSkip.isUserInteractionEnabled = true
+        labelSkip.text = R.string.localizable.skip()
+        labelSkip.textColor = R.color.won_light()
+        labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
+        labelSkip.translatesAutoresizingMaskIntoConstraints = false
+        textContainer.addSubview(labelSkip)
+        NSLayoutConstraint.activate([
+            labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
+            labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
+        ])
+        let tap = UITapGestureRecognizer()
+        tap.rx.event.bind { [weak self] _ in
+            guard let self = self  else { return }
+            self.guidAnimations.removeAll()
+            labelSkip.animateTpSimulation(value: 0.8) {
+                self.teamsGuidIconContainer.layer.opacity = 0
+                self.teamsGuidView.animateOpacity(0.3, 0) {
+                    self.endAction?()
+                }
+            }
+            
+        }.disposed(by: disposeBag)
+        labelSkip.addGestureRecognizer(tap)
     }
     
     func initPayGuid() {
@@ -474,7 +576,7 @@ class TourGuidVController: UIViewController {
         view.insertSubview(payGuidView, at: 0)
         
         NSLayoutConstraint.activate([
-            payGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.1),
+            payGuidView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.4),
             payGuidView.heightAnchor.constraint(equalTo: payGuidView.widthAnchor),
             payGuidView.centerYAnchor.constraint(equalTo: payGuidIconContainer.centerYAnchor),
             payGuidView.centerXAnchor.constraint(equalTo: payGuidIconContainer.centerXAnchor)
@@ -512,6 +614,30 @@ class TourGuidVController: UIViewController {
             label.leftAnchor.constraint(equalTo: textContainer.leftAnchor, constant: 40),
             label.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10)
         ])
+        let labelSkip = UILabel()
+        labelSkip.isUserInteractionEnabled = true
+        labelSkip.text = R.string.localizable.skip()
+        labelSkip.textColor = R.color.won_light()
+        labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
+        labelSkip.translatesAutoresizingMaskIntoConstraints = false
+        textContainer.addSubview(labelSkip)
+        NSLayoutConstraint.activate([
+            labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
+            labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
+        ])
+        let tap = UITapGestureRecognizer()
+        tap.rx.event.bind { [weak self] _ in
+            guard let self = self  else { return }
+            self.guidAnimations.removeAll()
+            labelSkip.animateTpSimulation(value: 0.8) {
+                self.payGuidIconContainer.layer.opacity = 0
+                self.payGuidView.animateOpacity(0.3, 0) {
+                    self.endAction?()
+                }
+            }
+            
+        }.disposed(by: disposeBag)
+        labelSkip.addGestureRecognizer(tap)
     }
     
     func initFaqGuid() {
@@ -576,8 +702,6 @@ class TourGuidVController: UIViewController {
             self.betsGuidView.roundCorners()
         }
     }
-    
-   
     
     func teamsGuid() {
         self.teamsGuidView.isHidden = false

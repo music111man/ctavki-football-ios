@@ -10,7 +10,7 @@ import UIKit
 
 final class PurchesVController: FeaureVController {
     override func titleName() -> String {
-        R.string.localizable.tooltip_paid_title()
+        R.string.localizable.screen_paid_title()
     }
     override func icon() -> UIImage? {
         R.image.pay()

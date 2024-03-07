@@ -24,7 +24,7 @@ final class MainCoordinator {
     
     func start() -> UINavigationController {
         mainVC.setChildVC(vc: factories[0].create()) {[weak self] in
-//            self?.delegate?.startGuidTour()
+            self?.delegate?.startGuidTour()
         }
         
         return router

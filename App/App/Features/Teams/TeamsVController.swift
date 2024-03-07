@@ -10,7 +10,7 @@ import UIKit
 
 final class TeamsVController: FeaureVController {
     override func titleName() -> String {
-        R.string.localizable.tooltip_teams_title()
+        R.string.localizable.screen_teams_title()
     }
     override func icon() -> UIImage? {
         R.image.teams()

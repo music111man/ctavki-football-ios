@@ -171,6 +171,7 @@
 		F22CE0952B87B91D00732FFB /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F2EB1A2F2B99D84F0027D782 /* BetDetails */,
 				F22CE0BA2B88F07900732FFB /* ToureGuid */,
 				F22CE09A2B87BEA100732FFB /* FAQ */,
 				F22CE0992B87BE8700732FFB /* Purches */,
@@ -306,6 +307,13 @@
 				F2EA78D82B90C8B0006B3A1C /* ApiRequest.swift */,
 			);
 			path = Net;
+			sourceTree = "<group>";
+		};
+		F2EB1A2F2B99D84F0027D782 /* BetDetails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BetDetails;
 			sourceTree = "<group>";
 		};
 		F2FC03312B867809001C6BB3 = {
@@ -688,7 +696,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -718,7 +726,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;

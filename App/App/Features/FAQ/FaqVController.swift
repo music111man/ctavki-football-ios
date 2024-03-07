@@ -10,7 +10,7 @@ import UIKit
 
 final class FaqVController: FeaureVController {
     override func titleName() -> String {
-        R.string.localizable.tooltip_faq_title()
+        R.string.localizable.screen_faq_title()
     }
     
     override func icon() -> UIImage? {

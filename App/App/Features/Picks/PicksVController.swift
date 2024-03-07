@@ -37,6 +37,17 @@ class PicksVController: FeaureVController {
             
         }.disposed(by: disposeBag)
         
+        NotificationCenter.default.rx.notification(Notification.Name.needOpenTeamDetails).subscribe {[weak self] event in
+            guard let teamId = event.element?.userInfo?[BetView.teamIdKeyForUserInfo] as? Int else {
+                return
+            }
+            
+                let alert = UIAlertController(title: "Will show team details for team id=\(teamId)", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self?.navigationController?.present(alert, animated: true, completion: nil)
+            
+        }.disposed(by: disposeBag)
+        
         betsViewModel.callback = { betSections in
             printAppEvent("update bets data in screen")
             DispatchQueue.main.async {[weak self] in
@@ -112,7 +123,7 @@ class PicksVController: FeaureVController {
     }
     
     override func titleName() -> String {
-        R.string.localizable.tooltip_bets_title()
+        R.string.localizable.screen_bets_title()
     }
     
     override func icon() -> UIImage? {

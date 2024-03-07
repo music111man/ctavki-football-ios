@@ -56,5 +56,18 @@ extension UIView {
         }
 
     }
+    func animateTpSimulation(withDuration: TimeInterval = 0.2, value: CGFloat, _ onComplite: (() -> ())? = nil) {
+        UIView.animate(withDuration: withDuration, animations: {[weak self] in
+            self?.transform = CGAffineTransform.init(scaleX: value, y: value)
+        }) { [weak self] _ in
+            
+            onComplite?()
+            UIView.animate(withDuration: withDuration, animations: {[weak self] in
+                self?.transform = CGAffineTransform.identity
+            }) { _ in
+
+            }
+        }
+    }
 }
 
