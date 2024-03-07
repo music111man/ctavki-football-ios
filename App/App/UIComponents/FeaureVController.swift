@@ -19,6 +19,12 @@ class FeaureVController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            activityView.style = .large
+        } else {
+            activityView.style = .whiteLarge
+        }
+        
         view.backgroundColor = R.color.background_main()
         refresher.attributedTitle = NSAttributedString(string: "")
         refresher.addTarget(self, action: #selector(callNeedRefresh), for: .valueChanged)

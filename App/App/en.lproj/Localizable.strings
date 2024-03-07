@@ -44,3 +44,11 @@
 "match_being_played_n_minute" = "Match is underway. It\'s the %@ minute of the match";
 "match_being_played_break" = "The match is already underway, the first half has been played";
 
+"prediction" = "Prediction:";
+"bet_amount_100" = "Bet amount: 100$";
+"odds_col" = "Odds:";
+"result" = "Result:";
+"winnings" = "Win %@";
+"return" = "win";
+"loss" = "Lost 100";
+"year_at_end" = "%@";

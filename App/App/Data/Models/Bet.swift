@@ -41,7 +41,7 @@ struct Bet: Decodable {
     var result: Int {
         guard let outcome = self.outcome, let factor = self.factor, outcome != .return else { return 0 }
         
-        return outcome == .lost ? 100 : Int((factor * 100.0) - 100.0)
+        return outcome == .lost ? 100 : factor.winCalcValue
     }
     
     enum CodingKeys: String, CodingKey {

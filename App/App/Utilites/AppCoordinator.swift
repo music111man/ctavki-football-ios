@@ -59,9 +59,11 @@ final class AppCoordinator: PCoordinator {
     }
     
     func showBetDetails(betId: Int) {
-        let alert = UIAlertController(title: "Wiil be show bet details for id=\(betId)", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default))
-        self.router?.present(alert, animated: true)
+        
+        guard let vc = BetDetailsVController.createFromNib() as? BetDetailsVController else { return }
+        vc.modalPresentationStyle = .overFullScreen
+        vc.betId = betId
+        self.router?.present(vc, animated: false)
     }
     
     func showAuthScreen() {

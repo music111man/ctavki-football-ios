@@ -43,3 +43,11 @@
 "match_being_played_n_minute" = "Матч уже играется. Идет %@-я минута матча";
 "match_being_played_break" = "Матч уже играется, сыгран 1 тайм";
 
+"prediction" = "Прогноз:";
+"bet_amount_100" = "Сумма ставки: 100$";
+"odds_col" = "Коэффициент:";
+"result" = "Результат:";
+"winnings" = "Выигрыш: %@";
+"return" = "выигрыш";
+"loss" = "Проигрыш 100";
+"year_at_end" = "%@ г.";

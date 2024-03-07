@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Bet DetailsV Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="BetDetailsVController" id="Y6W-OH-hqX" customClass="BetDetailsVController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kA9-OO-LjQ">
+                                <rect key="frame" x="15" y="289" width="363" height="274"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 марта 2024 г." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRZ-fh-4iz">
+                                        <rect key="frame" x="15" y="20" width="333" height="14.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" name="toolbarItem"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Манчестер Сити - Копенгаген" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aS6-D7-rAi">
+                                        <rect key="frame" x="15" y="54.333333333333307" width="333" height="21.666666666666664"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" name="text"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Прогноз:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ys4-3p-ttS">
+                                        <rect key="frame" x="15" y="101" width="72.333333333333329" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ЖК ТБ  2.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAd-yJ-84u">
+                                        <rect key="frame" x="97.333333333333343" y="98.333333333333314" width="103.33333333333334" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" name="green_blue_end"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В матче будет как минимум 3 (или больше) желтых карточек" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odK-ff-Cev">
+                                        <rect key="frame" x="15" y="132.33333333333331" width="333" height="28.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сумма ставки: 100$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuG-kD-KQX">
+                                        <rect key="frame" x="15" y="171" width="333" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Коэффициент:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqg-bC-8Bd">
+                                        <rect key="frame" x="14.999999999999993" y="202" width="115.33333333333331" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.55" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhe-on-xKk">
+                                        <rect key="frame" x="135.33333333333334" y="199.33333333333331" width="40" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" name="green_blue_end"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Результат:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYk-1W-sHv">
+                                        <rect key="frame" x="15" y="233" width="84" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выигрыш 55" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDm-Ci-rfb">
+                                        <rect key="frame" x="104" y="233" width="100.33333333333331" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="won"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgw-2L-Rme">
+                                        <rect key="frame" x="333" y="-10" width="40" height="40"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqK-z2-klT">
+                                                <rect key="frame" x="13" y="8" width="14" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" name="blue_gray_400"/>
+                                        <constraints>
+                                            <constraint firstItem="XqK-z2-klT" firstAttribute="centerY" secondItem="qgw-2L-Rme" secondAttribute="centerY" id="cHV-af-gjG"/>
+                                            <constraint firstAttribute="height" constant="40" id="fXb-Vg-Jlq"/>
+                                            <constraint firstAttribute="width" constant="40" id="p0n-57-nVC"/>
+                                            <constraint firstItem="XqK-z2-klT" firstAttribute="centerX" secondItem="qgw-2L-Rme" secondAttribute="centerX" id="uGF-SY-lz1"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="background_main"/>
+                                <constraints>
+                                    <constraint firstItem="OuG-kD-KQX" firstAttribute="top" secondItem="odK-ff-Cev" secondAttribute="bottom" constant="10" id="31h-Dw-EuW"/>
+                                    <constraint firstItem="OuG-kD-KQX" firstAttribute="top" secondItem="odK-ff-Cev" secondAttribute="bottom" constant="10" id="3fZ-Dq-bOG"/>
+                                    <constraint firstAttribute="trailing" secondItem="qgw-2L-Rme" secondAttribute="trailing" constant="-10" id="4OH-aO-iDg"/>
+                                    <constraint firstItem="VAd-yJ-84u" firstAttribute="leading" secondItem="Ys4-3p-ttS" secondAttribute="trailing" constant="10" id="6ns-6N-j9L"/>
+                                    <constraint firstItem="Ys4-3p-ttS" firstAttribute="leading" secondItem="kA9-OO-LjQ" secondAttribute="leading" constant="15" id="8zq-0P-hF5"/>
+                                    <constraint firstAttribute="trailing" secondItem="yRZ-fh-4iz" secondAttribute="trailing" constant="15" id="933-YC-7yT"/>
+                                    <constraint firstItem="OuG-kD-KQX" firstAttribute="leading" secondItem="kA9-OO-LjQ" secondAttribute="leading" constant="15" id="CL5-bD-7lN"/>
+                                    <constraint firstItem="yRZ-fh-4iz" firstAttribute="leading" secondItem="kA9-OO-LjQ" secondAttribute="leading" constant="15" id="CNU-bs-dUs"/>
+                                    <constraint firstItem="aS6-D7-rAi" firstAttribute="top" secondItem="yRZ-fh-4iz" secondAttribute="bottom" constant="20" id="CXA-3M-wwD"/>
+                                    <constraint firstAttribute="trailing" secondItem="aS6-D7-rAi" secondAttribute="trailing" constant="15" id="FbS-99-Wuz"/>
+                                    <constraint firstItem="VAd-yJ-84u" firstAttribute="firstBaseline" secondItem="Ys4-3p-ttS" secondAttribute="firstBaseline" id="Jbk-FS-IRe"/>
+                                    <constraint firstItem="fDm-Ci-rfb" firstAttribute="firstBaseline" secondItem="IYk-1W-sHv" secondAttribute="firstBaseline" id="KKp-24-NCT"/>
+                                    <constraint firstItem="IYk-1W-sHv" firstAttribute="leading" secondItem="iqg-bC-8Bd" secondAttribute="leading" id="LvZ-SK-cce"/>
+                                    <constraint firstAttribute="bottom" secondItem="fDm-Ci-rfb" secondAttribute="bottom" constant="20" id="PyR-Z9-JPs"/>
+                                    <constraint firstItem="qgw-2L-Rme" firstAttribute="top" secondItem="kA9-OO-LjQ" secondAttribute="top" constant="-10" id="PzI-bF-IHl"/>
+                                    <constraint firstItem="IYk-1W-sHv" firstAttribute="top" secondItem="iqg-bC-8Bd" secondAttribute="bottom" constant="10" id="VHc-Wa-RD0"/>
+                                    <constraint firstItem="iqg-bC-8Bd" firstAttribute="leading" secondItem="OuG-kD-KQX" secondAttribute="leading" id="Wxh-os-5gP"/>
+                                    <constraint firstAttribute="trailing" secondItem="odK-ff-Cev" secondAttribute="trailing" constant="15" id="ZSn-2b-R8z"/>
+                                    <constraint firstItem="odK-ff-Cev" firstAttribute="top" secondItem="VAd-yJ-84u" secondAttribute="bottom" constant="10" id="fx5-ZP-GKM"/>
+                                    <constraint firstItem="odK-ff-Cev" firstAttribute="leading" secondItem="Ys4-3p-ttS" secondAttribute="leading" id="g0F-dh-dHl"/>
+                                    <constraint firstItem="Ys4-3p-ttS" firstAttribute="top" secondItem="aS6-D7-rAi" secondAttribute="bottom" constant="25" id="hS9-0q-Pfs"/>
+                                    <constraint firstItem="yhe-on-xKk" firstAttribute="leading" secondItem="iqg-bC-8Bd" secondAttribute="trailing" constant="5" id="kKg-ve-LIh"/>
+                                    <constraint firstAttribute="trailing" secondItem="OuG-kD-KQX" secondAttribute="trailing" constant="15" id="kMC-Ku-q74"/>
+                                    <constraint firstItem="yhe-on-xKk" firstAttribute="firstBaseline" secondItem="iqg-bC-8Bd" secondAttribute="firstBaseline" id="mfa-g2-E4R"/>
+                                    <constraint firstItem="yRZ-fh-4iz" firstAttribute="top" secondItem="kA9-OO-LjQ" secondAttribute="top" constant="20" id="qDJ-hS-2W9"/>
+                                    <constraint firstItem="fDm-Ci-rfb" firstAttribute="leading" secondItem="IYk-1W-sHv" secondAttribute="trailing" constant="5" id="s0Z-ks-pBF"/>
+                                    <constraint firstItem="iqg-bC-8Bd" firstAttribute="top" secondItem="OuG-kD-KQX" secondAttribute="bottom" constant="10" id="uFx-AS-xw8"/>
+                                    <constraint firstItem="aS6-D7-rAi" firstAttribute="leading" secondItem="kA9-OO-LjQ" secondAttribute="leading" constant="15" id="vSb-ia-KpO"/>
+                                </constraints>
+                            </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="HSb-pa-eoG">
+                                <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kA9-OO-LjQ" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="2Yf-tj-2V5"/>
+                            <constraint firstItem="HSb-pa-eoG" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="9ka-xO-Ct7"/>
+                            <constraint firstItem="kA9-OO-LjQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="j5u-q5-kse"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="kA9-OO-LjQ" secondAttribute="trailing" constant="15" id="rVm-N8-BF3"/>
+                            <constraint firstItem="HSb-pa-eoG" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="zXL-By-UBr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityView" destination="HSb-pa-eoG" id="7rb-oW-VIh"/>
+                        <outlet property="betSumLabel" destination="OuG-kD-KQX" id="esj-Xn-ebb"/>
+                        <outlet property="betTypeDetailsLabel" destination="odK-ff-Cev" id="OIT-tt-dKU"/>
+                        <outlet property="betTypeLabel" destination="VAd-yJ-84u" id="oCQ-k9-KH8"/>
+                        <outlet property="castLabel" destination="Ys4-3p-ttS" id="XGP-TB-6Rc"/>
+                        <outlet property="closeView" destination="qgw-2L-Rme" id="qdo-AW-4vE"/>
+                        <outlet property="containerView" destination="kA9-OO-LjQ" id="XQF-Hp-pwg"/>
+                        <outlet property="eventDateLabel" destination="yRZ-fh-4iz" id="w28-yq-DeK"/>
+                        <outlet property="factorLabel" destination="iqg-bC-8Bd" id="DzR-rY-dK9"/>
+                        <outlet property="factorResultLabel" destination="yhe-on-xKk" id="w3T-fq-TrX"/>
+                        <outlet property="resultLabel" destination="IYk-1W-sHv" id="XIy-4Y-9KG"/>
+                        <outlet property="resultValLabel" destination="fDm-Ci-rfb" id="iPI-fR-jNf"/>
+                        <outlet property="teamsLabel" destination="aS6-D7-rAi" id="Knj-gS-JXR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131" y="-27"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="background_main">
+            <color red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="blue_gray_400">
+            <color red="0.47058823529411764" green="0.57647058823529407" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="green_blue_end">
+            <color red="0.0039215686274509803" green="0.68627450980392157" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="toolbarItem">
+            <color red="0.396078431372549" green="0.396078431372549" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="won">
+            <color red="0.2627450980392157" green="0.62745098039215685" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

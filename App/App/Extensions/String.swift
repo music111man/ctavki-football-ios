@@ -21,4 +21,8 @@ extension String {
         let attributedString = try? NSAttributedString(data: htmlStringData, options: options, documentAttributes: nil)
         return attributedString?.string
     }
+    
+    mutating func replace(_ originalString:String, with newString:String) {
+        self = self.replacingOccurrences(of: originalString, with: newString)
+    }
 }

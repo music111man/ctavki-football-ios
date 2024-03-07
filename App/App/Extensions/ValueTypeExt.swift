@@ -28,6 +28,9 @@ extension Double {
     var formattedString: String {
         String(format: "%2.2f", self)
     }
+    var winCalcValue: Int {
+        Int(self * 100 - 100)
+    }
 }
 
 extension String: PDefaultValue {

@@ -48,6 +48,9 @@
 		F2EA78DC2B90CA29006B3A1C /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78DB2B90CA29006B3A1C /* AppSettings.swift */; };
 		F2EA78DE2B910013006B3A1C /* JSONWrapHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78DD2B910013006B3A1C /* JSONWrapHelpers.swift */; };
 		F2EA78E02B9103F5006B3A1C /* ValueTypeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78DF2B9103F5006B3A1C /* ValueTypeExt.swift */; };
+		F2EB1A322B9A11040027D782 /* BetDetailsVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB1A302B9A11040027D782 /* BetDetailsVController.swift */; };
+		F2EB1A352B9A11520027D782 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB1A342B9A11520027D782 /* UIViewController.swift */; };
+		F2EB1A372B9A2E9C0027D782 /* BetDetailsVController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2EB1A362B9A2E9C0027D782 /* BetDetailsVController.storyboard */; };
 		F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC033D2B867809001C6BB3 /* AppDelegate.swift */; };
 		F2FC03422B867809001C6BB3 /* MainVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC03412B867809001C6BB3 /* MainVController.swift */; };
 		F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2FC03462B86780B001C6BB3 /* Assets.xcassets */; };
@@ -100,6 +103,9 @@
 		F2EA78DB2B90CA29006B3A1C /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		F2EA78DD2B910013006B3A1C /* JSONWrapHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONWrapHelpers.swift; sourceTree = "<group>"; };
 		F2EA78DF2B9103F5006B3A1C /* ValueTypeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTypeExt.swift; sourceTree = "<group>"; };
+		F2EB1A302B9A11040027D782 /* BetDetailsVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetDetailsVController.swift; sourceTree = "<group>"; };
+		F2EB1A342B9A11520027D782 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		F2EB1A362B9A2E9C0027D782 /* BetDetailsVController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BetDetailsVController.storyboard; sourceTree = "<group>"; };
 		F2F186C72B87754F00FBDD22 /* Utilites.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utilites.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FC033A2B867809001C6BB3 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FC033D2B867809001C6BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -244,6 +250,7 @@
 				F22CE0AE2B889B8500732FFB /* UIView.swift */,
 				F2EA78CD2B90935D006B3A1C /* String.swift */,
 				F2EA78DF2B9103F5006B3A1C /* ValueTypeExt.swift */,
+				F2EB1A342B9A11520027D782 /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -312,6 +319,8 @@
 		F2EB1A2F2B99D84F0027D782 /* BetDetails */ = {
 			isa = PBXGroup;
 			children = (
+				F2EB1A302B9A11040027D782 /* BetDetailsVController.swift */,
+				F2EB1A362B9A2E9C0027D782 /* BetDetailsVController.storyboard */,
 			);
 			path = BetDetails;
 			sourceTree = "<group>";
@@ -419,6 +428,7 @@
 				F2FC034A2B86780B001C6BB3 /* LaunchScreen.storyboard in Resources */,
 				F20704832B87A33800DD6364 /* Localizable.strings in Resources */,
 				F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */,
+				F2EB1A372B9A2E9C0027D782 /* BetDetailsVController.storyboard in Resources */,
 				F2A03FE42B98E9FA00494CD0 /* Localizable.stringsdict in Resources */,
 				F291F13D2B9654CD00BB8E58 /* BetsCell.xib in Resources */,
 			);
@@ -505,6 +515,7 @@
 				F22CE0B32B88BE4D00732FFB /* VCFactory.swift in Sources */,
 				F22CE0A02B87C5AF00732FFB /* PurchesVController.swift in Sources */,
 				F2EA78CC2B909122006B3A1C /* Faq.swift in Sources */,
+				F2EB1A352B9A11520027D782 /* UIViewController.swift in Sources */,
 				F2EA78DC2B90CA29006B3A1C /* AppSettings.swift in Sources */,
 				F2041A322B91D05C00DA42BB /* Repository.swift in Sources */,
 				F22CE0942B87B87400732FFB /* AppCoordinator.swift in Sources */,
@@ -519,6 +530,7 @@
 				F22CE0B72B88C28100732FFB /* PurchesFactory.swift in Sources */,
 				F22CE0B92B88C2FD00732FFB /* FaqFactory.swift in Sources */,
 				F22CE0AF2B889B8500732FFB /* UIView.swift in Sources */,
+				F2EB1A322B9A11040027D782 /* BetDetailsVController.swift in Sources */,
 				F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */,
 				F251D6392B974EBD009ABC86 /* BetView.swift in Sources */,
 				F251D63B2B977389009ABC86 /* BetGroupsHeaderView.swift in Sources */,
@@ -696,7 +708,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -726,7 +738,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;

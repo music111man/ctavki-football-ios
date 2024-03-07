@@ -23,7 +23,7 @@ final class Repository {
             printAppEvent("Open db \(fileUrl.path)")
             Self.con = try Connection(fileUrl.path)
         } catch let error {
-            print(error)
+            printAppEvent("\(error)")
         }
         
         return con
@@ -65,11 +65,27 @@ final class Repository {
             }
             
         } catch let error {
-            print(error)
+            printAppEvent("\(error)")
             return []
         }
         
         return result
+    }
+    
+    static func scalarData<T: DBComparable>(_ selectQuery: Table) -> T?  {
+        defer { semaphore.signal() }
+        semaphore.wait()
+        do {
+            let mapRowIterator = try connection?.prepareRowIterator(selectQuery)
+            if let row = try mapRowIterator?.failableNext() {
+               return T(row: row)
+            }
+            return nil
+            
+        } catch let error {
+            printAppEvent("\(error)")
+            return nil
+        }
     }
 }
 
