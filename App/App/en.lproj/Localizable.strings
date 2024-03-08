@@ -37,18 +37,19 @@
 "guid_faq" = "Answers to frequently asked questions related to the operation of our service can be found here.";
 
 "balance_for_month" = "BALANCE FOR %@:";
+"balance_for_month_amount" = "BALANCE FOR %@: %d$";
 "match_begins" = "Match begins on %@ at %@";
 "match_begins_tomorrow" = "Match begins tomorrow at %@";
 "match_begins_today" = "Match begins today at %@";
 "match_begins_in" = "Match begins in %@";
-"match_being_played_n_minute" = "Match is underway. It\'s the %@ minute of the match";
+"match_being_played_n_minute" = "Match is underway. It\'s the %d minute of the match";
 "match_being_played_break" = "The match is already underway, the first half has been played";
 
 "prediction" = "Prediction:";
 "bet_amount_100" = "Bet amount: 100$";
 "odds_col" = "Odds:";
 "result" = "Result:";
-"winnings" = "Win %@";
+"winnings" = "Win %d";
 "return" = "win";
 "loss" = "Lost 100";
 "year_at_end" = "%@";

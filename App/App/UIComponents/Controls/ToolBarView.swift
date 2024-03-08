@@ -55,8 +55,7 @@ final class ToolBarView: UIView {
             borderTopView.rightAnchor.constraint(equalTo: rightAnchor),
             borderTopView.heightAnchor.constraint(equalToConstant: 1),
         ])
-        borderTopView.backgroundColor = R.color.text()?.withAlphaComponent(0.03)
-        
+        borderTopView.backgroundColor = R.color.toolbarItem()?.withAlphaComponent(0.5)
     }
     
     private func addButtons(_ view: UIView) {

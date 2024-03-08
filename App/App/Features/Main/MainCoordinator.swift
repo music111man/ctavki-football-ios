@@ -36,13 +36,13 @@ extension MainCoordinator: MainViewDelegate {
         factories.forEach { $0.clear() }
         switch action {
         case .bets:
-            mainVC.setChildVC(vc: factories[0].create())
+            mainVC.setChildVC(vc: factories[0].create(), flipFromRight: true)
         case .teams:
-            mainVC.setChildVC(vc: factories[1].create())
+            mainVC.setChildVC(vc: factories[1].create(), flipFromRight: true)
         case .pay:
-            mainVC.setChildVC(vc: factories[2].create())
+            mainVC.setChildVC(vc: factories[2].create(), flipFromRight: false)
         case .faq:
-            mainVC.setChildVC(vc: factories[3].create())
+            mainVC.setChildVC(vc: factories[3].create(), flipFromRight: false)
         }
     }
 }

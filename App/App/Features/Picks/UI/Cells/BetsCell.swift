@@ -20,7 +20,9 @@ class BetsCell: UITableViewCell {
         super.awakeFromNib()
         headerLabel.font = UIFont.systemFont(ofSize: 13)
         headerLabel.textColor = R.color.bet_group_header()
-        let g = separatorView.setGradient(colors: [.white, R.color.bet_group_header()!, .white], isLine: true)
+        let g = separatorView.setGradient(colors: [R.color.background_main()!, 
+                                                   R.color.bet_group_header()!,
+                                                   R.color.background_main()!], isLine: true)
         g.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.width - 20, height: 1))
     }
     
@@ -58,16 +60,15 @@ class BetsCell: UITableViewCell {
         let secondsAtDay: TimeInterval = 60.0 * 60.0 * 24.0
         let tomorrow = Date().withoutTimeStamp.addingTimeInterval(secondsAtDay)
         var timeLeftMinutes = Int(date.timeIntervalSinceNow) / 60
-        let now = Date()
         if timeLeftMinutes <= 0 {
             timeLeftMinutes = timeLeftMinutes * -1
             if timeLeftMinutes <= 45 {
-                return R.string.localizable.match_being_played_n_minute("\(timeLeftMinutes)")
+                return R.string.localizable.match_being_played_n_minute(timeLeftMinutes)
             } else {
                 if (timeLeftMinutes < 60) {
                     return R.string.localizable.match_being_played_break()
                 } else {
-                    return R.string.localizable.match_being_played_n_minute("\(timeLeftMinutes - 15)")
+                    return R.string.localizable.match_being_played_n_minute(timeLeftMinutes - 15)
                 }
             }
         }

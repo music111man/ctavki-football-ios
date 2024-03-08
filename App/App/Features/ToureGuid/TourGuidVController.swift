@@ -78,7 +78,7 @@ class TourGuidVController: UIViewController {
 
     private func initMenuItem(_ title: String, _ image: UIImage?) -> UIView {
         let container = UIView()
-        container.backgroundColor = .white
+        container.backgroundColor = R.color.background_main()
         let icon = UIImageView(image: image?.withRenderingMode(.alwaysTemplate))
         icon.tintColor =  R.color.selected_toolbar_item()
         icon.contentMode = .scaleToFill
@@ -114,7 +114,7 @@ class TourGuidVController: UIViewController {
         ])
         guard let iconView = iconView else { return }
         let animationView = UIView()
-        animationView.backgroundColor = .white
+        animationView.backgroundColor = R.color.background_main()
         animationView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(animationView)
         iconView.translatesAutoresizingMaskIntoConstraints = false
@@ -154,7 +154,7 @@ class TourGuidVController: UIViewController {
         let betsIcon = UIImageView(image: R.image.bets()?.withRenderingMode(.alwaysTemplate))
         betsIcon.translatesAutoresizingMaskIntoConstraints = false
         betsIcon.contentMode = .scaleToFill
-        betsIcon.tintColor =  R.color.selected_toolbar_item()
+        betsIcon.tintColor =  R.color.selected_blue()
         betsGuidIconContainer.addSubview(betsIcon)
         NSLayoutConstraint.activate([
             betsIcon.widthAnchor.constraint(equalToConstant: 30),
@@ -243,7 +243,7 @@ class TourGuidVController: UIViewController {
         
         let label = UILabel()
         label.text = R.string.localizable.sign_in()
-        label.textColor = R.color.selected_toolbar_item()
+        label.textColor = R.color.selected_blue()
         label.font = UIFont.systemFont(ofSize: 12.0)
         label.textAlignment = .right
         label.lineBreakMode = .byWordWrapping

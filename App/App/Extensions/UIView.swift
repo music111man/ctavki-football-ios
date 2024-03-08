@@ -13,12 +13,16 @@ extension UIView {
     }
     
     @discardableResult
-    func setGradient(start: UIColor?, end: UIColor?, isLine: Bool) -> CALayer {
+    func setGradient(start: UIColor?, end: UIColor?, isLine: Bool, index: UInt32? = nil) -> CAGradientLayer {
         let gradient = CAGradientLayer()
         gradient.colors = [(start ?? .clear).cgColor, (end ?? .clear).cgColor]
         gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradient.endPoint = isLine ? CGPoint(x: 1.0, y: 0.0) : CGPoint(x: 1.0, y: 1.0)
-        layer.addSublayer(gradient)
+        if let index = index {
+            layer.insertSublayer(gradient, at: index)
+        } else {
+            layer.addSublayer(gradient)
+        }
         gradient.frame = bounds
         return gradient
     }
@@ -36,8 +40,8 @@ extension UIView {
     }
     
     func setshadow(size: CGSize? = nil) {
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.3
+        layer.shadowColor = R.color.shadow()!.cgColor
+        layer.shadowOpacity = 0.4
         layer.shadowOffset = size ?? CGSize(width: 0, height: 2)
         layer.shadowRadius = 3
     }
@@ -68,6 +72,11 @@ extension UIView {
 
             }
         }
+    }
+    
+
+    class func fromNib<T: UIView>() -> T {
+        return Bundle(for: T.self).loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
     }
 }
 

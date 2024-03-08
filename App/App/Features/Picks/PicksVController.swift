@@ -12,9 +12,9 @@ import RxDataSources
 
 class PicksVController: FeaureVController {
 
-    let sectionHeaderView = UIView()
-    var sectionHeaderViewGradient: CALayer!
-    let sectionHeaderInfoView = BetGroupsHeaderView()
+    var sectionHeaderView: BetResultHeaderView!
+//    var sectionHeaderViewGradient: CALayer!
+//    let sectionHeaderInfoView = BetSectionHeaderView()
     let betsViewModel = BetsViewModel()
     var betSections = [BetSection]()
     var titleSection: Int = 0
@@ -77,34 +77,28 @@ class PicksVController: FeaureVController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        sectionHeaderViewGradient.frame = sectionHeaderView.bounds
+//        sectionHeaderViewGradient.frame = sectionHeaderView.bounds
     }
     
     override func initUI() {
         super.initUI()
+        sectionHeaderView = .fromNib()
         sectionHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        sectionHeaderViewGradient = sectionHeaderView.setGradient(start: R.color.blue_gray_500(), end: R.color.blue_gray_250(), isLine: true)
-        view.insertSubview(sectionHeaderView, at: 0)
+        sectionHeaderView.returnAction = {[weak self] in
+            self?.tableView.scrollToTop()
+        }
+        navigationBar.addSubview(sectionHeaderView)
         NSLayoutConstraint.activate([
-            sectionHeaderView.topAnchor.constraint(equalTo: view.topAnchor),
-            sectionHeaderView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            sectionHeaderView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            sectionHeaderView.heightAnchor.constraint(equalToConstant: NavigationTopBarView.height)
+            sectionHeaderView.topAnchor.constraint(equalTo: navigationBar.topAnchor),
+            sectionHeaderView.leftAnchor.constraint(equalTo: navigationBar.leftAnchor),
+            sectionHeaderView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor),
+            sectionHeaderView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor)
         ])
-        sectionHeaderInfoView.translatesAutoresizingMaskIntoConstraints = false
-        sectionHeaderView.addSubview(sectionHeaderInfoView)
-        NSLayoutConstraint.activate([
-            sectionHeaderInfoView.heightAnchor.constraint(equalToConstant: BetGroupsHeaderView.height),
-            sectionHeaderInfoView.leftAnchor.constraint(equalTo: sectionHeaderView.leftAnchor),
-            sectionHeaderInfoView.rightAnchor.constraint(equalTo: sectionHeaderView.rightAnchor),
-            sectionHeaderInfoView.bottomAnchor.constraint(equalTo: sectionHeaderView.bottomAnchor, constant: -20)
-        ])
-        sectionHeaderInfoView.initUI()
-        
+        sectionHeaderView.transform = .init(translationX: 0, y: NavigationTopBarView.height)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.insertSubview(tableView, at: 0)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: self.sectionHeaderView.bottomAnchor, constant: -BetGroupsHeaderView.height),
+            tableView.topAnchor.constraint(equalTo: self.navigationBar.bottomAnchor, constant: -BetSectionHeaderView.height),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -135,43 +129,36 @@ class PicksVController: FeaureVController {
         NotificationCenter.default.post(name: Notification.Name.tryToRefreshData, object: nil)
         return true
     }
+    private func setTitle() {
+        
+        guard let section = tableView.indexPathsForVisibleRows?.first?.section,
+                section != titleSection else { return }
+        
+        if section > 0,
+           let month = betSections[section].eventDate?.monthAsString,
+           let sum = betSections[section].sum {
+            if titleSection == 0 {
+                sectionHeaderView.configure(monthName: month, sum: sum, animateFromBottom: nil)
+                UIView.animate(withDuration: 0.3) {[weak self] in
+                    guard let self = self else { return }
+                    self.sectionHeaderView.transform = .identity
+                }
+            } else {
+                sectionHeaderView.configure(monthName: month, sum: sum, animateFromBottom: titleSection < section)
+            }
+        } else {
+            UIView.animate(withDuration: 0.3) {[weak self] in
+                guard let self = self else { return }
+                self.sectionHeaderView.transform = .init(translationX: 0, y: self.navigationBar.bounds.height)
+            }
+        }
+        titleSection = section
+    }
 }
 
 extension PicksVController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let contentOffset = scrollView.contentOffset.y - UIView.safeAreaHeight
-        let height = (betSections.first?.cellHeight ?? 0) + BetGroupsHeaderView.height
-        if contentOffset > height {
-            setTitle()
-            if navigationBar.isHidden { return }
-            self.sectionHeaderInfoView.layer.opacity = 0
-            UIView.animate(withDuration: 0.4, animations: {
-                self.navigationBar.layer.opacity = 0
-                self.sectionHeaderInfoView.layer.opacity = 1
-            }) {_ in
-                self.navigationBar.isHidden = true
-            }
-            navigationBar.isHidden = true
-        } else {
-            if self.navigationBar.layer.opacity == 1 { return }
-            
-            self.navigationBar.isHidden = false
-            UIView.animate(withDuration: 0.4) {
-                self.navigationBar.layer.opacity = 1
-            }
-        }
-    }
-    
-    func setTitle() {
-        
-        guard let section = tableView.indexPathsForVisibleRows?.first?.section, 
-                section != titleSection,
-                section > 0,
-                let month = betSections[section].eventDate?.monthAsString,
-                let sum = betSections[section].sum else { return }
-        
-        titleSection = section
-        sectionHeaderInfoView.updateForHeader(monthName: month, sum: sum)
+        setTitle()
     }
 }
 
@@ -195,14 +182,14 @@ extension PicksVController: UITableViewDataSource {
         if section == 0 {
             return UIView()
         }
-        let view = BetGroupsHeaderView()
+        let view: BetSectionHeaderView = .fromNib()
         view.configure(monthName: betSections[section].eventDate!.monthAsString, sum: betSections[section].sum!)
         
         return view
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        BetGroupsHeaderView.height
+        BetSectionHeaderView.height
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

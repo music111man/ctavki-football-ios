@@ -29,6 +29,7 @@ class FeaureVController: UIViewController {
         refresher.attributedTitle = NSAttributedString(string: "")
         refresher.addTarget(self, action: #selector(callNeedRefresh), for: .valueChanged)
         tableView.addSubview(refresher)
+        tableView.backgroundColor = .clear
         NotificationCenter.default.rx.notification(Notification.Name.badNetRequest).subscribe {[weak self] _ in
             self?.refresher.endRefreshing()
         }.disposed(by: disposeBag)
@@ -48,6 +49,12 @@ class FeaureVController: UIViewController {
     func initUI() {
         navigationBar.initUI(parent: view, title: titleName(), icon: icon(), nil)
         activityView.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 13.0, *) {
+            activityView.style = .large
+        } else {
+            activityView.style = .whiteLarge
+        }
+        activityView.color = R.color.shadow()
         view.addSubview(activityView)
         NSLayoutConstraint.activate([
             activityView.centerXAnchor.constraint(equalTo: view.centerXAnchor),

@@ -13,6 +13,8 @@
 		F2041A342B92335800DA42BB /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2041A332B92335800DA42BB /* SyncService.swift */; };
 		F20704832B87A33800DD6364 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F20704852B87A33800DD6364 /* Localizable.strings */; };
 		F20704882B87A43500DD6364 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20704872B87A43500DD6364 /* R.generated.swift */; };
+		F226F9FA2B9B8D0200F9D391 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226F9F92B9B8D0200F9D391 /* UITableView.swift */; };
+		F226F9FD2B9B943900F9D391 /* BetSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F226F9FC2B9B943900F9D391 /* BetSectionHeaderView.xib */; };
 		F22CE0942B87B87400732FFB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0932B87B87400732FFB /* AppCoordinator.swift */; };
 		F22CE09C2B87BEDA00732FFB /* PicksVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE09B2B87BEDA00732FFB /* PicksVController.swift */; };
 		F22CE09E2B87C53700732FFB /* TeamsVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE09D2B87C53700732FFB /* TeamsVController.swift */; };
@@ -28,7 +30,9 @@
 		F22CE0B92B88C2FD00732FFB /* FaqFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B82B88C2FD00732FFB /* FaqFactory.swift */; };
 		F22CE0BC2B88F0D200732FFB /* TourGuidVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0BB2B88F0D200732FFB /* TourGuidVController.swift */; };
 		F251D6392B974EBD009ABC86 /* BetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F251D6382B974EBD009ABC86 /* BetView.swift */; };
-		F251D63B2B977389009ABC86 /* BetGroupsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F251D63A2B977389009ABC86 /* BetGroupsHeaderView.swift */; };
+		F251D63B2B977389009ABC86 /* BetSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F251D63A2B977389009ABC86 /* BetSectionHeaderView.swift */; };
+		F2888DCC2B9B61DD007F62F2 /* BetResultHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2888DCB2B9B61DD007F62F2 /* BetResultHeaderView.xib */; };
+		F2888DCE2B9B624C007F62F2 /* BetResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2888DCD2B9B624C007F62F2 /* BetResultHeaderView.swift */; };
 		F291F1342B95F96C00BB8E58 /* NavigationTopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1332B95F96C00BB8E58 /* NavigationTopBarView.swift */; };
 		F291F1362B96250D00BB8E58 /* FeaureVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1352B96250D00BB8E58 /* FeaureVController.swift */; };
 		F291F1382B96355B00BB8E58 /* BetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1372B96355B00BB8E58 /* BetsViewModel.swift */; };
@@ -67,6 +71,8 @@
 		F20704842B87A33800DD6364 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F20704862B87A33A00DD6364 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F20704872B87A43500DD6364 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		F226F9F92B9B8D0200F9D391 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		F226F9FC2B9B943900F9D391 /* BetSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetSectionHeaderView.xib; sourceTree = "<group>"; };
 		F22CE0932B87B87400732FFB /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F22CE09B2B87BEDA00732FFB /* PicksVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicksVController.swift; sourceTree = "<group>"; };
 		F22CE09D2B87C53700732FFB /* TeamsVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsVController.swift; sourceTree = "<group>"; };
@@ -82,7 +88,9 @@
 		F22CE0B82B88C2FD00732FFB /* FaqFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqFactory.swift; sourceTree = "<group>"; };
 		F22CE0BB2B88F0D200732FFB /* TourGuidVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourGuidVController.swift; sourceTree = "<group>"; };
 		F251D6382B974EBD009ABC86 /* BetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetView.swift; sourceTree = "<group>"; };
-		F251D63A2B977389009ABC86 /* BetGroupsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetGroupsHeaderView.swift; sourceTree = "<group>"; };
+		F251D63A2B977389009ABC86 /* BetSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetSectionHeaderView.swift; sourceTree = "<group>"; };
+		F2888DCB2B9B61DD007F62F2 /* BetResultHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetResultHeaderView.xib; sourceTree = "<group>"; };
+		F2888DCD2B9B624C007F62F2 /* BetResultHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetResultHeaderView.swift; sourceTree = "<group>"; };
 		F291F1332B95F96C00BB8E58 /* NavigationTopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTopBarView.swift; sourceTree = "<group>"; };
 		F291F1352B96250D00BB8E58 /* FeaureVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaureVController.swift; sourceTree = "<group>"; };
 		F291F1372B96355B00BB8E58 /* BetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsViewModel.swift; sourceTree = "<group>"; };
@@ -174,6 +182,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		F226F9FB2B9B93F900F9D391 /* BetSectionHeader */ = {
+			isa = PBXGroup;
+			children = (
+				F251D63A2B977389009ABC86 /* BetSectionHeaderView.swift */,
+				F226F9FC2B9B943900F9D391 /* BetSectionHeaderView.xib */,
+			);
+			path = BetSectionHeader;
+			sourceTree = "<group>";
+		};
 		F22CE0952B87B91D00732FFB /* Features */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,7 +217,7 @@
 		F22CE0972B87BE6B00732FFB /* Picks */ = {
 			isa = PBXGroup;
 			children = (
-				F291F1392B96549600BB8E58 /* Cells */,
+				F2888DCF2B9B643F007F62F2 /* UI */,
 				F22CE09B2B87BEDA00732FFB /* PicksVController.swift */,
 				F22CE0B02B88BC6E00732FFB /* PicksFactory.swift */,
 				F291F1372B96355B00BB8E58 /* BetsViewModel.swift */,
@@ -251,6 +268,7 @@
 				F2EA78CD2B90935D006B3A1C /* String.swift */,
 				F2EA78DF2B9103F5006B3A1C /* ValueTypeExt.swift */,
 				F2EB1A342B9A11520027D782 /* UIViewController.swift */,
+				F226F9F92B9B8D0200F9D391 /* UITableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -273,13 +291,31 @@
 			path = ToureGuid;
 			sourceTree = "<group>";
 		};
+		F2888DCF2B9B643F007F62F2 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F226F9FB2B9B93F900F9D391 /* BetSectionHeader */,
+				F2888DD02B9B647A007F62F2 /* BetResultHeader */,
+				F291F1392B96549600BB8E58 /* Cells */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		F2888DD02B9B647A007F62F2 /* BetResultHeader */ = {
+			isa = PBXGroup;
+			children = (
+				F2888DCB2B9B61DD007F62F2 /* BetResultHeaderView.xib */,
+				F2888DCD2B9B624C007F62F2 /* BetResultHeaderView.swift */,
+			);
+			path = BetResultHeader;
+			sourceTree = "<group>";
+		};
 		F291F1392B96549600BB8E58 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				F291F13A2B9654CD00BB8E58 /* BetsCell.swift */,
 				F291F13B2B9654CD00BB8E58 /* BetsCell.xib */,
 				F251D6382B974EBD009ABC86 /* BetView.swift */,
-				F251D63A2B977389009ABC86 /* BetGroupsHeaderView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -430,6 +466,8 @@
 				F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */,
 				F2EB1A372B9A2E9C0027D782 /* BetDetailsVController.storyboard in Resources */,
 				F2A03FE42B98E9FA00494CD0 /* Localizable.stringsdict in Resources */,
+				F226F9FD2B9B943900F9D391 /* BetSectionHeaderView.xib in Resources */,
+				F2888DCC2B9B61DD007F62F2 /* BetResultHeaderView.xib in Resources */,
 				F291F13D2B9654CD00BB8E58 /* BetsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +549,7 @@
 				F22CE0A22B87C5F900732FFB /* FaqVController.swift in Sources */,
 				F22CE0A92B87DBB100732FFB /* ToolBarView.swift in Sources */,
 				F22CE09C2B87BEDA00732FFB /* PicksVController.swift in Sources */,
+				F226F9FA2B9B8D0200F9D391 /* UITableView.swift in Sources */,
 				F2EA78C82B908DA6006B3A1C /* BetType.swift in Sources */,
 				F22CE0B32B88BE4D00732FFB /* VCFactory.swift in Sources */,
 				F22CE0A02B87C5AF00732FFB /* PurchesVController.swift in Sources */,
@@ -524,6 +563,7 @@
 				F22CE0B52B88C20900732FFB /* TeamsFactory.swift in Sources */,
 				F22CE0A72B87D3C100732FFB /* MenuButton.swift in Sources */,
 				F22CE09E2B87C53700732FFB /* TeamsVController.swift in Sources */,
+				F2888DCE2B9B624C007F62F2 /* BetResultHeaderView.swift in Sources */,
 				F2EA78DE2B910013006B3A1C /* JSONWrapHelpers.swift in Sources */,
 				F22CE0BC2B88F0D200732FFB /* TourGuidVController.swift in Sources */,
 				F2EA78D22B90ABD2006B3A1C /* NetProvider.swift in Sources */,
@@ -533,7 +573,7 @@
 				F2EB1A322B9A11040027D782 /* BetDetailsVController.swift in Sources */,
 				F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */,
 				F251D6392B974EBD009ABC86 /* BetView.swift in Sources */,
-				F251D63B2B977389009ABC86 /* BetGroupsHeaderView.swift in Sources */,
+				F251D63B2B977389009ABC86 /* BetSectionHeaderView.swift in Sources */,
 				F291F13C2B9654CD00BB8E58 /* BetsCell.swift in Sources */,
 				F2EA78D52B90B60E006B3A1C /* BetOutcome.swift in Sources */,
 				F291F1362B96250D00BB8E58 /* FeaureVController.swift in Sources */,
@@ -708,7 +748,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -738,7 +778,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;

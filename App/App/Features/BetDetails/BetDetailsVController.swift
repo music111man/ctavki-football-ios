@@ -39,8 +39,6 @@ class BetDetailsVController: UIViewController {
         }
         view.backgroundColor = .black.withAlphaComponent(0.6)
         view.layer.opacity = 0
-        containerView.isUserInteractionEnabled = false
-        closeView.isUserInteractionEnabled = true
         closeView.roundCorners()
         containerView.roundCorners(radius: 10)
         castLabel.text = R.string.localizable.prediction()
@@ -49,8 +47,8 @@ class BetDetailsVController: UIViewController {
         resultLabel.text = R.string.localizable.result()
         containerView.transform = CGAffineTransform.init(scaleX: 0, y: 0)
         containerView.isHidden = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(close)))
         closeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(close)))
+        containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(noAction)))
         loadInfo()
     }
     
@@ -60,20 +58,23 @@ class BetDetailsVController: UIViewController {
             self.view.layer.opacity = 1
         }
     }
+    @objc
+    func noAction() {}
     
     @objc
     func close() {
-        UIView.animate(withDuration: 0.5) {[weak self] in
-            self?.containerView.transform = CGAffineTransform.init(scaleX: 0.01, y: 0.01)
-            
-        } completion: {[weak self] _ in
+        UIView.transition(with: containerView,
+                          duration: 0.5,
+                          options: [.transitionFlipFromLeft],
+                          animations: { [weak self] in
+            self?.containerView.layer.opacity = 0
+        }) { [weak self] _ in
             UIView.animate(withDuration: 0.3) {
                 self?.view.layer.opacity = 0
             } completion: { _ in
                 self?.dismiss(animated: false)
             }
         }
-
     }
     
     func loadInfo() {
@@ -102,7 +103,7 @@ class BetDetailsVController: UIViewController {
                 case .active:
                     break
                 case .won:
-                    self.resultValLabel.text = R.string.localizable.winnings("\(factor.winCalcValue)")
+                    self.resultValLabel.text = R.string.localizable.winnings(factor.winCalcValue)
                     self.resultValLabel.textColor = R.color.won()
                 case .lost:
                     self.resultValLabel.text = R.string.localizable.loss()

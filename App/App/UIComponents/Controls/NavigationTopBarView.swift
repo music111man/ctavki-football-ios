@@ -20,8 +20,6 @@ final class NavigationTopBarView: UIView {
     private let tapAuthAnimate = UIView()
     private let tapBackAnimate = UIView()
     private let disposeBag = DisposeBag()
-    var heightConstraint: NSLayoutConstraint!
-    
     
     var title: String {
         set {
@@ -38,60 +36,57 @@ final class NavigationTopBarView: UIView {
         tapAuthAnimate.roundCorners()
         tapBackAnimate.roundCorners()
     }
-    var animated = false
-    func makeHide(animate: Bool = true) {
-        if layer.opacity == 0 { return }
-        
-        if animated { return }
-        animated = true
-        if animate {
-            
-            UIView.animate(withDuration: 0.4, animations: {
-                self.heightConstraint.constant = UIView.safeAreaHeight
-                self.layer.opacity = 0
-            }) { _ in
-                
-                self.animated = false
-                
-            }
-        } else {
-//            self.heightConstraint.constant = 0
-//            self.layoutIfNeeded()
-        }
-        
-    }
+//    var animated = false
+//    func makeHide(animate: Bool = true) {
+//        if layer.opacity == 0 { return }
+//        
+//        if animated { return }
+//        animated = true
+//        if animate {
+//            
+//            UIView.animate(withDuration: 0.4, animations: {
+//                self.heightConstraint.constant = UIView.safeAreaHeight
+//                self.layer.opacity = 0
+//            }) { _ in
+//                
+//                self.animated = false
+//                
+//            }
+//        } else {
+//
+//        }
+//        
+//    }
     
-    func show(animate: Bool = true) {
-        if layer.opacity == 1 { return }
-        if animated { return }
-        animated = true
-        self.heightConstraint.constant = UIView.safeAreaHeight + 90
-        if animate {
-            
-            UIView.animate(withDuration: 0.4, animations: {
-                self.layer.opacity = 1
-                self.layoutIfNeeded()
-            }) { _ in
-                self.animated = false
-            }
-        } else {
-            heightConstraint.constant = UIView.safeAreaHeight + 90
-        }
-        
-    }
+//    func show(animate: Bool = true) {
+//        if layer.opacity == 1 { return }
+//        if animated { return }
+//        animated = true
+//        self.heightConstraint.constant = UIView.safeAreaHeight + 90
+//        if animate {
+//            
+//            UIView.animate(withDuration: 0.4, animations: {
+//                self.layer.opacity = 1
+//                self.layoutIfNeeded()
+//            }) { _ in
+//                self.animated = false
+//            }
+//        } else {
+//            heightConstraint.constant = UIView.safeAreaHeight + 90
+//        }
+//        
+//    }
     
     func initUI(parent: UIView, title: String, icon: UIImage?,_ callback: (() -> ())?) {
-        
+        clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(self)
         NSLayoutConstraint.activate([
             topAnchor.constraint(equalTo: parent.topAnchor),
             leftAnchor.constraint(equalTo: parent.leftAnchor),
-            rightAnchor.constraint(equalTo: parent.rightAnchor)
-            
+            rightAnchor.constraint(equalTo: parent.rightAnchor),
+            heightAnchor.constraint(equalToConstant: UIView.safeAreaHeight + 90)
         ])
-        heightConstraint = heightAnchor.constraint(equalToConstant: UIView.safeAreaHeight + 90)
-        heightConstraint.isActive = true
         setGradient(start: R.color.green_blue_start()!, end: R.color.green_blue_end()!, isLine: true)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = title

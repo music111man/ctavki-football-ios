@@ -65,17 +65,43 @@ final class MainVController: UIViewController {
         vc.didMove(toParent: self)
     }
 
-    func setChildVC(vc: UIViewController,_ complite: (() -> Void)? = nil) {
-        UIView.animate(withDuration: 0.3, animations: {[weak self] in
-            self?.containerView.layer.opacity = 0
-        }, completion: {[weak self] _ in
-            self?.add(vc: vc)
-            UIView.animate(withDuration: 0.3, animations: {[weak self] in
-                self?.containerView.layer.opacity = 1
+    func setChildVC(vc: UIViewController, flipFromRight: Bool? = nil,_ complite: (() -> Void)? = nil) {
+        guard let flipFromRight = flipFromRight else {
+            self.containerView.transform =  .init(scaleX: 0.01, y: 0.01)
+            self.containerView.layer.opacity = 0
+            self.add(vc: vc)
+            UIView.animate(withDuration: 0.4, animations: {[weak self] in
+                guard let self = self else { return }
+                self.containerView.transform = .identity
+                self.containerView.layer.opacity = 1
             }, completion: { _ in
                 complite?()
             })
-        })
+
+            return
+        }
+        UIView.transition(with: containerView,
+                          duration: 0.5,
+                          options: [flipFromRight ? .transitionFlipFromRight : .transitionFlipFromLeft],
+                          animations: { [weak self] in
+            self?.add(vc: vc)
+        }) { _ in
+            complite?()
+        }
+//        UIView.animate(withDuration: 0.4, animations: {[weak self] in
+//            guard let self = self else { return }
+//            self.containerView.transform =  .init(scaleX: 0.01, y: 0.01)
+//            self.containerView.layer.opacity = 0
+//        }, completion: {[weak self] _ in
+//            self?.add(vc: vc)
+//            UIView.animate(withDuration: 0.4, animations: {[weak self] in
+//                guard let self = self else { return }
+//                self.containerView.transform = .identity
+//                self.containerView.layer.opacity = 1
+//            }, completion: { _ in
+//                complite?()
+//            })
+//        })
     }
     
 }

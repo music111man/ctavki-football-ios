@@ -17,8 +17,8 @@ final class MenuButton: UIView {
     let animationView = UIView()
     let imageView: UIImageView!
     init(title: String, icon: UIImage?,_ isSelected: Bool, _ action: @escaping Action) {
-        self.action = action
         self.isSelected = isSelected
+        self.action = action
         imageView = UIImageView(image: icon?.withRenderingMode(.alwaysTemplate))
         imageView.tintColor = .black
         super.init(frame: CGRect())
@@ -32,7 +32,6 @@ final class MenuButton: UIView {
         addSubview(imageView)
         addSubview(label)
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
-        self.isSelected = false
         animationView.isHidden = true
         animationView.backgroundColor = R.color.selected_toolbar_item()
         animationView.layer.cornerRadius = 60

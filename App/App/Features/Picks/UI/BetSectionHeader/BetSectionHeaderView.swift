@@ -7,19 +7,29 @@
 
 import UIKit
 
-final class BetGroupsHeaderView: UIView {
+final class BetSectionHeaderView: UIView {
 
-    static let height: CGFloat = 60.0
+    static let height: CGFloat = 55.0
     
-    let imageView = UIImageView(image: R.image.done()!.withRenderingMode(.alwaysTemplate))
-    let titleLabel = UILabel()
-    let sumLabel = UILabel()
-    private var sum: Int?
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var sumLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
     var sectionGradient: CALayer?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
+        sectionGradient = containerView.setGradient(start: R.color.bet_group_start(), end: R.color.bet_group_end(), isLine: true, index: 0)
+        containerView.setshadow()
+        sectionGradient?.cornerRadius = 5
+        containerView.roundCorners(radius: 5)
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        sectionGradient?.frame = bounds
+        sectionGradient?.frame = containerView.bounds
+        
     }
 
     func initUI() {
@@ -60,32 +70,8 @@ final class BetGroupsHeaderView: UIView {
     }
     
     func configure(monthName: String, sum: Int) {
-        self.sum = sum
-        initUI()
         titleLabel.text = R.string.localizable.balance_for_month(monthName.uppercased())
         sumLabel.text = "\(sum)$"
         sumLabel.textColor = sum >= 0 ? R.color.won()! : R.color.lost()!
     }
-    
-    func updateForHeader(monthName: String, sum: Int) {
-        imageView.tintColor = R.color.title_color()
-        titleLabel.textColor = R.color.title_color()
-        sumLabel.textColor = R.color.title_color()
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.titleLabel.layer.opacity = 0
-            self?.sumLabel.layer.opacity = 0
-        } completion: {[weak self] _ in
-            self?.titleLabel.text = R.string.localizable.balance_for_month(monthName.uppercased())
-            self?.sumLabel.text = "\(sum)$"
-            UIView.animate(withDuration: 0.3) { [weak self] in
-                self?.titleLabel.layer.opacity = 1
-                self?.sumLabel.layer.opacity = 1
-            }
-        }
-
-        
-        
-        sectionGradient?.opacity = 0
-    }
-    
 }

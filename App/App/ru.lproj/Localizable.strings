@@ -36,18 +36,19 @@
 "guid_faq" = "Ответы на частые вопросы связанные с работой нашего сервиса.";
 
 "balance_for_month" = "БАЛАНС ЗА %@:";
+"balance_for_month_amount" = "БАЛАНС ЗА %@: %d$";
 "match_begins" = "Начало матча %@ г. в %@";
 "match_begins_tomorrow" = "Начало матча завтра в %@";
 "match_begins_today" = "Начало матча сегодня в %@";
-"match_begins_in" = "Начало матча через  %@";
-"match_being_played_n_minute" = "Матч уже играется. Идет %@-я минута матча";
+"match_begins_in" = "Начало матча через %@";
+"match_being_played_n_minute" = "Матч уже играется. Идет %d-я минута матча";
 "match_being_played_break" = "Матч уже играется, сыгран 1 тайм";
 
 "prediction" = "Прогноз:";
 "bet_amount_100" = "Сумма ставки: 100$";
 "odds_col" = "Коэффициент:";
 "result" = "Результат:";
-"winnings" = "Выигрыш: %@";
+"winnings" = "Выигрыш: %d";
 "return" = "выигрыш";
 "loss" = "Проигрыш 100";
 "year_at_end" = "%@ г.";
