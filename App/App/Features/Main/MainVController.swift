@@ -88,20 +88,6 @@ final class MainVController: UIViewController {
         }) { _ in
             complite?()
         }
-//        UIView.animate(withDuration: 0.4, animations: {[weak self] in
-//            guard let self = self else { return }
-//            self.containerView.transform =  .init(scaleX: 0.01, y: 0.01)
-//            self.containerView.layer.opacity = 0
-//        }, completion: {[weak self] _ in
-//            self?.add(vc: vc)
-//            UIView.animate(withDuration: 0.4, animations: {[weak self] in
-//                guard let self = self else { return }
-//                self.containerView.transform = .identity
-//                self.containerView.layer.opacity = 1
-//            }, completion: { _ in
-//                complite?()
-//            })
-//        })
     }
     
 }

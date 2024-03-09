@@ -18,8 +18,11 @@ final class NavigationTopBarView: UIView {
     static let height = UIView.safeAreaHeight + 90
     private let titleLabel = UILabel()
     private let tapAuthAnimate = UIView()
-    private let tapBackAnimate = UIView()
+    private var tapBackAnimate: UIView?
     private let disposeBag = DisposeBag()
+    private var gradient: CAGradientLayer!
+    
+    var callback: (() -> ())?
     
     var title: String {
         set {
@@ -32,52 +35,10 @@ final class NavigationTopBarView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.sublayers?.first?.frame = bounds
-        tapAuthAnimate.roundCorners()
-        tapBackAnimate.roundCorners()
+        gradient.frame = bounds
     }
-//    var animated = false
-//    func makeHide(animate: Bool = true) {
-//        if layer.opacity == 0 { return }
-//        
-//        if animated { return }
-//        animated = true
-//        if animate {
-//            
-//            UIView.animate(withDuration: 0.4, animations: {
-//                self.heightConstraint.constant = UIView.safeAreaHeight
-//                self.layer.opacity = 0
-//            }) { _ in
-//                
-//                self.animated = false
-//                
-//            }
-//        } else {
-//
-//        }
-//        
-//    }
     
-//    func show(animate: Bool = true) {
-//        if layer.opacity == 1 { return }
-//        if animated { return }
-//        animated = true
-//        self.heightConstraint.constant = UIView.safeAreaHeight + 90
-//        if animate {
-//            
-//            UIView.animate(withDuration: 0.4, animations: {
-//                self.layer.opacity = 1
-//                self.layoutIfNeeded()
-//            }) { _ in
-//                self.animated = false
-//            }
-//        } else {
-//            heightConstraint.constant = UIView.safeAreaHeight + 90
-//        }
-//        
-//    }
-    
-    func initUI(parent: UIView, title: String, icon: UIImage?,_ callback: (() -> ())?) {
+    func initUI(parent: UIView, title: String, icon: UIImage?) {
         clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(self)
@@ -87,7 +48,7 @@ final class NavigationTopBarView: UIView {
             rightAnchor.constraint(equalTo: parent.rightAnchor),
             heightAnchor.constraint(equalToConstant: UIView.safeAreaHeight + 90)
         ])
-        setGradient(start: R.color.green_blue_start()!, end: R.color.green_blue_end()!, isLine: true)
+        gradient = setGradient(start: R.color.green_blue_start(), end: R.color.green_blue_end(), isLine: true)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = title
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
@@ -101,51 +62,56 @@ final class NavigationTopBarView: UIView {
             
         ])
         
-        let iconView = UIImageView(image: icon?.withRenderingMode(.alwaysTemplate) ?? R.image.left_arrow()?.withRenderingMode(.alwaysTemplate))
+        let iconView = UIImageView(image: icon ?? R.image.arrow_back())
         iconView.contentMode = .scaleToFill
         iconView.translatesAutoresizingMaskIntoConstraints = false
         iconView.tintColor = .white
         
-        let tapBackView = UIView()
-        tapBackView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(tapBackView)
-        tapBackView.addSubview(iconView)
-        let iconHeightAnchor: CGFloat = icon == nil ? 30.0 : 40.0
-        let iconWidthAnchor: CGFloat = icon == nil ? 20.0 : 40.0
+        
+            
+        let iconContainerView = UIView()
+        iconContainerView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(iconContainerView)
+        iconContainerView.addSubview(iconView)
+        let iconHeightAnchor: CGFloat = icon == nil ? 25.0 : 40.0
+        let iconWidthAnchor: CGFloat = icon == nil ? 30.0 : 40.0
         NSLayoutConstraint.activate([
-            tapBackView.leftAnchor.constraint(equalTo: leftAnchor),
-            tapBackView.topAnchor.constraint(equalTo: topAnchor),
-            tapBackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            tapBackView.widthAnchor.constraint(equalToConstant: 50),
+            iconContainerView.leftAnchor.constraint(equalTo: leftAnchor),
+            iconContainerView.topAnchor.constraint(equalTo: topAnchor),
+            iconContainerView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            iconContainerView.widthAnchor.constraint(equalToConstant: 50),
             iconView.heightAnchor.constraint(equalToConstant: iconHeightAnchor),
             iconView.widthAnchor.constraint(equalToConstant: iconWidthAnchor),
             iconView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            iconView.leftAnchor.constraint(equalTo: tapBackView.leftAnchor, constant: 15)
+            iconView.leftAnchor.constraint(equalTo: iconContainerView.leftAnchor, constant: 15)
         ])
-        if let callback = callback {
+        if icon == nil {
+            let tapBackAnimate = UIView()
             tapBackAnimate.translatesAutoresizingMaskIntoConstraints = false
-            tapBackAnimate.backgroundColor = R.color.title_color()
+            tapBackAnimate.backgroundColor = R.color.green_blue_end()
             tapBackAnimate.layer.opacity = 0
-            tapBackView.insertSubview(tapBackAnimate, at: 0)
+            iconContainerView.insertSubview(tapBackAnimate, at: 0)
             NSLayoutConstraint.activate([
-                tapBackAnimate.widthAnchor.constraint(equalToConstant: 100),
-                tapBackAnimate.heightAnchor.constraint(equalToConstant: 100),
+                tapBackAnimate.widthAnchor.constraint(equalToConstant: 120),
+                tapBackAnimate.heightAnchor.constraint(equalToConstant: 120),
                 tapBackAnimate.centerYAnchor.constraint(equalTo: iconView.centerYAnchor),
                 tapBackAnimate.centerXAnchor.constraint(equalTo: iconView.centerXAnchor)
             ])
+            tapBackAnimate.layer.cornerRadius = 60
+            self.tapBackAnimate = tapBackAnimate
             let tapGesture = UITapGestureRecognizer()
             tapGesture.rx.event.bind {[weak self] _ in
-                self?.tapBackAnimate.layer.opacity = 1
-                self?.tapBackAnimate.transform = CGAffineTransform.init(scaleX: 0, y: 0)
+                self?.tapBackAnimate?.layer.opacity = 1
+                self?.tapBackAnimate?.transform = CGAffineTransform.init(scaleX: 0, y: 0)
                 UIView.animate(withDuration: 0.3) {
-                    self?.tapBackAnimate.transform = CGAffineTransform.identity
-                    self?.tapBackAnimate.layer.opacity = 0
-                } completion: { _ in
-                    callback()
+                    self?.tapBackAnimate?.transform = CGAffineTransform.identity
+                    self?.tapBackAnimate?.layer.opacity = 0
+                } completion: {[weak self] _ in
+                    self?.callback?()
                 }
                 
             }.disposed(by: disposeBag)
-            tapBackView.addGestureRecognizer(tapGesture)
+            iconContainerView.addGestureRecognizer(tapGesture)
         }
         
         let rightLabel = UILabel()
@@ -157,7 +123,8 @@ final class NavigationTopBarView: UIView {
         let tapAutorizeView = UIView()
         tapAutorizeView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(tapAutorizeView)
-        tapAuthAnimate.backgroundColor = R.color.title_color()
+        tapAuthAnimate.backgroundColor = R.color.green_blue_start()
+        tapAuthAnimate.layer.cornerRadius = 60
         tapAuthAnimate.translatesAutoresizingMaskIntoConstraints = false
         tapAutorizeView.addSubview(tapAuthAnimate)
         tapAutorizeView.addSubview(rightLabel)
@@ -170,12 +137,11 @@ final class NavigationTopBarView: UIView {
             tapAutorizeView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             tapAuthAnimate.centerXAnchor.constraint(equalTo: tapAutorizeView.centerXAnchor),
             tapAuthAnimate.centerYAnchor.constraint(equalTo: tapAutorizeView.centerYAnchor),
-            tapAuthAnimate.heightAnchor.constraint(equalToConstant: 100),
-            tapAuthAnimate.widthAnchor.constraint(equalToConstant: 100),
+            tapAuthAnimate.heightAnchor.constraint(equalToConstant: 120),
+            tapAuthAnimate.widthAnchor.constraint(equalToConstant: 120),
             rightLabel.rightAnchor.constraint(equalTo: tapAutorizeView.rightAnchor, constant: -10),
             rightLabel.centerYAnchor.constraint(equalTo: tapAutorizeView.centerYAnchor)
         ])
-        tapAuthAnimate.roundCorners()
         let tapGestore = UITapGestureRecognizer()
         tapAuthAnimate.layer.opacity = 0
         tapGestore.rx.event.bind {[weak self] _ in

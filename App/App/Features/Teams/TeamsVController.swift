@@ -9,10 +9,21 @@ import Foundation
 import UIKit
 
 final class TeamsVController: FeaureVController {
+    
+    let flowOutView = UICollectionViewFlowLayout()
+    
     override func titleName() -> String {
         R.string.localizable.screen_teams_title()
     }
-    override func icon() -> UIImage? {
-        R.image.teams()
+    
+//    override func icon() -> UIImage? {
+//        R.image.teams()
+//    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationBar.callback = {
+            printAppEvent("tap back")
+        }
     }
 }

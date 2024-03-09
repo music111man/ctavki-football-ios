@@ -30,7 +30,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWu-sw-x1g">
-                    <rect key="frame" x="298" y="7" width="150" height="150"/>
+                    <rect key="frame" x="296" y="7" width="150" height="150"/>
                     <color key="backgroundColor" name="blue_gray_500"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="2wC-zP-wH3"/>
@@ -38,39 +38,40 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1r9-ze-jGx">
-                    <rect key="frame" x="353" y="62" width="40" height="40"/>
+                    <rect key="frame" x="349" y="62" width="44" height="40"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bets" translatesAutoresizingMaskIntoConstraints="NO" id="tGQ-2y-UNi">
-                            <rect key="frame" x="0.0" y="0.0" width="40" height="20"/>
+                            <rect key="frame" x="9.6666666666666856" y="0.0" width="25" height="25"/>
                             <color key="tintColor" name="title_color"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="20" id="s4F-r8-U5j"/>
+                                <constraint firstAttribute="width" constant="25" id="dS8-LI-6zN"/>
+                                <constraint firstAttribute="height" constant="25" id="s4F-r8-U5j"/>
                             </constraints>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="up_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="SR5-Ne-hoG">
-                            <rect key="frame" x="5" y="23" width="30" height="12"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_top" translatesAutoresizingMaskIntoConstraints="NO" id="SR5-Ne-hoG">
+                            <rect key="frame" x="14" y="21" width="16" height="16"/>
+                            <color key="tintColor" name="title_color"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="12" id="voi-6F-erO"/>
+                                <constraint firstAttribute="width" constant="16" id="G55-xr-g4S"/>
+                                <constraint firstAttribute="height" constant="16" id="voi-6F-erO"/>
                             </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNk-QP-89T">
-                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="0.0" y="0.0" width="44" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="tGQ-2y-UNi" firstAttribute="top" secondItem="1r9-ze-jGx" secondAttribute="top" id="2bH-XS-Mfh"/>
+                        <constraint firstItem="SR5-Ne-hoG" firstAttribute="centerX" secondItem="1r9-ze-jGx" secondAttribute="centerX" id="3AL-pK-4TJ"/>
                         <constraint firstAttribute="height" constant="40" id="D6q-Je-FTt"/>
-                        <constraint firstItem="tGQ-2y-UNi" firstAttribute="leading" secondItem="1r9-ze-jGx" secondAttribute="leading" id="EfD-tc-d1K"/>
                         <constraint firstAttribute="bottom" secondItem="DNk-QP-89T" secondAttribute="bottom" id="Mtr-Qz-Orf"/>
-                        <constraint firstAttribute="bottom" secondItem="SR5-Ne-hoG" secondAttribute="bottom" constant="5" id="TVw-Ps-rZj"/>
+                        <constraint firstAttribute="bottom" secondItem="SR5-Ne-hoG" secondAttribute="bottom" constant="3" id="TVw-Ps-rZj"/>
+                        <constraint firstItem="tGQ-2y-UNi" firstAttribute="centerX" secondItem="1r9-ze-jGx" secondAttribute="centerX" id="bMQ-nF-6sl"/>
                         <constraint firstItem="DNk-QP-89T" firstAttribute="top" secondItem="1r9-ze-jGx" secondAttribute="top" id="c5L-Kp-O4K"/>
-                        <constraint firstAttribute="width" constant="40" id="iDP-GU-QZz"/>
+                        <constraint firstAttribute="width" constant="44" id="iDP-GU-QZz"/>
                         <constraint firstAttribute="trailing" secondItem="DNk-QP-89T" secondAttribute="trailing" id="iZj-aU-IQy"/>
-                        <constraint firstAttribute="trailing" secondItem="tGQ-2y-UNi" secondAttribute="trailing" id="rRi-Jw-kP4"/>
-                        <constraint firstItem="SR5-Ne-hoG" firstAttribute="leading" secondItem="1r9-ze-jGx" secondAttribute="leading" constant="5" id="tZF-Z3-hi5"/>
-                        <constraint firstAttribute="trailing" secondItem="SR5-Ne-hoG" secondAttribute="trailing" constant="5" id="uXd-2M-D94"/>
                         <constraint firstItem="DNk-QP-89T" firstAttribute="leading" secondItem="1r9-ze-jGx" secondAttribute="leading" id="vDK-pF-luz"/>
                     </constraints>
                 </view>
@@ -100,9 +101,9 @@
         </view>
     </objects>
     <resources>
+        <image name="arrow_top" width="128" height="128"/>
         <image name="bets" width="512" height="512"/>
         <image name="done" width="128" height="128"/>
-        <image name="up_arrow" width="128" height="128"/>
         <namedColor name="blue_gray_300">
             <color red="0.56470588235294117" green="0.64313725490196083" blue="0.68235294117647061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

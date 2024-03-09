@@ -47,7 +47,7 @@ class FeaureVController: UIViewController {
     }
    
     func initUI() {
-        navigationBar.initUI(parent: view, title: titleName(), icon: icon(), nil)
+        navigationBar.initUI(parent: view, title: titleName(), icon: icon())
         activityView.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 13.0, *) {
             activityView.style = .large

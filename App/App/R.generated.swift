@@ -142,8 +142,8 @@ struct R: Rswift.Validatable {
     static let blue_gray_500 = Rswift.ColorResource(bundle: R.hostingBundle, name: "blue_gray_500")
     /// Color `event_date`.
     static let event_date = Rswift.ColorResource(bundle: R.hostingBundle, name: "event_date")
-    /// Color `gray`.
-    static let gray = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray")
+    /// Color `gray_656565`.
+    static let gray_656565 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray_656565")
     /// Color `green_blue_end`.
     static let green_blue_end = Rswift.ColorResource(bundle: R.hostingBundle, name: "green_blue_end")
     /// Color `green_blue_start`.
@@ -297,11 +297,11 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "gray", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "gray_656565", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func gray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.gray, compatibleWith: traitCollection)
+    static func gray_656565(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.gray_656565, compatibleWith: traitCollection)
     }
     #endif
 
@@ -563,10 +563,10 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "gray", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "gray_656565", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
-    static func gray(_: Void = ()) -> UIKit.UIColor? {
-      return UIKit.UIColor(named: R.color.gray.name)
+    static func gray_656565(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.gray_656565.name)
     }
     #endif
 
@@ -709,8 +709,20 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 9 images.
+  /// This `R.image` struct is generated, and contains static references to 15 images.
   struct image {
+    /// Image `arrow_back`.
+    static let arrow_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_back")
+    /// Image `arrow_bottom`.
+    static let arrow_bottom = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_bottom")
+    /// Image `arrow_left`.
+    static let arrow_left = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_left")
+    /// Image `arrow_next`.
+    static let arrow_next = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_next")
+    /// Image `arrow_top`.
+    static let arrow_top = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_top")
+    /// Image `arrow_up`.
+    static let arrow_up = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_up")
     /// Image `bets`.
     static let bets = Rswift.ImageResource(bundle: R.hostingBundle, name: "bets")
     /// Image `done`.
@@ -729,6 +741,48 @@ struct R: Rswift.Validatable {
     static let teams = Rswift.ImageResource(bundle: R.hostingBundle, name: "teams")
     /// Image `up_arrow`.
     static let up_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "up_arrow")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "arrow_back", bundle: ..., traitCollection: ...)`
+    static func arrow_back(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arrow_back, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "arrow_bottom", bundle: ..., traitCollection: ...)`
+    static func arrow_bottom(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arrow_bottom, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "arrow_left", bundle: ..., traitCollection: ...)`
+    static func arrow_left(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arrow_left, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "arrow_next", bundle: ..., traitCollection: ...)`
+    static func arrow_next(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arrow_next, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "arrow_top", bundle: ..., traitCollection: ...)`
+    static func arrow_top(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arrow_top, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "arrow_up", bundle: ..., traitCollection: ...)`
+    static func arrow_up(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arrow_up, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "bets", bundle: ..., traitCollection: ...)`
@@ -1733,9 +1787,9 @@ struct _R: Rswift.Validatable {
       }
 
       static func validate() throws {
+        if UIKit.UIImage(named: "arrow_top", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'arrow_top' is used in nib 'BetResultHeaderView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "bets", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'bets' is used in nib 'BetResultHeaderView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "done", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'done' is used in nib 'BetResultHeaderView', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "up_arrow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'up_arrow' is used in nib 'BetResultHeaderView', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
           if UIKit.UIColor(named: "blue_gray_300", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'blue_gray_300' is used in nib 'BetResultHeaderView', but couldn't be loaded.") }
           if UIKit.UIColor(named: "blue_gray_500", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'blue_gray_500' is used in nib 'BetResultHeaderView', but couldn't be loaded.") }
