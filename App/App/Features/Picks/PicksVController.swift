@@ -13,8 +13,6 @@ import RxDataSources
 class PicksVController: FeaureVController {
 
     var sectionHeaderView: BetResultHeaderView!
-//    var sectionHeaderViewGradient: CALayer!
-//    let sectionHeaderInfoView = BetSectionHeaderView()
     let betsViewModel = BetsViewModel()
     var betSections = [BetSection]()
     var titleSection: Int = 0
@@ -95,7 +93,6 @@ class PicksVController: FeaureVController {
             sectionHeaderView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor)
         ])
         sectionHeaderView.transform = .init(translationX: 0, y: NavigationTopBarView.height)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         view.insertSubview(tableView, at: 0)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.navigationBar.bottomAnchor, constant: -BetSectionHeaderView.height),
@@ -105,10 +102,9 @@ class PicksVController: FeaureVController {
         ])
         
         tableView.register(UINib(resource: R.nib.betsCell), forCellReuseIdentifier: BetsCell.reuseIdentifier)
-        tableView.separatorStyle = .none
+
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.showsVerticalScrollIndicator = false
         refresher.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             refresher.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 20),

@@ -167,7 +167,7 @@ class BetView: UIView {
     private func teamView(label: UILabel) -> UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.textColor = R.color.text()
+        label.textColor = R.color.text_black()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 2

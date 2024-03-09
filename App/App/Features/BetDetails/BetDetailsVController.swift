@@ -92,12 +92,13 @@ class BetDetailsVController: UIViewController {
                 guard let self = self else { return }
                 self.eventDateLabel.text = R.string.localizable.year_at_end(bet.eventDate.format("d MMMM yyyy"))
                 self.teamsLabel.text = "\(team1.title) - \(team2.title)"
-                self.betTypeLabel.text = betType.shortTitle
                 self.factorResultLabel.text = factor.formattedString
-                self.betTypeDetailsLabel.text = betType.description
                 if let typeArg = bet.typeArg {
-                    self.betTypeLabel.text?.replace("%x%", with: "\(typeArg)")
-                    self.betTypeDetailsLabel.text?.replace("%x%", with: "\(typeArg)")
+                    self.betTypeLabel.text =  betType.shortTitle.replace("%x%", with: "\(typeArg)")
+                    self.betTypeDetailsLabel.text = betType.description.replace("%x%", with: "\(typeArg)")
+                } else {
+                    self.betTypeLabel.text = betType.shortTitle
+                    self.betTypeDetailsLabel.text = betType.description
                 }
                 switch outcome {
                 case .active:
@@ -110,7 +111,7 @@ class BetDetailsVController: UIViewController {
                     self.resultValLabel.textColor = R.color.lost()
                 case .return:
                     self.resultValLabel.text = R.string.localizable.return()
-                    self.resultValLabel.textColor = R.color.text()
+                    self.resultValLabel.textColor = R.color.text_black()
                 }
                 self.activityView.animateOpacity(0.4, 0) {[weak self] in
                     self?.activityView.isHidden = true

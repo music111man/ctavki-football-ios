@@ -9,6 +9,16 @@ import Foundation
 import UIKit
 
 final class PurchesVController: FeaureVController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func initUI() {
+        super.initUI()
+        navigationBar.hideAuthBtn()
+    }
+    
     override func titleName() -> String {
         R.string.localizable.screen_paid_title()
     }

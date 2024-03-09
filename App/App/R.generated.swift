@@ -114,12 +114,14 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 31 colors.
+  /// This `R.color` struct is generated, and contains static references to 33 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
     /// Color `background_light`.
     static let background_light = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_light")
+    /// Color `background_main_light`.
+    static let background_main_light = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_main_light")
     /// Color `background_main`.
     static let background_main = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_main")
     /// Color `bet_group_end`.
@@ -164,8 +166,10 @@ struct R: Rswift.Validatable {
     static let shadow = Rswift.ColorResource(bundle: R.hostingBundle, name: "shadow")
     /// Color `slide_circle`.
     static let slide_circle = Rswift.ColorResource(bundle: R.hostingBundle, name: "slide_circle")
-    /// Color `text`.
-    static let text = Rswift.ColorResource(bundle: R.hostingBundle, name: "text")
+    /// Color `text_black`.
+    static let text_black = Rswift.ColorResource(bundle: R.hostingBundle, name: "text_black")
+    /// Color `text_theme`.
+    static let text_theme = Rswift.ColorResource(bundle: R.hostingBundle, name: "text_theme")
     /// Color `title_color`.
     static let title_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "title_color")
     /// Color `toolbarItem`.
@@ -203,6 +207,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func background_main(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.background_main, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "background_main_light", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func background_main_light(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.background_main_light, compatibleWith: traitCollection)
     }
     #endif
 
@@ -396,11 +409,20 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "text", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "text_black", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
-    static func text(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.text, compatibleWith: traitCollection)
+    static func text_black(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.text_black, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "text_theme", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func text_theme(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.text_theme, compatibleWith: traitCollection)
     }
     #endif
 
@@ -479,6 +501,14 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func background_main(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.background_main.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "background_main_light", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func background_main_light(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.background_main_light.name)
     }
     #endif
 
@@ -651,10 +681,18 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "text", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "text_black", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
-    static func text(_: Void = ()) -> UIKit.UIColor? {
-      return UIKit.UIColor(named: R.color.text.name)
+    static func text_black(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.text_black.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "text_theme", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func text_theme(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.text_theme.name)
     }
     #endif
 
@@ -709,7 +747,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 15 images.
+  /// This `R.image` struct is generated, and contains static references to 16 images.
   struct image {
     /// Image `arrow_back`.
     static let arrow_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_back")
@@ -741,6 +779,8 @@ struct R: Rswift.Validatable {
     static let teams = Rswift.ImageResource(bundle: R.hostingBundle, name: "teams")
     /// Image `up_arrow`.
     static let up_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "up_arrow")
+    /// Image `up_small_arrow`.
+    static let up_small_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "up_small_arrow")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "arrow_back", bundle: ..., traitCollection: ...)`
@@ -847,10 +887,17 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "up_small_arrow", bundle: ..., traitCollection: ...)`
+    static func up_small_arrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.up_small_arrow, compatibleWith: traitCollection)
+    }
+    #endif
+
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
   struct nib {
     /// Nib `BetResultHeaderView`.
     static let betResultHeaderView = _R.nib._BetResultHeaderView()
@@ -858,6 +905,8 @@ struct R: Rswift.Validatable {
     static let betSectionHeaderView = _R.nib._BetSectionHeaderView()
     /// Nib `BetsCell`.
     static let betsCell = _R.nib._BetsCell()
+    /// Nib `FaqView`.
+    static let faqView = _R.nib._FaqView()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "BetResultHeaderView", in: bundle)`
@@ -883,6 +932,14 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "FaqView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.faqView) instead")
+    static func faqView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.faqView)
+    }
+    #endif
+
     static func betResultHeaderView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BetResultHeaderView? {
       return R.nib.betResultHeaderView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetResultHeaderView
     }
@@ -893,6 +950,10 @@ struct R: Rswift.Validatable {
 
     static func betsCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BetsCell? {
       return R.nib.betsCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetsCell
+    }
+
+    static func faqView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> FaqView? {
+      return R.nib.faqView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? FaqView
     }
 
     fileprivate init() {}
@@ -1776,6 +1837,7 @@ struct _R: Rswift.Validatable {
     static func validate() throws {
       try _BetResultHeaderView.validate()
       try _BetSectionHeaderView.validate()
+      try _FaqView.validate()
     }
 
     struct _BetResultHeaderView: Rswift.NibResourceType, Rswift.Validatable {
@@ -1826,6 +1888,27 @@ struct _R: Rswift.Validatable {
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BetsCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetsCell
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _FaqView: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "FaqView"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> FaqView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? FaqView
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "up_small_arrow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'up_small_arrow' is used in nib 'FaqView', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "green_blue_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_start' is used in nib 'FaqView', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text_theme", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_theme' is used in nib 'FaqView', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "title_color", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'title_color' is used in nib 'FaqView', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "toolbarItem", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'toolbarItem' is used in nib 'FaqView', but couldn't be loaded.") }
+        }
       }
 
       fileprivate init() {}

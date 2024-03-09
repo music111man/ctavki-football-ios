@@ -9,7 +9,6 @@ import UIKit
 
 class BetsCell: UITableViewCell {
     static let heightOfTitle: CGFloat = 26.0
-    static let reuseIdentifier = "BetsCell"
     
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!

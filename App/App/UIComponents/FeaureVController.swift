@@ -30,6 +30,9 @@ class FeaureVController: UIViewController {
         refresher.addTarget(self, action: #selector(callNeedRefresh), for: .valueChanged)
         tableView.addSubview(refresher)
         tableView.backgroundColor = .clear
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         NotificationCenter.default.rx.notification(Notification.Name.badNetRequest).subscribe {[weak self] _ in
             self?.refresher.endRefreshing()
         }.disposed(by: disposeBag)

@@ -17,6 +17,10 @@ extension Int: PDefaultValue {
     static var defaultValue: Int {
         0
     }
+    
+    var asString: String {
+        "\(self)"
+    }
 }
 
 extension Double {

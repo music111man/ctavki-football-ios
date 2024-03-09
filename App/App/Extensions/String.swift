@@ -22,7 +22,7 @@ extension String {
         return attributedString?.string
     }
     
-    mutating func replace(_ originalString:String, with newString:String) {
-        self = self.replacingOccurrences(of: originalString, with: newString)
+    func replace(_ originalString:String, with newString:String) -> String {
+        return self.replacingOccurrences(of: originalString, with: newString)
     }
 }

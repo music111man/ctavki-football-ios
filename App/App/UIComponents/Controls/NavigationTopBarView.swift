@@ -21,6 +21,7 @@ final class NavigationTopBarView: UIView {
     private var tapBackAnimate: UIView?
     private let disposeBag = DisposeBag()
     private var gradient: CAGradientLayer!
+    private let tapAutorizeView = UIView()
     
     var callback: (() -> ())?
     
@@ -120,7 +121,7 @@ final class NavigationTopBarView: UIView {
         rightLabel.textColor = R.color.title_color()
         rightLabel.textAlignment = .right
         rightLabel.numberOfLines = 2
-        let tapAutorizeView = UIView()
+       
         tapAutorizeView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(tapAutorizeView)
         tapAuthAnimate.backgroundColor = R.color.green_blue_start()
@@ -159,5 +160,9 @@ final class NavigationTopBarView: UIView {
         AppSettings.authorizeEvent.bind { isAutorize in
             rightLabel.text = isAutorize ? R.string.localizable.my_balance() : R.string.localizable.sign_in()
         }.disposed(by: disposeBag)
+    }
+    
+    func hideAuthBtn() {
+        tapAutorizeView.isHidden = true
     }
 }

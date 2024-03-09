@@ -19,6 +19,7 @@ extension Notification.Name {
     static let wasSyncTeamData = Notification.Name("wasSyncTeamData")
     static let wasSyncFaqData = Notification.Name("wasSyncFaqData")
     static let needUpdateBetsScreen = Notification.Name("needUpdateBetsScreen")
+    static let needUpdatFaqsScreen = Notification.Name("needUpdatFaqsScreen")
 }
 
 final class SyncService {
@@ -62,9 +63,9 @@ final class SyncService {
 //            if !responseData.teams.isEmpty {
 //                NotificationCenter.default.post(name: NSNotification.Name.wasSyncTeamData, object: nil)
 //            }
-//            if !responseData.faqs.isEmpty {
-//                NotificationCenter.default.post(name: NSNotification.Name.wasSyncFaqData, object: nil)
-//            }
+            if !responseData.faqs.isEmpty {
+                NotificationCenter.default.post(name: NSNotification.Name.needUpdatFaqsScreen, object: nil)
+            }
 //            
 //            if !responseData.betTypes.isEmpty {
 //                NotificationCenter.default.post(name: NSNotification.Name.wasSyncBetTypeData, object: nil)

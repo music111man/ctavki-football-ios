@@ -36,7 +36,7 @@ final class BetSectionHeaderView: UIView {
         sectionGradient = setGradient(start: R.color.bet_group_start(), end: R.color.bet_group_end(), isLine: true)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleToFill
-        imageView.tintColor = R.color.text()
+        imageView.tintColor = R.color.text_black()
         addSubview(imageView)
         NSLayoutConstraint.activate([
             imageView.heightAnchor.constraint(equalToConstant: 30),
@@ -44,7 +44,7 @@ final class BetSectionHeaderView: UIView {
             imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
-        titleLabel.textColor = R.color.text()
+        titleLabel.textColor = R.color.text_black()
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.textAlignment = .right
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FaqView" customModule="App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="345"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nf9-9m-W8g">
+                    <rect key="frame" x="15" y="10" width="30" height="30"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFq-HO-Lhf">
+                            <rect key="frame" x="11.666666666666668" y="6.6666666666666679" width="6.6666666666666679" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" name="title_color"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" name="green_blue_start"/>
+                    <constraints>
+                        <constraint firstItem="UFq-HO-Lhf" firstAttribute="centerX" secondItem="nf9-9m-W8g" secondAttribute="centerX" id="5Tn-xB-yts"/>
+                        <constraint firstItem="UFq-HO-Lhf" firstAttribute="centerY" secondItem="nf9-9m-W8g" secondAttribute="centerY" id="Jfe-sA-Ryi"/>
+                        <constraint firstAttribute="width" constant="30" id="OpX-ff-uMp"/>
+                        <constraint firstAttribute="height" constant="30" id="vif-i2-Gqh"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Почему ставить на футбол более выгодно, чем на другие виды спорта?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5c-XO-J6K">
+                    <rect key="frame" x="55" y="5" width="288" height="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" name="text_theme"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="up_small_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="dzu-Xz-oIi">
+                    <rect key="frame" x="348" y="10" width="30" height="30"/>
+                    <color key="tintColor" name="text_theme"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="T64-Or-Chd"/>
+                        <constraint firstAttribute="height" constant="30" id="ucQ-m0-C1w"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jlh-xN-v2X">
+                    <rect key="frame" x="343" y="0.0" width="50" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="B6C-8v-JDq">
+                    <rect key="frame" x="15" y="50" width="368" height="290"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3F6-HX-bXF">
+                            <rect key="frame" x="0.0" y="0.0" width="368" height="290"/>
+                            <mutableString key="text">ROI это сокращение, которое образовалась от словосочетания Return on Investment. В переводе означает \"окупаемость вложенных инвестиций\".  Вычисление показателя ROI в ставках осуществляется по следующей формуле:  ROI = Чистая прибыль / Сумма всех ставок * 100%.  Разберем на примере. Допустим, за месяц мы сделали 110 ставок по 100$ каждая. Это значит, что в сумме мы поставили 11 000$. А общая сумма чистой прибыли по итогам месяца составила 1700$.\r\nИтого, ROI = 1700 / 11000 * 100% = 15,45%.  Любой показатель от 10% и выше в месяц - это великолепный результат в ставках.</mutableString>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" name="toolbarItem"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="nf9-9m-W8g" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="1Vv-aE-6cm"/>
+                <constraint firstItem="q5c-XO-J6K" firstAttribute="leading" secondItem="nf9-9m-W8g" secondAttribute="trailing" constant="10" id="6BY-P2-Q7V"/>
+                <constraint firstItem="Jlh-xN-v2X" firstAttribute="leading" secondItem="q5c-XO-J6K" secondAttribute="trailing" id="Asq-ZA-7XP"/>
+                <constraint firstItem="q5c-XO-J6K" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Epe-PU-ZJl"/>
+                <constraint firstItem="Jlh-xN-v2X" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="IT4-xh-FoJ"/>
+                <constraint firstItem="dzu-Xz-oIi" firstAttribute="centerY" secondItem="nf9-9m-W8g" secondAttribute="centerY" id="Na5-Wf-ea0"/>
+                <constraint firstItem="B6C-8v-JDq" firstAttribute="top" secondItem="nf9-9m-W8g" secondAttribute="bottom" constant="10" id="Odc-pw-1Qo"/>
+                <constraint firstItem="dzu-Xz-oIi" firstAttribute="leading" secondItem="q5c-XO-J6K" secondAttribute="trailing" constant="5" id="TxG-Ct-YON"/>
+                <constraint firstItem="B6C-8v-JDq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="YYR-i7-buv"/>
+                <constraint firstItem="Jlh-xN-v2X" firstAttribute="bottom" secondItem="B6C-8v-JDq" secondAttribute="top" id="Zzu-J4-Xsl"/>
+                <constraint firstItem="nf9-9m-W8g" firstAttribute="centerY" secondItem="q5c-XO-J6K" secondAttribute="centerY" id="dCj-ki-FUR"/>
+                <constraint firstAttribute="bottom" secondItem="B6C-8v-JDq" secondAttribute="bottom" constant="5" id="mVm-p6-mQ9"/>
+                <constraint firstItem="Jlh-xN-v2X" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="scy-Ge-wBT"/>
+                <constraint firstAttribute="trailing" secondItem="dzu-Xz-oIi" secondAttribute="trailing" constant="15" id="u7c-fi-IqV"/>
+                <constraint firstAttribute="trailing" secondItem="B6C-8v-JDq" secondAttribute="trailing" constant="10" id="v8L-Ma-ITQ"/>
+                <constraint firstItem="nf9-9m-W8g" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="yDM-xn-Fpl"/>
+                <constraint firstItem="B6C-8v-JDq" firstAttribute="top" secondItem="q5c-XO-J6K" secondAttribute="bottom" priority="750" constant="5" id="yrU-K7-NO0"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="answerLabel" destination="3F6-HX-bXF" id="q7g-WK-bsK"/>
+                <outlet property="circleView" destination="nf9-9m-W8g" id="ySS-Fk-r0A"/>
+                <outlet property="collapseAnswerImageView" destination="dzu-Xz-oIi" id="9tD-wF-2jt"/>
+                <outlet property="indexLabel" destination="UFq-HO-Lhf" id="P4V-Bp-n3m"/>
+                <outlet property="questionLabel" destination="q5c-XO-J6K" id="db5-hT-gdP"/>
+                <outlet property="tapCollapseView" destination="Jlh-xN-v2X" id="Z6v-Ta-tZb"/>
+            </connections>
+            <point key="canvasLocation" x="130.53435114503816" y="153.16901408450704"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="up_small_arrow" width="128" height="128"/>
+        <namedColor name="green_blue_start">
+            <color red="0.058823529411764705" green="0.43529411764705883" blue="0.70980392156862748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text_theme">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="title_color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="toolbarItem">
+            <color red="0.396078431372549" green="0.396078431372549" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

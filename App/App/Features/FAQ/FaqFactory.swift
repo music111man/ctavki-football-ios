@@ -9,8 +9,12 @@ import UIKit
 
 final class FaqFactory: VCFactory {
     
-    override func create() -> UIViewController {
+    private lazy var controller: FaqVController = {
         FaqVController()
+    }()
+    
+    override func create() -> UIViewController {
+       controller
     }
     
 }
