@@ -117,27 +117,23 @@ final class FaqVController: UIViewController {
             imageView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: -10),
             imageView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -stackView.spacing * 2)
         ])
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(collapceAll)))
-        imageView.isHidden = true
+        imageView.tap(animateTapGesture: false) { [weak self] in
+            self?.stackView.arrangedSubviews.forEach { view in
+                (view as? FaqView)?.collapse()
+            }
+            UIView.animate(withDuration: 0.4, animations: {[weak self] in
+                self?.imageView.transform = .identity
+            }) {[weak self] _ in
+                self?.imageView.animateOpacity(0.3, 0) { [weak self] in
+                    self?.imageView.isHidden = true
+                }
+            }
+        }.disposed(by: disposeBage)
         imageView.layer.opacity = 0
     }
 
     @objc func callNeedRefresh() {
         faqService.loadData()
-    }
-    
-    @objc func collapceAll() {
-        stackView.arrangedSubviews.forEach { view in
-            (view as? FaqView)?.collapse()
-        }
-        UIView.animate(withDuration: 0.4, animations: {[weak self] in
-            self?.imageView.transform = .identity
-        }) {[weak self] _ in
-            self?.imageView.animateOpacity(0.3, 0) { [weak self] in
-                self?.imageView.isHidden = true
-            }
-        }
     }
 }
 

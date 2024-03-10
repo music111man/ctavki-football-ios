@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 extension UIView {
     func roundCorners(radius: CGFloat? = nil) {
@@ -60,7 +62,7 @@ extension UIView {
         }
 
     }
-    func animateTpSimulation(withDuration: TimeInterval = 0.2, value: CGFloat, _ onComplite: (() -> ())? = nil) {
+    func animateTapGesture(withDuration: TimeInterval = 0.2, value: CGFloat, _ onComplite: (() -> ())? = nil) {
         UIView.animate(withDuration: withDuration, animations: {[weak self] in
             self?.transform = CGAffineTransform.init(scaleX: value, y: value)
         }) { [weak self] _ in
@@ -74,6 +76,8 @@ extension UIView {
         }
     }
     
+    
+    
     class var reuseIdentifier: String {
         String(describing: Self.self)
     }
@@ -81,6 +85,23 @@ extension UIView {
 
     class func fromNib<T: UIView>() -> T {
         return Bundle(for: T.self).loadNibNamed(T.reuseIdentifier, owner: nil, options: nil)![0] as! T
+    }
+    
+    func tap(animateTapGesture: Bool = true, _ action: @escaping () -> ()) -> Disposable {
+        isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer()
+        let disposed = tapGesture.rx.event.bind {[weak self] _ in
+            if animateTapGesture {
+                self?.animateTapGesture(value: 0.9) {
+                    action()
+                }
+            } else {
+                action()
+            }
+        }
+        addGestureRecognizer(tapGesture)
+        
+        return disposed
     }
 }
 

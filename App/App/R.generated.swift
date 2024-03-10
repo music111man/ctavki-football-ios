@@ -897,7 +897,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 7 nibs.
   struct nib {
     /// Nib `BetResultHeaderView`.
     static let betResultHeaderView = _R.nib._BetResultHeaderView()
@@ -907,6 +907,12 @@ struct R: Rswift.Validatable {
     static let betsCell = _R.nib._BetsCell()
     /// Nib `FaqView`.
     static let faqView = _R.nib._FaqView()
+    /// Nib `NoActiveBetsCell`.
+    static let noActiveBetsCell = _R.nib._NoActiveBetsCell()
+    /// Nib `NoActiveBetsView`.
+    static let noActiveBetsView = _R.nib._NoActiveBetsView()
+    /// Nib `TeamsView`.
+    static let teamsView = _R.nib._TeamsView()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "BetResultHeaderView", in: bundle)`
@@ -940,6 +946,30 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "NoActiveBetsCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.noActiveBetsCell) instead")
+    static func noActiveBetsCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.noActiveBetsCell)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "NoActiveBetsView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.noActiveBetsView) instead")
+    static func noActiveBetsView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.noActiveBetsView)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "TeamsView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.teamsView) instead")
+    static func teamsView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.teamsView)
+    }
+    #endif
+
     static func betResultHeaderView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BetResultHeaderView? {
       return R.nib.betResultHeaderView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetResultHeaderView
     }
@@ -956,12 +986,24 @@ struct R: Rswift.Validatable {
       return R.nib.faqView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? FaqView
     }
 
+    static func noActiveBetsCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NoActiveBetsCell? {
+      return R.nib.noActiveBetsCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NoActiveBetsCell
+    }
+
+    static func noActiveBetsView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> App.NoActiveBetsView? {
+      return R.nib.noActiveBetsView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? App.NoActiveBetsView
+    }
+
+    static func teamsView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.teamsView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+
     fileprivate init() {}
   }
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 43 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 45 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1035,6 +1077,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let match_being_played_n_minute = Rswift.StringResource(key: "match_being_played_n_minute", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: No active bets
+      ///
+      /// Locales: en, ru
+      static let no_active_bets = Rswift.StringResource(key: "no_active_bets", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: Odds:
       ///
       /// Locales: en, ru
@@ -1091,6 +1137,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let sign_in = Rswift.StringResource(key: "sign_in", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Soon we will provide new picks. Remain in touch...
+      ///
+      /// Locales: en, ru
+      static let soon_we_provide_bets = Rswift.StringResource(key: "soon_we_provide_bets", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: Support us
       ///
       /// Locales: en, ru
@@ -1426,6 +1476,21 @@ struct R: Rswift.Validatable {
         return String(format: format, locale: locale, value1)
       }
 
+      /// en translation: No active bets
+      ///
+      /// Locales: en, ru
+      static func no_active_bets(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("no_active_bets", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "no_active_bets"
+        }
+
+        return NSLocalizedString("no_active_bets", bundle: bundle, comment: "")
+      }
+
       /// en translation: Odds:
       ///
       /// Locales: en, ru
@@ -1636,6 +1701,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("sign_in", bundle: bundle, comment: "")
       }
 
+      /// en translation: Soon we will provide new picks. Remain in touch...
+      ///
+      /// Locales: en, ru
+      static func soon_we_provide_bets(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("soon_we_provide_bets", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "soon_we_provide_bets"
+        }
+
+        return NSLocalizedString("soon_we_provide_bets", bundle: bundle, comment: "")
+      }
+
       /// en translation: Support us
       ///
       /// Locales: en, ru
@@ -1838,6 +1918,8 @@ struct _R: Rswift.Validatable {
       try _BetResultHeaderView.validate()
       try _BetSectionHeaderView.validate()
       try _FaqView.validate()
+      try _NoActiveBetsCell.validate()
+      try _NoActiveBetsView.validate()
     }
 
     struct _BetResultHeaderView: Rswift.NibResourceType, Rswift.Validatable {
@@ -1911,6 +1993,58 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "title_color", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'title_color' is used in nib 'FaqView', but couldn't be loaded.") }
           if UIKit.UIColor(named: "toolbarItem", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'toolbarItem' is used in nib 'FaqView', but couldn't be loaded.") }
         }
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _NoActiveBetsCell: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "NoActiveBetsCell"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NoActiveBetsCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NoActiveBetsCell
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "bets", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'bets' is used in nib 'NoActiveBetsCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "selected_toolbar_item", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'selected_toolbar_item' is used in nib 'NoActiveBetsCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text_theme", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_theme' is used in nib 'NoActiveBetsCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "toolbarItem", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'toolbarItem' is used in nib 'NoActiveBetsCell', but couldn't be loaded.") }
+        }
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _NoActiveBetsView: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "NoActiveBetsView"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> App.NoActiveBetsView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? App.NoActiveBetsView
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "bets", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'bets' is used in nib 'NoActiveBetsView', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "background_main_light", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_main_light' is used in nib 'NoActiveBetsView', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "selected_toolbar_item", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'selected_toolbar_item' is used in nib 'NoActiveBetsView', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text_theme", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_theme' is used in nib 'NoActiveBetsView', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "toolbarItem", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'toolbarItem' is used in nib 'NoActiveBetsView', but couldn't be loaded.") }
+        }
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _TeamsView: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "TeamsView"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
 
       fileprivate init() {}

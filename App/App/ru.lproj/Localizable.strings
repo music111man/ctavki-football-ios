@@ -43,6 +43,8 @@
 "match_begins_in" = "Начало матча через %@";
 "match_being_played_n_minute" = "Матч уже играется. Идет %d-я минута матча";
 "match_being_played_break" = "Матч уже играется, сыгран 1 тайм";
+"no_active_bets" = "Нет активных прогнозов";
+"soon_we_provide_bets" = "Но совсем скоро они появлятся. Следите...";
 
 "prediction" = "Прогноз:";
 "bet_amount_100" = "Сумма ставки: 100$";

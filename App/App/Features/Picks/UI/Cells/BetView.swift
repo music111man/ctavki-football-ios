@@ -119,7 +119,7 @@ class BetView: UIView {
         let tapResultGesture = UITapGestureRecognizer()
         tapResultGesture.rx.event.bind {[weak self] _ in
             guard let self = self, let betId = self.betId else { return }
-            resultView.animateTpSimulation(value: 0.8) {
+            resultView.animateTapGesture(value: 0.8) {
                 if self.betOutCome == .active {
                     NotificationCenter.default.post(name: Notification.Name.needOpenActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
                 } else {
@@ -135,7 +135,7 @@ class BetView: UIView {
         tapTeem1Gesture.rx.event.bind {[weak self] _ in
             guard let self = self, let teamId = self.homeTeamId else { return }
             
-            homeTeamNameLabel.superview?.animateTpSimulation(value: 0.8) {
+            homeTeamNameLabel.superview?.animateTapGesture(value: 0.8) {
                 if !AppSettings.isAuthorized && self.betOutCome == .active {
                     NotificationCenter.default.post(name: Notification.Name.tapAutozire, object: nil)
                     return
@@ -151,7 +151,7 @@ class BetView: UIView {
         tapTeem2Gesture.rx.event.bind {[weak self] _ in
             guard let self = self, let teamId = self.goustTeamId else { return }
             
-            goustTeamNameLabel.superview?.animateTpSimulation(value: 0.8) {
+            goustTeamNameLabel.superview?.animateTapGesture(value: 0.8) {
                 if !AppSettings.isAuthorized && self.betOutCome == .active {
                     NotificationCenter.default.post(name: Notification.Name.tapAutozire, object: nil)
                     return

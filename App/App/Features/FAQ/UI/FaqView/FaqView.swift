@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol FaqViewDeelegate: AnyObject {
     func changeVisibality()
@@ -22,6 +23,7 @@ class FaqView: UIView {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var backView: UIView!
     
+    let disposeBag = DisposeBag()
     weak var delegate: FaqViewDeelegate?
     
     var gradient: CAGradientLayer!
@@ -34,7 +36,6 @@ class FaqView: UIView {
             questionLabel.text = model.question.trimHTMLTags()
             answerLabel.text = model.answer.trimHTMLTags()?.replace("\n", with: "\n\n")
             backView.backgroundColor = model.index % 2 > 0 ? .backgroundMain : .backgroundMainLight
-            printAppEvent(answerLabel.text!)
         }
     }
     
@@ -43,8 +44,12 @@ class FaqView: UIView {
         backgroundColor = .shadow.withAlphaComponent(0.2)
         answerLabel.isHidden = isCollapsed
         gradient = circleView.setGradient(start: .greenBlueEnd, end: .greenBlueStart, isLine: false, index: 0)
-        tapCollapseView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeAnswerVisibility)))
-        questionLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeAnswerVisibility)))
+        tapCollapseView.tap(animateTapGesture: false) {[weak self] in
+            self?.changeAnswerVisibility()
+        }.disposed(by: disposeBag)
+        questionLabel.tap(animateTapGesture: false) {[weak self] in
+            self?.changeAnswerVisibility()
+        }.disposed(by: disposeBag)
     }
     
     override func layoutSubviews() {
@@ -66,8 +71,6 @@ class FaqView: UIView {
             self.collapseAnswerImageView.transform =  .identity
         }
     }
-    
-    @objc
     private func changeAnswerVisibility() {
         isCollapsed.toggle()
         model?.isCollapsed = isCollapsed

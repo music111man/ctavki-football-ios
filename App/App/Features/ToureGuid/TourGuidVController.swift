@@ -338,7 +338,7 @@ class TourGuidVController: UIViewController {
         ])
         
         let labelSkip = UILabel()
-        labelSkip.isUserInteractionEnabled = true
+        
         labelSkip.text = R.string.localizable.skip()
         labelSkip.textColor = R.color.won_light()
         labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
@@ -348,11 +348,11 @@ class TourGuidVController: UIViewController {
             labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
             labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
         ])
-        let tap = UITapGestureRecognizer()
-        tap.rx.event.bind { [weak self] _ in
+        
+        labelSkip.tap { [weak self] in
             guard let self = self  else { return }
             self.guidAnimations.removeAll()
-            labelSkip.animateTpSimulation(value: 0.8) {
+            labelSkip.animateTapGesture(value: 0.8) {
                 self.betsGuidIconContainer.layer.opacity = 0
                 self.betsGuidView.animateOpacity(0.3, 0) {
                     self.endAction?()
@@ -360,8 +360,6 @@ class TourGuidVController: UIViewController {
             }
             
         }.disposed(by: disposeBag)
-        
-        labelSkip.addGestureRecognizer(tap)
     }
     
     func initAuthorizeGuid() {
@@ -408,7 +406,6 @@ class TourGuidVController: UIViewController {
         ])
         
         let labelSkip = UILabel()
-        labelSkip.isUserInteractionEnabled = true
         labelSkip.text = R.string.localizable.skip()
         labelSkip.textColor = R.color.won_light()
         labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
@@ -418,11 +415,11 @@ class TourGuidVController: UIViewController {
             labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 10),
             labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
         ])
-        let tap = UITapGestureRecognizer()
-        tap.rx.event.bind { [weak self] _ in
+       
+        labelSkip.tap {[weak self] in
             guard let self = self  else { return }
             self.guidAnimations.removeAll()
-            labelSkip.animateTpSimulation(value: 0.8) {
+            labelSkip.animateTapGesture(value: 0.8) {
                 self.authorizeIconContainer.layer.opacity = 0
                 self.authorizeGuidView.animateOpacity(0.3, 0) {
                     self.endAction?()
@@ -430,7 +427,6 @@ class TourGuidVController: UIViewController {
             }
             
         }.disposed(by: disposeBag)
-        labelSkip.addGestureRecognizer(tap)
     }
     
     func initResultGuid() {
@@ -478,7 +474,6 @@ class TourGuidVController: UIViewController {
             label.rightAnchor.constraint(equalTo: textContainer.rightAnchor, constant: -30)
         ])
         let labelSkip = UILabel()
-        labelSkip.isUserInteractionEnabled = true
         labelSkip.text = R.string.localizable.skip()
         labelSkip.textColor = R.color.won_light()
         labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
@@ -488,11 +483,10 @@ class TourGuidVController: UIViewController {
             labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
             labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
         ])
-        let tap = UITapGestureRecognizer()
-        tap.rx.event.bind { [weak self] _ in
+        labelSkip.tap { [weak self] in
             guard let self = self  else { return }
             self.guidAnimations.removeAll()
-            labelSkip.animateTpSimulation(value: 0.8) {
+            labelSkip.animateTapGesture(value: 0.8) {
                 self.resultIconContainer.layer.opacity = 0
                 self.resultGuidView.animateOpacity(0.3, 0) {
                     self.endAction?()
@@ -500,7 +494,6 @@ class TourGuidVController: UIViewController {
             }
             
         }.disposed(by: disposeBag)
-        labelSkip.addGestureRecognizer(tap)
     }
     
     func initTeamsGuid() {
@@ -556,11 +549,11 @@ class TourGuidVController: UIViewController {
             labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
             labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
         ])
-        let tap = UITapGestureRecognizer()
-        tap.rx.event.bind { [weak self] _ in
+
+        labelSkip.tap { [weak self] in
             guard let self = self  else { return }
             self.guidAnimations.removeAll()
-            labelSkip.animateTpSimulation(value: 0.8) {
+            labelSkip.animateTapGesture(value: 0.8) {
                 self.teamsGuidIconContainer.layer.opacity = 0
                 self.teamsGuidView.animateOpacity(0.3, 0) {
                     self.endAction?()
@@ -568,7 +561,6 @@ class TourGuidVController: UIViewController {
             }
             
         }.disposed(by: disposeBag)
-        labelSkip.addGestureRecognizer(tap)
     }
     
     func initPayGuid() {
@@ -615,7 +607,6 @@ class TourGuidVController: UIViewController {
             label.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10)
         ])
         let labelSkip = UILabel()
-        labelSkip.isUserInteractionEnabled = true
         labelSkip.text = R.string.localizable.skip()
         labelSkip.textColor = R.color.won_light()
         labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
@@ -625,11 +616,10 @@ class TourGuidVController: UIViewController {
             labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
             labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
         ])
-        let tap = UITapGestureRecognizer()
-        tap.rx.event.bind { [weak self] _ in
+        labelSkip.tap {[weak self] in
             guard let self = self  else { return }
             self.guidAnimations.removeAll()
-            labelSkip.animateTpSimulation(value: 0.8) {
+            labelSkip.animateTapGesture(value: 0.8) {
                 self.payGuidIconContainer.layer.opacity = 0
                 self.payGuidView.animateOpacity(0.3, 0) {
                     self.endAction?()
@@ -637,7 +627,6 @@ class TourGuidVController: UIViewController {
             }
             
         }.disposed(by: disposeBag)
-        labelSkip.addGestureRecognizer(tap)
     }
     
     func initFaqGuid() {

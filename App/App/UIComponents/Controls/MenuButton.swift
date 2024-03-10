@@ -8,10 +8,11 @@
 import Foundation
 import UIKit
 import Rswift
+import RxSwift
 
 final class MenuButton: UIView {
     typealias Action = () -> ()
-    
+    let disposeBag = DisposeBag()
     let action: Action
     let label = UILabel()
     let animationView = UIView()
@@ -31,7 +32,10 @@ final class MenuButton: UIView {
         addSubview(animationView)
         addSubview(imageView)
         addSubview(label)
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
+        tap(animateTapGesture: false) { [weak self] in
+            guard let self = self, !self.isSelected  else { return }
+            self.action()
+        }.disposed(by: disposeBag)
         animationView.isHidden = true
         animationView.backgroundColor = R.color.selected_toolbar_item()
         animationView.layer.cornerRadius = 60
@@ -49,20 +53,25 @@ final class MenuButton: UIView {
                 animationView.isHidden = false
                 animationView.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
                 animationView.layer.opacity = 1
-                UIView.animate(withDuration: 0.2, animations: {
-                        self.transform = CGAffineTransform.identity.scaledBy(x: 0.9, y: 0.9)
+                UIView.animate(withDuration: 0.3, animations: {
+                        //self.transform = CGAffineTransform.identity.scaledBy(x: 0.9, y: 0.9)
                         self.animationView.transform = .identity
-                    self.animationView.layer.opacity = 0.5
+                    self.animationView.layer.opacity = 0.2
+                   
                         }, completion: { _ in
-                            UIView.animate(withDuration: 0.1, animations: {
-                                self.transform = CGAffineTransform.identity
-                                self.animationView.layer.opacity = 0
-                                self.label.textColor =  R.color.selected_toolbar_item()
-                                self.label.font = UIFont.boldSystemFont(ofSize: 12.0)
-                                self.imageView.tintColor =  R.color.selected_toolbar_item()
-                            }, completion: { _ in
-                                self.animationView.isHidden = true
-                            })
+                            self.animationView.isHidden = true
+                            self.label.textColor =  R.color.selected_toolbar_item()
+                            self.label.font = UIFont.boldSystemFont(ofSize: 12.0)
+                            self.imageView.tintColor =  R.color.selected_toolbar_item()
+//                            UIView.animate(withDuration: 0.1, animations: {
+//                                self.transform = CGAffineTransform.identity
+//                                self.animationView.layer.opacity = 0
+//                                self.label.textColor =  R.color.selected_toolbar_item()
+//                                self.label.font = UIFont.boldSystemFont(ofSize: 12.0)
+//                                self.imageView.tintColor =  R.color.selected_toolbar_item()
+//                            }, completion: { _ in
+//                                self.animationView.isHidden = true
+//                            })
                     })
             } else {
                 label.textColor = R.color.toolbarItem()
@@ -89,11 +98,5 @@ final class MenuButton: UIView {
             animationView.widthAnchor.constraint(equalToConstant: 120),
             animationView.heightAnchor.constraint(equalToConstant: 120)
         ])
-    }
-                             
-    @objc
-    private func tap() {
-        if isSelected { return }
-        action()
     }
 }

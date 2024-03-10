@@ -47,8 +47,22 @@ class BetDetailsVController: UIViewController {
         resultLabel.text = R.string.localizable.result()
         containerView.transform = CGAffineTransform.init(scaleX: 0, y: 0)
         containerView.isHidden = true
-        closeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(close)))
-        containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(noAction)))
+        closeView.tap(animateTapGesture: false) {[weak self] in
+            guard let self = self else { return }
+            UIView.transition(with: self.containerView,
+                              duration: 0.5,
+                              options: [.transitionFlipFromLeft],
+                              animations: { [weak self] in
+                self?.containerView.layer.opacity = 0
+            }) { [weak self] _ in
+                UIView.animate(withDuration: 0.3) {
+                    self?.view.layer.opacity = 0
+                } completion: { _ in
+                    self?.dismiss(animated: false)
+                }
+            }
+        }.disposed(by: disposeBag)
+        containerView.tap(animateTapGesture: false) {}.disposed(by: disposeBag)
         loadInfo()
     }
     
@@ -56,24 +70,6 @@ class BetDetailsVController: UIViewController {
         super.viewWillAppear(animated)
         UIView.animate(withDuration: 0.3) {
             self.view.layer.opacity = 1
-        }
-    }
-    @objc
-    func noAction() {}
-    
-    @objc
-    func close() {
-        UIView.transition(with: containerView,
-                          duration: 0.5,
-                          options: [.transitionFlipFromLeft],
-                          animations: { [weak self] in
-            self?.containerView.layer.opacity = 0
-        }) { [weak self] _ in
-            UIView.animate(withDuration: 0.3) {
-                self?.view.layer.opacity = 0
-            } completion: { _ in
-                self?.dismiss(animated: false)
-            }
         }
     }
     

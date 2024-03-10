@@ -43,6 +43,10 @@
 		F291F1382B96355B00BB8E58 /* BetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1372B96355B00BB8E58 /* BetsViewModel.swift */; };
 		F291F13C2B9654CD00BB8E58 /* BetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F13A2B9654CD00BB8E58 /* BetsCell.swift */; };
 		F291F13D2B9654CD00BB8E58 /* BetsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F291F13B2B9654CD00BB8E58 /* BetsCell.xib */; };
+		F2A016302B9E499000B532C1 /* TeamsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A0162F2B9E499000B532C1 /* TeamsView.xib */; };
+		F2A016322B9E49CD00B532C1 /* TeamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A016312B9E49CD00B532C1 /* TeamsView.swift */; };
+		F2A0163A2B9E6A1700B532C1 /* NoActivebetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A016382B9E6A1700B532C1 /* NoActivebetsCell.swift */; };
+		F2A0163B2B9E6A1700B532C1 /* NoActiveBetsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A016392B9E6A1700B532C1 /* NoActiveBetsCell.xib */; };
 		F2A03FE42B98E9FA00494CD0 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = F2A03FE62B98E9FA00494CD0 /* Localizable.stringsdict */; };
 		F2DBFAEF2B8F7D7B00FC5069 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DBFAEE2B8F7D7B00FC5069 /* Bet.swift */; };
 		F2EA78C82B908DA6006B3A1C /* BetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78C72B908DA6006B3A1C /* BetType.swift */; };
@@ -106,6 +110,10 @@
 		F291F1372B96355B00BB8E58 /* BetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsViewModel.swift; sourceTree = "<group>"; };
 		F291F13A2B9654CD00BB8E58 /* BetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsCell.swift; sourceTree = "<group>"; };
 		F291F13B2B9654CD00BB8E58 /* BetsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetsCell.xib; sourceTree = "<group>"; };
+		F2A0162F2B9E499000B532C1 /* TeamsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamsView.xib; sourceTree = "<group>"; };
+		F2A016312B9E49CD00B532C1 /* TeamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsView.swift; sourceTree = "<group>"; };
+		F2A016382B9E6A1700B532C1 /* NoActivebetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoActivebetsCell.swift; sourceTree = "<group>"; };
+		F2A016392B9E6A1700B532C1 /* NoActiveBetsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoActiveBetsCell.xib; sourceTree = "<group>"; };
 		F2A03FE52B98E9FA00494CD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F2A03FE72B98E9FC00494CD0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F2DBFAEE2B8F7D7B00FC5069 /* Bet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
@@ -255,6 +263,7 @@
 		F22CE0982B87BE7900732FFB /* Teams */ = {
 			isa = PBXGroup;
 			children = (
+				F2A0162D2B9E494700B532C1 /* UI */,
 				F22CE09D2B87C53700732FFB /* TeamsVController.swift */,
 				F22CE0B42B88C20900732FFB /* TeamsFactory.swift */,
 			);
@@ -325,6 +334,7 @@
 		F2888DCF2B9B643F007F62F2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F2A016332B9E5E8000B532C1 /* NoActiveBets */,
 				F226F9FB2B9B93F900F9D391 /* BetSectionHeader */,
 				F2888DD02B9B647A007F62F2 /* BetResultHeader */,
 				F291F1392B96549600BB8E58 /* Cells */,
@@ -349,6 +359,32 @@
 				F251D6382B974EBD009ABC86 /* BetView.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F2A0162D2B9E494700B532C1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F2A0162E2B9E497100B532C1 /* TeamsView */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		F2A0162E2B9E497100B532C1 /* TeamsView */ = {
+			isa = PBXGroup;
+			children = (
+				F2A0162F2B9E499000B532C1 /* TeamsView.xib */,
+				F2A016312B9E49CD00B532C1 /* TeamsView.swift */,
+			);
+			path = TeamsView;
+			sourceTree = "<group>";
+		};
+		F2A016332B9E5E8000B532C1 /* NoActiveBets */ = {
+			isa = PBXGroup;
+			children = (
+				F2A016382B9E6A1700B532C1 /* NoActivebetsCell.swift */,
+				F2A016392B9E6A1700B532C1 /* NoActiveBetsCell.xib */,
+			);
+			path = NoActiveBets;
 			sourceTree = "<group>";
 		};
 		F2DBFAEB2B8F7B6200FC5069 /* Data */ = {
@@ -492,9 +528,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2A0163B2B9E6A1700B532C1 /* NoActiveBetsCell.xib in Resources */,
 				F2FC034A2B86780B001C6BB3 /* LaunchScreen.storyboard in Resources */,
 				F20704832B87A33800DD6364 /* Localizable.strings in Resources */,
 				F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */,
+				F2A016302B9E499000B532C1 /* TeamsView.xib in Resources */,
 				F2EB1A372B9A2E9C0027D782 /* BetDetailsVController.storyboard in Resources */,
 				F2A03FE42B98E9FA00494CD0 /* Localizable.stringsdict in Resources */,
 				F226F9FD2B9B943900F9D391 /* BetSectionHeaderView.xib in Resources */,
@@ -589,6 +627,7 @@
 				F2EA78CC2B909122006B3A1C /* Faq.swift in Sources */,
 				F2EB1A352B9A11520027D782 /* UIViewController.swift in Sources */,
 				F2EA78DC2B90CA29006B3A1C /* AppSettings.swift in Sources */,
+				F2A016322B9E49CD00B532C1 /* TeamsView.swift in Sources */,
 				F2041A322B91D05C00DA42BB /* Repository.swift in Sources */,
 				F22CE0942B87B87400732FFB /* AppCoordinator.swift in Sources */,
 				F2EA78CA2B908ED2006B3A1C /* Team.swift in Sources */,
@@ -609,6 +648,7 @@
 				F251D6392B974EBD009ABC86 /* BetView.swift in Sources */,
 				F226FA052B9C75AE00F9D391 /* FaqViewModel.swift in Sources */,
 				F251D63B2B977389009ABC86 /* BetSectionHeaderView.swift in Sources */,
+				F2A0163A2B9E6A1700B532C1 /* NoActivebetsCell.swift in Sources */,
 				F291F13C2B9654CD00BB8E58 /* BetsCell.swift in Sources */,
 				F2EA78D52B90B60E006B3A1C /* BetOutcome.swift in Sources */,
 				F291F1362B96250D00BB8E58 /* FeaureVController.swift in Sources */,
@@ -784,7 +824,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -814,7 +854,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;

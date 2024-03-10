@@ -102,7 +102,7 @@ class PicksVController: FeaureVController {
         ])
         
         tableView.register(UINib(resource: R.nib.betsCell), forCellReuseIdentifier: BetsCell.reuseIdentifier)
-
+        tableView.register(UINib(resource: R.nib.noActiveBetsCell), forCellReuseIdentifier: NoActiveBetsCell.reuseIdentifier)
         tableView.dataSource = self
         tableView.delegate = self
         refresher.translatesAutoresizingMaskIntoConstraints = false
@@ -165,10 +165,17 @@ extension PicksVController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        betSections[section].bets.count
+        if section == 0 && betSections[section].bets.isEmpty {
+            return 1
+        }
+        return betSections[section].bets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = indexPath.section
+        if indexPath.section == 0 && betSections[indexPath.section].bets.isEmpty {
+            return tableView.dequeueReusableCell(withIdentifier: NoActiveBetsCell.reuseIdentifier, for: indexPath)
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: BetsCell.reuseIdentifier, for: indexPath) as! BetsCell
         cell.configure(betSections[indexPath.section].bets[indexPath.row])
         return cell
