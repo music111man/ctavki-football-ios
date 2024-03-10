@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,8 +15,12 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="345"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2oW-Sn-kQI">
+                    <rect key="frame" x="1" y="1" width="391" height="343"/>
+                    <color key="backgroundColor" name="background_main_light"/>
+                </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nf9-9m-W8g">
-                    <rect key="frame" x="15" y="10" width="30" height="30"/>
+                    <rect key="frame" x="15" y="13" width="30" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFq-HO-Lhf">
                             <rect key="frame" x="11.666666666666668" y="6.6666666666666679" width="6.6666666666666679" height="17"/>
@@ -35,13 +38,13 @@
                     </constraints>
                 </view>
                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Почему ставить на футбол более выгодно, чем на другие виды спорта?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5c-XO-J6K">
-                    <rect key="frame" x="55" y="5" width="288" height="40"/>
+                    <rect key="frame" x="55" y="10" width="288" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" name="text_theme"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="up_small_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="dzu-Xz-oIi">
-                    <rect key="frame" x="348" y="10" width="30" height="30"/>
+                    <rect key="frame" x="348" y="13" width="30" height="30"/>
                     <color key="tintColor" name="text_theme"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="T64-Or-Chd"/>
@@ -49,15 +52,15 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jlh-xN-v2X">
-                    <rect key="frame" x="343" y="0.0" width="50" height="50"/>
+                    <rect key="frame" x="343" y="0.0" width="50" height="81"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="B6C-8v-JDq">
-                    <rect key="frame" x="15" y="50" width="368" height="290"/>
+                    <rect key="frame" x="15" y="81" width="368" height="264"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3F6-HX-bXF">
-                            <rect key="frame" x="0.0" y="0.0" width="368" height="290"/>
-                            <mutableString key="text">ROI это сокращение, которое образовалась от словосочетания Return on Investment. В переводе означает \"окупаемость вложенных инвестиций\".  Вычисление показателя ROI в ставках осуществляется по следующей формуле:  ROI = Чистая прибыль / Сумма всех ставок * 100%.  Разберем на примере. Допустим, за месяц мы сделали 110 ставок по 100$ каждая. Это значит, что в сумме мы поставили 11 000$. А общая сумма чистой прибыли по итогам месяца составила 1700$.\r\nИтого, ROI = 1700 / 11000 * 100% = 15,45%.  Любой показатель от 10% и выше в месяц - это великолепный результат в ставках.</mutableString>
+                            <rect key="frame" x="0.0" y="0.0" width="368" height="264"/>
+                            <string key="text">ROI это сокращение, которое образовалась от словосочетания Return on Investment. В переводе означает \"окупаемость вложенных инвестиций\".  Вычисление показателя ROI в ставках осуществляется по следующей формуле:  ROI = Чистая прибыль / Сумма всех ставок * 100%.  Разберем на примере. Допустим, за месяц мы сделали 110 ставок по 100$ каждая. Это значит, что в сумме мы поставили 11 000$. А общая сумма чистой прибыли по итогам месяца составила 1700$.\r\nИтого, ROI = 1700 / 11000 * 100% = 15,45%.  Любой показатель от 10% и выше в месяц - это великолепный результат в ставках.</string>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" name="toolbarItem"/>
                             <nil key="highlightedColor"/>
@@ -66,29 +69,34 @@
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="shadow"/>
             <constraints>
                 <constraint firstItem="nf9-9m-W8g" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="1Vv-aE-6cm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2oW-Sn-kQI" secondAttribute="trailing" constant="1" id="3nx-df-7Yw"/>
                 <constraint firstItem="q5c-XO-J6K" firstAttribute="leading" secondItem="nf9-9m-W8g" secondAttribute="trailing" constant="10" id="6BY-P2-Q7V"/>
                 <constraint firstItem="Jlh-xN-v2X" firstAttribute="leading" secondItem="q5c-XO-J6K" secondAttribute="trailing" id="Asq-ZA-7XP"/>
-                <constraint firstItem="q5c-XO-J6K" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Epe-PU-ZJl"/>
+                <constraint firstItem="q5c-XO-J6K" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Epe-PU-ZJl"/>
                 <constraint firstItem="Jlh-xN-v2X" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="IT4-xh-FoJ"/>
                 <constraint firstItem="dzu-Xz-oIi" firstAttribute="centerY" secondItem="nf9-9m-W8g" secondAttribute="centerY" id="Na5-Wf-ea0"/>
-                <constraint firstItem="B6C-8v-JDq" firstAttribute="top" secondItem="nf9-9m-W8g" secondAttribute="bottom" constant="10" id="Odc-pw-1Qo"/>
+                <constraint firstItem="B6C-8v-JDq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nf9-9m-W8g" secondAttribute="bottom" constant="10" id="Odc-pw-1Qo"/>
                 <constraint firstItem="dzu-Xz-oIi" firstAttribute="leading" secondItem="q5c-XO-J6K" secondAttribute="trailing" constant="5" id="TxG-Ct-YON"/>
                 <constraint firstItem="B6C-8v-JDq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="YYR-i7-buv"/>
                 <constraint firstItem="Jlh-xN-v2X" firstAttribute="bottom" secondItem="B6C-8v-JDq" secondAttribute="top" id="Zzu-J4-Xsl"/>
                 <constraint firstItem="nf9-9m-W8g" firstAttribute="centerY" secondItem="q5c-XO-J6K" secondAttribute="centerY" id="dCj-ki-FUR"/>
-                <constraint firstAttribute="bottom" secondItem="B6C-8v-JDq" secondAttribute="bottom" constant="5" id="mVm-p6-mQ9"/>
+                <constraint firstAttribute="bottom" secondItem="B6C-8v-JDq" secondAttribute="bottom" id="mVm-p6-mQ9"/>
+                <constraint firstItem="2oW-Sn-kQI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="1" id="nCW-0K-H26"/>
+                <constraint firstItem="2oW-Sn-kQI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="nut-rK-uv6"/>
+                <constraint firstAttribute="bottom" secondItem="2oW-Sn-kQI" secondAttribute="bottom" constant="1" id="piE-GH-2RT"/>
                 <constraint firstItem="Jlh-xN-v2X" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="scy-Ge-wBT"/>
                 <constraint firstAttribute="trailing" secondItem="dzu-Xz-oIi" secondAttribute="trailing" constant="15" id="u7c-fi-IqV"/>
                 <constraint firstAttribute="trailing" secondItem="B6C-8v-JDq" secondAttribute="trailing" constant="10" id="v8L-Ma-ITQ"/>
-                <constraint firstItem="nf9-9m-W8g" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="yDM-xn-Fpl"/>
-                <constraint firstItem="B6C-8v-JDq" firstAttribute="top" secondItem="q5c-XO-J6K" secondAttribute="bottom" priority="750" constant="5" id="yrU-K7-NO0"/>
+                <constraint firstItem="nf9-9m-W8g" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="yDM-xn-Fpl"/>
+                <constraint firstItem="B6C-8v-JDq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="q5c-XO-J6K" secondAttribute="bottom" priority="750" constant="5" id="yrU-K7-NO0"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="answerLabel" destination="3F6-HX-bXF" id="q7g-WK-bsK"/>
+                <outlet property="backView" destination="2oW-Sn-kQI" id="lWF-06-Vum"/>
                 <outlet property="circleView" destination="nf9-9m-W8g" id="ySS-Fk-r0A"/>
                 <outlet property="collapseAnswerImageView" destination="dzu-Xz-oIi" id="9tD-wF-2jt"/>
                 <outlet property="indexLabel" destination="UFq-HO-Lhf" id="P4V-Bp-n3m"/>
@@ -100,8 +108,14 @@
     </objects>
     <resources>
         <image name="up_small_arrow" width="128" height="128"/>
+        <namedColor name="background_main_light">
+            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="green_blue_start">
             <color red="0.058823529411764705" green="0.43529411764705883" blue="0.70980392156862748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="shadow">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="text_theme">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -112,8 +126,5 @@
         <namedColor name="toolbarItem">
             <color red="0.396078431372549" green="0.396078431372549" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

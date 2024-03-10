@@ -14,6 +14,7 @@ extension UIStackView {
             guard let self = self else { return }
             while let v = self.arrangedSubviews.first {
                 self.removeArrangedSubview(v)
+                v.removeFromSuperview()
             }
             getViews().forEach { self.addArrangedSubview($0)}
             self.animateOpacity(0.3, 1) {

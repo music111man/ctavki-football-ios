@@ -1904,7 +1904,9 @@ struct _R: Rswift.Validatable {
       static func validate() throws {
         if UIKit.UIImage(named: "up_small_arrow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'up_small_arrow' is used in nib 'FaqView', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "background_main_light", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_main_light' is used in nib 'FaqView', but couldn't be loaded.") }
           if UIKit.UIColor(named: "green_blue_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_start' is used in nib 'FaqView', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "shadow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shadow' is used in nib 'FaqView', but couldn't be loaded.") }
           if UIKit.UIColor(named: "text_theme", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_theme' is used in nib 'FaqView', but couldn't be loaded.") }
           if UIKit.UIColor(named: "title_color", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'title_color' is used in nib 'FaqView', but couldn't be loaded.") }
           if UIKit.UIColor(named: "toolbarItem", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'toolbarItem' is used in nib 'FaqView', but couldn't be loaded.") }
