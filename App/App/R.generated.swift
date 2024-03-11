@@ -915,18 +915,24 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 9 nibs.
   struct nib {
     /// Nib `BetResultHeaderView`.
     static let betResultHeaderView = _R.nib._BetResultHeaderView()
     /// Nib `BetSectionHeaderView`.
     static let betSectionHeaderView = _R.nib._BetSectionHeaderView()
+    /// Nib `BetsCellView`.
+    static let betsCellView = _R.nib._BetsCellView()
     /// Nib `BetsCell`.
     static let betsCell = _R.nib._BetsCell()
     /// Nib `FaqView`.
     static let faqView = _R.nib._FaqView()
     /// Nib `NoActiveBetsCell`.
     static let noActiveBetsCell = _R.nib._NoActiveBetsCell()
+    /// Nib `TeamView`.
+    static let teamView = _R.nib._TeamView()
+    /// Nib `TeamsRowView`.
+    static let teamsRowView = _R.nib._TeamsRowView()
     /// Nib `TeamsView`.
     static let teamsView = _R.nib._TeamsView()
 
@@ -955,6 +961,14 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UINib(name: "BetsCellView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.betsCellView) instead")
+    static func betsCellView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.betsCellView)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UINib(name: "FaqView", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.faqView) instead")
     static func faqView(_: Void = ()) -> UIKit.UINib {
@@ -967,6 +981,22 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.noActiveBetsCell) instead")
     static func noActiveBetsCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.noActiveBetsCell)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "TeamView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.teamView) instead")
+    static func teamView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.teamView)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "TeamsRowView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.teamsRowView) instead")
+    static func teamsRowView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.teamsRowView)
     }
     #endif
 
@@ -990,6 +1020,10 @@ struct R: Rswift.Validatable {
       return R.nib.betsCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetsCell
     }
 
+    static func betsCellView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BetsCellView? {
+      return R.nib.betsCellView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetsCellView
+    }
+
     static func faqView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> FaqView? {
       return R.nib.faqView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? FaqView
     }
@@ -998,8 +1032,16 @@ struct R: Rswift.Validatable {
       return R.nib.noActiveBetsCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NoActiveBetsCell
     }
 
-    static func teamsView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-      return R.nib.teamsView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    static func teamView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamView? {
+      return R.nib.teamView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamView
+    }
+
+    static func teamsRowView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamsRowView? {
+      return R.nib.teamsRowView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsRowView
+    }
+
+    static func teamsView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamsView? {
+      return R.nib.teamsView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsView
     }
 
     fileprivate init() {}
@@ -2035,6 +2077,17 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
 
+    struct _BetsCellView: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "BetsCellView"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BetsCellView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetsCellView
+      }
+
+      fileprivate init() {}
+    }
+
     struct _FaqView: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "FaqView"
@@ -2078,12 +2131,34 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
 
+    struct _TeamView: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "TeamView"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamView
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _TeamsRowView: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "TeamsRowView"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamsRowView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsRowView
+      }
+
+      fileprivate init() {}
+    }
+
     struct _TeamsView: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "TeamsView"
 
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamsView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsView
       }
 
       fileprivate init() {}

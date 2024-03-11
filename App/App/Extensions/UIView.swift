@@ -83,8 +83,11 @@ extension UIView {
     }
     
 
-    class func fromNib<T: UIView>() -> T {
-        return Bundle(for: T.self).loadNibNamed(T.reuseIdentifier, owner: nil, options: nil)![0] as! T
+    class func fromNib<T: UIView>(_ configure: ((_ v: T) -> ())? = nil) -> T {
+        let v = Bundle(for: T.self).loadNibNamed(T.reuseIdentifier, owner: nil, options: nil)![0] as! T
+        configure?(v)
+        
+        return v
     }
     
     func tap(animateTapGesture: Bool = true, _ action: @escaping () -> ()) -> Disposable {

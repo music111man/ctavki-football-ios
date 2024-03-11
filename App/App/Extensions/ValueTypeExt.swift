@@ -72,4 +72,8 @@ extension Date {
         
         return formatter.string(from: self)
     }
+    
+    var matchTime: Date {
+        Date().addingTimeInterval(-105 * 60)
+    }
 }

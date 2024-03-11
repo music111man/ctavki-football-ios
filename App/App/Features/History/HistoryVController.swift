@@ -21,7 +21,7 @@ class HistoryVController: UIViewController {
     @IBOutlet weak var betsCountLabel: UILabel!
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    
+    @IBOutlet weak var activBetsStackView: UIStackView!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var activityView: UIActivityIndicatorView!
     let refresher = UIRefreshControl()
@@ -67,12 +67,32 @@ class HistoryVController: UIViewController {
             cell.delegate = self
         }.disposed(by: disposeBag)
         
+        historyService.activeBetGroups.observe(on: MainScheduler.instance).bind {[weak self] groups in
+            guard let self = self else { return }
+            self.activBetsStackView.replaceArrangedSubviews({
+                groups.map { model in
+                    let view: BetsCellView = BetsCellView.fromNib() {v in
+                        v.delegate = self
+                        v.configure(model)
+                        v.transform = .init(scaleX: 0, y: 0)
+                    }
+                    return view
+                }
+            }) {
+                UIView.animate(withDuration: 0.3) { [weak self] in
+                    self?.activBetsStackView.arrangedSubviews.forEach { $0.transform = .identity }
+                }
+            }
+        }.disposed(by: disposeBag)
+        
         tableView.rx.willDisplayCell.bind { event in
             event.cell.transform = .init(scaleX: 0, y: 0)
             UIView.animate(withDuration: 0.3) {
                 event.cell.transform = .identity
             }
         }.disposed(by: disposeBag)
+        
+        
         
         backView.tap {[weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
@@ -122,8 +142,8 @@ class HistoryVController: UIViewController {
     }
 }
 
-extension HistoryVController: BetsCellDelegate {
-    func showHistory(team: Team, onLeft: Bool) {
+extension HistoryVController: BetViewDelegate {
+    func openTeamDetails(team: Team, onLeft: Bool) {
         if historyService.team.id == team.id { return }
         historyService.team = team
         UIView.transition(with: view,

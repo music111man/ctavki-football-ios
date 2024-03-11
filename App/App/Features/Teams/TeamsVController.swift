@@ -60,3 +60,20 @@ final class TeamsVController: FeaureVController {
         R.image.teams()
     }
 }
+
+extension TeamsVController: BetViewDelegate {
+    func openTeamDetails(team: Team, onLeft: Bool) {
+        let vc: HistoryVController = .createFromNib { vc in
+            vc.configure(team: team)
+        }
+        UIView.transition(with: view,
+                          duration: 0.4,
+                          options: [onLeft ? .transitionFlipFromRight : .transitionFlipFromLeft],
+                          animations: { [weak self] in
+            self?.view.layer.opacity = 0
+        }) {[weak self] _ in
+            self?.view.layer.opacity = 1
+            self?.navigationController?.pushViewController(vc, animated: false)
+        }
+    }
+}

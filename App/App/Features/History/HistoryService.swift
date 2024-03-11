@@ -22,10 +22,12 @@ final class HistoryService {
         didSet {
             teamModel.accept(TeamHistoryViewModel(title: team.title, betsCount: 0, amount: 0))
             betGroups.accept([])
+            activeBetGroups.accept([])
         }
     }
     let teamModel: BehaviorRelay<TeamHistoryViewModel>
     let betGroups = BehaviorRelay<[BetGroup]>(value: [])
+    let activeBetGroups = BehaviorRelay<[BetGroup]>(value: [])
     let disposeBag = DisposeBag()
     var refreshActivity: RefreshActivity?
     
@@ -44,11 +46,27 @@ final class HistoryService {
         DispatchQueue.global(qos: .background).async {[weak self] in
             guard let self = self else { return }
             self.teamModel.accept(TeamHistoryViewModel(title: self.team.title, betsCount: 0, amount: 0))
-            let bets: [Bet] = Repository.selectData(Bet.table.filter((Bet.homeTeamIdField == team.id
+            let allBets: [Bet] = Repository.selectData(Bet.table.filter(Bet.homeTeamIdField == team.id
                                                                          || Bet.team2IdField == team.id)
-                                                                        && Bet.outcomeField != nil)
                                                     .order(Bet.eventDateField.desc))
+            let matchTime = Date().matchTime
+            let activeBets = allBets.filter { $0.isActive && $0.eventDate > matchTime }.sorted { $0.eventDate < $01.eventDate }
+            let betTypes: [BetType] = AppSettings.isAuthorized ? Repository.selectData(BetType.table
+                                                                                            .filter(activeBets.compactMap({$0.typeId})
+                                                                                            .contains(BetType.idField))) : []
+            let bets:[Bet] = allBets.filter { !$0.isActive }
             let teams: [Team] = Repository.selectData(Team.table)
+            let activeBetViewModels = activeBets.map { bet in
+                BetViewModel(id: bet.id,
+                             result: bet.result,
+                             eventDate: bet.eventDate,
+                             betOutCome: bet.outcome,
+                             homeTeam: teams.first(where: { team in team.id == bet.team1Id }),
+                             goustTeam: teams.first(where: { team in team.id == bet.team2Id }),
+                             resultText: betTypes.first(where: { type in
+                                                                type.id == bet.typeId
+                                                            })?.shortTitle ?? bet.factor?.formattedString ?? "0.0")
+            }
             let betViewModels = bets.map { bet in
                 BetViewModel(id: bet.id,
                              result: bet.result,
@@ -59,6 +77,10 @@ final class HistoryService {
                              resultText: "\(bet.result)")
             }
             
+            let activeGroups = activeBetViewModels.map { bet in
+                BetGroup(eventDate: bet.eventDate, active: true, bets: [bet])
+            }
+            
             let groups = bets.map { $0.eventDate.withoutTimeStamp }.distinct().map { date in
                 BetGroup(eventDate: date, active: false, bets: betViewModels.filter { $0.eventDate.withoutTimeStamp == date })
             }
@@ -66,6 +88,7 @@ final class HistoryService {
             groups.forEach { amount += $0.resaltbetSum }
             self.teamModel.accept(TeamHistoryViewModel(title: self.team.title, betsCount: bets.count, amount: amount))
             self.betGroups.accept(groups)
+            self.activeBetGroups.accept(activeGroups)
             self.refreshActivity?(false)
         }
     }

@@ -10,27 +10,27 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TeamsView" customModule="App" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TeamsRowView" customModule="App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="81"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="a6s-w6-ha9">
-                    <rect key="frame" x="10" y="10" width="373" height="50"/>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gzn-N3-Fer">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="81"/>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="a6s-w6-ha9" secondAttribute="bottom" constant="10" id="25c-mY-F3z"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="a6s-w6-ha9" secondAttribute="trailing" constant="10" id="KxS-PV-JmG"/>
-                <constraint firstItem="a6s-w6-ha9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="WtI-b2-1HO"/>
-                <constraint firstItem="a6s-w6-ha9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="e4s-t5-a69"/>
+                <constraint firstItem="Gzn-N3-Fer" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Wld-6y-9oC"/>
+                <constraint firstAttribute="bottom" secondItem="Gzn-N3-Fer" secondAttribute="bottom" id="dzU-zD-yLP"/>
+                <constraint firstItem="Gzn-N3-Fer" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vKD-HO-5xc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Gzn-N3-Fer" secondAttribute="trailing" id="yU4-ed-mYg"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="stackView" destination="KxS-PV-JmG" id="hBw-xM-Ado"/>
+                <outlet property="stackView" destination="Gzn-N3-Fer" id="h7K-sw-6qH"/>
             </connections>
-            <point key="canvasLocation" x="130.53435114503816" y="35.91549295774648"/>
+            <point key="canvasLocation" x="-16.030534351145036" y="260.21126760563379"/>
         </view>
     </objects>
 </document>

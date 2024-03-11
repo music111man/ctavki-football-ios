@@ -192,8 +192,8 @@ extension PicksVController: UITableViewDataSource {
     }
 }
 
-extension PicksVController: BetsCellDelegate {
-    func showHistory(team: Team, onLeft: Bool) {
+extension PicksVController: BetViewDelegate {
+    func openTeamDetails(team: Team, onLeft: Bool) {
         let vc: HistoryVController = .createFromNib { vc in
             vc.configure(team: team)
         }

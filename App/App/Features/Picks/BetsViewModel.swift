@@ -71,7 +71,7 @@ final class BetsViewModel {
         DispatchQueue.global(qos: .background).async {[weak self] in
             guard let self = self else { return }
             let allBets: [Bet] = Repository.selectData(Bet.table.order(Bet.eventDateField.desc))
-            let matchTime = Date().addingTimeInterval(-105 * 60)
+            let matchTime = Date().matchTime
             let activeBets = allBets.filter { $0.isActive && $0.eventDate > matchTime }.sorted { $0.eventDate < $01.eventDate }
             let bets:[Bet] = allBets.filter { !$0.isActive }
             let teams: [Team] = Repository.selectData(Team.table)

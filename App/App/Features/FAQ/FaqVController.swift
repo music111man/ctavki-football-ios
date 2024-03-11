@@ -25,7 +25,7 @@ final class FaqVController: UIViewController {
         super.viewDidLoad()
         initUI()
         faqService.faqs.observe(on: MainScheduler.instance).bind {[weak self] models in
-            self?.stackView.replaceArrangedSubviews({
+            self?.stackView.replaceWithHideAnimation({
                 models.map { model in
                     let view: FaqView = FaqView.fromNib()
                     view.model = model

@@ -6,11 +6,22 @@
 //
 
 import UIKit
+import RxSwift
 
 class TeamsView: UIView {
 
-    func loadTeams() {
-        
+    @IBOutlet weak var stackView: NSLayoutConstraint!
+    let disposeBeg = DisposeBag()
+    weak var delegate: BetViewDelegate?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
 
+}
+
+extension TeamsView: BetViewDelegate {
+    func openTeamDetails(team: Team, onLeft: Bool) {
+        delegate?.openTeamDetails(team: team, onLeft: onLeft)
+    }
 }

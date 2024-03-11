@@ -1,13 +1,14 @@
 //
-//  ActualBetCell.swift
+//  BetsCellView.swift
 //  App
 //
-//  Created by Denis Shkultetskyy on 04.03.2024.
+//  Created by Denis Shkultetskyy on 11.03.2024.
 //
 
 import UIKit
 
-class BetsCell: UITableViewCell {
+class BetsCellView: UIView {
+
     static let heightOfTitle: CGFloat = 26.0
     
     @IBOutlet weak var headerLabel: UILabel!
@@ -21,21 +22,10 @@ class BetsCell: UITableViewCell {
         super.awakeFromNib()
         headerLabel.font = UIFont.systemFont(ofSize: 13)
         headerLabel.textColor = R.color.bet_group_header()
-        let g = separatorView.setGradient(colors: [R.color.background_main()!, 
-                                                   R.color.bet_group_header()!,
-                                                   R.color.background_main()!], isLine: true)
+        let g = separatorView.setGradient(colors: [.backgroundMain,
+                                                   .betGroupHeader,
+                                                   .backgroundMain], isLine: true)
         g.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.width - 20, height: 1))
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-//        gradient?.frame = separatorView.bounds
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func configure(_ model: BetGroup) {
@@ -100,7 +90,7 @@ class BetsCell: UITableViewCell {
     }
 }
 
-extension BetsCell: BetViewDelegate {
+extension BetsCellView: BetViewDelegate {
     func openTeamDetails(team: Team, onLeft: Bool) {
         delegate?.openTeamDetails(team: team, onLeft: onLeft)
     }
