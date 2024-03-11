@@ -35,17 +35,6 @@ class PicksVController: FeaureVController {
             
         }.disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(Notification.Name.needOpenTeamDetails).subscribe {[weak self] event in
-            guard let teamId = event.element?.userInfo?[BetView.teamIdKeyForUserInfo] as? Int else {
-                return
-            }
-            
-                let alert = UIAlertController(title: "Will show team details for team id=\(teamId)", message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default))
-            self?.navigationController?.present(alert, animated: true, completion: nil)
-            
-        }.disposed(by: disposeBag)
-        
         betsViewModel.callback = { betSections in
             printAppEvent("update bets data in screen")
             DispatchQueue.main.async {[weak self] in
@@ -172,12 +161,12 @@ extension PicksVController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = indexPath.section
         if indexPath.section == 0 && betSections[indexPath.section].bets.isEmpty {
             return tableView.dequeueReusableCell(withIdentifier: NoActiveBetsCell.reuseIdentifier, for: indexPath)
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: BetsCell.reuseIdentifier, for: indexPath) as! BetsCell
         cell.configure(betSections[indexPath.section].bets[indexPath.row])
+        cell.delegate = self
         return cell
     }
 
@@ -199,6 +188,23 @@ extension PicksVController: UITableViewDataSource {
         cell.transform = CGAffineTransform.init(scaleX: 0, y: 0)
         UIView.animate(withDuration: 0.3) {
             cell.transform = CGAffineTransform.identity
+        }
+    }
+}
+
+extension PicksVController: BetsCellDelegate {
+    func showHistory(team: Team, onLeft: Bool) {
+        let vc: HistoryVController = .createFromNib { vc in
+            vc.configure(team: team)
+        }
+        UIView.transition(with: view,
+                          duration: 0.4,
+                          options: [onLeft ? .transitionFlipFromRight : .transitionFlipFromLeft],
+                          animations: { [weak self] in
+            self?.view.layer.opacity = 0
+        }) {[weak self] _ in
+            self?.view.layer.opacity = 1
+            self?.navigationController?.pushViewController(vc, animated: false)
         }
     }
 }

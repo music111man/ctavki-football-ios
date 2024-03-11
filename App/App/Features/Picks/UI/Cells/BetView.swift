@@ -12,7 +12,10 @@ import RxCocoa
 extension Notification.Name {
     static let needOpenBetDetails = Notification.Name("needOpenBetDetails")
     static let needOpenActiveBetDetails = Notification.Name("needOpenActiveBetDetails")
-    static let needOpenTeamDetails = Notification.Name("needOpenTeamDetails")
+}
+
+protocol BetViewDelegate: AnyObject {
+    func openTeamDetails(team: Team, onLeft: Bool)
 }
 
 class BetView: UIView {
@@ -28,9 +31,10 @@ class BetView: UIView {
     var gradients = [BetOutcome: CALayer]()
     let disposeBag = DisposeBag()
     var betId: Int!
-    var homeTeamId: Int!
-    var goustTeamId: Int!
+    var homeTeam: Team!
+    var goustTeam: Team!
     var betOutCome: BetOutcome!
+    weak var delegate: BetViewDelegate?
     
     static let cellHeigth: CGFloat = 70.0
     
@@ -43,8 +47,8 @@ class BetView: UIView {
     
     func configure(_ model: BetViewModel) {
         betId = model.id
-        homeTeamId = model.homeTeam?.id
-        goustTeamId = model.goustTeam?.id
+        homeTeam = model.homeTeam
+        goustTeam = model.goustTeam
         homeTeamNameLabel.text = model.homeTeam?.title
         goustTeamNameLabel.text = model.goustTeam?.title
         resultLabel.text = model.resultText
@@ -116,52 +120,38 @@ class BetView: UIView {
     }
     
     private func initTapGesture() {
-        let tapResultGesture = UITapGestureRecognizer()
-        tapResultGesture.rx.event.bind {[weak self] _ in
+        resultView.tap {[weak self] in
             guard let self = self, let betId = self.betId else { return }
             resultView.animateTapGesture(value: 0.8) {
                 if self.betOutCome == .active {
                     NotificationCenter.default.post(name: Notification.Name.needOpenActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
                 } else {
-                    NotificationCenter.default.post(name: Notification.Name.needOpenBetDetails, 
+                    NotificationCenter.default.post(name: Notification.Name.needOpenBetDetails,
                                                     object: self,
                                                     userInfo: [Self.betIdKeyForUserInfo: betId])
                 }
             }
         }.disposed(by: disposeBag)
-        resultView.addGestureRecognizer(tapResultGesture)
         
-        let tapTeem1Gesture = UITapGestureRecognizer()
-        tapTeem1Gesture.rx.event.bind {[weak self] _ in
-            guard let self = self, let teamId = self.homeTeamId else { return }
+        homeTeamNameLabel.superview?.tap {[weak self] in
+            guard let self = self else { return }
             
-            homeTeamNameLabel.superview?.animateTapGesture(value: 0.8) {
-                if !AppSettings.isAuthorized && self.betOutCome == .active {
-                    NotificationCenter.default.post(name: Notification.Name.tapAutozire, object: nil)
-                    return
-                }
-                NotificationCenter.default.post(name: Notification.Name.needOpenTeamDetails,
-                                                object: self,
-                                                userInfo: [Self.teamIdKeyForUserInfo: teamId])
+            if self.betOutCome == .active, let betId = self.betId {
+                NotificationCenter.default.post(name: Notification.Name.needOpenActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
+                return
             }
+            self.delegate?.openTeamDetails(team: self.homeTeam, onLeft: true)
         }.disposed(by: disposeBag)
-        homeTeamNameLabel.addGestureRecognizer(tapTeem1Gesture)
         
-        let tapTeem2Gesture = UITapGestureRecognizer()
-        tapTeem2Gesture.rx.event.bind {[weak self] _ in
-            guard let self = self, let teamId = self.goustTeamId else { return }
+        goustTeamNameLabel.superview?.tap {[weak self] in
+            guard let self = self else { return }
             
-            goustTeamNameLabel.superview?.animateTapGesture(value: 0.8) {
-                if !AppSettings.isAuthorized && self.betOutCome == .active {
-                    NotificationCenter.default.post(name: Notification.Name.tapAutozire, object: nil)
-                    return
-                }
-                NotificationCenter.default.post(name: Notification.Name.needOpenTeamDetails,
-                                                object: self,
-                                                userInfo: [Self.teamIdKeyForUserInfo: teamId])
+            if self.betOutCome == .active, let betId = self.betId {
+                NotificationCenter.default.post(name: Notification.Name.needOpenActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
+                return
             }
+            self.delegate?.openTeamDetails(team: self.goustTeam, onLeft: false)
         }.disposed(by: disposeBag)
-        goustTeamNameLabel.addGestureRecognizer(tapTeem2Gesture)
     }
 
     private func teamView(label: UILabel) -> UIView {

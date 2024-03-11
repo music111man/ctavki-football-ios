@@ -55,3 +55,7 @@
 "return" = "win";
 "loss" = "Lost 100";
 "year_at_end" = "%@";
+
+"bets_history" = "Bets history of";
+"balance" = "Balance";
+"bets_made" = "Picks";

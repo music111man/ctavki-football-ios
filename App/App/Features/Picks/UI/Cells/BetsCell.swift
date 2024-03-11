@@ -7,12 +7,18 @@
 
 import UIKit
 
+protocol BetsCellDelegate: AnyObject {
+    func showHistory(team: Team, onLeft: Bool)
+}
+
 class BetsCell: UITableViewCell {
     static let heightOfTitle: CGFloat = 26.0
     
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var containerView: UIView!
+    
+    weak var delegate: BetsCellDelegate?
 
     var heightConstraint: NSLayoutConstraint?
     override func awakeFromNib() {
@@ -51,6 +57,7 @@ class BetsCell: UITableViewCell {
                 view.rightAnchor.constraint(equalTo: containerView.rightAnchor),
                 view.topAnchor.constraint(equalTo: prevView?.bottomAnchor ?? containerView.topAnchor)
             ])
+            view.delegate = self
         }
         containerView.subviews.last?.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
     }
@@ -94,5 +101,11 @@ class BetsCell: UITableViewCell {
         }
 
         return R.string.localizable.match_begins(date.format("d MMMM yyyy"), date.format("HH:mm"))
+    }
+}
+
+extension BetsCell: BetViewDelegate {
+    func openTeamDetails(team: Team, onLeft: Bool) {
+        delegate?.showHistory(team: team, onLeft: onLeft)
     }
 }

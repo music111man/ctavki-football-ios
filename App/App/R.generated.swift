@@ -89,10 +89,12 @@ struct R: Rswift.Validatable {
   }
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 2 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
   struct storyboard {
     /// Storyboard `BetDetailsVController`.
     static let betDetailsVController = _R.storyboard.betDetailsVController()
+    /// Storyboard `HistoryVController`.
+    static let historyVController = _R.storyboard.historyVController()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
 
@@ -100,6 +102,13 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "BetDetailsVController", bundle: ...)`
     static func betDetailsVController(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.betDetailsVController)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "HistoryVController", bundle: ...)`
+    static func historyVController(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.historyVController)
     }
     #endif
 
@@ -747,7 +756,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 16 images.
+  /// This `R.image` struct is generated, and contains static references to 17 images.
   struct image {
     /// Image `arrow_back`.
     static let arrow_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_back")
@@ -761,6 +770,8 @@ struct R: Rswift.Validatable {
     static let arrow_top = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_top")
     /// Image `arrow_up`.
     static let arrow_up = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_up")
+    /// Image `ball_blue`.
+    static let ball_blue = Rswift.ImageResource(bundle: R.hostingBundle, name: "ball_blue")
     /// Image `bets`.
     static let bets = Rswift.ImageResource(bundle: R.hostingBundle, name: "bets")
     /// Image `done`.
@@ -821,6 +832,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "arrow_up", bundle: ..., traitCollection: ...)`
     static func arrow_up(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.arrow_up, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ball_blue", bundle: ..., traitCollection: ...)`
+    static func ball_blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ball_blue, compatibleWith: traitCollection)
     }
     #endif
 
@@ -897,7 +915,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 7 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
   struct nib {
     /// Nib `BetResultHeaderView`.
     static let betResultHeaderView = _R.nib._BetResultHeaderView()
@@ -909,8 +927,6 @@ struct R: Rswift.Validatable {
     static let faqView = _R.nib._FaqView()
     /// Nib `NoActiveBetsCell`.
     static let noActiveBetsCell = _R.nib._NoActiveBetsCell()
-    /// Nib `NoActiveBetsView`.
-    static let noActiveBetsView = _R.nib._NoActiveBetsView()
     /// Nib `TeamsView`.
     static let teamsView = _R.nib._TeamsView()
 
@@ -955,14 +971,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UINib(name: "NoActiveBetsView", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.noActiveBetsView) instead")
-    static func noActiveBetsView(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.noActiveBetsView)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UINib(name: "TeamsView", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.teamsView) instead")
     static func teamsView(_: Void = ()) -> UIKit.UINib {
@@ -990,10 +998,6 @@ struct R: Rswift.Validatable {
       return R.nib.noActiveBetsCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NoActiveBetsCell
     }
 
-    static func noActiveBetsView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> App.NoActiveBetsView? {
-      return R.nib.noActiveBetsView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? App.NoActiveBetsView
-    }
-
     static func teamsView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.teamsView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
@@ -1003,7 +1007,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 45 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 48 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1029,10 +1033,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let balance_for_month_amount = Rswift.StringResource(key: "balance_for_month_amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Balance
+      ///
+      /// Locales: en, ru
+      static let balance = Rswift.StringResource(key: "balance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: Bet amount: 100$
       ///
       /// Locales: en, ru
       static let bet_amount_100 = Rswift.StringResource(key: "bet_amount_100", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Bets history of
+      ///
+      /// Locales: en, ru
+      static let bets_history = Rswift.StringResource(key: "bets_history", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: Here are matches and odds which our service provides predictions on. Click on the match you are interested in and find out the details.
       ///
       /// Locales: en, ru
@@ -1097,6 +1109,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let tooltip_paid_title = Rswift.StringResource(key: "tooltip_paid_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Picks
+      ///
+      /// Locales: en, ru
+      static let bets_made = Rswift.StringResource(key: "bets_made", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: Picks
       ///
       /// Locales: en, ru
@@ -1286,6 +1302,21 @@ struct R: Rswift.Validatable {
         return String(format: format, locale: locale, value1, value2)
       }
 
+      /// en translation: Balance
+      ///
+      /// Locales: en, ru
+      static func balance(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("balance", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "balance"
+        }
+
+        return NSLocalizedString("balance", bundle: bundle, comment: "")
+      }
+
       /// en translation: Bet amount: 100$
       ///
       /// Locales: en, ru
@@ -1299,6 +1330,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("bet_amount_100", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Bets history of
+      ///
+      /// Locales: en, ru
+      static func bets_history(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("bets_history", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "bets_history"
+        }
+
+        return NSLocalizedString("bets_history", bundle: bundle, comment: "")
       }
 
       /// en translation: Here are matches and odds which our service provides predictions on. Click on the match you are interested in and find out the details.
@@ -1549,6 +1595,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("tooltip_paid_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Picks
+      ///
+      /// Locales: en, ru
+      static func bets_made(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("bets_made", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "bets_made"
+        }
+
+        return NSLocalizedString("bets_made", bundle: bundle, comment: "")
       }
 
       /// en translation: Picks
@@ -1919,7 +1980,6 @@ struct _R: Rswift.Validatable {
       try _BetSectionHeaderView.validate()
       try _FaqView.validate()
       try _NoActiveBetsCell.validate()
-      try _NoActiveBetsView.validate()
     }
 
     struct _BetResultHeaderView: Rswift.NibResourceType, Rswift.Validatable {
@@ -2007,32 +2067,11 @@ struct _R: Rswift.Validatable {
       }
 
       static func validate() throws {
-        if UIKit.UIImage(named: "bets", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'bets' is used in nib 'NoActiveBetsCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "ball_blue", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ball_blue' is used in nib 'NoActiveBetsCell', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
           if UIKit.UIColor(named: "selected_toolbar_item", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'selected_toolbar_item' is used in nib 'NoActiveBetsCell', but couldn't be loaded.") }
           if UIKit.UIColor(named: "text_theme", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_theme' is used in nib 'NoActiveBetsCell', but couldn't be loaded.") }
           if UIKit.UIColor(named: "toolbarItem", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'toolbarItem' is used in nib 'NoActiveBetsCell', but couldn't be loaded.") }
-        }
-      }
-
-      fileprivate init() {}
-    }
-
-    struct _NoActiveBetsView: Rswift.NibResourceType, Rswift.Validatable {
-      let bundle = R.hostingBundle
-      let name = "NoActiveBetsView"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> App.NoActiveBetsView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? App.NoActiveBetsView
-      }
-
-      static func validate() throws {
-        if UIKit.UIImage(named: "bets", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'bets' is used in nib 'NoActiveBetsView', but couldn't be loaded.") }
-        if #available(iOS 11.0, tvOS 11.0, *) {
-          if UIKit.UIColor(named: "background_main_light", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_main_light' is used in nib 'NoActiveBetsView', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "selected_toolbar_item", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'selected_toolbar_item' is used in nib 'NoActiveBetsView', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "text_theme", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_theme' is used in nib 'NoActiveBetsView', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "toolbarItem", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'toolbarItem' is used in nib 'NoActiveBetsView', but couldn't be loaded.") }
         }
       }
 
@@ -2061,6 +2100,9 @@ struct _R: Rswift.Validatable {
       try betDetailsVController.validate()
       #endif
       #if os(iOS) || os(tvOS)
+      try historyVController.validate()
+      #endif
+      #if os(iOS) || os(tvOS)
       try launchScreen.validate()
       #endif
     }
@@ -2085,6 +2127,35 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "won", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'won' is used in storyboard 'BetDetailsVController', but couldn't be loaded.") }
         }
         if _R.storyboard.betDetailsVController().betDetailsVController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'betDetailsVController' could not be loaded from storyboard 'BetDetailsVController' as 'BetDetailsVController'.") }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    struct historyVController: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let historyVController = StoryboardViewControllerResource<HistoryVController>(identifier: "HistoryVController")
+      let name = "HistoryVController"
+
+      func historyVController(_: Void = ()) -> HistoryVController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: historyVController)
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "arrow_back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'arrow_back' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "done", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'done' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "background_light", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_light' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "bet_group_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'bet_group_start' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "green_blue_end", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_end' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "return", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'return' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "shadow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shadow' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text_black", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_black' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "title_color", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'title_color' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
+        }
+        if _R.storyboard.historyVController().historyVController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'historyVController' could not be loaded from storyboard 'HistoryVController' as 'HistoryVController'.") }
       }
 
       fileprivate init() {}

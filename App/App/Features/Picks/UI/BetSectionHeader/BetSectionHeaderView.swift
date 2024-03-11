@@ -71,7 +71,8 @@ final class BetSectionHeaderView: UIView {
     
     func configure(monthName: String, sum: Int) {
         titleLabel.text = R.string.localizable.balance_for_month(monthName.uppercased())
-        sumLabel.text = "\(sum)$"
-        sumLabel.textColor = sum >= 0 ? R.color.won()! : R.color.lost()!
+        let k = sum < 0 ? -1 : 1
+        sumLabel.text = "\(sum * k)$"
+        sumLabel.textColor = sum == 0 ? .return : (sum > 0 ? .won : .lost)
     }
 }

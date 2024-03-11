@@ -8,10 +8,13 @@
 import UIKit
 
 extension UIViewController {
-    static func createFromNib() -> UIViewController {
+    static func createFromNib<T: UIViewController>(_ configure: ((_ vc: T) -> ())? = nil) -> T {
         let identificator = String(describing: Self.self)
-        return UIStoryboard(name: identificator,
+        let vc = UIStoryboard(name: identificator,
                             bundle: nil)
-        .instantiateViewController(withIdentifier: identificator)
+        .instantiateViewController(withIdentifier: identificator) as! T
+        configure?(vc)
+        
+        return vc
     }
 }

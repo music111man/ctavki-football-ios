@@ -28,7 +28,7 @@ class BetDetailsVController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    var betId: Int!
+    private var betId: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +71,10 @@ class BetDetailsVController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.view.layer.opacity = 1
         }
+    }
+    
+    func configure(betId: Int) {
+        self.betId = betId
     }
     
     func loadInfo() {

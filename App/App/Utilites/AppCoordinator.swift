@@ -59,10 +59,10 @@ final class AppCoordinator: PCoordinator {
     }
     
     func showBetDetails(betId: Int) {
-        
-        guard let vc = BetDetailsVController.createFromNib() as? BetDetailsVController else { return }
+        let vc: BetDetailsVController = BetDetailsVController.createFromNib() { vc in
+            vc.configure(betId: betId)
+        }
         vc.modalPresentationStyle = .overFullScreen
-        vc.betId = betId
         self.router?.present(vc, animated: false)
     }
     
