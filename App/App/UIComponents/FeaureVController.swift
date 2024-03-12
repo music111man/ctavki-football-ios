@@ -14,25 +14,12 @@ class FeaureVController: UIViewController {
     let disposeBag = DisposeBag()
     let activityView = UIActivityIndicatorView()
     let navigationBar = NavigationTopBarView()
-    let tableView = UITableView()
+    var tableView: UITableView!
     let refresher = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            activityView.style = .large
-        } else {
-            activityView.style = .whiteLarge
-        }
         
-        view.backgroundColor = R.color.background_main()
-        refresher.attributedTitle = NSAttributedString(string: "")
-        refresher.addTarget(self, action: #selector(callNeedRefresh), for: .valueChanged)
-        tableView.addSubview(refresher)
-        tableView.backgroundColor = .clear
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
         NotificationCenter.default.rx.notification(Notification.Name.badNetRequest).subscribe {[weak self] _ in
             self?.refresher.endRefreshing()
         }.disposed(by: disposeBag)
@@ -40,6 +27,7 @@ class FeaureVController: UIViewController {
             self?.refresher.endRefreshing()
         }.disposed(by: disposeBag)
         initUI()
+        activityView.startAnimating()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,20 +38,35 @@ class FeaureVController: UIViewController {
     }
    
     func initUI() {
-        navigationBar.initUI(parent: view, title: titleName(), icon: icon())
-        activityView.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 13.0, *) {
             activityView.style = .large
         } else {
             activityView.style = .whiteLarge
         }
+        
+        view.backgroundColor = R.color.background_main_light()
+        refresher.attributedTitle = NSAttributedString(string: "")
+        refresher.addTarget(self, action: #selector(callNeedRefresh), for: .valueChanged)
+        
+        navigationBar.initUI(parent: view, title: titleName(), icon: icon())
+        activityView.translatesAutoresizingMaskIntoConstraints = false
         activityView.color = R.color.shadow()
         view.addSubview(activityView)
         NSLayoutConstraint.activate([
             activityView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        activityView.startAnimating()
+        initTableView()
+    }
+    
+    func initTableView() {
+        tableView = UITableView()
+        tableView.addSubview(refresher)
+        tableView.backgroundColor = .clear
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
+        tableView.showsVerticalScrollIndicator = false
     }
     
     func titleName() -> String {

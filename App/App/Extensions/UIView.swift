@@ -43,7 +43,7 @@ extension UIView {
     
     func setshadow(size: CGSize? = nil) {
         layer.shadowColor = R.color.shadow()!.cgColor
-        layer.shadowOpacity = 0.4
+        layer.shadowOpacity = 0.3
         layer.shadowOffset = size ?? CGSize(width: 0, height: 2)
         layer.shadowRadius = 3
     }
@@ -90,10 +90,22 @@ extension UIView {
         return v
     }
     
-    func tap(animateTapGesture: Bool = true, _ action: @escaping () -> ()) -> Disposable {
+    func tap(animateTapGesture: Bool = true, 
+             _ validateAction: @escaping (() -> Bool) = { true },
+             _ action: @escaping () -> ()) -> Disposable {
         isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer()
         let disposed = tapGesture.rx.event.bind {[weak self] _ in
+            if !validateAction() {
+                if animateTapGesture {
+                    self?.transform = .init(scaleX: 1.05, y: 1.05)
+                    UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 10) { [weak self] in
+                        self?.transform = .identity
+                    }
+                    return
+                }
+                return
+            }
             if animateTapGesture {
                 self?.animateTapGesture(value: 0.9) {
                     action()

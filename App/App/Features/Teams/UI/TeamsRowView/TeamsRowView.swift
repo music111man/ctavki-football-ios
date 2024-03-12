@@ -23,7 +23,7 @@ class TeamsRowView: UIView {
             let view: TeamView = .fromNib() { v in
                 v.team = team
             }
-            width += view.minWidth + 25
+            width += view.minWidth + 30
             if width >= screenWidth {
                 unusedTeams.append(team)
                 continue

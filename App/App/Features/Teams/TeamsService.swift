@@ -55,7 +55,7 @@ final class TeamsService {
     
     func updateData() {
         refreshActivity?(true)
-        teams.accept([])
+//        teams.accept([])
         DispatchQueue.global(qos: .background).async {[weak self] in
             defer { self?.refreshActivity?(false) }
             guard let self = self else { return }
@@ -74,8 +74,10 @@ final class TeamsService {
             }.filter({ $0.betCount > 0 })
             
             var models = [TeamsViewModel]()
-            models.append(TeamsViewModel(title: R.string.localizable.with_current_picks(), 
-                                         teams: activeTeams))
+            if !activeBets.isEmpty {
+                models.append(TeamsViewModel(title: R.string.localizable.with_current_picks(),
+                                             teams: activeTeams))
+            }
             models.append(TeamsViewModel(R.string.localizable.with_bets_history_n_and_more(15),
                                          teamSet,
                                          activeBets) { $0 >= 15 })

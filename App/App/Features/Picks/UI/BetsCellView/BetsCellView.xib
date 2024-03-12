@@ -16,20 +16,20 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The match is already underway, the first half has been played" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxV-p0-ToM">
-                    <rect key="frame" x="10" y="5.0000000000000018" width="293" height="28.666666666666671"/>
+                    <rect key="frame" x="10" y="0.0" width="293" height="28.666666666666664"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" name="bet_group_header"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yi5-LR-Myf">
-                    <rect key="frame" x="10" y="38.666666666666664" width="293" height="1"/>
+                    <rect key="frame" x="10" y="33.666666666666664" width="293" height="1"/>
                     <color key="backgroundColor" name="blue_gray_400"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="GXp-E7-0PF"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EyX-UX-cAK">
-                    <rect key="frame" x="0.0" y="43.666666666666657" width="313" height="315.33333333333337"/>
+                    <rect key="frame" x="0.0" y="38.666666666666657" width="313" height="320.33333333333337"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
@@ -38,7 +38,7 @@
             <constraints>
                 <constraint firstItem="EyX-UX-cAK" firstAttribute="top" secondItem="Yi5-LR-Myf" secondAttribute="top" constant="5" id="1jm-e6-3tP"/>
                 <constraint firstItem="Yi5-LR-Myf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="9UU-t7-SCK"/>
-                <constraint firstItem="qxV-p0-ToM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="DH5-BZ-lZC"/>
+                <constraint firstItem="qxV-p0-ToM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DH5-BZ-lZC"/>
                 <constraint firstItem="EyX-UX-cAK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="O4V-Jg-Np7"/>
                 <constraint firstAttribute="bottom" secondItem="EyX-UX-cAK" secondAttribute="bottom" id="OmT-Vf-VHE"/>
                 <constraint firstAttribute="trailing" secondItem="Yi5-LR-Myf" secondAttribute="trailing" constant="10" id="Rav-jy-Nns"/>

@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   App
 
@@ -7,8 +7,8 @@
 */
 "update_data_msg" = "Updating...";
 
-"my_balance" = "my\nbal.";
-"sign_in" = "Sign\nIn";
+"my_balance" = "my bal.";
+"sign_in" = "Sign In";
 
 "tooltip_login_title" = "LOGIN (2/6)";
 "tooltip_bets_title" = "PREDICTIONS (1/6)";

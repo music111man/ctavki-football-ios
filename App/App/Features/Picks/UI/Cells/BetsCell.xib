@@ -19,20 +19,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The match is already underway, the first half has been played" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRd-Ro-8gE">
-                        <rect key="frame" x="10" y="5.0000000000000018" width="300" height="28.666666666666671"/>
+                        <rect key="frame" x="10" y="15.000000000000002" width="300" height="28.666666666666671"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" name="bet_group_header"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18G-xk-AuM">
-                        <rect key="frame" x="10" y="38.666666666666664" width="300" height="1"/>
+                        <rect key="frame" x="10" y="48.666666666666664" width="300" height="1"/>
                         <color key="backgroundColor" name="blue_gray_400"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="GB2-ac-MRL"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbK-wf-PNh">
-                        <rect key="frame" x="0.0" y="44.666666666666664" width="320" height="84.333333333333343"/>
+                        <rect key="frame" x="0.0" y="54.666666666666664" width="320" height="74.333333333333343"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </subviews>
@@ -47,7 +47,7 @@
                     <constraint firstItem="gbK-wf-PNh" firstAttribute="top" secondItem="18G-xk-AuM" secondAttribute="bottom" constant="5" id="bCx-D7-wJL"/>
                     <constraint firstAttribute="trailing" secondItem="gbK-wf-PNh" secondAttribute="trailing" id="bhH-O3-p6H"/>
                     <constraint firstItem="18G-xk-AuM" firstAttribute="top" secondItem="cRd-Ro-8gE" secondAttribute="bottom" constant="5" id="tXi-g4-mtA"/>
-                    <constraint firstItem="cRd-Ro-8gE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="xib-fs-u4Y"/>
+                    <constraint firstItem="cRd-Ro-8gE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="xib-fs-u4Y"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

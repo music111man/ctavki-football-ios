@@ -24,6 +24,7 @@ class HistoryVController: UIViewController {
     @IBOutlet weak var activBetsStackView: UIStackView!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var activityView: UIActivityIndicatorView!
+    @IBOutlet weak var containerView: UIView!
     let refresher = UIRefreshControl()
     var isUpdating = false
     var team: Team!
@@ -144,9 +145,17 @@ class HistoryVController: UIViewController {
 
 extension HistoryVController: BetViewDelegate {
     func openTeamDetails(team: Team, onLeft: Bool) {
-        if historyService.team.id == team.id { return }
+        if historyService.team.id == team.id {
+            self.teamLabel.transform = .init(scaleX: 1.2, y: 1.2)
+            self.subTitleView.layer.opacity = 0
+            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 20) {[weak self] in
+                self?.teamLabel.transform = .identity
+                self?.subTitleView.layer.opacity = 1
+            }
+            return
+        }
         historyService.team = team
-        UIView.transition(with: view,
+        UIView.transition(with: containerView,
                           duration: 0.4,
                           options: [onLeft ? .transitionFlipFromRight : .transitionFlipFromLeft],
                           animations: { [weak self] in

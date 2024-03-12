@@ -46,7 +46,7 @@ final class HistoryService {
         DispatchQueue.global(qos: .background).async {[weak self] in
             defer { self?.refreshActivity?(false) }
             guard let self = self else { return }
-            self.teamModel.accept(TeamHistoryViewModel(title: self.team.title, betsCount: 0, amount: 0))
+            
             let allBets: [Bet] = Repository.select(Bet.table.filter(Bet.homeTeamIdField == team.id
                                                                          || Bet.team2IdField == team.id)
                                                     .order(Bet.eventDateField.desc))
@@ -72,10 +72,10 @@ final class HistoryService {
                 BetViewModel(id: bet.id,
                              result: bet.result,
                              eventDate: bet.eventDate,
-                             betOutCome: bet.outcome,
+                             betOutCome: bet.outcome ?? (bet.isActive ? .active : .unknow),
                              homeTeam: teams.first(where: { team in team.id == bet.homeTeamId }),
                              goustTeam: teams.first(where: { team in team.id == bet.team2Id }),
-                             resultText: "\(bet.result)")
+                             resultText:  bet.outcome == nil ? "?" : "\(bet.result)")
             }
             
             let activeGroups = activeBetViewModels.map { bet in

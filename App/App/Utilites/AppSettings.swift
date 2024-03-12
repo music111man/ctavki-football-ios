@@ -36,7 +36,7 @@ final class AppSettings {
         URL(string: "https://leader4015.work/ctavki_football/api")!
     }
     
-    static let clientVersion = "2.0"
+    static let clientVersion = "1.0.0"
     
     static let apiKey = "QPejRtrJ9dv7u@8p4hrA4eY!P3XYyu"
     

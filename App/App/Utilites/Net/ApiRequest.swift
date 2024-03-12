@@ -49,7 +49,8 @@ extension ApiRequest: TargetType {
         case .checkForUpdates:
             return ["ApiKey" : AppSettings.apiKey,
                     "ClientVersion" : AppSettings.clientVersion,
-                    "Locale" : AppSettings.locale]
+                    "Locale" : AppSettings.locale,
+                    "PLATFORM" : "ios"]
         }
     }
     

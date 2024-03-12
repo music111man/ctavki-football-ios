@@ -35,7 +35,7 @@ struct Bet: Decodable {
     }
     
     var isActive: Bool {
-        outcome == nil
+        outcome == nil && eventDate > Date().matchTime
     }
     
     var result: Int {

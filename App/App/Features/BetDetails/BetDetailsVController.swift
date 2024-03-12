@@ -93,12 +93,21 @@ class BetDetailsVController: UIViewController {
                 self.eventDateLabel.text = R.string.localizable.year_at_end(bet.eventDate.format("d MMMM yyyy"))
                 self.teamsLabel.text = "\(team1.title) - \(team2.title)"
                 self.factorResultLabel.text = factor.formattedString
-                if let typeArg = bet.typeArg {
+                var description = betType.description.regReplace(pattern: "(?i)\\хозяев\\w*", replaceWith: team1.title)
+                                                    .regReplace(pattern: "(?i)\\гост\\w*", replaceWith: team2.title)
+                                                    .regReplace(pattern: "(?i)home\\s+team", replaceWith: team1.title)
+                                                    .regReplace(pattern: "(?i)away\\s+team", replaceWith: team2.title)
+                if var typeArg = bet.typeArg, [34, 35, 38, 39].contains(typeArg) {
+                    if [34, 38].contains(betType.id) {
+                        typeArg += 0.5
+                    } else {
+                        typeArg -= 0.5
+                    }
                     self.betTypeLabel.text =  betType.shortTitle.replace("%x%", with: "\(typeArg)")
-                    self.betTypeDetailsLabel.text = betType.description.replace("%x%", with: "\(typeArg)")
+                    self.betTypeDetailsLabel.text = description.replace("%x%", with: "\(typeArg)")
                 } else {
                     self.betTypeLabel.text = betType.shortTitle
-                    self.betTypeDetailsLabel.text = betType.description
+                    self.betTypeDetailsLabel.text = description
                 }
                 switch outcome {
                 case .active:
@@ -112,6 +121,8 @@ class BetDetailsVController: UIViewController {
                 case .return:
                     self.resultValLabel.text = R.string.localizable.return()
                     self.resultValLabel.textColor = R.color.text_black()
+                case .unknow:
+                    break
                 }
                 self.activityView.animateOpacity(0.4, 0) {[weak self] in
                     self?.activityView.isHidden = true

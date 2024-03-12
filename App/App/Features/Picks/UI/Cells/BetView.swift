@@ -12,6 +12,8 @@ import RxCocoa
 extension Notification.Name {
     static let needOpenBetDetails = Notification.Name("needOpenBetDetails")
     static let needOpenActiveBetDetails = Notification.Name("needOpenActiveBetDetails")
+    static let needOpenHistory = Notification.Name("needOpenHistory")
+    
 }
 
 protocol BetViewDelegate: AnyObject {
@@ -21,7 +23,8 @@ protocol BetViewDelegate: AnyObject {
 class BetView: UIView {
 
     static let betIdKeyForUserInfo = "betId"
-    static let teamIdKeyForUserInfo = "betId"
+    static let teamKeyUserInfo = "team"
+    static let tapLeftUserInfo = "tapLeft"
     
     let homeTeamNameLabel = UILabel()
     let goustTeamNameLabel = UILabel()
@@ -85,7 +88,7 @@ class BetView: UIView {
         NSLayoutConstraint.activate([
             teamsView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
             teamsView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
-            teamsView.heightAnchor.constraint(equalToConstant: 60),
+            teamsView.heightAnchor.constraint(equalToConstant: 56),
             teamsView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         resultLabel.textAlignment = .center
@@ -98,6 +101,7 @@ class BetView: UIView {
         gradients[.won] = resultView.setGradient(start: R.color.won_light(), end: R.color.won(), isLine: false)
         gradients[.lost] = resultView.setGradient(start: R.color.red_start(), end: R.color.lost(), isLine: false)
         gradients[.return] = resultView.setGradient(start: R.color.blue_gray_400(), end: R.color.return(), isLine: false)
+        gradients[.unknow] = resultView.setGradient(start: R.color.blue_gray_400(), end: R.color.return(), isLine: false)
         resultView.clipsToBounds = true
         resultView.addSubview(resultLabel)
         NSLayoutConstraint.activate([
@@ -109,10 +113,10 @@ class BetView: UIView {
         NSLayoutConstraint.activate([
             resultView.centerYAnchor.constraint(equalTo: centerYAnchor),
             resultView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            resultView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            resultView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             resultView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            resultView.heightAnchor.constraint(equalToConstant: 50),
-            resultView.widthAnchor.constraint(equalToConstant: 50)
+            resultView.heightAnchor.constraint(equalToConstant: 58),
+            resultView.widthAnchor.constraint(equalToConstant: 58)
         ])
         initTapGesture()
         
@@ -123,7 +127,7 @@ class BetView: UIView {
         resultView.tap {[weak self] in
             guard let self = self, let betId = self.betId else { return }
             resultView.animateTapGesture(value: 0.8) {
-                if self.betOutCome == .active {
+                if self.betOutCome == .active || self.betOutCome == .unknow {
                     NotificationCenter.default.post(name: Notification.Name.needOpenActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
                 } else {
                     NotificationCenter.default.post(name: Notification.Name.needOpenBetDetails,
@@ -140,6 +144,7 @@ class BetView: UIView {
                 NotificationCenter.default.post(name: Notification.Name.needOpenActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
                 return
             }
+            
             self.delegate?.openTeamDetails(team: self.homeTeam, onLeft: true)
         }.disposed(by: disposeBag)
         

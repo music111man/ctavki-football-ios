@@ -62,6 +62,7 @@ extension Date {
     
     var monthAsString: String {
         let formatter = DateFormatter()
+        formatter.locale = Locale.appLocal
         formatter.dateFormat = "LLLL"
         return formatter.string(from: self)
     }
@@ -69,11 +70,30 @@ extension Date {
     func format(_ formatString: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = formatString
-        
+        formatter.locale = Locale.appLocal
         return formatter.string(from: self)
     }
     
     var matchTime: Date {
         Date().addingTimeInterval(-105 * 60)
+    }
+}
+
+extension Locale {
+    static var appLocal: Locale {
+        let identifiers = Locale.current.identifier.split(separator: "_")
+        let lang = identifiers.first ?? "en"
+        let reg = identifiers.last ?? "EN"
+        let ruIdentifier = "ru_\(reg)"
+        switch lang {
+        case "en": return Locale.current
+        case "ru": return Locale.current
+        case "uk": return Locale(identifier: ruIdentifier)
+        case "be": return Locale(identifier: ruIdentifier)
+        case "ka": return Locale(identifier: ruIdentifier)
+        case "kk": return Locale(identifier: ruIdentifier)
+        case "ky": return Locale(identifier: ruIdentifier)
+        default: return Locale(identifier: "en_EN")
+        }
     }
 }

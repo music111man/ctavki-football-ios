@@ -56,6 +56,14 @@ final class AppCoordinator: PCoordinator {
                 return
             }
         }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(Notification.Name.needOpenHistory).subscribe {[weak self] event in
+            guard let team = event.element?.userInfo?[BetView.teamKeyUserInfo] as? Team else {
+                printAppEvent("Unable open history - no arguments")
+                return
+            }
+            let tapLeft = event.element?.userInfo?[BetView.tapLeftUserInfo] as? Bool
+            self?.showHistory(team: team, animationDirectionLeft: tapLeft)
+        }.disposed(by: disposeBag)
     }
     
     func showBetDetails(betId: Int) {
@@ -70,6 +78,36 @@ final class AppCoordinator: PCoordinator {
         let alert = UIAlertController(title: "Need autorization", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         self.router?.present(alert, animated: true)
+    }
+    
+    func showHistory(team: Team, animationDirectionLeft: Bool?) {
+        guard let topVC = router?.topViewController as? MainVController else { return }
+        let vc: HistoryVController = .createFromNib { vc in
+            vc.configure(team: team)
+        }
+        topVC.animate(onLeft: animationDirectionLeft) { [weak self] in
+            self?.router?.pushViewController(vc, animated: false)
+        }
+//        
+//        if let onLeft = animationDirectionLeft {
+//            UIView.transition(with: topVC.view,
+//                              duration: 0.4,
+//                              options: [onLeft ? .transitionFlipFromRight : .transitionFlipFromLeft],
+//                              animations: {
+//                topVC.view.layer.opacity = 0
+//            }) {[weak self] _ in
+//                topVC.view.layer.opacity = 1
+//                self?.router?.pushViewController(vc, animated: false)
+//            }
+//            
+//            return
+//        }
+//        UIView.animate(withDuration: 0.3) {
+//            topVC.view.transform = .init(scaleX: 0.01, y: 0.01)
+//        } completion: { [weak self] _ in
+//            topVC.view.transform = .identity
+//            self?.router?.pushViewController(vc, animated: false)
+//        }
     }
 }
 

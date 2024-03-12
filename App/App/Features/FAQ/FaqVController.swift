@@ -139,7 +139,7 @@ final class FaqVController: UIViewController {
 
 extension FaqVController: FaqViewDeelegate {
     func changeVisibality() {
-        let allCollapsed = stackView.arrangedSubviews.filter({ !($0 as! FaqView).isCollapsed}).isEmpty
+        let allCollapsed = stackView.arrangedSubviews.compactMap({$0 as? FaqView}).filter({ !$0.isCollapsed }).isEmpty
         if allCollapsed, imageView.isHidden { return }
         if !allCollapsed {
             imageView.isHidden = false
@@ -150,9 +150,11 @@ extension FaqVController: FaqViewDeelegate {
             }
         } else {
             UIView.animate(withDuration: 0.4, animations: {[weak self] in
-                self?.imageView.transform = .init(rotationAngle: FaqView.rotateAngel)
+                self?.imageView.transform = .identity
             }) {[weak self] _ in
-                self?.imageView.animateOpacity(0.2, 0)
+                self?.imageView.animateOpacity(0.2, 0) {[weak self] in
+                    self?.imageView.isHidden = true
+                }
             }
         }
     }

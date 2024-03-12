@@ -71,8 +71,7 @@ final class BetsViewModel {
         DispatchQueue.global(qos: .background).async {[weak self] in
             guard let self = self else { return }
             let allBets: [Bet] = Repository.select(Bet.table.order(Bet.eventDateField.desc))
-            let matchTime = Date().matchTime
-            let activeBets = allBets.filter { $0.isActive && $0.eventDate > matchTime }.sorted { $0.eventDate < $01.eventDate }
+            let activeBets = allBets.filter { $0.isActive }.sorted { $0.eventDate < $01.eventDate }
             let bets:[Bet] = allBets.filter { !$0.isActive }
             let teams: [Team] = Repository.select(Team.table)
             let betTypes: [BetType] = AppSettings.isAuthorized ? Repository.select(BetType.table
@@ -94,10 +93,10 @@ final class BetsViewModel {
                 BetViewModel(id: bet.id,
                              result: bet.result,
                              eventDate: bet.eventDate,
-                             betOutCome: bet.outcome,
+                             betOutCome: bet.outcome ?? (bet.isActive ? .active : .unknow),
                              homeTeam: teams.first(where: { team in team.id == bet.homeTeamId }),
                              goustTeam: teams.first(where: { team in team.id == bet.team2Id }),
-                             resultText: "\(bet.result)")
+                             resultText: bet.outcome == nil ? "?" : "\(bet.result)")
             }
             let activeGroups = activeBetViewModels.map { bet in
                 BetGroup(eventDate: bet.eventDate, active: true, bets: [bet])

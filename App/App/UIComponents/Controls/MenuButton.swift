@@ -53,10 +53,10 @@ final class MenuButton: UIView {
                 animationView.isHidden = false
                 animationView.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
                 animationView.layer.opacity = 1
-                UIView.animate(withDuration: 0.3, animations: {
+                UIView.animate(withDuration: 0.5, animations: {
                         //self.transform = CGAffineTransform.identity.scaledBy(x: 0.9, y: 0.9)
                         self.animationView.transform = .identity
-                    self.animationView.layer.opacity = 0.2
+                    self.animationView.layer.opacity = 0
                    
                         }, completion: { _ in
                             self.animationView.isHidden = true
