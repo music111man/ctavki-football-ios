@@ -26,7 +26,7 @@ final class FaqService {
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self = self else { return }
             var models = [FaqViewModel]()
-            let faqs: [Faq] = Repository.selectData(Faq.table)
+            let faqs: [Faq] = Repository.select(Faq.table)
             var index = 0
             for faq in  faqs {
                 index += 1

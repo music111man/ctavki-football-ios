@@ -28,6 +28,8 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="leftConstraint" destination="Wld-6y-9oC" id="NAJ-hI-Ggy"/>
+                <outlet property="rightConstraint" destination="yU4-ed-mYg" id="mh5-cK-I4F"/>
                 <outlet property="stackView" destination="Gzn-N3-Fer" id="h7K-sw-6qH"/>
             </connections>
             <point key="canvasLocation" x="-16.030534351145036" y="260.21126760563379"/>

@@ -158,7 +158,7 @@ class BetView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.textColor = R.color.text_black()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 16)
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 2
         let parentView = UIView()

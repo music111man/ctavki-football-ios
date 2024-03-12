@@ -59,3 +59,7 @@
 "bets_history" = "Bets history of";
 "balance" = "Balance";
 "bets_made" = "Picks";
+
+"with_current_picks" = "with current picks";
+"with_bets_history_n_and_more" = "with history of %d picks and more";
+"with_bets_history_4_and_less" = "with history of 4 picks and less";

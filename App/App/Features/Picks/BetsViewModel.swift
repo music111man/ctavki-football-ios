@@ -70,12 +70,12 @@ final class BetsViewModel {
         beginRefrech?()
         DispatchQueue.global(qos: .background).async {[weak self] in
             guard let self = self else { return }
-            let allBets: [Bet] = Repository.selectData(Bet.table.order(Bet.eventDateField.desc))
+            let allBets: [Bet] = Repository.select(Bet.table.order(Bet.eventDateField.desc))
             let matchTime = Date().matchTime
             let activeBets = allBets.filter { $0.isActive && $0.eventDate > matchTime }.sorted { $0.eventDate < $01.eventDate }
             let bets:[Bet] = allBets.filter { !$0.isActive }
-            let teams: [Team] = Repository.selectData(Team.table)
-            let betTypes: [BetType] = AppSettings.isAuthorized ? Repository.selectData(BetType.table
+            let teams: [Team] = Repository.select(Team.table)
+            let betTypes: [BetType] = AppSettings.isAuthorized ? Repository.select(BetType.table
                                                                                             .filter(activeBets.compactMap({$0.typeId})
                                                                                             .contains(BetType.idField))) : []
             

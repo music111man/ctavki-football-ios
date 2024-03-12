@@ -7,49 +7,65 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class TeamsVController: FeaureVController {
     
-    let flowOutView = UICollectionViewFlowLayout()
-    let label = UILabel()
+    var teamsService: TeamsService!
+    var isUpdating = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        teamsService = TeamsService {[weak self] refresh in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.isUpdating = refresh
+                if refresh {
+                    if self.refresher.isRefreshing { return }
+                    self.activityView.isHidden = false
+                    self.activityView.animateOpacity(0.2, 1)
+                    
+                    return
+                }
+                self.refresher.endRefreshing()
+                self.activityView.animateOpacity(0.2, 0) {[weak self] in
+                    self?.activityView.isHidden = true
+                }
+            }
+        }
+        
+        teamsService.teams.bind(to: tableView.rx.items(cellIdentifier: TeamsViewCell.reuseIdentifier,
+                                                       cellType: TeamsViewCell.self)) { [weak self] _, item, cell in
+            cell.delegate = self
+            cell.configure(model: item)
+        }.disposed(by: disposeBag)
+        
+        teamsService.updateData()
     }
     
     override func initUI() {
         super.initUI()
         navigationBar.hideAuthBtn()
-        
-        activityView.animateOpacity(0.5, 0)
-        let viewText = UIView()
-        viewText.translatesAutoresizingMaskIntoConstraints = false
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Hello, world!"
-        label.textColor = .darkText
-        label.font = UIFont.systemFont(ofSize: 20)
-        viewText.addSubview(label)
-        viewText.backgroundColor = .backgroundLight
-        view.addSubview(viewText)
+        tableView.register(UINib(resource: R.nib.teamsViewCell), forCellReuseIdentifier: TeamsViewCell.reuseIdentifier)
+        view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            viewText.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            viewText.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.topAnchor.constraint(equalTo: viewText.topAnchor, constant: 10),
-            label.bottomAnchor.constraint(equalTo: viewText.bottomAnchor, constant: -10),
-            label.leftAnchor.constraint(equalTo: viewText.leftAnchor, constant: 20),
-            label.rightAnchor.constraint(equalTo: viewText.rightAnchor, constant: -20)
+            tableView.topAnchor.constraint(equalTo: self.navigationBar.bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        viewText.roundCorners(radius: (label.intrinsicContentSize.height + 20.0) / 2 )
-        viewText.setshadow()
-        viewText.tap {
-            printAppEvent("tap by \(self.label.text ?? "")")
-        }.disposed(by: disposeBag)
-        let widht = label.intrinsicContentSize.width + 40.0
-        printAppEvent("size with text calculated=\(widht)")
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIView.animate(withDuration: 0.3) {[weak self] in
+            self?.tableView.transform = .identity
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        printAppEvent("size with textView=\(label.superview?.bounds.width ?? 0 + 40.0)")
     }
     
     override func titleName() -> String {
@@ -59,6 +75,15 @@ final class TeamsVController: FeaureVController {
     override func icon() -> UIImage? {
         R.image.teams()
     }
+    
+    override func refreshData() -> Bool {
+        
+        if isUpdating { return false }
+        
+        teamsService.updateData()
+        
+        return true
+    }
 }
 
 extension TeamsVController: BetViewDelegate {
@@ -66,14 +91,20 @@ extension TeamsVController: BetViewDelegate {
         let vc: HistoryVController = .createFromNib { vc in
             vc.configure(team: team)
         }
-        UIView.transition(with: view,
-                          duration: 0.4,
-                          options: [onLeft ? .transitionFlipFromRight : .transitionFlipFromLeft],
-                          animations: { [weak self] in
-            self?.view.layer.opacity = 0
-        }) {[weak self] _ in
-            self?.view.layer.opacity = 1
-            self?.navigationController?.pushViewController(vc, animated: false)
+//        UIView.transition(with: view,
+//                          duration: 0.4,
+//                          options: [onLeft ? .transitionFlipFromRight : .transitionFlipFromLeft],
+//                          animations: { [weak self] in
+//            self?.view.layer.opacity = 0
+//        }) {[weak self] _ in
+//            self?.view.layer.opacity = 1
+//            self?.navigationController?.pushViewController(vc, animated: false)
+//        }
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.tableView.transform = .init(scaleX: 0.01, y: 0.01)
+        } completion: { [weak self] _ in
+            self?.navigationController?.pushViewController(vc, animated: true)
         }
+
     }
 }

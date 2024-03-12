@@ -915,7 +915,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 9 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 10 nibs.
   struct nib {
     /// Nib `BetResultHeaderView`.
     static let betResultHeaderView = _R.nib._BetResultHeaderView()
@@ -933,6 +933,8 @@ struct R: Rswift.Validatable {
     static let teamView = _R.nib._TeamView()
     /// Nib `TeamsRowView`.
     static let teamsRowView = _R.nib._TeamsRowView()
+    /// Nib `TeamsViewCell`.
+    static let teamsViewCell = _R.nib._TeamsViewCell()
     /// Nib `TeamsView`.
     static let teamsView = _R.nib._TeamsView()
 
@@ -1008,6 +1010,14 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "TeamsViewCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.teamsViewCell) instead")
+    static func teamsViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.teamsViewCell)
+    }
+    #endif
+
     static func betResultHeaderView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BetResultHeaderView? {
       return R.nib.betResultHeaderView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetResultHeaderView
     }
@@ -1044,12 +1054,16 @@ struct R: Rswift.Validatable {
       return R.nib.teamsView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsView
     }
 
+    static func teamsViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamsViewCell? {
+      return R.nib.teamsViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsViewCell
+    }
+
     fileprivate init() {}
   }
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 48 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 51 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1243,6 +1257,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let `return` = Rswift.StringResource(key: "return", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: with current picks
+      ///
+      /// Locales: en, ru
+      static let with_current_picks = Rswift.StringResource(key: "with_current_picks", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: with history of %d picks and more
+      ///
+      /// Locales: en, ru
+      static let with_bets_history_n_and_more = Rswift.StringResource(key: "with_bets_history_n_and_more", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: with history of 4 picks and less
+      ///
+      /// Locales: en, ru
+      static let with_bets_history_4_and_less = Rswift.StringResource(key: "with_bets_history_4_and_less", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
 
       /// en translation: %#@VARIABLE@
       ///
@@ -1986,6 +2012,53 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("return", bundle: bundle, comment: "")
       }
 
+      /// en translation: with current picks
+      ///
+      /// Locales: en, ru
+      static func with_current_picks(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("with_current_picks", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "with_current_picks"
+        }
+
+        return NSLocalizedString("with_current_picks", bundle: bundle, comment: "")
+      }
+
+      /// en translation: with history of %d picks and more
+      ///
+      /// Locales: en, ru
+      static func with_bets_history_n_and_more(_ value1: Int, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("with_bets_history_n_and_more", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "with_bets_history_n_and_more"
+        }
+
+        let format = NSLocalizedString("with_bets_history_n_and_more", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: with history of 4 picks and less
+      ///
+      /// Locales: en, ru
+      static func with_bets_history_4_and_less(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("with_bets_history_4_and_less", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "with_bets_history_4_and_less"
+        }
+
+        return NSLocalizedString("with_bets_history_4_and_less", bundle: bundle, comment: "")
+      }
+
       fileprivate init() {}
     }
 
@@ -2159,6 +2232,17 @@ struct _R: Rswift.Validatable {
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamsView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsView
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _TeamsViewCell: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "TeamsViewCell"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamsViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsViewCell
       }
 
       fileprivate init() {}

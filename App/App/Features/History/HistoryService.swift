@@ -44,18 +44,19 @@ final class HistoryService {
     func updateData() {
         refreshActivity?(true)
         DispatchQueue.global(qos: .background).async {[weak self] in
+            defer { self?.refreshActivity?(false) }
             guard let self = self else { return }
             self.teamModel.accept(TeamHistoryViewModel(title: self.team.title, betsCount: 0, amount: 0))
-            let allBets: [Bet] = Repository.selectData(Bet.table.filter(Bet.homeTeamIdField == team.id
+            let allBets: [Bet] = Repository.select(Bet.table.filter(Bet.homeTeamIdField == team.id
                                                                          || Bet.team2IdField == team.id)
                                                     .order(Bet.eventDateField.desc))
             let matchTime = Date().matchTime
             let activeBets = allBets.filter { $0.isActive && $0.eventDate > matchTime }.sorted { $0.eventDate < $01.eventDate }
-            let betTypes: [BetType] = AppSettings.isAuthorized ? Repository.selectData(BetType.table
+            let betTypes: [BetType] = AppSettings.isAuthorized ? Repository.select(BetType.table
                                                                                             .filter(activeBets.compactMap({$0.typeId})
                                                                                             .contains(BetType.idField))) : []
             let bets:[Bet] = allBets.filter { !$0.isActive }
-            let teams: [Team] = Repository.selectData(Team.table)
+            let teams: [Team] = Repository.select(Team.table)
             let activeBetViewModels = activeBets.map { bet in
                 BetViewModel(id: bet.id,
                              result: bet.result,
@@ -89,7 +90,6 @@ final class HistoryService {
             self.teamModel.accept(TeamHistoryViewModel(title: self.team.title, betsCount: bets.count, amount: amount))
             self.betGroups.accept(groups)
             self.activeBetGroups.accept(activeGroups)
-            self.refreshActivity?(false)
         }
     }
 }

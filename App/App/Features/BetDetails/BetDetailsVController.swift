@@ -80,12 +80,12 @@ class BetDetailsVController: UIViewController {
     func loadInfo() {
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self = self,
-                  let bet: Bet = Repository.scalarData(Bet.table.where(Bet.idField == self.betId)),
+                  let bet: Bet = Repository.selectTop(Bet.table.where(Bet.idField == self.betId)),
                   let typeId = bet.typeId,
                   let factor = bet.factor,
                   let outcome = bet.outcome,
-                  let betType: BetType = Repository.scalarData(BetType.table.where(BetType.idField == typeId)) else { return }
-            let teams: [Team] = Repository.selectData(Team.table.where([bet.team1Id, bet.team2Id].contains(Team.idField)))
+                  let betType: BetType = Repository.selectTop(BetType.table.where(BetType.idField == typeId)) else { return }
+            let teams: [Team] = Repository.select(Team.table.where([bet.team1Id, bet.team2Id].contains(Team.idField)))
             guard teams.count == 2, let team1 = teams.first, let team2 = teams.last else { return }
             
             DispatchQueue.main.async {[weak self] in

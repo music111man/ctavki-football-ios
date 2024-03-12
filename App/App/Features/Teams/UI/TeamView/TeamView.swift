@@ -16,7 +16,11 @@ class TeamView: UIView {
     @IBOutlet weak var rigthConstraint: NSLayoutConstraint!
     
     let disposeBag = DisposeBag()
-    var team: Team!
+    var team: TeamViewModel! {
+        didSet {
+            label.text = team.toString
+        }
+    }
     weak var delegate: BetViewDelegate?
     
     var minWidth: CGFloat {
@@ -27,10 +31,10 @@ class TeamView: UIView {
         super.awakeFromNib()
         roundCorners(radius: 6)
         setshadow()
-        label.text = team.title
+        
         tap { [weak self] in
             guard let self = self else { return }
-            delegate?.openTeamDetails(team: self.team, onLeft: true)
+            delegate?.openTeamDetails(team: self.team.team, onLeft: true)
         }.disposed(by: disposeBag)
     }
     

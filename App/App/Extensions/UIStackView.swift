@@ -16,6 +16,7 @@ extension UIStackView {
                 self.removeArrangedSubview(v)
                 v.removeFromSuperview()
             }
+            addArrangedSubview(UILabel())
             getViews().forEach { self.addArrangedSubview($0)}
             self.animateOpacity(0.3, 1) {
                 endAction?()
@@ -24,11 +25,12 @@ extension UIStackView {
     }
     func replaceArrangedSubviews(_ getViews:@escaping (() -> [UIView]), _ endAction: (() -> ())? = nil) {
        
-            while let v = self.arrangedSubviews.first {
-                self.removeArrangedSubview(v)
-                v.removeFromSuperview()
-            }
-            getViews().forEach { self.addArrangedSubview($0)}
-            endAction?()
+        while let v = self.arrangedSubviews.first {
+            self.removeArrangedSubview(v)
+            v.removeFromSuperview()
+        }
+        addArrangedSubview(UILabel())
+        getViews().forEach { self.addArrangedSubview($0)}
+        endAction?()
     }
 }

@@ -52,6 +52,9 @@
 		F2973D162B9F5284003612E1 /* TeamsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D152B9F5284003612E1 /* TeamsRowView.swift */; };
 		F2973D192B9F5B1C003612E1 /* BetsCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2973D182B9F5B1C003612E1 /* BetsCellView.xib */; };
 		F2973D1B2B9F5B4A003612E1 /* BetsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D1A2B9F5B4A003612E1 /* BetsCellView.swift */; };
+		F2973D212B9F7B73003612E1 /* TeamsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D1F2B9F7B73003612E1 /* TeamsViewCell.swift */; };
+		F2973D222B9F7B73003612E1 /* TeamsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2973D202B9F7B73003612E1 /* TeamsViewCell.xib */; };
+		F2973D242B9F7D45003612E1 /* TeamsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D232B9F7D45003612E1 /* TeamsService.swift */; };
 		F2A016302B9E499000B532C1 /* TeamsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A0162F2B9E499000B532C1 /* TeamsView.xib */; };
 		F2A016322B9E49CD00B532C1 /* TeamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A016312B9E49CD00B532C1 /* TeamsView.swift */; };
 		F2A0163A2B9E6A1700B532C1 /* NoActivebetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A016382B9E6A1700B532C1 /* NoActivebetsCell.swift */; };
@@ -128,6 +131,9 @@
 		F2973D152B9F5284003612E1 /* TeamsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsRowView.swift; sourceTree = "<group>"; };
 		F2973D182B9F5B1C003612E1 /* BetsCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetsCellView.xib; sourceTree = "<group>"; };
 		F2973D1A2B9F5B4A003612E1 /* BetsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsCellView.swift; sourceTree = "<group>"; };
+		F2973D1F2B9F7B73003612E1 /* TeamsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewCell.swift; sourceTree = "<group>"; };
+		F2973D202B9F7B73003612E1 /* TeamsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamsViewCell.xib; sourceTree = "<group>"; };
+		F2973D232B9F7D45003612E1 /* TeamsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsService.swift; sourceTree = "<group>"; };
 		F2A0162F2B9E499000B532C1 /* TeamsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamsView.xib; sourceTree = "<group>"; };
 		F2A016312B9E49CD00B532C1 /* TeamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsView.swift; sourceTree = "<group>"; };
 		F2A016382B9E6A1700B532C1 /* NoActivebetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoActivebetsCell.swift; sourceTree = "<group>"; };
@@ -284,6 +290,7 @@
 			children = (
 				F2A0162D2B9E494700B532C1 /* UI */,
 				F22CE09D2B87C53700732FFB /* TeamsVController.swift */,
+				F2973D232B9F7D45003612E1 /* TeamsService.swift */,
 				F22CE0B42B88C20900732FFB /* TeamsFactory.swift */,
 			);
 			path = Teams;
@@ -418,9 +425,19 @@
 			path = BetsCellView;
 			sourceTree = "<group>";
 		};
+		F2973D1C2B9F7B2B003612E1 /* TeamCell */ = {
+			isa = PBXGroup;
+			children = (
+				F2973D1F2B9F7B73003612E1 /* TeamsViewCell.swift */,
+				F2973D202B9F7B73003612E1 /* TeamsViewCell.xib */,
+			);
+			path = TeamCell;
+			sourceTree = "<group>";
+		};
 		F2A0162D2B9E494700B532C1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F2973D1C2B9F7B2B003612E1 /* TeamCell */,
 				F2973D0E2B9F4505003612E1 /* TeamView */,
 				F2973D0B2B9F411F003612E1 /* TeamsRowView */,
 				F2A0162E2B9E497100B532C1 /* TeamsView */,
@@ -592,6 +609,7 @@
 				F20704832B87A33800DD6364 /* Localizable.strings in Resources */,
 				F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */,
 				F2973D142B9F526C003612E1 /* TeamsRowView.xib in Resources */,
+				F2973D222B9F7B73003612E1 /* TeamsViewCell.xib in Resources */,
 				F2A016302B9E499000B532C1 /* TeamsView.xib in Resources */,
 				F2EB1A372B9A2E9C0027D782 /* BetDetailsVController.storyboard in Resources */,
 				F2973D0A2B9F2B43003612E1 /* HistoryVController.storyboard in Resources */,
@@ -675,6 +693,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2973D242B9F7D45003612E1 /* TeamsService.swift in Sources */,
 				F2973D1B2B9F5B4A003612E1 /* BetsCellView.swift in Sources */,
 				F2DBFAEF2B8F7D7B00FC5069 /* Bet.swift in Sources */,
 				F2FC03422B867809001C6BB3 /* MainVController.swift in Sources */,
@@ -725,6 +744,7 @@
 				F2EA78D72B90B97D006B3A1C /* AppUpdateAvailable.swift in Sources */,
 				F226FA0E2B9CC6A500F9D391 /* UIStackView.swift in Sources */,
 				F291F1382B96355B00BB8E58 /* BetsViewModel.swift in Sources */,
+				F2973D212B9F7B73003612E1 /* TeamsViewCell.swift in Sources */,
 				F2EA78D02B90941D006B3A1C /* ApiResponseData.swift in Sources */,
 				F2EA78D92B90C8B0006B3A1C /* ApiRequest.swift in Sources */,
 				F22CE0B12B88BC6E00732FFB /* PicksFactory.swift in Sources */,
@@ -892,7 +912,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -922,7 +942,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
