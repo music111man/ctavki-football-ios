@@ -54,15 +54,22 @@ class BetDetailsVController: UIViewController {
                               options: [.transitionFlipFromLeft],
                               animations: { [weak self] in
                 self?.containerView.layer.opacity = 0
-            }) { [weak self] _ in
-                UIView.animate(withDuration: 0.3) {
+            }) { _ in
+                UIView.animate(withDuration: 0.3) {[weak self] in
                     self?.view.layer.opacity = 0
-                } completion: { _ in
+                } completion: {[weak self] _ in
                     self?.dismiss(animated: false)
                 }
             }
         }.disposed(by: disposeBag)
         containerView.tap(animateTapGesture: false) {}.disposed(by: disposeBag)
+        view.tap(animateTapGesture: false) {
+           UIView.animate(withDuration: 0.3) {[weak self] in
+               self?.view.layer.opacity = 0
+           } completion: {[weak self] _ in
+               self?.dismiss(animated: false)
+           }
+        }.disposed(by: disposeBag)
         loadInfo()
     }
     
@@ -97,7 +104,7 @@ class BetDetailsVController: UIViewController {
                                                     .regReplace(pattern: "(?i)\\гост\\w*", replaceWith: team2.title)
                                                     .regReplace(pattern: "(?i)home\\s+team", replaceWith: team1.title)
                                                     .regReplace(pattern: "(?i)away\\s+team", replaceWith: team2.title)
-                if var typeArg = bet.typeArg, [34, 35, 38, 39].contains(typeArg) {
+                if var typeArg = bet.typeArg {
                     if [34, 38].contains(betType.id) {
                         typeArg += 0.5
                     } else {

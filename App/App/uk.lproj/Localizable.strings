@@ -62,3 +62,9 @@
 "with_current_picks" = "с текущими прогнозами";
 "with_bets_history_n_and_more" = "с историей прогнозов от %d ставок и больше";
 "with_bets_history_4_and_less" = "с историей прогнозов 4 и меньше";
+
+// Sign In
+"you_are_not_logged_in" = "Вы не вошли";
+"we_gift_free_bets_to_new_users" = "Вы должны войти чтобы посмотреть прогнозы";
+"log_in_with_google" = "Войти с помощью Google";
+"log_in_with_telegram" = "Войти с помощью Telegram";

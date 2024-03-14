@@ -27,8 +27,8 @@ end
 #def fastEasyMapping
 #    pod 'FastEasyMapping', "~> 1.0"
 #end
-def rxDataSources
-    pod 'RxDataSources', '~> 5.0'
+def telegram
+    pod 'TGPassportKit'
 end
 
 def sqlite

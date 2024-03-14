@@ -63,3 +63,9 @@
 "with_current_picks" = "with current picks";
 "with_bets_history_n_and_more" = "with history of %d picks and more";
 "with_bets_history_4_and_less" = "with history of 4 picks and less";
+
+// Sign In
+"you_are_not_logged_in" = "Not signed in";
+"we_gift_free_bets_to_new_users" = "You gotta sign in to see some picks";
+"log_in_with_google" = "Sign in with Google";
+"log_in_with_telegram" = "Sign in with Telegram";

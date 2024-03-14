@@ -194,7 +194,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow_back" width="128" height="128"/>
+        <image name="arrow_back" width="24" height="24"/>
         <image name="done" width="128" height="128"/>
         <namedColor name="background_main_light">
             <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

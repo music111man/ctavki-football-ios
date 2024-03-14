@@ -16,7 +16,7 @@ target 'App' do
   rxCocoa
   moya
   sqlite
-  rxDataSources
+  telegram
 end
 
 # post install

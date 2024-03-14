@@ -89,7 +89,7 @@ struct R: Rswift.Validatable {
   }
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
     /// Storyboard `BetDetailsVController`.
     static let betDetailsVController = _R.storyboard.betDetailsVController()
@@ -97,6 +97,8 @@ struct R: Rswift.Validatable {
     static let historyVController = _R.storyboard.historyVController()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
+    /// Storyboard `SignInVController`.
+    static let signInVController = _R.storyboard.signInVController()
 
     #if os(iOS) || os(tvOS)
     /// `UIStoryboard(name: "BetDetailsVController", bundle: ...)`
@@ -116,6 +118,13 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
     static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.launchScreen)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "SignInVController", bundle: ...)`
+    static func signInVController(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.signInVController)
     }
     #endif
 
@@ -756,8 +765,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 17 images.
+  /// This `R.image` struct is generated, and contains static references to 20 images.
   struct image {
+    /// Image `account_circle`.
+    static let account_circle = Rswift.ImageResource(bundle: R.hostingBundle, name: "account_circle")
     /// Image `arrow_back`.
     static let arrow_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_back")
     /// Image `arrow_bottom`.
@@ -778,6 +789,8 @@ struct R: Rswift.Validatable {
     static let done = Rswift.ImageResource(bundle: R.hostingBundle, name: "done")
     /// Image `faq`.
     static let faq = Rswift.ImageResource(bundle: R.hostingBundle, name: "faq")
+    /// Image `google`.
+    static let google = Rswift.ImageResource(bundle: R.hostingBundle, name: "google")
     /// Image `left_arrow`.
     static let left_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "left_arrow")
     /// Image `logo`.
@@ -788,10 +801,19 @@ struct R: Rswift.Validatable {
     static let pay = Rswift.ImageResource(bundle: R.hostingBundle, name: "pay")
     /// Image `teams`.
     static let teams = Rswift.ImageResource(bundle: R.hostingBundle, name: "teams")
+    /// Image `telegram`.
+    static let telegram = Rswift.ImageResource(bundle: R.hostingBundle, name: "telegram")
     /// Image `up_arrow`.
     static let up_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "up_arrow")
     /// Image `up_small_arrow`.
     static let up_small_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "up_small_arrow")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "account_circle", bundle: ..., traitCollection: ...)`
+    static func account_circle(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.account_circle, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "arrow_back", bundle: ..., traitCollection: ...)`
@@ -864,6 +886,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "google", bundle: ..., traitCollection: ...)`
+    static func google(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.google, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "left_arrow", bundle: ..., traitCollection: ...)`
     static func left_arrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.left_arrow, compatibleWith: traitCollection)
@@ -895,6 +924,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "teams", bundle: ..., traitCollection: ...)`
     static func teams(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.teams, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "telegram", bundle: ..., traitCollection: ...)`
+    static func telegram(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.telegram, compatibleWith: traitCollection)
     }
     #endif
 
@@ -1063,7 +1099,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 51 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 55 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1149,6 +1185,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let no_active_bets = Rswift.StringResource(key: "no_active_bets", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Not signed in
+      ///
+      /// Locales: en, ru, uk
+      static let you_are_not_logged_in = Rswift.StringResource(key: "you_are_not_logged_in", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Odds:
       ///
       /// Locales: en, ru, uk
@@ -1209,6 +1249,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let sign_in = Rswift.StringResource(key: "sign_in", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Sign in with Google
+      ///
+      /// Locales: en, ru, uk
+      static let log_in_with_google = Rswift.StringResource(key: "log_in_with_google", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Sign in with Telegram
+      ///
+      /// Locales: en, ru, uk
+      static let log_in_with_telegram = Rswift.StringResource(key: "log_in_with_telegram", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Soon we will provide new picks. Remain in touch...
       ///
       /// Locales: en, ru, uk
@@ -1249,6 +1297,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let guid_teams = Rswift.StringResource(key: "guid_teams", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: You gotta sign in to see some picks
+      ///
+      /// Locales: en, ru, uk
+      static let we_gift_free_bets_to_new_users = Rswift.StringResource(key: "we_gift_free_bets_to_new_users", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: my bal.
       ///
       /// Locales: en, ru, uk
@@ -1605,6 +1657,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("no_active_bets", bundle: bundle, comment: "")
       }
 
+      /// en translation: Not signed in
+      ///
+      /// Locales: en, ru, uk
+      static func you_are_not_logged_in(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("you_are_not_logged_in", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "you_are_not_logged_in"
+        }
+
+        return NSLocalizedString("you_are_not_logged_in", bundle: bundle, comment: "")
+      }
+
       /// en translation: Odds:
       ///
       /// Locales: en, ru, uk
@@ -1830,6 +1897,36 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("sign_in", bundle: bundle, comment: "")
       }
 
+      /// en translation: Sign in with Google
+      ///
+      /// Locales: en, ru, uk
+      static func log_in_with_google(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("log_in_with_google", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "log_in_with_google"
+        }
+
+        return NSLocalizedString("log_in_with_google", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Sign in with Telegram
+      ///
+      /// Locales: en, ru, uk
+      static func log_in_with_telegram(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("log_in_with_telegram", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "log_in_with_telegram"
+        }
+
+        return NSLocalizedString("log_in_with_telegram", bundle: bundle, comment: "")
+      }
+
       /// en translation: Soon we will provide new picks. Remain in touch...
       ///
       /// Locales: en, ru, uk
@@ -1980,6 +2077,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("guid_teams", bundle: bundle, comment: "")
+      }
+
+      /// en translation: You gotta sign in to see some picks
+      ///
+      /// Locales: en, ru, uk
+      static func we_gift_free_bets_to_new_users(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("we_gift_free_bets_to_new_users", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "we_gift_free_bets_to_new_users"
+        }
+
+        return NSLocalizedString("we_gift_free_bets_to_new_users", bundle: bundle, comment: "")
       }
 
       /// en translation: my bal.
@@ -2264,6 +2376,9 @@ struct _R: Rswift.Validatable {
       #if os(iOS) || os(tvOS)
       try launchScreen.validate()
       #endif
+      #if os(iOS) || os(tvOS)
+      try signInVController.validate()
+      #endif
     }
 
     #if os(iOS) || os(tvOS)
@@ -2333,6 +2448,35 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'logo' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    struct signInVController: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "SignInVController"
+      let signInVController = StoryboardViewControllerResource<SignInVController>(identifier: "SignInVController")
+
+      func signInVController(_: Void = ()) -> SignInVController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: signInVController)
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "account_circle", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'account_circle' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "google", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'google' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "telegram", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'telegram' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "background_main", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_main' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "bet_group_end", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'bet_group_end' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "bet_group_header", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'bet_group_header' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "blue_gray_400", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'blue_gray_400' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "green_blue_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_start' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text_black", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_black' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+        }
+        if _R.storyboard.signInVController().signInVController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'signInVController' could not be loaded from storyboard 'SignInVController' as 'SignInVController'.") }
       }
 
       fileprivate init() {}

@@ -28,12 +28,56 @@ struct Storage<T> {
     }
 }
 
+
+
 final class AppSettings {
     
     private init(){}
     
     static var baseUrl: URL {
         URL(string: "https://leader4015.work/ctavki_football/api")!
+    }
+    
+    static func telegramBotUrl(_ uuid: String) -> URL {
+        URL(string: "https://tg.pulse.is/Ctavki_com_bot?start=656da09a90e51fa8e30af51c|uuid=\(uuid)")!
+    }
+
+    static  var signInMethod: SignInMethod {
+        set {
+            let key = "signInMethod"
+            let tokenFoSignIn = "tokenFoSignIn"
+            switch newValue {
+            case .non:
+                UserDefaults.standard.setValue(0, forKey: key)
+            case let .google(idToken):
+                UserDefaults.standard.setValue(1, forKey: key)
+                UserDefaults.standard.setValue(idToken, forKey: tokenFoSignIn)
+            case let .telegram(uuid):
+                UserDefaults.standard.setValue(2, forKey: key)
+                UserDefaults.standard.setValue(uuid, forKey: tokenFoSignIn)
+            }
+        }
+        get {
+            let key = "signInMethod"
+            let tokenFoSignIn = "tokenForSignIn"
+            let method =  UserDefaults.standard.integer(forKey: key)
+            switch method {
+            case 1:
+                if let token = UserDefaults.standard.string(forKey: tokenFoSignIn) {
+                    return .google(idToken: token)
+                }
+                break
+            case 2:
+                if let token = UserDefaults.standard.string(forKey: tokenFoSignIn) {
+                    return .telegram(uuid: token)
+                }
+            default:
+                break
+            }
+            
+            return .non
+            
+        }
     }
     
     static let clientVersion = "1.0.0"
@@ -43,6 +87,8 @@ final class AppSettings {
     static var locale: String {
         Locale.current.identifier.split(separator: "_").first?.lowercased() ?? "en"
     }
+    
+    static let platform = "ios"
     
     @Storage(key: "lastLocaleThenUpdate", defaultValue: Locale.current.identifier)
     static var lastLocaleThenUpdate: String

@@ -13,6 +13,11 @@
 		F2041A342B92335800DA42BB /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2041A332B92335800DA42BB /* SyncService.swift */; };
 		F20704832B87A33800DD6364 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F20704852B87A33800DD6364 /* Localizable.strings */; };
 		F20704882B87A43500DD6364 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20704872B87A43500DD6364 /* R.generated.swift */; };
+		F2218ACB2BA2FCD200C53C46 /* SignInVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218ACA2BA2FCD200C53C46 /* SignInVController.swift */; };
+		F2218ACD2BA2FCF500C53C46 /* SignInVController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2218ACC2BA2FCF500C53C46 /* SignInVController.storyboard */; };
+		F2218ACF2BA3244E00C53C46 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218ACE2BA3244E00C53C46 /* AccountService.swift */; };
+		F2218AD12BA3632C00C53C46 /* SignInResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218AD02BA3632C00C53C46 /* SignInResponseEntity.swift */; };
+		F2218AD32BA3657500C53C46 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218AD22BA3657500C53C46 /* Account.swift */; };
 		F226F9FA2B9B8D0200F9D391 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226F9F92B9B8D0200F9D391 /* UITableView.swift */; };
 		F226F9FD2B9B943900F9D391 /* BetSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F226F9FC2B9B943900F9D391 /* BetSectionHeaderView.xib */; };
 		F226FA052B9C75AE00F9D391 /* FaqViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226FA042B9C75AE00F9D391 /* FaqViewModel.swift */; };
@@ -92,6 +97,11 @@
 		F20704842B87A33800DD6364 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F20704862B87A33A00DD6364 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F20704872B87A43500DD6364 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		F2218ACA2BA2FCD200C53C46 /* SignInVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVController.swift; sourceTree = "<group>"; };
+		F2218ACC2BA2FCF500C53C46 /* SignInVController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInVController.storyboard; sourceTree = "<group>"; };
+		F2218ACE2BA3244E00C53C46 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		F2218AD02BA3632C00C53C46 /* SignInResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponseEntity.swift; sourceTree = "<group>"; };
+		F2218AD22BA3657500C53C46 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		F226F9F92B9B8D0200F9D391 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		F226F9FC2B9B943900F9D391 /* BetSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetSectionHeaderView.xib; sourceTree = "<group>"; };
 		F226FA042B9C75AE00F9D391 /* FaqViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqViewModel.swift; sourceTree = "<group>"; };
@@ -222,8 +232,18 @@
 			isa = PBXGroup;
 			children = (
 				F2041A332B92335800DA42BB /* SyncService.swift */,
+				F2218ACE2BA3244E00C53C46 /* AccountService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		F2218AC92BA2FC9500C53C46 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				F2218ACA2BA2FCD200C53C46 /* SignInVController.swift */,
+				F2218ACC2BA2FCF500C53C46 /* SignInVController.storyboard */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 		F226F9FB2B9B93F900F9D391 /* BetSectionHeader */ = {
@@ -255,6 +275,7 @@
 		F22CE0952B87B91D00732FFB /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F2218AC92BA2FC9500C53C46 /* SignIn */,
 				F2973D022B9EEBCC003612E1 /* History */,
 				F2EB1A2F2B99D84F0027D782 /* BetDetails */,
 				F22CE0BA2B88F07900732FFB /* ToureGuid */,
@@ -484,6 +505,8 @@
 				F2EA78D42B90B60E006B3A1C /* BetOutcome.swift */,
 				F2EA78D62B90B97D006B3A1C /* AppUpdateAvailable.swift */,
 				F2EA78DD2B910013006B3A1C /* JSONWrapHelpers.swift */,
+				F2218AD02BA3632C00C53C46 /* SignInResponseEntity.swift */,
+				F2218AD22BA3657500C53C46 /* Account.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -610,6 +633,7 @@
 				F2A0163B2B9E6A1700B532C1 /* NoActiveBetsCell.xib in Resources */,
 				F24C769A2BA07E7800FE7836 /* LaunchScreen.storyboard in Resources */,
 				F20704832B87A33800DD6364 /* Localizable.strings in Resources */,
+				F2218ACD2BA2FCF500C53C46 /* SignInVController.storyboard in Resources */,
 				F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */,
 				F2973D142B9F526C003612E1 /* TeamsRowView.xib in Resources */,
 				F2973D222B9F7B73003612E1 /* TeamsViewCell.xib in Resources */,
@@ -699,7 +723,9 @@
 				F2973D242B9F7D45003612E1 /* TeamsService.swift in Sources */,
 				F2973D1B2B9F5B4A003612E1 /* BetsCellView.swift in Sources */,
 				F2DBFAEF2B8F7D7B00FC5069 /* Bet.swift in Sources */,
+				F2218ACB2BA2FCD200C53C46 /* SignInVController.swift in Sources */,
 				F2FC03422B867809001C6BB3 /* MainVController.swift in Sources */,
+				F2218AD32BA3657500C53C46 /* Account.swift in Sources */,
 				F2041A342B92335800DA42BB /* SyncService.swift in Sources */,
 				F2EA78CE2B90935D006B3A1C /* String.swift in Sources */,
 				F22CE0A22B87C5F900732FFB /* FaqVController.swift in Sources */,
@@ -734,6 +760,8 @@
 				F22CE0AF2B889B8500732FFB /* UIView.swift in Sources */,
 				F2EB1A322B9A11040027D782 /* BetDetailsVController.swift in Sources */,
 				F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */,
+				F2218ACF2BA3244E00C53C46 /* AccountService.swift in Sources */,
+				F2218AD12BA3632C00C53C46 /* SignInResponseEntity.swift in Sources */,
 				F251D6392B974EBD009ABC86 /* BetView.swift in Sources */,
 				F226FA052B9C75AE00F9D391 /* FaqViewModel.swift in Sources */,
 				F251D63B2B977389009ABC86 /* BetSectionHeaderView.swift in Sources */,

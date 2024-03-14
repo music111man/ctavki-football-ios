@@ -29,6 +29,10 @@ final class AppCoordinator: PCoordinator {
         mainCoordinator = MainCoordinator()
         mainCoordinator.delegate = self
         initNotificationEventHandlers()
+        
+        AppSettings.authorizeEvent.bind { [weak self] isAuthorized in
+            self?.syncService.refresh()
+        }.disposed(by: disposeBag)
     }
     
     func start() {
@@ -75,9 +79,8 @@ final class AppCoordinator: PCoordinator {
     }
     
     func showAuthScreen() {
-        let alert = UIAlertController(title: "Need autorization", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default))
-        self.router?.present(alert, animated: true)
+        let vc: SignInVController = .createFromNib()
+        self.router?.present(vc, animated: true)
     }
     
     func showHistory(team: Team, animationDirectionLeft: Bool?) {
