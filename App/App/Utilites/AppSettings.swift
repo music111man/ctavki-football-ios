@@ -32,6 +32,9 @@ struct Storage<T> {
 
 final class AppSettings {
     
+    private static let signInMethodKey = "signInMethodKey"
+    private static let tokenFoSignInKey = "tokenForSignIn"
+    
     private init(){}
     
     static var baseUrl: URL {
@@ -45,30 +48,28 @@ final class AppSettings {
     static  var signInMethod: SignInMethod {
         set {
             let key = "signInMethod"
-            let tokenFoSignIn = "tokenFoSignIn"
+            let tokenFoSignIn = "tokenForSignIn"
             switch newValue {
             case .non:
-                UserDefaults.standard.setValue(0, forKey: key)
+                UserDefaults.standard.setValue(0, forKey: Self.signInMethodKey)
             case let .google(idToken):
-                UserDefaults.standard.setValue(1, forKey: key)
-                UserDefaults.standard.setValue(idToken, forKey: tokenFoSignIn)
+                UserDefaults.standard.setValue(1, forKey: Self.signInMethodKey)
+                UserDefaults.standard.setValue(idToken, forKey: Self.tokenFoSignInKey)
             case let .telegram(uuid):
-                UserDefaults.standard.setValue(2, forKey: key)
-                UserDefaults.standard.setValue(uuid, forKey: tokenFoSignIn)
+                UserDefaults.standard.setValue(2, forKey: Self.signInMethodKey)
+                UserDefaults.standard.setValue(uuid, forKey: Self.tokenFoSignInKey)
             }
         }
         get {
-            let key = "signInMethod"
-            let tokenFoSignIn = "tokenForSignIn"
-            let method =  UserDefaults.standard.integer(forKey: key)
+            let method =  UserDefaults.standard.integer(forKey: Self.signInMethodKey)
             switch method {
             case 1:
-                if let token = UserDefaults.standard.string(forKey: tokenFoSignIn) {
+                if let token = UserDefaults.standard.string(forKey: Self.tokenFoSignInKey) {
                     return .google(idToken: token)
                 }
                 break
             case 2:
-                if let token = UserDefaults.standard.string(forKey: tokenFoSignIn) {
+                if let token = UserDefaults.standard.string(forKey: Self.tokenFoSignInKey) {
                     return .telegram(uuid: token)
                 }
             default:
@@ -79,6 +80,9 @@ final class AppSettings {
             
         }
     }
+    
+    @Storage(key: "userName", defaultValue: "")
+    static var userName: String
     
     static let clientVersion = "1.0.0"
     

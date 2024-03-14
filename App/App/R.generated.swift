@@ -1099,7 +1099,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 55 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 57 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1137,6 +1137,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let bets_history = Rswift.StringResource(key: "bets_history", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Go to predictions
+      ///
+      /// Locales: en, ru, uk
+      static let get_more_bets = Rswift.StringResource(key: "get_more_bets", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Here are matches and odds which our service provides predictions on. Click on the match you are interested in and find out the details.
       ///
       /// Locales: en, ru, uk
@@ -1301,6 +1305,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let we_gift_free_bets_to_new_users = Rswift.StringResource(key: "we_gift_free_bets_to_new_users", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: You have successfully logged in. Now all our free sports predictions are available to you.
+      ///
+      /// Locales: en, ru, uk
+      static let you_are_logged = Rswift.StringResource(key: "you_are_logged", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: my bal.
       ///
       /// Locales: en, ru, uk
@@ -1465,6 +1473,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("bets_history", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Go to predictions
+      ///
+      /// Locales: en, ru, uk
+      static func get_more_bets(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("get_more_bets", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "get_more_bets"
+        }
+
+        return NSLocalizedString("get_more_bets", bundle: bundle, comment: "")
       }
 
       /// en translation: Here are matches and odds which our service provides predictions on. Click on the match you are interested in and find out the details.
@@ -2094,6 +2117,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("we_gift_free_bets_to_new_users", bundle: bundle, comment: "")
       }
 
+      /// en translation: You have successfully logged in. Now all our free sports predictions are available to you.
+      ///
+      /// Locales: en, ru, uk
+      static func you_are_logged(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("you_are_logged", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "you_are_logged"
+        }
+
+        return NSLocalizedString("you_are_logged", bundle: bundle, comment: "")
+      }
+
       /// en translation: my bal.
       ///
       /// Locales: en, ru, uk
@@ -2475,6 +2513,7 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "blue_gray_400", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'blue_gray_400' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "green_blue_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_start' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "text_black", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_black' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "title_color", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'title_color' is used in storyboard 'SignInVController', but couldn't be loaded.") }
         }
         if _R.storyboard.signInVController().signInVController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'signInVController' could not be loaded from storyboard 'SignInVController' as 'SignInVController'.") }
       }

@@ -69,3 +69,5 @@
 "we_gift_free_bets_to_new_users" = "You gotta sign in to see some picks";
 "log_in_with_google" = "Sign in with Google";
 "log_in_with_telegram" = "Sign in with Telegram";
+"you_are_logged" = "You have successfully logged in. Now all our free sports predictions are available to you.";
+"get_more_bets" = "Go to predictions";

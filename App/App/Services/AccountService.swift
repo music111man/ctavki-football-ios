@@ -34,28 +34,40 @@ final class AccountService {
         
     }
     
-    func signIn() {
+    func signIn() -> Bool {
         switch AppSettings.signInMethod {
-        case .non: return
+        case .non:
+            return false
         case let .telegram(uuid):
             singInTelegram(uuid)
+            return true
         case let .google(idToken):
             singInGoogle(idToken)
-            return
+            return true
         }
     }
     
     private func singInTelegram(_ uuid: String) {
         printAppEvent("start sign in telegram")
-        NetProvider.makeRequest(SignInResponseEntity.self, .signInByTelegram(uuid: uuid)) {[weak self] response in
-            self?.processResponse(response: response)
+        DispatchQueue.global(qos: .userInteractive).async {
+            NetProvider.makeRequest(SignInResponseEntity.self, .signInByTelegram(uuid: uuid)) {[weak self] response in
+                guard let self = self else { 
+                    AppSettings.authorizeEvent.accept(false)
+                    return
+                }
+                self.processResponse(response: response)
+            }
         }
     }
     
     private func singInGoogle(_ idToken: String) {
-        printAppEvent("start sign in telegram")
+        printAppEvent("start sign in google")
         NetProvider.makeRequest(SignInResponseEntity.self, .signInByGoogle(idToken: idToken)) {[weak self] response in
-            self?.processResponse(response: response)
+            guard let self = self else {
+                AppSettings.authorizeEvent.accept(false)
+                return
+            }
+            self.processResponse(response: response)
         }
     }
     
@@ -63,6 +75,7 @@ final class AccountService {
         if response.code != 200 {
             printAppEvent("sign in error: code \(response.code) msg: \(response.msg)")
             NotificationCenter.default.post(name: NSNotification.Name.badServerResponse, object: nil)
+            AppSettings.authorizeEvent.accept(false)
             return
         }
         AppSettings.signInMethod = .non
@@ -74,6 +87,9 @@ final class AccountService {
                               alreadyRegistered: response.alreadyRegistered,
                               subscribed: response.subscribed)
         Repository.refreshData([account])
+        AppSettings.userName = response.name
         AppSettings.userToken = response.jwt
+        
+        return
     }
 }
