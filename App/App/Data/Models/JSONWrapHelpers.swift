@@ -55,6 +55,28 @@ struct MutableStringDecodable<Wrapped: LosslessStringConvertible>: Decodable {
 }
 
 @propertyWrapper
+struct IntOrStringDecodable: Decodable {
+    let wrappedValue: Int
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let valInt = try? container.decode(Int.self) {
+            wrappedValue = valInt
+            return
+        }
+        if let valString = try? container.decode(String.self), let valInt = Int(valString) {
+            wrappedValue = valInt
+            return
+        }
+        wrappedValue = 0
+    }
+    
+    init(_ value: Int) {
+        wrappedValue = value
+    }
+}
+
+@propertyWrapper
 struct IntToBoolDecodable: Decodable {
     let wrappedValue: Bool
 

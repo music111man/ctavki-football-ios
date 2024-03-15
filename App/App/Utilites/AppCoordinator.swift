@@ -19,6 +19,7 @@ final class AppCoordinator: PCoordinator {
     let mainCoordinator: MainCoordinator
     let syncService = SyncService()
     let disposeBag = DisposeBag()
+    var activeBetToShow: Int?
     
     var router: UINavigationController? {
         window.rootViewController as? UINavigationController
@@ -45,9 +46,7 @@ final class AppCoordinator: PCoordinator {
     
     func initNotificationEventHandlers() {
         NotificationCenter.default.rx.notification(Notification.Name.tapAutozire).subscribe {[weak self] _ in
-            if !AppSettings.isAuthorized {
-                self?.showAuthScreen()
-            }
+           self?.showAuthScreen()
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needOpenBetDetails).subscribe {[weak self] event in
             guard let betId = event.element?.userInfo?[BetView.betIdKeyForUserInfo] as? Int else { return }
@@ -55,10 +54,14 @@ final class AppCoordinator: PCoordinator {
             self?.showBetDetails(betId: betId)
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needOpenActiveBetDetails).subscribe {[weak self] event in
-            guard AppSettings.isAuthorized, let betId = event.element?.userInfo?[BetView.betIdKeyForUserInfo] as? Int else {
-                self?.showAuthScreen()
+            self?.activeBetToShow = event.element?.userInfo?[BetView.betIdKeyForUserInfo] as? Int
+            guard AppSettings.isAuthorized  else {
+                self?.showAuthScreen { [weak self] in
+                    self?.showActiveBetDetails()
+                }
                 return
             }
+            self?.showActiveBetDetails()
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needOpenHistory).subscribe {[weak self] event in
             guard let team = event.element?.userInfo?[BetView.teamKeyUserInfo] as? Team else {
@@ -78,8 +81,19 @@ final class AppCoordinator: PCoordinator {
         self.router?.present(vc, animated: false)
     }
     
-    func showAuthScreen() {
+    func showActiveBetDetails() {
+        guard let betId = activeBetToShow else { return }
+        let vc: BetDetailsVController = BetDetailsVController.createFromNib() { vc in
+            vc.configure(betId: betId )
+        }
+        vc.modalPresentationStyle = .overFullScreen
+        activeBetToShow = nil
+        self.router?.present(vc, animated: false)
+    }
+    
+    func showAuthScreen(_ disposed: (() -> ())? = nil) {
         let vc: SignInVController = .createFromNib()
+        vc.disposed = disposed
         self.router?.present(vc, animated: true)
     }
     
@@ -91,26 +105,6 @@ final class AppCoordinator: PCoordinator {
         topVC.animate(onLeft: animationDirectionLeft) { [weak self] in
             self?.router?.pushViewController(vc, animated: false)
         }
-//        
-//        if let onLeft = animationDirectionLeft {
-//            UIView.transition(with: topVC.view,
-//                              duration: 0.4,
-//                              options: [onLeft ? .transitionFlipFromRight : .transitionFlipFromLeft],
-//                              animations: {
-//                topVC.view.layer.opacity = 0
-//            }) {[weak self] _ in
-//                topVC.view.layer.opacity = 1
-//                self?.router?.pushViewController(vc, animated: false)
-//            }
-//            
-//            return
-//        }
-//        UIView.animate(withDuration: 0.3) {
-//            topVC.view.transform = .init(scaleX: 0.01, y: 0.01)
-//        } completion: { [weak self] _ in
-//            topVC.view.transform = .identity
-//            self?.router?.pushViewController(vc, animated: false)
-//        }
     }
 }
 

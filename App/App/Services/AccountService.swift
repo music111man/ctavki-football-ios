@@ -89,7 +89,7 @@ final class AccountService {
         Repository.refreshData([account])
         AppSettings.userName = response.name
         AppSettings.userToken = response.jwt
-        
+        NotificationCenter.default.post(name: Notification.Name.tryToRefreshData, object: nil)
         return
     }
 }

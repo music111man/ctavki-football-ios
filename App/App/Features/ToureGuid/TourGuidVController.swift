@@ -352,13 +352,10 @@ class TourGuidVController: UIViewController {
         labelSkip.tap { [weak self] in
             guard let self = self  else { return }
             self.guidAnimations.removeAll()
-            labelSkip.animateTapGesture(value: 0.8) {
-                self.betsGuidIconContainer.layer.opacity = 0
-                self.betsGuidView.animateOpacity(0.3, 0) {
-                    self.endAction?()
-                }
+            self.betsGuidIconContainer.layer.opacity = 0
+            self.betsGuidView.animateOpacity(0.3, 0) {
+                self.endAction?()
             }
-            
         }.disposed(by: disposeBag)
     }
     

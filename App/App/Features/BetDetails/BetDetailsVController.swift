@@ -90,8 +90,13 @@ class BetDetailsVController: UIViewController {
                   let bet: Bet = Repository.selectTop(Bet.table.where(Bet.idField == self.betId)),
                   let typeId = bet.typeId,
                   let factor = bet.factor,
-                  let outcome = bet.outcome,
-                  let betType: BetType = Repository.selectTop(BetType.table.where(BetType.idField == typeId)) else { return }
+                  let betType: BetType = Repository.selectTop(BetType.table.where(BetType.idField == typeId)) else {
+                self?.showAlert(title: R.string.localizable.error()) {[weak self] in
+                    self?.dismiss(animated: true)
+                }
+                return
+            }
+            let outcome = bet.outcome ?? .unknow
             let teams: [Team] = Repository.select(Team.table.where([bet.team1Id, bet.team2Id].contains(Team.idField)))
             guard teams.count == 2, let team1 = teams.first, let team2 = teams.last else { return }
             
@@ -100,7 +105,7 @@ class BetDetailsVController: UIViewController {
                 self.eventDateLabel.text = R.string.localizable.year_at_end(bet.eventDate.format("d MMMM yyyy"))
                 self.teamsLabel.text = "\(team1.title) - \(team2.title)"
                 self.factorResultLabel.text = factor.formattedString
-                var description = betType.description.regReplace(pattern: "(?i)\\хозяев\\w*", replaceWith: team1.title)
+                let description = betType.description.regReplace(pattern: "(?i)\\хозяев\\w*", replaceWith: team1.title)
                                                     .regReplace(pattern: "(?i)\\гост\\w*", replaceWith: team2.title)
                                                     .regReplace(pattern: "(?i)home\\s+team", replaceWith: team1.title)
                                                     .regReplace(pattern: "(?i)away\\s+team", replaceWith: team2.title)
@@ -129,7 +134,8 @@ class BetDetailsVController: UIViewController {
                     self.resultValLabel.text = R.string.localizable.return()
                     self.resultValLabel.textColor = R.color.text_black()
                 case .unknow:
-                    break
+                    self.resultValLabel.text = "?"
+                    self.resultValLabel.textColor = R.color.text_black()
                 }
                 self.activityView.animateOpacity(0.4, 0) {[weak self] in
                     self?.activityView.isHidden = true

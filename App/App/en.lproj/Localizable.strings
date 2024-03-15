@@ -6,6 +6,7 @@
   
 */
 "update_data_msg" = "Updating...";
+"error" = "Error";
 
 "my_balance" = "my bal.";
 "sign_in" = "Sign In";

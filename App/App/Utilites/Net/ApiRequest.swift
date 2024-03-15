@@ -18,7 +18,7 @@ extension ApiRequest: TargetType {
     var baseURL: URL {
         AppSettings.baseUrl
     }
-    
+     
     var path: String {
         switch self {
         case .checkForUpdates:
@@ -52,17 +52,18 @@ extension ApiRequest: TargetType {
         case let .signInByTelegram(uuid):
             return Moya.Task.requestParameters(parameters: ["uuid": uuid,
                                                             "fcmToken": AppSettings.fcmToken],
-                                               encoding: URLEncoding.default)
+                                               encoding: JSONEncoding.default)
         case let .signInByGoogle(idToken):
             return Moya.Task.requestParameters(parameters: ["idToken": idToken,
                                                            "fcmToken": AppSettings.fcmToken],
-                                               encoding: URLEncoding.default)
+                                               encoding: JSONEncoding.default)
         }
     }
     
     var headers: [String : String]? {
         switch self {
         case .checkForUpdates:
+            printAppEvent("user token: \(AppSettings.userToken)")
             return ["ApiKey" : AppSettings.apiKey,
                     "Authorization" : AppSettings.userToken,
                     "ClientVersion" : AppSettings.clientVersion,

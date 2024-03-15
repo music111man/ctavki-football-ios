@@ -47,8 +47,6 @@ final class AppSettings {
 
     static  var signInMethod: SignInMethod {
         set {
-            let key = "signInMethod"
-            let tokenFoSignIn = "tokenForSignIn"
             switch newValue {
             case .non:
                 UserDefaults.standard.setValue(0, forKey: Self.signInMethodKey)
@@ -128,7 +126,8 @@ final class AppSettings {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "userToken")
-            authorizeEvent.accept(newValue.isEmpty)
+            lastTimeSynced = ""
+            authorizeEvent.accept(!newValue.isEmpty)
         }
     }
     

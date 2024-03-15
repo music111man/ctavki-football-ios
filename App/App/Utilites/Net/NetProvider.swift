@@ -22,6 +22,7 @@ class NetProvider {
             switch result {
             case .success(let response):
                 guard let data = try? JSONDecoder().decode(type, from: response.data) else {
+                    printAppEvent("\(String(data: response.data, encoding: String.Encoding.utf8) ?? "no data")")
                     printAppEvent("\(target): can not deserialize to \(T.self)")
                     NotificationCenter.default.post(name: NSNotification.Name.deserializeError, object: target)
                     break

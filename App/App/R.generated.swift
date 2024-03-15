@@ -765,7 +765,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 20 images.
+  /// This `R.image` struct is generated, and contains static references to 21 images.
   struct image {
     /// Image `account_circle`.
     static let account_circle = Rswift.ImageResource(bundle: R.hostingBundle, name: "account_circle")
@@ -807,6 +807,8 @@ struct R: Rswift.Validatable {
     static let up_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "up_arrow")
     /// Image `up_small_arrow`.
     static let up_small_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "up_small_arrow")
+    /// Image `user`.
+    static let user = Rswift.ImageResource(bundle: R.hostingBundle, name: "user")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "account_circle", bundle: ..., traitCollection: ...)`
@@ -945,6 +947,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "up_small_arrow", bundle: ..., traitCollection: ...)`
     static func up_small_arrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.up_small_arrow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "user", bundle: ..., traitCollection: ...)`
+    static func user(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.user, compatibleWith: traitCollection)
     }
     #endif
 
@@ -1099,7 +1108,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 57 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 58 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1137,6 +1146,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let bets_history = Rswift.StringResource(key: "bets_history", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Error
+      ///
+      /// Locales: en, ru, uk
+      static let error = Rswift.StringResource(key: "error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Go to predictions
       ///
       /// Locales: en, ru, uk
@@ -1473,6 +1486,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("bets_history", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Error
+      ///
+      /// Locales: en, ru, uk
+      static func error(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error"
+        }
+
+        return NSLocalizedString("error", bundle: bundle, comment: "")
       }
 
       /// en translation: Go to predictions

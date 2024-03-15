@@ -24,8 +24,9 @@ class SignInVController: UIViewController {
     @IBOutlet weak var goToLabel: UILabel!
     let disposeBag = DisposeBag()
     let accountService = AccountService()
-    var isFirstShow = true
     var gradient: CAGradientLayer!
+    
+    var disposed: (() -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +81,9 @@ class SignInVController: UIViewController {
                 self?.containerView.transform = .init(scaleX: 0.01, y: 0.01)
                 self?.view.layer.opacity = 0
             } completion: {[weak self] _ in
-                self?.dismiss(animated: false)
+                self?.dismiss(animated: false) { [weak self] in
+                    self?.disposed?()
+                }
             }
         }.disposed(by: disposeBag)
         
@@ -91,6 +94,11 @@ class SignInVController: UIViewController {
         telegramBtnView.tap {[weak self] in
             self?.accountService.signInByTelegram()
         }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification).subscribe {[weak self] _ in
+            self?.activityView.isHidden = !(self?.accountService.signIn() ?? false)
+         }.disposed(by: disposeBag)
+        
+        activityView.isHidden = !accountService.signIn()
     }
     
     override func viewDidLayoutSubviews() {
@@ -100,18 +108,14 @@ class SignInVController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if isFirstShow {
-            isFirstShow = false
-            containerView.transform = .init(scaleX: 0.01, y: 0.01)
-            UIView.animate(withDuration: 0.3, animations: {[weak self] in
-                self?.view.layer.opacity = 1
-                self?.containerView.transform = .identity
-            }) {[weak self] _ in
-                guard let self = self else { return }
-                self.gradient.frame = self.goToView.bounds
-            }
+        containerView.transform = .init(scaleX: 0.01, y: 0.01)
+        view.layer.opacity = 0
+        UIView.animate(withDuration: 0.3, animations: {[weak self] in
+            self?.view.layer.opacity = 1
+            self?.containerView.transform = .identity
+        }) {[weak self] _ in
+            guard let self = self else { return }
+            self.gradient.frame = self.goToView.bounds
         }
-        activityView.isHidden = !accountService.signIn()
-
     }
 }

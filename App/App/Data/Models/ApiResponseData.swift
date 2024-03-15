@@ -15,7 +15,8 @@ struct ApiResponseData: Decodable {
     @StringDecodable
     var giftFreeBetsCount: Int
     let newLastTimeDataUpdated: String
-    let userBetsLeft: Int
+    @IntOrStringDecodable
+    var userBetsLeft: Int
     @IntToBoolDecodable
     var isSubscribedToTgChannel: Bool
     

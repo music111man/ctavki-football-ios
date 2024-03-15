@@ -6,6 +6,7 @@
   
 */
 "update_data_msg" = "Обновляемся...";
+"error" = "Ошибка";
 
 "my_balance" = "мой\nсчет";
 "sign_in" = "Вход";

@@ -18,9 +18,21 @@ extension UIViewController {
         return vc
     }
     
-    func showAlert(title: String, message: String? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default))
-        present(alert, animated: true)
+    func showAlert(title: String, message: String? = nil, complite: (() -> ())? = nil) {
+        if Thread.isMainThread {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) {_ in 
+                complite?()
+            })
+            present(alert, animated: true)
+        } else {
+            DispatchQueue.main.async { [weak self] in
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) {_ in
+                    complite?()
+                })
+                self?.present(alert, animated: true)
+            }
+        }
     }
 }

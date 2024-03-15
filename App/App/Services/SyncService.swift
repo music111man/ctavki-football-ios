@@ -35,7 +35,7 @@ final class SyncService {
             
     }
     
-    func refresh() {
+    func refresh(_ complite: ((Bool) -> ())? = nil ) {
         printAppEvent("start sync")
         NetProvider.makeRequest(ApiResponseData.self, .checkForUpdates) { responseData in
             if responseData.code != 200 {
@@ -80,6 +80,7 @@ final class SyncService {
                         && responseData.betTypes.isEmpty
                         && responseData.faqs.isEmpty
             printAppEvent("Refresh data \(!noData)")
+            complite?(!noData)
         }
     }
     

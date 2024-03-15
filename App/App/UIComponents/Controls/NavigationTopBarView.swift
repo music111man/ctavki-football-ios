@@ -121,7 +121,11 @@ final class NavigationTopBarView: UIView {
         rightLabel.textColor = R.color.title_color()
         rightLabel.textAlignment = .right
         rightLabel.numberOfLines = 2
-       
+        rightLabel.text = R.string.localizable.sign_in()
+        
+        let iconImage = UIImageView(image: .user)
+        iconImage.tintColor = .title
+        iconImage.translatesAutoresizingMaskIntoConstraints = false
         tapAutorizeView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(tapAutorizeView)
         tapAuthAnimate.backgroundColor = R.color.green_blue_start()
@@ -129,7 +133,7 @@ final class NavigationTopBarView: UIView {
         tapAuthAnimate.translatesAutoresizingMaskIntoConstraints = false
         tapAutorizeView.addSubview(tapAuthAnimate)
         tapAutorizeView.addSubview(rightLabel)
-        
+        tapAutorizeView.addSubview(iconImage)
         
         NSLayoutConstraint.activate([
             tapAutorizeView.heightAnchor.constraint(equalToConstant: 80),
@@ -141,7 +145,11 @@ final class NavigationTopBarView: UIView {
             tapAuthAnimate.heightAnchor.constraint(equalToConstant: 120),
             tapAuthAnimate.widthAnchor.constraint(equalToConstant: 120),
             rightLabel.rightAnchor.constraint(equalTo: tapAutorizeView.rightAnchor, constant: -10),
-            rightLabel.centerYAnchor.constraint(equalTo: tapAutorizeView.centerYAnchor)
+            rightLabel.centerYAnchor.constraint(equalTo: tapAutorizeView.centerYAnchor),
+            iconImage.heightAnchor.constraint(equalToConstant: 20),
+            iconImage.widthAnchor.constraint(equalTo: iconImage.heightAnchor),
+            iconImage.centerYAnchor.constraint(equalTo: rightLabel.centerYAnchor),
+            iconImage.rightAnchor.constraint(equalTo: tapAutorizeView.rightAnchor,constant: -10)
         ])
         let tapGestore = UITapGestureRecognizer()
         tapAuthAnimate.layer.opacity = 0
@@ -158,7 +166,13 @@ final class NavigationTopBarView: UIView {
         tapAutorizeView.addGestureRecognizer(tapGestore)
         
         AppSettings.authorizeEvent.bind { isAutorize in
-            rightLabel.text = isAutorize ? R.string.localizable.my_balance() : R.string.localizable.sign_in()
+            if isAutorize {
+                iconImage.isHidden = false
+                rightLabel.isHidden = true
+            } else {
+                iconImage.isHidden = true
+                rightLabel.isHidden = false
+            }
         }.disposed(by: disposeBag)
     }
     
