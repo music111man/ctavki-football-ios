@@ -12,7 +12,6 @@
 		F2041A322B91D05C00DA42BB /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2041A312B91D05C00DA42BB /* Repository.swift */; };
 		F2041A342B92335800DA42BB /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2041A332B92335800DA42BB /* SyncService.swift */; };
 		F20704832B87A33800DD6364 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F20704852B87A33800DD6364 /* Localizable.strings */; };
-		F20704882B87A43500DD6364 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20704872B87A43500DD6364 /* R.generated.swift */; };
 		F2218ACB2BA2FCD200C53C46 /* SignInVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218ACA2BA2FCD200C53C46 /* SignInVController.swift */; };
 		F2218ACD2BA2FCF500C53C46 /* SignInVController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2218ACC2BA2FCF500C53C46 /* SignInVController.storyboard */; };
 		F2218ACF2BA3244E00C53C46 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218ACE2BA3244E00C53C46 /* AccountService.swift */; };
@@ -42,6 +41,7 @@
 		F24C769A2BA07E7800FE7836 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24C769B2BA07E7800FE7836 /* LaunchScreen.storyboard */; };
 		F251D6392B974EBD009ABC86 /* BetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F251D6382B974EBD009ABC86 /* BetView.swift */; };
 		F251D63B2B977389009ABC86 /* BetSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F251D63A2B977389009ABC86 /* BetSectionHeaderView.swift */; };
+		F2684E112BA61E6E00AB0FBF /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2684E102BA61E6E00AB0FBF /* R.generated.swift */; };
 		F2888DCC2B9B61DD007F62F2 /* BetResultHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2888DCB2B9B61DD007F62F2 /* BetResultHeaderView.xib */; };
 		F2888DCE2B9B624C007F62F2 /* BetResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2888DCD2B9B624C007F62F2 /* BetResultHeaderView.swift */; };
 		F291F1342B95F96C00BB8E58 /* NavigationTopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1332B95F96C00BB8E58 /* NavigationTopBarView.swift */; };
@@ -96,7 +96,6 @@
 		F2041A332B92335800DA42BB /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
 		F20704842B87A33800DD6364 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F20704862B87A33A00DD6364 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F20704872B87A43500DD6364 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		F2218ACA2BA2FCD200C53C46 /* SignInVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVController.swift; sourceTree = "<group>"; };
 		F2218ACC2BA2FCF500C53C46 /* SignInVController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInVController.storyboard; sourceTree = "<group>"; };
 		F2218ACE2BA3244E00C53C46 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
@@ -128,6 +127,7 @@
 		F251D63A2B977389009ABC86 /* BetSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetSectionHeaderView.swift; sourceTree = "<group>"; };
 		F252FA552BA099A200DD3241 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F252FA562BA099A300DD3241 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = uk; path = uk.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		F2684E102BA61E6E00AB0FBF /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = Ctavki/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		F2888DCB2B9B61DD007F62F2 /* BetResultHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetResultHeaderView.xib; sourceTree = "<group>"; };
 		F2888DCD2B9B624C007F62F2 /* BetResultHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetResultHeaderView.swift; sourceTree = "<group>"; };
 		F291F1332B95F96C00BB8E58 /* NavigationTopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTopBarView.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 		F2EB1A342B9A11520027D782 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		F2EB1A362B9A2E9C0027D782 /* BetDetailsVController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BetDetailsVController.storyboard; sourceTree = "<group>"; };
 		F2F186C72B87754F00FBDD22 /* Utilites.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utilites.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F2FC033A2B867809001C6BB3 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2FC033A2B867809001C6BB3 /* Ctavki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctavki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FC033D2B867809001C6BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2FC03412B867809001C6BB3 /* MainVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVController.swift; sourceTree = "<group>"; };
 		F2FC03462B86780B001C6BB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -542,7 +542,7 @@
 		F2FC033B2B867809001C6BB3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F2FC033A2B867809001C6BB3 /* App.app */,
+				F2FC033A2B867809001C6BB3 /* Ctavki.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -550,6 +550,7 @@
 		F2FC033C2B867809001C6BB3 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				F2684E102BA61E6E00AB0FBF /* R.generated.swift */,
 				F22CE0AC2B889B4A00732FFB /* Extensions */,
 				F2DBFAEB2B8F7B6200FC5069 /* Data */,
 				F22CE0A52B87D1CE00732FFB /* UIComponents */,
@@ -560,7 +561,6 @@
 				F2FC03462B86780B001C6BB3 /* Assets.xcassets */,
 				F24C769B2BA07E7800FE7836 /* LaunchScreen.storyboard */,
 				F2FC034B2B86780B001C6BB3 /* Info.plist */,
-				F20704872B87A43500DD6364 /* R.generated.swift */,
 				F20704852B87A33800DD6364 /* Localizable.strings */,
 				F2A03FE62B98E9FA00494CD0 /* Localizable.stringsdict */,
 			);
@@ -570,9 +570,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F2FC03392B867809001C6BB3 /* App */ = {
+		F2FC03392B867809001C6BB3 /* Ctavki */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F2FC034E2B86780B001C6BB3 /* Build configuration list for PBXNativeTarget "App" */;
+			buildConfigurationList = F2FC034E2B86780B001C6BB3 /* Build configuration list for PBXNativeTarget "Ctavki" */;
 			buildPhases = (
 				0DD4556E2BBB6E85067E1167 /* [CP] Check Pods Manifest.lock */,
 				F207047E2B87A00C00DD6364 /* Run Script R.Swift */,
@@ -585,9 +585,9 @@
 			);
 			dependencies = (
 			);
-			name = App;
+			name = Ctavki;
 			productName = App;
-			productReference = F2FC033A2B867809001C6BB3 /* App.app */;
+			productReference = F2FC033A2B867809001C6BB3 /* Ctavki.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -605,7 +605,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F2FC03352B867809001C6BB3 /* Build configuration list for PBXProject "App" */;
+			buildConfigurationList = F2FC03352B867809001C6BB3 /* Build configuration list for PBXProject "Ctavki" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -620,7 +620,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F2FC03392B867809001C6BB3 /* App */,
+				F2FC03392B867809001C6BB3 /* Ctavki */,
 			);
 		};
 /* End PBXProject section */
@@ -767,11 +767,11 @@
 				F251D63B2B977389009ABC86 /* BetSectionHeaderView.swift in Sources */,
 				F2A0163A2B9E6A1700B532C1 /* NoActivebetsCell.swift in Sources */,
 				F291F13C2B9654CD00BB8E58 /* BetsCell.swift in Sources */,
+				F2684E112BA61E6E00AB0FBF /* R.generated.swift in Sources */,
 				F2EA78D52B90B60E006B3A1C /* BetOutcome.swift in Sources */,
 				F291F1362B96250D00BB8E58 /* FeaureVController.swift in Sources */,
 				F2EA78E02B9103F5006B3A1C /* ValueTypeExt.swift in Sources */,
 				F291F1342B95F96C00BB8E58 /* NavigationTopBarView.swift in Sources */,
-				F20704882B87A43500DD6364 /* R.generated.swift in Sources */,
 				F2EA78D72B90B97D006B3A1C /* AppUpdateAvailable.swift in Sources */,
 				F226FA0E2B9CC6A500F9D391 /* UIStackView.swift in Sources */,
 				F291F1382B96355B00BB8E58 /* BetsViewModel.swift in Sources */,
@@ -993,7 +993,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F2FC03352B867809001C6BB3 /* Build configuration list for PBXProject "App" */ = {
+		F2FC03352B867809001C6BB3 /* Build configuration list for PBXProject "Ctavki" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2FC034C2B86780B001C6BB3 /* Debug */,
@@ -1002,7 +1002,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F2FC034E2B86780B001C6BB3 /* Build configuration list for PBXNativeTarget "App" */ = {
+		F2FC034E2B86780B001C6BB3 /* Build configuration list for PBXNativeTarget "Ctavki" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2FC034F2B86780B001C6BB3 /* Debug */,

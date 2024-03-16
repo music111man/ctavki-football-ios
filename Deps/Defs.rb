@@ -2,7 +2,7 @@
 # project defs
 ##########
 def project_app_path
-    project "../App/App.xcodeproj"
+    project "../App/Ctavki.xcodeproj"
 end
 
 def project_core_path(name)
