@@ -132,7 +132,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 34 colors.
+  /// This `R.color` struct is generated, and contains static references to 35 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
@@ -144,6 +144,8 @@ struct R: Rswift.Validatable {
     static let background_main_light = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_main_light")
     /// Color `background_main`.
     static let background_main = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_main")
+    /// Color `background_white`.
+    static let background_white = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_white")
     /// Color `bet_group_end`.
     static let bet_group_end = Rswift.ColorResource(bundle: R.hostingBundle, name: "bet_group_end")
     /// Color `bet_group_header`.
@@ -245,6 +247,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func background_main_light(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.background_main_light, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "background_white", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func background_white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.background_white, compatibleWith: traitCollection)
     }
     #endif
 
@@ -546,6 +557,14 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func background_main_light(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.background_main_light.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "background_white", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func background_white(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.background_white.name)
     }
     #endif
 
@@ -2628,6 +2647,8 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "bet_group_header", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'bet_group_header' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "blue_gray_400", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'blue_gray_400' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "green_blue_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_start' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "selected_toolbar_item", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'selected_toolbar_item' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "shadow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shadow' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "text_black", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_black' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "title_color", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'title_color' is used in storyboard 'SignInVController', but couldn't be loaded.") }
         }
