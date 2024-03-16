@@ -14,7 +14,7 @@ struct Account {
     let name: String
     let betsLeft: Int
     let alreadyRegistered: Int
-    let subscribed: Int
+    let subscribed: Int?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -45,7 +45,7 @@ extension Account: DBComparable {
     static var betsLeftField: Expression<Int> {
         Expression<Int>(CodingKeys.betsLeft.rawValue) }
     static var alreadyRegisteredField: Expression<Int> { Expression<Int>(CodingKeys.alreadyRegistered.rawValue) }
-    static var subscribedField: Expression<Int> { Expression<Int>(CodingKeys.subscribed.rawValue) }
+    static var subscribedField: Expression<Int?> { Expression<Int?>(CodingKeys.subscribed.rawValue) }
     
     static func createColumns(builder: TableBuilder) {
         builder.column(idField, primaryKey: true)

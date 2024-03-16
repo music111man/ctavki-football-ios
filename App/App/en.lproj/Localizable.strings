@@ -7,6 +7,7 @@
 */
 "update_data_msg" = "Updating...";
 "error" = "Error";
+"server_data_error" = "The application cannot process data received from the server.\nContact support.";
 
 "my_balance" = "my bal.";
 "sign_in" = "Sign In";

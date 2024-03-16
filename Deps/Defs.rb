@@ -27,8 +27,8 @@ end
 #def fastEasyMapping
 #    pod 'FastEasyMapping', "~> 1.0"
 #end
-def telegram
-    pod 'TGPassportKit'
+def googleSignIn
+    pod 'GoogleSignIn'
 end
 
 def sqlite

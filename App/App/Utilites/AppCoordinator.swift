@@ -37,6 +37,7 @@ final class AppCoordinator: PCoordinator {
     }
     
     func start() {
+        AccountService.share.signIn()
         syncService.startRefreshCircle()
         
         window.rootViewController = mainCoordinator.start()

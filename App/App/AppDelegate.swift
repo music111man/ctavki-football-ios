@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 func printAppEvent(_ event: String) {
     print("\(Date().format("HH:mm:ss"))->>>\(event)")
@@ -23,5 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance.handle(url)
+    }
 }
 

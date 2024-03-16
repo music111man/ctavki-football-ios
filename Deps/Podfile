@@ -16,7 +16,7 @@ target 'App' do
   rxCocoa
   moya
   sqlite
-  telegram
+  googleSignIn
 end
 
 # post install

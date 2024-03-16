@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import GoogleSignIn
 
 enum SignInMethod {
     case google(idToken: String)
@@ -16,8 +17,27 @@ enum SignInMethod {
 
 final class AccountService {
     
-    func signInByGoogle() {
+    static let share = AccountService()
+    
+    private init(){}
+    
+    func signInByGoogle(presenting vc: UIViewController) {
         printAppEvent("try sing in by google")
+        GIDSignIn.sharedInstance.signIn(withPresenting: vc) { signInResult, error in
+            if let error = error {
+            printAppEvent("\(error)")
+                return
+            }
+            guard let signInResult = signInResult else { return }
+
+            signInResult.user.refreshTokensIfNeeded {[weak self] user, error in
+                guard error == nil else { return }
+                guard let user = user, let idToken = user.idToken?.tokenString else { return }
+                printAppEvent("will sing in by google with token: \(idToken)")
+                AppSettings.signInMethod = .google(idToken: idToken)
+                self?.signIn()
+            }
+        }
     }
     
     func signInByTelegram() {
@@ -26,7 +46,7 @@ final class AccountService {
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
                 if success {
-                    printAppEvent("try sing in by telegram with uuid: \(uuid)")
+                    printAppEvent("will sing in by telegram with uuid: \(uuid)")
                     AppSettings.signInMethod = .telegram(uuid: uuid)
                 }
             })
@@ -34,6 +54,7 @@ final class AccountService {
         
     }
     
+    @discardableResult
     func signIn() -> Bool {
         switch AppSettings.signInMethod {
         case .non:

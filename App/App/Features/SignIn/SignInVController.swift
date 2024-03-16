@@ -23,7 +23,7 @@ class SignInVController: UIViewController {
     @IBOutlet weak var goToView: UIView!
     @IBOutlet weak var goToLabel: UILabel!
     let disposeBag = DisposeBag()
-    let accountService = AccountService()
+    let accountService = AccountService.share
     var gradient: CAGradientLayer!
     
     var disposed: (() -> ())?
@@ -88,7 +88,7 @@ class SignInVController: UIViewController {
         }.disposed(by: disposeBag)
         
         googleBtnView.tap {[weak self] in
-            self?.accountService.signInByGoogle()
+            self?.accountService.signInByGoogle(presenting: self!)
         }.disposed(by: disposeBag)
         
         telegramBtnView.tap {[weak self] in

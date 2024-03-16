@@ -1108,7 +1108,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 58 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 59 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1294,6 +1294,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let teams_cap = Rswift.StringResource(key: "teams_cap", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: The application cannot process data received from the server. Contact support.
+      ///
+      /// Locales: en, ru, uk
+      static let server_data_error = Rswift.StringResource(key: "server_data_error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: The match is already underway, the first half has been played
       ///
       /// Locales: en, ru, uk
@@ -2051,6 +2055,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("teams_cap", bundle: bundle, comment: "")
+      }
+
+      /// en translation: The application cannot process data received from the server. Contact support.
+      ///
+      /// Locales: en, ru, uk
+      static func server_data_error(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("server_data_error", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "server_data_error"
+        }
+
+        return NSLocalizedString("server_data_error", bundle: bundle, comment: "")
       }
 
       /// en translation: The match is already underway, the first half has been played

@@ -17,7 +17,7 @@ struct SignInResponseEntity: Decodable {
     @StringDecodable
     var betsLeft: Int
     let alreadyRegistered: Int
-    let subscribed: Int
+    let subscribed: Int?
     let jwt: String
     
     enum CodingKeys: String, CodingKey {
