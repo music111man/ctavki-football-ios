@@ -132,10 +132,12 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 33 colors.
+  /// This `R.color` struct is generated, and contains static references to 34 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
+    /// Color `background_light_theme`.
+    static let background_light_theme = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_light_theme")
     /// Color `background_light`.
     static let background_light = Rswift.ColorResource(bundle: R.hostingBundle, name: "background_light")
     /// Color `background_main_light`.
@@ -216,6 +218,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func background_light(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.background_light, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "background_light_theme", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func background_light_theme(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.background_light_theme, compatibleWith: traitCollection)
     }
     #endif
 
@@ -515,6 +526,14 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
+    /// `UIColor(named: "background_light_theme", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func background_light_theme(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.background_light_theme.name)
+    }
+    #endif
+
+    #if os(watchOS)
     /// `UIColor(named: "background_main", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func background_main(_: Void = ()) -> UIKit.UIColor? {
@@ -761,6 +780,17 @@ struct R: Rswift.Validatable {
       return UIKit.UIColor(named: R.color.won_light.name)
     }
     #endif
+
+    fileprivate init() {}
+  }
+
+  /// This `R.entitlements` struct is generated, and contains static references to 1 properties.
+  struct entitlements {
+    struct comAppleDeveloperApplesignin {
+      static let `default` = infoPlistString(path: ["com.apple.developer.applesignin"], key: "Default") ?? "Default"
+
+      fileprivate init() {}
+    }
 
     fileprivate init() {}
   }
@@ -1108,7 +1138,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 59 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 61 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1234,6 +1264,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let prediction = Rswift.StringResource(key: "prediction", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Problems with Internet connection
+      ///
+      /// Locales: en, ru, uk
+      static let net_error = Rswift.StringResource(key: "net_error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: QUESTIONS (6/6)
       ///
       /// Locales: en, ru, uk
@@ -1266,6 +1300,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let sign_in = Rswift.StringResource(key: "sign_in", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Sign in with Apple
+      ///
+      /// Locales: en, ru, uk
+      static let log_in_with_apple = Rswift.StringResource(key: "log_in_with_apple", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Sign in with Google
       ///
       /// Locales: en, ru, uk
@@ -1832,6 +1870,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("prediction", bundle: bundle, comment: "")
       }
 
+      /// en translation: Problems with Internet connection
+      ///
+      /// Locales: en, ru, uk
+      static func net_error(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("net_error", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "net_error"
+        }
+
+        return NSLocalizedString("net_error", bundle: bundle, comment: "")
+      }
+
       /// en translation: QUESTIONS (6/6)
       ///
       /// Locales: en, ru, uk
@@ -1950,6 +2003,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("sign_in", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Sign in with Apple
+      ///
+      /// Locales: en, ru, uk
+      static func log_in_with_apple(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("log_in_with_apple", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "log_in_with_apple"
+        }
+
+        return NSLocalizedString("log_in_with_apple", bundle: bundle, comment: "")
       }
 
       /// en translation: Sign in with Google
@@ -2506,6 +2574,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "arrow_back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'arrow_back' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
         if UIKit.UIImage(named: "done", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'done' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "background_light_theme", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_light_theme' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "background_main_light", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_main_light' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "bet_group_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'bet_group_start' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "green_blue_end", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_end' is used in storyboard 'HistoryVController', but couldn't be loaded.") }

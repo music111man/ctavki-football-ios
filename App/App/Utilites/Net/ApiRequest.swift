@@ -12,6 +12,7 @@ enum ApiRequest {
     case checkForUpdates
     case signInByTelegram(uuid: String)
     case signInByGoogle(idToken: String)
+    case signInByApple(idToken: String, userName: String)
 }
 
 extension ApiRequest: TargetType {
@@ -27,6 +28,8 @@ extension ApiRequest: TargetType {
             return "login/sign-in-with-telegram2.php"
         case .signInByGoogle:
             return "login/sign-in-with-google.php"
+        case .signInByApple:
+            return "login/sign-in-with-apple.php"
         }
     }
     
@@ -34,7 +37,7 @@ extension ApiRequest: TargetType {
         switch self {
         case .checkForUpdates:
             return .get
-        case .signInByTelegram, .signInByGoogle:
+        case .signInByTelegram, .signInByGoogle, .signInByApple:
             return .post
         }
     }
@@ -57,6 +60,11 @@ extension ApiRequest: TargetType {
             return Moya.Task.requestParameters(parameters: ["idToken": idToken,
                                                            "fcmToken": AppSettings.fcmToken],
                                                encoding: JSONEncoding.default)
+        case .signInByApple(let idToken, let userName):
+            return Moya.Task.requestParameters(parameters: ["idToken": idToken,
+                                                            "user_name": userName,
+                                                           "fcmToken": AppSettings.fcmToken],
+                                               encoding: JSONEncoding.default)
         }
     }
     
@@ -69,7 +77,7 @@ extension ApiRequest: TargetType {
                     "ClientVersion" : AppSettings.clientVersion,
                     "Locale" : AppSettings.locale,
                     "PLATFORM" : AppSettings.platform]
-        case .signInByTelegram, .signInByGoogle :
+        case .signInByTelegram, .signInByGoogle, .signInByApple:
             return ["ApiKey" : AppSettings.apiKey,
                     "ClientVersion" : AppSettings.clientVersion,
                     "Locale" : AppSettings.locale,

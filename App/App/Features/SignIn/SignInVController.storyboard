@@ -13,7 +13,7 @@
         <!--Sign InV Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="SignInVController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="Y6W-OH-hqX" customClass="SignInVController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInVController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="Y6W-OH-hqX" customClass="SignInVController" customModule="Ctavki" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -211,6 +211,7 @@
                         <outlet property="goToView" destination="lz1-SM-lns" id="zNe-XF-Asv"/>
                         <outlet property="googleBtnView" destination="OmU-OQ-b73" id="ON7-IQ-f3i"/>
                         <outlet property="googleLabel" destination="y1J-cD-Cq7" id="gpF-QW-btb"/>
+                        <outlet property="stackView" destination="LS0-Dy-cnC" id="QeD-dF-mTK"/>
                         <outlet property="subTitleLabel" destination="fKA-ru-1fn" id="6SP-FF-VAe"/>
                         <outlet property="telegramBtnView" destination="9nX-Hk-5kd" id="uC2-YS-qUO"/>
                         <outlet property="telegramLabel" destination="Qbj-aP-glz" id="tzA-cu-Xrd"/>

@@ -13,7 +13,7 @@
         <!--HistoryV Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="HistoryVController" id="Y6W-OH-hqX" customClass="HistoryVController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HistoryVController" id="Y6W-OH-hqX" customClass="HistoryVController" customModule="Ctavki" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,12 +62,24 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PfV-s8-x4P">
                                 <rect key="frame" x="0.0" y="90" width="393" height="762"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Qa-pA-EVa">
-                                        <rect key="frame" x="0.0" y="20" width="393" height="31.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                        <color key="textColor" name="text_theme"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="16K-SW-RkT">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="71.333333333333329"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Qa-pA-EVa">
+                                                <rect key="frame" x="20" y="20" width="353" height="31.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <color key="textColor" name="text_theme"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" name="background_light_theme"/>
+                                        <constraints>
+                                            <constraint firstItem="7Qa-pA-EVa" firstAttribute="leading" secondItem="16K-SW-RkT" secondAttribute="leading" constant="20" id="HPy-dw-RDE"/>
+                                            <constraint firstAttribute="trailing" secondItem="7Qa-pA-EVa" secondAttribute="trailing" constant="20" id="Kau-eC-fc9"/>
+                                            <constraint firstItem="7Qa-pA-EVa" firstAttribute="top" secondItem="16K-SW-RkT" secondAttribute="top" constant="20" id="MZ7-DA-OJt"/>
+                                            <constraint firstAttribute="bottom" secondItem="7Qa-pA-EVa" secondAttribute="bottom" constant="20" id="k2b-oE-8ea"/>
+                                        </constraints>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qzh-fr-IO9">
                                         <rect key="frame" x="0.0" y="71.333333333333343" width="393" height="20.333333333333329"/>
                                         <subviews>
@@ -140,14 +152,14 @@
                                     <constraint firstItem="RCo-f0-tmQ" firstAttribute="top" secondItem="JrV-PY-q4S" secondAttribute="bottom" id="287-ga-7nJ"/>
                                     <constraint firstAttribute="bottom" secondItem="RCo-f0-tmQ" secondAttribute="bottom" id="2aM-ym-FeR"/>
                                     <constraint firstAttribute="trailing" secondItem="RCo-f0-tmQ" secondAttribute="trailing" id="435-Uc-Fcl"/>
+                                    <constraint firstItem="Qzh-fr-IO9" firstAttribute="top" secondItem="16K-SW-RkT" secondAttribute="bottom" id="4UK-aU-YUU"/>
                                     <constraint firstItem="Qzh-fr-IO9" firstAttribute="leading" secondItem="PfV-s8-x4P" secondAttribute="leading" id="5lV-Fy-0yL"/>
-                                    <constraint firstItem="7Qa-pA-EVa" firstAttribute="top" secondItem="PfV-s8-x4P" secondAttribute="top" constant="20" id="9yw-hf-szq"/>
+                                    <constraint firstAttribute="trailing" secondItem="16K-SW-RkT" secondAttribute="trailing" id="75d-JN-Jvp"/>
+                                    <constraint firstItem="16K-SW-RkT" firstAttribute="top" secondItem="PfV-s8-x4P" secondAttribute="top" id="8fJ-kF-1c4"/>
                                     <constraint firstAttribute="trailing" secondItem="Qzh-fr-IO9" secondAttribute="trailing" id="E6o-4x-fla"/>
-                                    <constraint firstItem="7Qa-pA-EVa" firstAttribute="leading" secondItem="PfV-s8-x4P" secondAttribute="leading" id="Gdy-Ye-9uq"/>
                                     <constraint firstItem="JrV-PY-q4S" firstAttribute="leading" secondItem="PfV-s8-x4P" secondAttribute="leading" id="Mvv-yZ-lru"/>
+                                    <constraint firstItem="16K-SW-RkT" firstAttribute="leading" secondItem="PfV-s8-x4P" secondAttribute="leading" id="OzQ-gK-Qra"/>
                                     <constraint firstAttribute="trailing" secondItem="JrV-PY-q4S" secondAttribute="trailing" id="dId-la-zHA"/>
-                                    <constraint firstAttribute="trailing" secondItem="7Qa-pA-EVa" secondAttribute="trailing" id="fbG-sM-rh0"/>
-                                    <constraint firstItem="Qzh-fr-IO9" firstAttribute="top" secondItem="7Qa-pA-EVa" secondAttribute="bottom" constant="20" id="kLq-RS-ykR"/>
                                     <constraint firstItem="JrV-PY-q4S" firstAttribute="top" secondItem="Qzh-fr-IO9" secondAttribute="bottom" id="pnK-6D-Llm"/>
                                     <constraint firstItem="RCo-f0-tmQ" firstAttribute="leading" secondItem="PfV-s8-x4P" secondAttribute="leading" id="riO-ba-IOh"/>
                                 </constraints>
@@ -196,6 +208,9 @@
     <resources>
         <image name="arrow_back" width="24" height="24"/>
         <image name="done" width="128" height="128"/>
+        <namedColor name="background_light_theme">
+            <color red="0.92549019607843142" green="0.98039215686274506" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="background_main_light">
             <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

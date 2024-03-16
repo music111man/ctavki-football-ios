@@ -8,18 +8,32 @@
 import Foundation
 import UIKit
 import GoogleSignIn
+import AuthenticationServices
 
 enum SignInMethod {
     case google(idToken: String)
     case telegram(uuid: String)
+    case apple(idToken: String, userName: String)
     case non
 }
 
-final class AccountService {
+final class AccountService: NSObject {
     
     static let share = AccountService()
     
-    private init(){}
+    private override init(){}
+    
+    @available(iOS 13.0, *)
+    func signInByApple(presenting vc: ASAuthorizationControllerPresentationContextProviding) {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = vc
+        authorizationController.performRequests()
+    }
     
     func signInByGoogle(presenting vc: UIViewController) {
         printAppEvent("try sing in by google")
@@ -65,6 +79,9 @@ final class AccountService {
         case let .google(idToken):
             singInGoogle(idToken)
             return true
+        case .apple(let idToken, let userName):
+            singInApple(idToken, userName)
+            return true
         }
     }
     
@@ -84,6 +101,17 @@ final class AccountService {
     private func singInGoogle(_ idToken: String) {
         printAppEvent("start sign in google")
         NetProvider.makeRequest(SignInResponseEntity.self, .signInByGoogle(idToken: idToken)) {[weak self] response in
+            guard let self = self else {
+                AppSettings.authorizeEvent.accept(false)
+                return
+            }
+            self.processResponse(response: response)
+        }
+    }
+    
+    private func singInApple(_ idToken: String, _ userName: String) {
+        printAppEvent("start sign in apple")
+        NetProvider.makeRequest(SignInResponseEntity.self, .signInByApple(idToken: idToken, userName: userName)) {[weak self] response in
             guard let self = self else {
                 AppSettings.authorizeEvent.accept(false)
                 return
@@ -112,5 +140,22 @@ final class AccountService {
         AppSettings.userToken = response.jwt
         NotificationCenter.default.post(name: Notification.Name.tryToRefreshData, object: nil)
         return
+    }
+}
+
+@available(iOS 13.0, *)
+extension AccountService: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
+              let tokenData = credential.authorizationCode,
+              let token = String(data: tokenData, encoding: .utf8) else { return }
+
+        let userName = "\(credential.fullName?.givenName ?? "") \(credential.fullName?.familyName ?? "")"
+        printAppEvent("apple sign in for \(userName)")
+        AppSettings.signInMethod = .apple(idToken: token, userName: userName)
+        signIn()
+    }
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        printAppEvent("\(error)")
     }
 }

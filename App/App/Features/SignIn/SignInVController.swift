@@ -7,9 +7,11 @@
 
 import UIKit
 import RxSwift
+import AuthenticationServices
 
 class SignInVController: UIViewController {
 
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var telegramBtnView: UIView!
     @IBOutlet weak var googleBtnView: UIView!
     @IBOutlet weak var containerView: UIView!
@@ -38,6 +40,10 @@ class SignInVController: UIViewController {
             self?.goToView.superview?.isHidden = !isSignIn
             self?.googleBtnView.isHidden = isSignIn
             self?.telegramBtnView.isHidden = isSignIn
+            if #available(iOS 13.0, *) {
+                self?.stackView.arrangedSubviews.first?.isHidden = isSignIn
+            }
+            
         }.disposed(by: disposeBag)
         
         googleLabel.text = R.string.localizable.log_in_with_google()
@@ -98,6 +104,26 @@ class SignInVController: UIViewController {
             self?.activityView.isHidden = !(self?.accountService.signIn() ?? false)
          }.disposed(by: disposeBag)
         
+        if #available(iOS 13.0, *) {
+            let authorizationButton = ASAuthorizationAppleIDButton(type: .signIn, style: .white)
+            authorizationButton.setshadow()
+            authorizationButton.cornerRadius = 8
+            authorizationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            stackView.insertArrangedSubview(authorizationButton, at: 0)
+            authorizationButton.tap {[weak self] in
+                self?.accountService.signInByApple(presenting: self!)
+            }.disposed(by: disposeBag)
+        }
+        
+        NotificationCenter.default.rx.notification(Notification.Name.deserializeError).subscribe {[weak self] _ in
+            self?.activityView.isHidden = true
+            self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
+         }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(Notification.Name.badNetRequest).subscribe {[weak self] _ in
+            self?.activityView.isHidden = true
+            self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.net_error())
+         }.disposed(by: disposeBag)
+        
         activityView.isHidden = !accountService.signIn()
     }
     
@@ -117,5 +143,12 @@ class SignInVController: UIViewController {
             guard let self = self else { return }
             self.gradient.frame = self.goToView.bounds
         }
+    }
+}
+
+@available(iOS 13.0, *)
+extension SignInVController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
     }
 }

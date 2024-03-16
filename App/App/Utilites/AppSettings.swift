@@ -56,6 +56,10 @@ final class AppSettings {
             case let .telegram(uuid):
                 UserDefaults.standard.setValue(2, forKey: Self.signInMethodKey)
                 UserDefaults.standard.setValue(uuid, forKey: Self.tokenFoSignInKey)
+            case .apple(let idToken, let userName):
+                UserDefaults.standard.setValue(3, forKey: Self.signInMethodKey)
+                UserDefaults.standard.setValue(idToken, forKey: Self.tokenFoSignInKey)
+                Self.userName = userName
             }
         }
         get {
@@ -69,6 +73,10 @@ final class AppSettings {
             case 2:
                 if let token = UserDefaults.standard.string(forKey: Self.tokenFoSignInKey) {
                     return .telegram(uuid: token)
+                }
+            case 3:
+                if let token = UserDefaults.standard.string(forKey: Self.tokenFoSignInKey), !Self.userName.isEmpty {
+                    return .apple(idToken: token, userName: Self.userName)
                 }
             default:
                 break

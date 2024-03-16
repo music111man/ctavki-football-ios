@@ -88,8 +88,7 @@ class BetView: UIView {
         NSLayoutConstraint.activate([
             teamsView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
             teamsView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
-            teamsView.heightAnchor.constraint(equalToConstant: 56),
-            teamsView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            teamsView.heightAnchor.constraint(equalToConstant: 56)
         ])
         resultLabel.textAlignment = .center
         resultLabel.textColor = R.color.title_color()
@@ -108,6 +107,7 @@ class BetView: UIView {
             resultLabel.centerYAnchor.constraint(equalTo: resultView.centerYAnchor),
             resultLabel.leftAnchor.constraint(equalTo: resultView.leftAnchor, constant: 2),
             resultLabel.rightAnchor.constraint(equalTo: resultView.rightAnchor, constant: -2)
+            
         ])
         addSubview(resultView)
         NSLayoutConstraint.activate([
@@ -116,7 +116,8 @@ class BetView: UIView {
             resultView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             resultView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             resultView.heightAnchor.constraint(equalToConstant: 58),
-            resultView.widthAnchor.constraint(equalToConstant: 58)
+            resultView.widthAnchor.constraint(equalToConstant: 58),
+            teamsView.centerYAnchor.constraint(equalTo: resultLabel.centerYAnchor)
         ])
         initTapGesture()
         
