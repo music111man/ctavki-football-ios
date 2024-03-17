@@ -10,6 +10,13 @@ import RxSwift
 import RxCocoa
 
 extension UIView {
+    
+    @IBInspectable
+    var crRadius: CGFloat {
+        get { layer.cornerRadius }
+        set { layer.cornerRadius = newValue }
+    }
+    
     func roundCorners(radius: CGFloat? = nil) {
         layer.cornerRadius = radius ?? frame.width / 2
     }
@@ -39,6 +46,21 @@ extension UIView {
         layer.addSublayer(gradient)
         gradient.frame = bounds
         return gradient
+    }
+    
+    @IBInspectable
+    var shadowed: Bool {
+        get { layer.shadowColor != nil }
+        set {
+            if newValue {
+                setshadow()
+            } else {
+                layer.shadowColor = nil
+                layer.shadowOpacity = 0
+                layer.shadowOffset = CGSize(width: 0.0, height: -3.0)
+                layer.shadowRadius = 0
+            }
+        }
     }
     
     func setshadow(size: CGSize? = nil) {

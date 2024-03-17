@@ -337,19 +337,26 @@ class TourGuidVController: UIViewController {
             label.rightAnchor.constraint(equalTo: textContainer.rightAnchor, constant: -50)
         ])
         
-        let labelSkip = UILabel()
         
+        let labelSkip = UILabel()
         labelSkip.text = R.string.localizable.skip()
         labelSkip.textColor = R.color.won_light()
         labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
         labelSkip.translatesAutoresizingMaskIntoConstraints = false
-        textContainer.addSubview(labelSkip)
+        let viewSkip = UIView()
+        viewSkip.translatesAutoresizingMaskIntoConstraints = false
+        viewSkip.addSubview(labelSkip)
+        textContainer.addSubview(viewSkip)
         NSLayoutConstraint.activate([
-            labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
-            labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
+            viewSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
+            viewSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 0),
+            labelSkip.leftAnchor.constraint(equalTo: viewSkip.leftAnchor, constant: 0),
+            labelSkip.topAnchor.constraint(equalTo: viewSkip.topAnchor, constant: 10),
+            labelSkip.bottomAnchor.constraint(equalTo: viewSkip.bottomAnchor, constant: -10),
+            labelSkip.rightAnchor.constraint(equalTo: viewSkip.rightAnchor, constant: 0)
         ])
         
-        labelSkip.tap { [weak self] in
+        viewSkip.tap { [weak self] in
             guard let self = self  else { return }
             self.guidAnimations.removeAll()
             self.betsGuidIconContainer.layer.opacity = 0
@@ -407,13 +414,21 @@ class TourGuidVController: UIViewController {
         labelSkip.textColor = R.color.won_light()
         labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
         labelSkip.translatesAutoresizingMaskIntoConstraints = false
-        textContainer.addSubview(labelSkip)
-        NSLayoutConstraint.activate([
-            labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 10),
-            labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
-        ])
        
-        labelSkip.tap {[weak self] in
+        let viewSkip = UIView()
+        viewSkip.translatesAutoresizingMaskIntoConstraints = false
+        viewSkip.addSubview(labelSkip)
+        textContainer.addSubview(viewSkip)
+        NSLayoutConstraint.activate([
+            viewSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 10),
+            viewSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 0),
+            labelSkip.leftAnchor.constraint(equalTo: viewSkip.leftAnchor, constant: 0),
+            labelSkip.topAnchor.constraint(equalTo: viewSkip.topAnchor, constant: 10),
+            labelSkip.bottomAnchor.constraint(equalTo: viewSkip.bottomAnchor, constant: -10),
+            labelSkip.rightAnchor.constraint(equalTo: viewSkip.rightAnchor, constant: 0)
+        ])
+        
+        viewSkip.tap {[weak self] in
             guard let self = self  else { return }
             self.guidAnimations.removeAll()
             labelSkip.animateTapGesture(value: 0.8) {
@@ -475,12 +490,21 @@ class TourGuidVController: UIViewController {
         labelSkip.textColor = R.color.won_light()
         labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
         labelSkip.translatesAutoresizingMaskIntoConstraints = false
-        textContainer.addSubview(labelSkip)
+       
+        let viewSkip = UIView()
+        viewSkip.translatesAutoresizingMaskIntoConstraints = false
+        viewSkip.addSubview(labelSkip)
+        textContainer.addSubview(viewSkip)
         NSLayoutConstraint.activate([
-            labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
-            labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
+            viewSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
+            viewSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 0),
+            labelSkip.leftAnchor.constraint(equalTo: viewSkip.leftAnchor, constant: 0),
+            labelSkip.topAnchor.constraint(equalTo: viewSkip.topAnchor, constant: 10),
+            labelSkip.bottomAnchor.constraint(equalTo: viewSkip.bottomAnchor, constant: -10),
+            labelSkip.rightAnchor.constraint(equalTo: viewSkip.rightAnchor, constant: 0)
         ])
-        labelSkip.tap { [weak self] in
+        
+        viewSkip.tap { [weak self] in
             guard let self = self  else { return }
             self.guidAnimations.removeAll()
             labelSkip.animateTapGesture(value: 0.8) {
@@ -541,13 +565,21 @@ class TourGuidVController: UIViewController {
         labelSkip.textColor = R.color.won_light()
         labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
         labelSkip.translatesAutoresizingMaskIntoConstraints = false
-        textContainer.addSubview(labelSkip)
+        
+        let viewSkip = UIView()
+        viewSkip.translatesAutoresizingMaskIntoConstraints = false
+        viewSkip.addSubview(labelSkip)
+        textContainer.addSubview(viewSkip)
         NSLayoutConstraint.activate([
-            labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
-            labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
+            viewSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
+            viewSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 0),
+            labelSkip.leftAnchor.constraint(equalTo: viewSkip.leftAnchor, constant: 0),
+            labelSkip.topAnchor.constraint(equalTo: viewSkip.topAnchor, constant: 10),
+            labelSkip.bottomAnchor.constraint(equalTo: viewSkip.bottomAnchor, constant: -10),
+            labelSkip.rightAnchor.constraint(equalTo: viewSkip.rightAnchor, constant: 0)
         ])
-
-        labelSkip.tap { [weak self] in
+        
+        viewSkip.tap { [weak self] in
             guard let self = self  else { return }
             self.guidAnimations.removeAll()
             labelSkip.animateTapGesture(value: 0.8) {
@@ -608,12 +640,21 @@ class TourGuidVController: UIViewController {
         labelSkip.textColor = R.color.won_light()
         labelSkip.font = UIFont.boldSystemFont(ofSize: 17.0)
         labelSkip.translatesAutoresizingMaskIntoConstraints = false
-        textContainer.addSubview(labelSkip)
+        
+        let viewSkip = UIView()
+        viewSkip.translatesAutoresizingMaskIntoConstraints = false
+        viewSkip.addSubview(labelSkip)
+        textContainer.addSubview(viewSkip)
         NSLayoutConstraint.activate([
-            labelSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
-            labelSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10)
+            viewSkip.leftAnchor.constraint(equalTo: label.leftAnchor, constant: 0),
+            viewSkip.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 0),
+            labelSkip.leftAnchor.constraint(equalTo: viewSkip.leftAnchor, constant: 0),
+            labelSkip.topAnchor.constraint(equalTo: viewSkip.topAnchor, constant: 10),
+            labelSkip.bottomAnchor.constraint(equalTo: viewSkip.bottomAnchor, constant: -10),
+            labelSkip.rightAnchor.constraint(equalTo: viewSkip.rightAnchor, constant: 0)
         ])
-        labelSkip.tap {[weak self] in
+        
+        viewSkip.tap {[weak self] in
             guard let self = self  else { return }
             self.guidAnimations.removeAll()
             labelSkip.animateTapGesture(value: 0.8) {

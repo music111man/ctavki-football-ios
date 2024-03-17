@@ -64,6 +64,17 @@ final class AppCoordinator: PCoordinator {
             }
             self?.showActiveBetDetails()
         }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(Notification.Name.needOpenNoActiveBetDetails).subscribe {[weak self] event in
+            guard let betId = event.element?.userInfo?[BetView.betIdKeyForUserInfo] as? Int else { return }
+            printAppEvent("tap to show bet id=\(betId)")
+            guard AppSettings.isAuthorized  else {
+                self?.showAuthScreen { [weak self] in
+                    self?.showActiveBetDetails()
+                }
+                return
+            }
+            self?.showBetDetails(betId: betId)
+        }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needOpenHistory).subscribe {[weak self] event in
             guard let team = event.element?.userInfo?[BetView.teamKeyUserInfo] as? Team else {
                 printAppEvent("Unable open history - no arguments")
@@ -83,13 +94,13 @@ final class AppCoordinator: PCoordinator {
     }
     
     func showActiveBetDetails() {
-        guard let betId = activeBetToShow else { return }
-        let vc: BetDetailsVController = BetDetailsVController.createFromNib() { vc in
-            vc.configure(betId: betId )
+        guard let topVC = router?.topViewController as? MainVController, let betId = activeBetToShow else { return }
+        let vc: ForecastVController = ForecastVController.createFromNib() { vc in
+            vc.betId = betId
         }
-        vc.modalPresentationStyle = .overFullScreen
-        activeBetToShow = nil
-        self.router?.present(vc, animated: false)
+        topVC.animate { [weak self] in
+            self?.router?.pushViewController(vc, animated: false)
+        }
     }
     
     func showAuthScreen(_ disposed: (() -> ())? = nil) {

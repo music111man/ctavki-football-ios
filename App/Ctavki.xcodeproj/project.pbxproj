@@ -11,6 +11,11 @@
 		F2040C612B8C9D4700DE01CE /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2040C602B8C9D4700DE01CE /* MainCoordinator.swift */; };
 		F2041A322B91D05C00DA42BB /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2041A312B91D05C00DA42BB /* Repository.swift */; };
 		F2041A342B92335800DA42BB /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2041A332B92335800DA42BB /* SyncService.swift */; };
+		F2045F2B2BA732E700EA6A65 /* ForecastVController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2045F2A2BA732E700EA6A65 /* ForecastVController.storyboard */; };
+		F2045F2D2BA7330300EA6A65 /* ForecastVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2045F2C2BA7330300EA6A65 /* ForecastVController.swift */; };
+		F2045F2F2BA7772700EA6A65 /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2045F2E2BA7772700EA6A65 /* ForecastViewModel.swift */; };
+		F2045F312BA778B700EA6A65 /* ForecastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2045F302BA778B700EA6A65 /* ForecastService.swift */; };
+		F2045F332BA7953400EA6A65 /* UIActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2045F322BA7953400EA6A65 /* UIActivityIndicatorView.swift */; };
 		F20704832B87A33800DD6364 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F20704852B87A33800DD6364 /* Localizable.strings */; };
 		F2218ACB2BA2FCD200C53C46 /* SignInVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218ACA2BA2FCD200C53C46 /* SignInVController.swift */; };
 		F2218ACD2BA2FCF500C53C46 /* SignInVController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2218ACC2BA2FCF500C53C46 /* SignInVController.storyboard */; };
@@ -94,6 +99,11 @@
 		F2040C602B8C9D4700DE01CE /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		F2041A312B91D05C00DA42BB /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		F2041A332B92335800DA42BB /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
+		F2045F2A2BA732E700EA6A65 /* ForecastVController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForecastVController.storyboard; sourceTree = "<group>"; };
+		F2045F2C2BA7330300EA6A65 /* ForecastVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastVController.swift; sourceTree = "<group>"; };
+		F2045F2E2BA7772700EA6A65 /* ForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
+		F2045F302BA778B700EA6A65 /* ForecastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastService.swift; sourceTree = "<group>"; };
+		F2045F322BA7953400EA6A65 /* UIActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorView.swift; sourceTree = "<group>"; };
 		F20704842B87A33800DD6364 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F20704862B87A33A00DD6364 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F2218ACA2BA2FCD200C53C46 /* SignInVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVController.swift; sourceTree = "<group>"; };
@@ -217,6 +227,17 @@
 			path = DB;
 			sourceTree = "<group>";
 		};
+		F2045F292BA732BF00EA6A65 /* Forecast */ = {
+			isa = PBXGroup;
+			children = (
+				F2045F2A2BA732E700EA6A65 /* ForecastVController.storyboard */,
+				F2045F2C2BA7330300EA6A65 /* ForecastVController.swift */,
+				F2045F2E2BA7772700EA6A65 /* ForecastViewModel.swift */,
+				F2045F302BA778B700EA6A65 /* ForecastService.swift */,
+			);
+			path = Forecast;
+			sourceTree = "<group>";
+		};
 		F207046F2B878B8C00DD6364 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +297,7 @@
 		F22CE0952B87B91D00732FFB /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F2045F292BA732BF00EA6A65 /* Forecast */,
 				F2218AC92BA2FC9500C53C46 /* SignIn */,
 				F2973D022B9EEBCC003612E1 /* History */,
 				F2EB1A2F2B99D84F0027D782 /* BetDetails */,
@@ -359,6 +381,7 @@
 				F2EB1A342B9A11520027D782 /* UIViewController.swift */,
 				F226F9F92B9B8D0200F9D391 /* UITableView.swift */,
 				F226FA0D2B9CC6A500F9D391 /* UIStackView.swift */,
+				F2045F322BA7953400EA6A65 /* UIActivityIndicatorView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -632,6 +655,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2045F2B2BA732E700EA6A65 /* ForecastVController.storyboard in Resources */,
 				F2A0163B2B9E6A1700B532C1 /* NoActiveBetsCell.xib in Resources */,
 				F24C769A2BA07E7800FE7836 /* LaunchScreen.storyboard in Resources */,
 				F20704832B87A33800DD6364 /* Localizable.strings in Resources */,
@@ -738,8 +762,10 @@
 				F22CE0B32B88BE4D00732FFB /* VCFactory.swift in Sources */,
 				F226FA072B9C76DA00F9D391 /* FaqService.swift in Sources */,
 				F22CE0A02B87C5AF00732FFB /* PurchesVController.swift in Sources */,
+				F2045F2D2BA7330300EA6A65 /* ForecastVController.swift in Sources */,
 				F2EA78CC2B909122006B3A1C /* Faq.swift in Sources */,
 				F2EB1A352B9A11520027D782 /* UIViewController.swift in Sources */,
+				F2045F312BA778B700EA6A65 /* ForecastService.swift in Sources */,
 				F2EA78DC2B90CA29006B3A1C /* AppSettings.swift in Sources */,
 				F2A016322B9E49CD00B532C1 /* TeamsView.swift in Sources */,
 				F2041A322B91D05C00DA42BB /* Repository.swift in Sources */,
@@ -747,6 +773,7 @@
 				F2EA78CA2B908ED2006B3A1C /* Team.swift in Sources */,
 				F2040C612B8C9D4700DE01CE /* MainCoordinator.swift in Sources */,
 				F226FA0C2B9CA14A00F9D391 /* FaqView.swift in Sources */,
+				F2045F332BA7953400EA6A65 /* UIActivityIndicatorView.swift in Sources */,
 				F22CE0B52B88C20900732FFB /* TeamsFactory.swift in Sources */,
 				F22CE0A72B87D3C100732FFB /* MenuButton.swift in Sources */,
 				F22CE09E2B87C53700732FFB /* TeamsVController.swift in Sources */,
@@ -775,6 +802,7 @@
 				F2EA78E02B9103F5006B3A1C /* ValueTypeExt.swift in Sources */,
 				F291F1342B95F96C00BB8E58 /* NavigationTopBarView.swift in Sources */,
 				F2EA78D72B90B97D006B3A1C /* AppUpdateAvailable.swift in Sources */,
+				F2045F2F2BA7772700EA6A65 /* ForecastViewModel.swift in Sources */,
 				F226FA0E2B9CC6A500F9D391 /* UIStackView.swift in Sources */,
 				F291F1382B96355B00BB8E58 /* BetsViewModel.swift in Sources */,
 				F2973D212B9F7B73003612E1 /* TeamsViewCell.swift in Sources */,

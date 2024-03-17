@@ -36,7 +36,6 @@ final class AccountService: NSObject {
     }
     
     func signInByGoogle(presenting vc: UIViewController) {
-        printAppEvent("try sing in by google")
         GIDSignIn.sharedInstance.signIn(withPresenting: vc) { signInResult, error in
             if let error = error {
             printAppEvent("\(error)")
@@ -47,7 +46,6 @@ final class AccountService: NSObject {
             signInResult.user.refreshTokensIfNeeded {[weak self] user, error in
                 guard error == nil else { return }
                 guard let user = user, let idToken = user.idToken?.tokenString else { return }
-                printAppEvent("will sing in by google with token: \(idToken)")
                 AppSettings.signInMethod = .google(idToken: idToken)
                 self?.signIn()
             }
@@ -89,11 +87,7 @@ final class AccountService: NSObject {
         printAppEvent("start sign in telegram")
         DispatchQueue.global(qos: .userInteractive).async {
             NetProvider.makeRequest(SignInResponseEntity.self, .signInByTelegram(uuid: uuid)) {[weak self] response in
-                guard let self = self else { 
-                    AppSettings.authorizeEvent.accept(false)
-                    return
-                }
-                self.processResponse(response: response)
+                self?.processResponse(response: response)
             }
         }
     }
@@ -101,26 +95,20 @@ final class AccountService: NSObject {
     private func singInGoogle(_ idToken: String) {
         printAppEvent("start sign in google")
         NetProvider.makeRequest(SignInResponseEntity.self, .signInByGoogle(idToken: idToken)) {[weak self] response in
-            guard let self = self else {
-                AppSettings.authorizeEvent.accept(false)
-                return
-            }
-            self.processResponse(response: response)
+            self?.processResponse(response: response)
         }
     }
     
     private func singInApple(_ idToken: String, _ userName: String) {
         printAppEvent("start sign in apple")
         NetProvider.makeRequest(SignInResponseEntity.self, .signInByApple(idToken: idToken, userName: userName)) {[weak self] response in
-            guard let self = self else {
-                AppSettings.authorizeEvent.accept(false)
-                return
-            }
-            self.processResponse(response: response)
+            self?.processResponse(response: response)
         }
     }
     
     private func processResponse(response: SignInResponseEntity) {
+        defer { AppSettings.signInMethod = .non }
+        
         if response.code != 200 {
             printAppEvent("sign in error: code \(response.code) msg: \(response.msg)")
             NotificationCenter.default.post(name: NSNotification.Name.badServerResponse, object: nil)

@@ -120,11 +120,7 @@ class HistoryVController: UIViewController {
         titleLabel.text = R.string.localizable.bets_history().uppercased()
         betsLabel.text = R.string.localizable.bets_made().lowercased()
         amountLabel.text = ", \(R.string.localizable.balance().lowercased())"
-        if #available(iOS 13.0, *) {
-            activityView.style = .large
-        } else {
-            activityView.style = .whiteLarge
-        }
+        activityView.setStyle()
         tableView.register(UINib(resource: R.nib.betsCell), forCellReuseIdentifier: BetsCell.reuseIdentifier)
     }
 

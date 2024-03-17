@@ -58,6 +58,7 @@
 "return" = "win";
 "loss" = "Lost 100";
 "year_at_end" = "%@";
+"expecting" = "Expected";
 
 "bets_history" = "Bets history of";
 "balance" = "Balance";
@@ -75,3 +76,15 @@
 "log_in_with_telegram" = "Sign in with Telegram";
 "you_are_logged" = "You have successfully logged in. Now all our free sports predictions are available to you.";
 "get_more_bets" = "Go to predictions";
+
+// Forecast
+"current_bets_m_of_n" = "CURRENT BETS (%d of %d)";
+"accurate_match_prediction" = "Accurate match prediction";
+"bets_odds" = "Prediction odds";
+"teams_comparison" = "Teams comparison";
+"total_bets" = "Total bets";
+"wins" = "Wins";
+"loses" = "Loses";
+"average_coeff" = "Average odds";
+"roi_percentage" = "ROI, in %";
+"current_series" = "Current series";

@@ -91,11 +91,7 @@ final class FaqVController: UIViewController {
             stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -stackView.spacing)
         ])
         activityView.translatesAutoresizingMaskIntoConstraints = false
-        if #available(iOS 13.0, *) {
-            activityView.style = .large
-        } else {
-            activityView.style = .whiteLarge
-        }
+        activityView.setStyle()
         activityView.color = R.color.shadow()
         view.addSubview(activityView)
         NSLayoutConstraint.activate([

@@ -57,6 +57,7 @@
 "return" = "выигрыш";
 "loss" = "Проигрыш 100";
 "year_at_end" = "%@ г.";
+"expecting" = "Ожидается";
 
 "bets_history" = "История прогнозов на";
 "balance" = "Баланс";
@@ -74,3 +75,15 @@
 "log_in_with_telegram" = "Войти с помощью Telegram";
 "you_are_logged" = "Вы успешно залогинились. Теперь вам доступны все наши бесплатные спортивные прогнозы.";
 "get_more_bets" = "Перейти к прогнозам";
+
+// Forecast
+"current_bets_m_of_n" = "ТЕКУЩИЕ СТАВКИ (%d из %d)";
+"accurate_match_prediction" = "Точный прогноз на матч";
+"bets_odds" = "Коэффициент прогноза";
+"teams_comparison" = "Сравнение по командам";
+"total_bets" = "Всего прогнозов";
+"wins" = "Выигрышей";
+"loses" = "Проигрышей";
+"average_coeff" = "Cредниф кф.";
+"roi_percentage" = "ROI, в %";
+"current_series" = "Текущая серия";

@@ -38,11 +38,7 @@ class FeaureVController: UIViewController {
     }
    
     func initUI() {
-        if #available(iOS 13.0, *) {
-            activityView.style = .large
-        } else {
-            activityView.style = .whiteLarge
-        }
+        activityView.setStyle()
         
         view.backgroundColor = R.color.background_main_light()
         refresher.attributedTitle = NSAttributedString(string: "")

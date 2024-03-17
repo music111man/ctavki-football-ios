@@ -1,0 +1,205 @@
+//
+//  ForecastVController.swift
+//  Ctavki
+//
+//  Created by Denis Shkultetskyy on 17.03.2024.
+//
+
+import UIKit
+import RxSwift
+import RxCocoa
+
+class ForecastVController: UIViewController {
+
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
+    @IBOutlet var redCircles: [UIView]!
+    @IBOutlet var violetCircles: [UIView]!
+
+    @IBOutlet var blueGreenCircles: [UIView]!
+
+    @IBOutlet weak var typeTitleLabel: UILabel!
+    @IBOutlet weak var seriaTeam2Label: UILabel!
+    @IBOutlet weak var seriaTeam1Label: UILabel!
+    @IBOutlet weak var seriatitleLabel: UILabel!
+    @IBOutlet weak var roiTeam2Label: UILabel!
+    @IBOutlet weak var roiTeam1Label: UILabel!
+    @IBOutlet weak var roiTitleLabel: UILabel!
+    @IBOutlet weak var avgTeam2Label: UILabel!
+    @IBOutlet weak var avgTeam1Label: UILabel!
+    @IBOutlet weak var avgTitleLabel: UILabel!
+    @IBOutlet weak var lostTeam2Label: UILabel!
+    @IBOutlet weak var lostTeam1Label: UILabel!
+    @IBOutlet weak var lostTitleLabel: UILabel!
+    @IBOutlet weak var winTeam2Label: UILabel!
+    @IBOutlet weak var winTeam1Label: UILabel!
+    @IBOutlet weak var winTitleLabel: UILabel!
+    @IBOutlet weak var countTeam2Label: UILabel!
+    @IBOutlet weak var countTeam1Label: UILabel!
+    @IBOutlet weak var countTitleLabel: UILabel!
+    @IBOutlet weak var comparisonLabel: UILabel!
+    @IBOutlet weak var coeffLabel: UILabel!
+    @IBOutlet weak var coeffValLabel: UILabel!
+    @IBOutlet weak var forecastLabel: UILabel!
+    @IBOutlet weak var teamLabel2: UILabel!
+    @IBOutlet weak var teamLabel1: UILabel!
+    @IBOutlet weak var teamView2: UIView!
+    @IBOutlet weak var teamView1: UIView!
+    @IBOutlet var gradientsBlueGreen: [UIView]!
+    @IBOutlet var separators: [UIView]!
+    @IBOutlet weak var matchTimeLabel: UILabel!
+    @IBOutlet weak var backBtnView: UIView!
+    @IBOutlet weak var titlelabel: UILabel!
+    
+    let disposeBag = DisposeBag()
+    let service = ForecastService()
+    
+    private var model: ForecastViewModel? {
+        didSet {
+            guard let m = model else { return }
+            titlelabel.text = R.string.localizable.current_bets_m_of_n(m.titleIndex, m.titleCount)
+            matchTimeLabel.text = BetsCell.getFlexibleTimeLeftToMatch(date: m.bet.eventDate)
+            
+            if var typeArg = m.bet.typeArg {
+                if [34, 38].contains(m.betType.id) {
+                    typeArg += 0.5
+                } else {
+                    typeArg -= 0.5
+                }
+                forecastLabel.text =  m.betType.shortTitle.replace("%x%", with: "\(typeArg)")
+            } else {
+                forecastLabel.text = m.betType.shortTitle
+            }
+            teamLabel1.text = m.team1.title
+            teamLabel2.text = m.team2.title
+            coeffValLabel.text = m.bet.factor?.formattedString ?? "?"
+            countTeam1Label.text = m.betCount1.asString
+            countTeam2Label.text = m.betCount2.asString
+            winTeam1Label.text = m.winCount1.asString
+            winTeam2Label.text = m.winCount2.asString
+            lostTeam1Label.text = m.lostCount1.asString
+            lostTeam2Label.text = m.lostCount2.asString
+            avgTeam1Label.text = m.avg1.formattedString
+            avgTeam2Label.text = m.avg2.formattedString
+            roiTeam1Label.text = m.roi1.formattedString
+            roiTeam2Label.text = m.roi2.formattedString
+            seriaTeam1Label.text = m.seria1.asString
+            seriaTeam2Label.text = m.seria2.asString
+        }
+    }
+    
+    var betId: Int {
+        get { service.betId }
+        set { service.betId = newValue }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        initLabels()
+        initGradients()
+        service.model.observe(on: MainScheduler.instance).bind {[weak self] model in
+            self?.model = model
+            self?.activityView.isHidden = true
+        }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
+            self?.activityView.isHidden = false
+            self?.service.loadData()
+        }.disposed(by: disposeBag)
+        
+        teamView1.tap {[weak self] in
+            guard let team = self?.model?.team1 else { return }
+            let vc: HistoryVController = .createFromNib { vc in
+                vc.configure(team: team)
+            }
+            self?.animate(onLeft: true) {[weak self] in
+                self?.navigationController?.pushViewController(vc, animated: false)
+            }
+            
+        }.disposed(by: disposeBag)
+        teamView2.tap {[weak self] in
+            guard let team = self?.model?.team2 else { return }
+            let vc: HistoryVController = .createFromNib { vc in
+                vc.configure(team: team)
+            }
+            self?.animate(onLeft: false) {[weak self] in
+                self?.navigationController?.pushViewController(vc, animated: false)
+            }
+        }.disposed(by: disposeBag)
+        backBtnView.tap {[weak self] in
+            self?.navigationController?.popToRootViewController(animated: true)
+        }.disposed(by: disposeBag)
+        
+        service.loadData()
+    }
+   
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        activityView.setStyle()
+        gradientsBlueGreen.forEach { $0.layer.sublayers?.first?.frame = $0.bounds }
+        blueGreenCircles.forEach { $0.layer.sublayers?.first?.frame = $0.bounds }
+        violetCircles.forEach { $0.layer.sublayers?.first?.frame = $0.bounds }
+        redCircles.forEach { $0.layer.sublayers?.first?.frame = $0.bounds }
+    }
+
+    func initLabels() {
+        forecastLabel.text = R.string.localizable.accurate_match_prediction().lowercased()
+        coeffLabel.text = R.string.localizable.bets_odds().lowercased()
+        typeTitleLabel.text = R.string.localizable.accurate_match_prediction()
+        comparisonLabel.text = R.string.localizable.teams_comparison().lowercased()
+        countTitleLabel.text = R.string.localizable.total_bets().lowercased()
+        winTitleLabel.text = R.string.localizable.wins().lowercased()
+        lostTitleLabel.text = R.string.localizable.loses().lowercased()
+        avgTitleLabel.text = R.string.localizable.average_coeff().lowercased()
+        roiTitleLabel.text = R.string.localizable.roi_percentage().lowercased()
+        seriatitleLabel.text = R.string.localizable.current_series().lowercased()
+    }
+    func initGradients() {
+        separators.forEach { separatorView in
+            separatorView.setGradient(colors: [.backgroundMain,
+                                               .betGroupHeader,
+                                               .backgroundMain], isLine: true)
+                        .frame = CGRect(origin: CGPoint.zero,
+                                        size: CGSize(width: UIScreen.main.bounds.width - 30, height: 1))
+        }
+        
+        gradientsBlueGreen.forEach { view in
+            view.setGradient(start: .greenBlueStart,
+                             end: .greenBlueEnd,
+                             isLine: true, index: 0)
+        }
+        blueGreenCircles.forEach { view in
+            view.setGradient(start: .greenBlueStart,
+                             end: .greenBlueEnd,
+                             isLine: false, index: 0)
+        }
+        violetCircles.forEach { view in
+            view.setGradient(start: .viotetStart,
+                             end: .violetEnd,
+                             isLine: false, index: 0)
+        }
+        redCircles.forEach { view in
+            view.setGradient(start: .redStart,
+                             end: .redEnd,
+                             isLine: false, index: 0)
+        }
+    }
+    
+    func animate(onLeft: Bool, _ complite: @escaping() -> ()) {
+
+        UIView.transition(with: backView,
+                          duration: 0.4,
+                          options: [onLeft ? .transitionFlipFromRight : .transitionFlipFromLeft],
+                          animations: {[weak self] in
+            self?.backView.layer.opacity = 0
+            
+        }) {[weak self] _ in
+            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) { [weak self] in
+                self?.backView.layer.opacity = 1
+            }
+            complite()
+        }
+        
+        return
+    }
+}

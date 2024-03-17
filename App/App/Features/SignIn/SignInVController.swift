@@ -49,16 +49,7 @@ class SignInVController: UIViewController {
         googleLabel.text = R.string.localizable.log_in_with_google()
         telegramLabel.text = R.string.localizable.log_in_with_telegram()
         goToLabel.text = R.string.localizable.get_more_bets().uppercased()
-        goToView.roundCorners(radius: 8)
-        goToView.superview?.roundCorners(radius: 8)
-        
         gradient = goToView.setGradient(start: .greenBlueStart, end: .greenBlueEnd, isLine: true, index: 0)
-        closeView.roundCorners()
-        containerView.roundCorners(radius: 8)
-        googleBtnView.setshadow()
-        googleBtnView.roundCorners(radius: 8)
-        telegramBtnView.setshadow()
-        telegramBtnView.roundCorners(radius: 8)
         view.tap(animateTapGesture: false) {
            UIView.animate(withDuration: 0.3) {[weak self] in
                self?.view.layer.opacity = 0
@@ -106,7 +97,7 @@ class SignInVController: UIViewController {
         
         if #available(iOS 13.0, *) {
             let authorizationButton = ASAuthorizationAppleIDButton(type: .signIn, style: .white)
-            authorizationButton.setshadow()
+            authorizationButton.shadowed = true
             authorizationButton.cornerRadius = 8
             authorizationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
             stackView.insertArrangedSubview(authorizationButton, at: 0)

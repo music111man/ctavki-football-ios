@@ -12,6 +12,7 @@ import RxCocoa
 extension Notification.Name {
     static let needOpenBetDetails = Notification.Name("needOpenBetDetails")
     static let needOpenActiveBetDetails = Notification.Name("needOpenActiveBetDetails")
+    static let needOpenNoActiveBetDetails = Notification.Name("needOpenNoActiveBetDetails")
     static let needOpenHistory = Notification.Name("needOpenHistory")
     
 }
@@ -57,7 +58,7 @@ class BetView: UIView {
         resultLabel.text = model.resultText
         gradients.forEach {$0.value.opacity = 0}
         resultLabel.layer.opacity = 1
-        betOutCome = model.betOutCome ?? .active
+        betOutCome = model.betOutCome
         gradients[betOutCome]?.opacity = 1
     }
     
@@ -128,9 +129,12 @@ class BetView: UIView {
         resultView.tap {[weak self] in
             guard let self = self, let betId = self.betId else { return }
             resultView.animateTapGesture(value: 0.8) {
-                if self.betOutCome == .active || self.betOutCome == .unknow {
+                switch self.betOutCome {
+                case .active:
                     NotificationCenter.default.post(name: Notification.Name.needOpenActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
-                } else {
+                case .unknow:
+                    NotificationCenter.default.post(name: Notification.Name.needOpenNoActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
+                default:
                     NotificationCenter.default.post(name: Notification.Name.needOpenBetDetails,
                                                     object: self,
                                                     userInfo: [Self.betIdKeyForUserInfo: betId])

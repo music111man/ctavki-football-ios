@@ -58,11 +58,12 @@
                                             <constraint firstAttribute="width" constant="40" id="K3r-vM-DWB"/>
                                             <constraint firstItem="PMb-LG-1tg" firstAttribute="centerX" secondItem="bc0-jx-knS" secondAttribute="centerX" id="RDi-w9-Fdv"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="crRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Mgo-2q-4Wf">
-                                        <rect key="frame" x="156.66666666666666" y="196.33333333333334" width="20" height="20"/>
-                                        <color key="color" name="text_black"/>
-                                    </activityIndicatorView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LS0-Dy-cnC">
                                         <rect key="frame" x="15" y="207.66666666666663" width="303" height="190"/>
                                         <subviews>
@@ -94,6 +95,11 @@
                                                             <constraint firstAttribute="trailing" secondItem="y1J-cD-Cq7" secondAttribute="trailing" id="utJ-Em-xOz"/>
                                                             <constraint firstItem="y1J-cD-Cq7" firstAttribute="centerY" secondItem="pA7-3c-X3o" secondAttribute="centerY" id="zR5-ZU-Kty"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" name="bet_group_end"/>
@@ -103,6 +109,12 @@
                                                     <constraint firstItem="Wj3-U1-wmZ" firstAttribute="top" secondItem="OmU-OQ-b73" secondAttribute="top" id="kzN-DQ-Yxc"/>
                                                     <constraint firstItem="Wj3-U1-wmZ" firstAttribute="centerX" secondItem="OmU-OQ-b73" secondAttribute="centerX" id="zXP-N1-TQh"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shadowed" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="crRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HA6-hg-GGV">
                                                 <rect key="frame" x="0.0" y="70" width="303" height="50"/>
@@ -124,6 +136,15 @@
                                                             <constraint firstItem="qjQ-YF-hbq" firstAttribute="centerY" secondItem="lz1-SM-lns" secondAttribute="centerY" id="WOh-KL-aMy"/>
                                                             <constraint firstAttribute="trailing" secondItem="qjQ-YF-hbq" secondAttribute="trailing" id="gBd-N1-s7a"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="shadowed" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="crRadius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -133,6 +154,11 @@
                                                     <constraint firstItem="lz1-SM-lns" firstAttribute="top" secondItem="HA6-hg-GGV" secondAttribute="top" id="btF-5h-XXF"/>
                                                     <constraint firstAttribute="trailing" secondItem="lz1-SM-lns" secondAttribute="trailing" id="mWR-F9-OD0"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9nX-Hk-5kd">
                                                 <rect key="frame" x="0.0" y="140.00000000000006" width="303" height="50"/>
@@ -171,9 +197,22 @@
                                                     <constraint firstItem="Srr-jK-xnj" firstAttribute="centerX" secondItem="9nX-Hk-5kd" secondAttribute="centerX" id="vXp-dQ-3TJ"/>
                                                     <constraint firstAttribute="height" constant="50" id="xQJ-DG-Yln"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shadowed" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="crRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                     </stackView>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Mgo-2q-4Wf">
+                                        <rect key="frame" x="156.66666666666666" y="196.33333333333334" width="20" height="20"/>
+                                        <color key="color" name="text_black"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" name="background_main"/>
                                 <constraints>
@@ -193,6 +232,11 @@
                                     <constraint firstItem="BIS-6h-atR" firstAttribute="centerX" secondItem="m33-Fd-BYC" secondAttribute="centerX" id="wYI-3m-wwd"/>
                                     <constraint firstItem="fKA-ru-1fn" firstAttribute="leading" secondItem="m33-Fd-BYC" secondAttribute="leading" constant="20" id="wdB-lO-lSw"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="crRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>

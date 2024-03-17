@@ -32,11 +32,7 @@ class BetDetailsVController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            activityView.style = .large
-        } else {
-            activityView.style = .whiteLarge
-        }
+        activityView.setStyle()
         view.backgroundColor = .black.withAlphaComponent(0.6)
         view.layer.opacity = 0
         closeView.roundCorners()
@@ -98,7 +94,9 @@ class BetDetailsVController: UIViewController {
             }
             let outcome = bet.outcome ?? .unknow
             let teams: [Team] = Repository.select(Team.table.where([bet.team1Id, bet.team2Id].contains(Team.idField)))
-            guard teams.count == 2, let team1 = teams.first, let team2 = teams.last else { return }
+            guard teams.count == 2,
+                    let team1 = teams.first(where: { $0.id == bet.team1Id }),
+                    let team2 = teams.first(where: { $0.id == bet.team2Id }) else { return }
             
             DispatchQueue.main.async {[weak self] in
                 guard let self = self else { return }
@@ -134,7 +132,7 @@ class BetDetailsVController: UIViewController {
                     self.resultValLabel.text = R.string.localizable.return()
                     self.resultValLabel.textColor = R.color.text_black()
                 case .unknow:
-                    self.resultValLabel.text = "?"
+                    self.resultValLabel.text = R.string.localizable.expecting()
                     self.resultValLabel.textColor = R.color.text_black()
                 }
                 self.activityView.animateOpacity(0.4, 0) {[weak self] in

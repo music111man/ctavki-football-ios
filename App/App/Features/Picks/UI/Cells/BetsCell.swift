@@ -40,7 +40,7 @@ class BetsCell: UITableViewCell {
     
     func configure(_ model: BetGroup) {
         containerView.subviews.forEach { $0.removeFromSuperview() }
-        headerLabel.text = model.active ? getFlexibleTimeLeftToMatch(date: model.eventDate) : model.eventDate.format("d MMMM yyyy")
+        headerLabel.text = model.active ? Self.getFlexibleTimeLeftToMatch(date: model.eventDate) : model.eventDate.format("d MMMM yyyy")
         var prevView: UIView?
         for bet in model.bets {
             let view = BetView()
@@ -58,7 +58,7 @@ class BetsCell: UITableViewCell {
         containerView.subviews.last?.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
     }
     
-    func getFlexibleTimeLeftToMatch(date: Date) -> String {
+    static func getFlexibleTimeLeftToMatch(date: Date) -> String {
         let secondsAtDay: TimeInterval = 60.0 * 60.0 * 24.0
         let tomorrow = Date().withoutTimeStamp.addingTimeInterval(secondsAtDay)
         var timeLeftMinutes = Int(date.timeIntervalSinceNow) / 60

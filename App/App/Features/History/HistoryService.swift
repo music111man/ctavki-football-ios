@@ -51,7 +51,7 @@ final class HistoryService {
                                                                          || Bet.team2IdField == team.id)
                                                     .order(Bet.eventDateField.desc))
             let matchTime = Date().matchTime
-            let activeBets = allBets.filter { $0.isActive && $0.eventDate > matchTime }.sorted { $0.eventDate < $01.eventDate }
+            let activeBets = allBets.filter { $0.isActive }.sorted { $0.eventDate < $01.eventDate }
             let betTypes: [BetType] = AppSettings.isAuthorized ? Repository.select(BetType.table
                                                                                             .filter(activeBets.compactMap({$0.typeId})
                                                                                             .contains(BetType.idField))) : []

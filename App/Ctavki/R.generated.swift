@@ -89,10 +89,12 @@ struct R: Rswift.Validatable {
   }
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
   struct storyboard {
     /// Storyboard `BetDetailsVController`.
     static let betDetailsVController = _R.storyboard.betDetailsVController()
+    /// Storyboard `ForecastVController`.
+    static let forecastVController = _R.storyboard.forecastVController()
     /// Storyboard `HistoryVController`.
     static let historyVController = _R.storyboard.historyVController()
     /// Storyboard `LaunchScreen`.
@@ -104,6 +106,13 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "BetDetailsVController", bundle: ...)`
     static func betDetailsVController(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.betDetailsVController)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "ForecastVController", bundle: ...)`
+    static func forecastVController(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.forecastVController)
     }
     #endif
 
@@ -1157,7 +1166,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 61 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 72 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1171,10 +1180,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let year_at_end = Rswift.StringResource(key: "year_at_end", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Accurate match prediction
+      ///
+      /// Locales: en, ru, uk
+      static let accurate_match_prediction = Rswift.StringResource(key: "accurate_match_prediction", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Answers to frequently asked questions related to the operation of our service can be found here.
       ///
       /// Locales: en, ru, uk
       static let guid_faq = Rswift.StringResource(key: "guid_faq", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Average odds
+      ///
+      /// Locales: en, ru, uk
+      static let average_coeff = Rswift.StringResource(key: "average_coeff", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: BALANCE FOR %@:
       ///
       /// Locales: en, ru, uk
@@ -1195,10 +1212,22 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let bets_history = Rswift.StringResource(key: "bets_history", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: CURRENT BETS (%d of %d)
+      ///
+      /// Locales: en, ru, uk
+      static let current_bets_m_of_n = Rswift.StringResource(key: "current_bets_m_of_n", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Current series
+      ///
+      /// Locales: en, ru, uk
+      static let current_series = Rswift.StringResource(key: "current_series", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Error
       ///
       /// Locales: en, ru, uk
       static let error = Rswift.StringResource(key: "error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Expected
+      ///
+      /// Locales: en, ru, uk
+      static let expecting = Rswift.StringResource(key: "expecting", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Go to predictions
       ///
       /// Locales: en, ru, uk
@@ -1223,6 +1252,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let tooltip_login_title = Rswift.StringResource(key: "tooltip_login_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Loses
+      ///
+      /// Locales: en, ru, uk
+      static let loses = Rswift.StringResource(key: "loses", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Lost 100
       ///
       /// Locales: en, ru, uk
@@ -1279,6 +1312,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let picks = Rswift.StringResource(key: "picks", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Prediction odds
+      ///
+      /// Locales: en, ru, uk
+      static let bets_odds = Rswift.StringResource(key: "bets_odds", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Prediction:
       ///
       /// Locales: en, ru, uk
@@ -1303,6 +1340,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let tooltip_results_title = Rswift.StringResource(key: "tooltip_results_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: ROI, in %
+      ///
+      /// Locales: en, ru, uk
+      static let roi_percentage = Rswift.StringResource(key: "roi_percentage", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Result:
       ///
       /// Locales: en, ru, uk
@@ -1351,6 +1392,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let teams_cap = Rswift.StringResource(key: "teams_cap", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Teams comparison
+      ///
+      /// Locales: en, ru, uk
+      static let teams_comparison = Rswift.StringResource(key: "teams_comparison", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: The application cannot process data received from the server. Contact support.
       ///
       /// Locales: en, ru, uk
@@ -1363,6 +1408,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let guid_login = Rswift.StringResource(key: "guid_login", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Total bets
+      ///
+      /// Locales: en, ru, uk
+      static let total_bets = Rswift.StringResource(key: "total_bets", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Updating...
       ///
       /// Locales: en, ru, uk
@@ -1371,6 +1420,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let winnings = Rswift.StringResource(key: "winnings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Wins
+      ///
+      /// Locales: en, ru, uk
+      static let wins = Rswift.StringResource(key: "wins", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: You can find here history of our past predictions sorted by teams.
       ///
       /// Locales: en, ru, uk
@@ -1455,6 +1508,21 @@ struct R: Rswift.Validatable {
         return String(format: format, locale: locale, value1)
       }
 
+      /// en translation: Accurate match prediction
+      ///
+      /// Locales: en, ru, uk
+      static func accurate_match_prediction(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("accurate_match_prediction", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "accurate_match_prediction"
+        }
+
+        return NSLocalizedString("accurate_match_prediction", bundle: bundle, comment: "")
+      }
+
       /// en translation: Answers to frequently asked questions related to the operation of our service can be found here.
       ///
       /// Locales: en, ru, uk
@@ -1468,6 +1536,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("guid_faq", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Average odds
+      ///
+      /// Locales: en, ru, uk
+      static func average_coeff(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("average_coeff", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "average_coeff"
+        }
+
+        return NSLocalizedString("average_coeff", bundle: bundle, comment: "")
       }
 
       /// en translation: BALANCE FOR %@:
@@ -1549,6 +1632,38 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("bets_history", bundle: bundle, comment: "")
       }
 
+      /// en translation: CURRENT BETS (%d of %d)
+      ///
+      /// Locales: en, ru, uk
+      static func current_bets_m_of_n(_ value1: Int, _ value2: Int, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("current_bets_m_of_n", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1, value2)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "current_bets_m_of_n"
+        }
+
+        let format = NSLocalizedString("current_bets_m_of_n", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1, value2)
+      }
+
+      /// en translation: Current series
+      ///
+      /// Locales: en, ru, uk
+      static func current_series(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("current_series", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "current_series"
+        }
+
+        return NSLocalizedString("current_series", bundle: bundle, comment: "")
+      }
+
       /// en translation: Error
       ///
       /// Locales: en, ru, uk
@@ -1562,6 +1677,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Expected
+      ///
+      /// Locales: en, ru, uk
+      static func expecting(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("expecting", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "expecting"
+        }
+
+        return NSLocalizedString("expecting", bundle: bundle, comment: "")
       }
 
       /// en translation: Go to predictions
@@ -1652,6 +1782,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("tooltip_login_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Loses
+      ///
+      /// Locales: en, ru, uk
+      static func loses(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("loses", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "loses"
+        }
+
+        return NSLocalizedString("loses", bundle: bundle, comment: "")
       }
 
       /// en translation: Lost 100
@@ -1874,6 +2019,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("picks", bundle: bundle, comment: "")
       }
 
+      /// en translation: Prediction odds
+      ///
+      /// Locales: en, ru, uk
+      static func bets_odds(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("bets_odds", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "bets_odds"
+        }
+
+        return NSLocalizedString("bets_odds", bundle: bundle, comment: "")
+      }
+
       /// en translation: Prediction:
       ///
       /// Locales: en, ru, uk
@@ -1962,6 +2122,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("tooltip_results_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: ROI, in %
+      ///
+      /// Locales: en, ru, uk
+      static func roi_percentage(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("roi_percentage", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "roi_percentage"
+        }
+
+        return NSLocalizedString("roi_percentage", bundle: bundle, comment: "")
       }
 
       /// en translation: Result:
@@ -2144,6 +2319,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("teams_cap", bundle: bundle, comment: "")
       }
 
+      /// en translation: Teams comparison
+      ///
+      /// Locales: en, ru, uk
+      static func teams_comparison(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("teams_comparison", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "teams_comparison"
+        }
+
+        return NSLocalizedString("teams_comparison", bundle: bundle, comment: "")
+      }
+
       /// en translation: The application cannot process data received from the server. Contact support.
       ///
       /// Locales: en, ru, uk
@@ -2189,6 +2379,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("guid_login", bundle: bundle, comment: "")
       }
 
+      /// en translation: Total bets
+      ///
+      /// Locales: en, ru, uk
+      static func total_bets(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("total_bets", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "total_bets"
+        }
+
+        return NSLocalizedString("total_bets", bundle: bundle, comment: "")
+      }
+
       /// en translation: Updating...
       ///
       /// Locales: en, ru, uk
@@ -2219,6 +2424,21 @@ struct R: Rswift.Validatable {
 
         let format = NSLocalizedString("winnings", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: Wins
+      ///
+      /// Locales: en, ru, uk
+      static func wins(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("wins", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "wins"
+        }
+
+        return NSLocalizedString("wins", bundle: bundle, comment: "")
       }
 
       /// en translation: You can find here history of our past predictions sorted by teams.
@@ -2543,6 +2763,9 @@ struct _R: Rswift.Validatable {
       try betDetailsVController.validate()
       #endif
       #if os(iOS) || os(tvOS)
+      try forecastVController.validate()
+      #endif
+      #if os(iOS) || os(tvOS)
       try historyVController.validate()
       #endif
       #if os(iOS) || os(tvOS)
@@ -2573,6 +2796,38 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "won", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'won' is used in storyboard 'BetDetailsVController', but couldn't be loaded.") }
         }
         if _R.storyboard.betDetailsVController().betDetailsVController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'betDetailsVController' could not be loaded from storyboard 'BetDetailsVController' as 'BetDetailsVController'.") }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    struct forecastVController: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let forecastVController = StoryboardViewControllerResource<ForecastVController>(identifier: "ForecastVController")
+      let name = "ForecastVController"
+
+      func forecastVController(_: Void = ()) -> ForecastVController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: forecastVController)
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "arrow_back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'arrow_back' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "background_light", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_light' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "background_main", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_main' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "bet_group_header", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'bet_group_header' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "blue_gray_400", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'blue_gray_400' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "green_blue_end", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_end' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "green_blue_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_start' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "red_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'red_start' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "shadow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shadow' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text_black", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_black' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "title_color", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'title_color' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "viotet_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'viotet_start' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
+        }
+        if _R.storyboard.forecastVController().forecastVController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'forecastVController' could not be loaded from storyboard 'ForecastVController' as 'ForecastVController'.") }
       }
 
       fileprivate init() {}

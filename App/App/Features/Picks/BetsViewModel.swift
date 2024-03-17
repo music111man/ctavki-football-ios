@@ -81,7 +81,7 @@ final class BetsViewModel {
                 BetViewModel(id: bet.id,
                              result: bet.result,
                              eventDate: bet.eventDate,
-                             betOutCome: bet.outcome,
+                             betOutCome: .active,
                              homeTeam: teams.first(where: { team in team.id == bet.team1Id }),
                              goustTeam: teams.first(where: { team in team.id == bet.team2Id }),
                              resultText: betTypes.first(where: { type in
