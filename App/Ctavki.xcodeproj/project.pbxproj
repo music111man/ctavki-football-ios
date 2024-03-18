@@ -73,6 +73,7 @@
 		F2A03FE42B98E9FA00494CD0 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = F2A03FE62B98E9FA00494CD0 /* Localizable.stringsdict */; };
 		F2DBFAEF2B8F7D7B00FC5069 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DBFAEE2B8F7D7B00FC5069 /* Bet.swift */; };
 		F2DF9CAA2BA86B5900898F4E /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF9CA92BA86B5900898F4E /* Sequence.swift */; };
+		F2DF9CAC2BA899BA00898F4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2DF9CAB2BA899B900898F4E /* GoogleService-Info.plist */; };
 		F2EA78C82B908DA6006B3A1C /* BetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78C72B908DA6006B3A1C /* BetType.swift */; };
 		F2EA78CA2B908ED2006B3A1C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78C92B908ED2006B3A1C /* Team.swift */; };
 		F2EA78CC2B909122006B3A1C /* Faq.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78CB2B909122006B3A1C /* Faq.swift */; };
@@ -167,6 +168,7 @@
 		F2A03FE72B98E9FC00494CD0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F2DBFAEE2B8F7D7B00FC5069 /* Bet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
 		F2DF9CA92BA86B5900898F4E /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
+		F2DF9CAB2BA899B900898F4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F2EA78C72B908DA6006B3A1C /* BetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetType.swift; sourceTree = "<group>"; };
 		F2EA78C92B908ED2006B3A1C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		F2EA78CB2B909122006B3A1C /* Faq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Faq.swift; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 		F2FC033C2B867809001C6BB3 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				F2DF9CAB2BA899B900898F4E /* GoogleService-Info.plist */,
 				F2684E102BA61E6E00AB0FBF /* R.generated.swift */,
 				F22CE0AC2B889B4A00732FFB /* Extensions */,
 				F2DBFAEB2B8F7B6200FC5069 /* Data */,
@@ -669,6 +672,7 @@
 				F2A016302B9E499000B532C1 /* TeamsView.xib in Resources */,
 				F2EB1A372B9A2E9C0027D782 /* BetDetailsVController.storyboard in Resources */,
 				F2973D0A2B9F2B43003612E1 /* HistoryVController.storyboard in Resources */,
+				F2DF9CAC2BA899BA00898F4E /* GoogleService-Info.plist in Resources */,
 				F2A03FE42B98E9FA00494CD0 /* Localizable.stringsdict in Resources */,
 				F2973D192B9F5B1C003612E1 /* BetsCellView.xib in Resources */,
 				F226F9FD2B9B943900F9D391 /* BetSectionHeaderView.xib in Resources */,
@@ -972,7 +976,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -1003,7 +1007,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;

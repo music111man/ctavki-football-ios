@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>512753020705-13g9o99tufbl8kmdm6gla6dttf7e87j7.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCeFRfIG9qS0FlXR_ArzS8a9p0nCJKj_BE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>512753020705</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ctavki.football.forecast</string>
+	<key>PROJECT_ID</key>
+	<string>ctavki-football</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ctavki-football.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:512753020705:ios:f14c637e413da9d4b4d860</string>
+</dict>
+</plist>
