@@ -38,14 +38,21 @@ final class SyncService {
     func refresh(_ complite: ((Bool) -> ())? = nil ) {
         printAppEvent("start sync")
         NetProvider.makeRequest(ApiResponseData.self, .checkForUpdates) { responseData in
+            guard let responseData = responseData else {
+                complite?(false)
+                return
+            }
             if responseData.code != 200 {
                 NotificationCenter.default.post(name: NSNotification.Name.badServerResponse, object: nil)
+                complite?(false)
                 return
             }
             if responseData.appupdate != .none {
                 NotificationCenter.default.post(name: NSNotification.Name.needUpdateApp, object: responseData.appupdate)
+                
             }
             if responseData.appupdate == .required {
+                complite?(false)
                 return
             }
             AppSettings.lastTimeSynced = responseData.newLastTimeDataUpdated

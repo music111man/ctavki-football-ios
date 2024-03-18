@@ -70,13 +70,14 @@ class HistoryVController: UIViewController {
         
         historyService.activeBetGroups.observe(on: MainScheduler.instance).bind {[weak self] groups in
             guard let self = self else { return }
-            self.activBetsStackView.replaceArrangedSubviews({
+            self.activBetsStackView.replaceArrangedSubviews({[weak self] in
                 groups.map { model in
                     let view: BetsCellView = BetsCellView.fromNib() {v in
                         v.delegate = self
                         v.configure(model)
                         v.transform = .init(scaleX: 0, y: 0)
                     }
+
                     return view
                 }
             }) {

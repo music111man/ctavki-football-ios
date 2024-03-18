@@ -27,6 +27,7 @@ class SignInVController: UIViewController {
     let disposeBag = DisposeBag()
     let accountService = AccountService.share
     var gradient: CAGradientLayer!
+    var appleBtnView: UIView?
     
     var disposed: (() -> ())?
     
@@ -40,6 +41,7 @@ class SignInVController: UIViewController {
             self?.goToView.superview?.isHidden = !isSignIn
             self?.googleBtnView.isHidden = isSignIn
             self?.telegramBtnView.isHidden = isSignIn
+            self?.appleBtnView?.isHidden = isSignIn
             if #available(iOS 13.0, *) {
                 self?.stackView.arrangedSubviews.first?.isHidden = isSignIn
             }
@@ -95,7 +97,7 @@ class SignInVController: UIViewController {
             self?.activityView.isHidden = !(self?.accountService.signIn() ?? false)
          }.disposed(by: disposeBag)
         
-        if #available(iOS 13.0, *) {
+        if #available(iOS 13.0, *), !AppSettings.isAuthorized {
             let authorizationButton = ASAuthorizationAppleIDButton(type: .signIn, style: .white)
             authorizationButton.shadowed = true
             authorizationButton.cornerRadius = 8
@@ -104,6 +106,7 @@ class SignInVController: UIViewController {
             authorizationButton.tap {[weak self] in
                 self?.accountService.signInByApple(presenting: self!)
             }.disposed(by: disposeBag)
+            appleBtnView = authorizationButton
         }
         
         NotificationCenter.default.rx.notification(Notification.Name.deserializeError).subscribe {[weak self] _ in

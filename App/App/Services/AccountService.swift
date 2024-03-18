@@ -106,8 +106,9 @@ final class AccountService: NSObject {
         }
     }
     
-    private func processResponse(response: SignInResponseEntity) {
+    private func processResponse(response: SignInResponseEntity?) {
         defer { AppSettings.signInMethod = .non }
+        guard let response = response else { return }
         
         if response.code != 200 {
             printAppEvent("sign in error: code \(response.code) msg: \(response.msg)")
@@ -115,7 +116,6 @@ final class AccountService: NSObject {
             AppSettings.authorizeEvent.accept(false)
             return
         }
-        AppSettings.signInMethod = .non
         
         let account = Account(id: response.userId,
                               email: response.email,

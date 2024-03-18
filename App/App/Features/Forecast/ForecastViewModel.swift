@@ -14,7 +14,7 @@ struct ForecastViewModel {
     let team1: Team
     let team2: Team
     let bet: Bet
-    let betType: BetType
+    let betTypeTitle: String
     let betCount1: Int
     let betCount2: Int
     let winCount1: Int

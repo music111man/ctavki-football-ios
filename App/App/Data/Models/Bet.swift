@@ -38,10 +38,10 @@ struct Bet: Decodable {
         outcome == nil && eventDate > Date().matchTime
     }
     
-    var result: Int {
+    var result: Double {
         guard let outcome = self.outcome, let factor = self.factor, outcome != .return else { return 0 }
         
-        return outcome == .lost ? 100 : factor.winCalcValue
+        return outcome == .lost ? -100 : factor.winCalcValue
     }
     
     enum CodingKeys: String, CodingKey {

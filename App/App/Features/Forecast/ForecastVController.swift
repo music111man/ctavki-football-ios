@@ -11,6 +11,7 @@ import RxCocoa
 
 class ForecastVController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var activityView: UIActivityIndicatorView!
     @IBOutlet var redCircles: [UIView]!
@@ -51,6 +52,8 @@ class ForecastVController: UIViewController {
     @IBOutlet weak var backBtnView: UIView!
     @IBOutlet weak var titlelabel: UILabel!
     
+    let refresher = UIRefreshControl()
+    
     let disposeBag = DisposeBag()
     let service = ForecastService()
     
@@ -59,17 +62,7 @@ class ForecastVController: UIViewController {
             guard let m = model else { return }
             titlelabel.text = R.string.localizable.current_bets_m_of_n(m.titleIndex, m.titleCount)
             matchTimeLabel.text = BetsCell.getFlexibleTimeLeftToMatch(date: m.bet.eventDate)
-            
-            if var typeArg = m.bet.typeArg {
-                if [34, 38].contains(m.betType.id) {
-                    typeArg += 0.5
-                } else {
-                    typeArg -= 0.5
-                }
-                forecastLabel.text =  m.betType.shortTitle.replace("%x%", with: "\(typeArg)")
-            } else {
-                forecastLabel.text = m.betType.shortTitle
-            }
+            forecastLabel.text = m.betTypeTitle
             teamLabel1.text = m.team1.title
             teamLabel2.text = m.team2.title
             coeffValLabel.text = m.bet.factor?.formattedString ?? "?"
@@ -81,8 +74,8 @@ class ForecastVController: UIViewController {
             lostTeam2Label.text = m.lostCount2.asString
             avgTeam1Label.text = m.avg1.formattedString
             avgTeam2Label.text = m.avg2.formattedString
-            roiTeam1Label.text = m.roi1.formattedString
-            roiTeam2Label.text = m.roi2.formattedString
+            roiTeam1Label.text = m.roi1.formattedString(count: 1)
+            roiTeam2Label.text = m.roi2.formattedString(count: 1)
             seriaTeam1Label.text = m.seria1.asString
             seriaTeam2Label.text = m.seria2.asString
         }
@@ -95,12 +88,17 @@ class ForecastVController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        refresher.attributedTitle = NSAttributedString(string: "")
+        refresher.rx.controlEvent(UIControl.Event.valueChanged).bind {[weak self] in
+            self?.service.loadData()
+        }.disposed(by: disposeBag)
+        scrollView.addSubview(refresher)
         initLabels()
         initGradients()
         service.model.observe(on: MainScheduler.instance).bind {[weak self] model in
             self?.model = model
             self?.activityView.isHidden = true
+            self?.refresher.endRefreshing()
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
             self?.activityView.isHidden = false
@@ -129,8 +127,20 @@ class ForecastVController: UIViewController {
         backBtnView.tap {[weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
         }.disposed(by: disposeBag)
-        
+        service.needUpdate.observe(on: MainScheduler.instance).bind { [weak self] in
+            self?.activityView.isHidden = false
+        }.disposed(by: disposeBag)
         service.loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        backView.transform = .init(scaleX: 0.01, y: 0.01)
+        backView.layer.opacity = 0
+        UIView.animate(withDuration: 0.3) {[weak self] in
+            self?.backView.layer.opacity = 1
+            self?.backView.transform = .identity
+        }
     }
    
     override func viewDidLayoutSubviews() {
@@ -144,14 +154,14 @@ class ForecastVController: UIViewController {
 
     func initLabels() {
         forecastLabel.text = R.string.localizable.accurate_match_prediction().lowercased()
-        coeffLabel.text = R.string.localizable.bets_odds().lowercased()
+        coeffLabel.text = R.string.localizable.bets_odds()
         typeTitleLabel.text = R.string.localizable.accurate_match_prediction()
-        comparisonLabel.text = R.string.localizable.teams_comparison().lowercased()
+        comparisonLabel.text = R.string.localizable.teams_comparison()
         countTitleLabel.text = R.string.localizable.total_bets().lowercased()
         winTitleLabel.text = R.string.localizable.wins().lowercased()
         lostTitleLabel.text = R.string.localizable.loses().lowercased()
         avgTitleLabel.text = R.string.localizable.average_coeff().lowercased()
-        roiTitleLabel.text = R.string.localizable.roi_percentage().lowercased()
+        roiTitleLabel.text = R.string.localizable.roi_percentage()
         seriatitleLabel.text = R.string.localizable.current_series().lowercased()
     }
     func initGradients() {
@@ -169,8 +179,8 @@ class ForecastVController: UIViewController {
                              isLine: true, index: 0)
         }
         blueGreenCircles.forEach { view in
-            view.setGradient(start: .greenBlueStart,
-                             end: .greenBlueEnd,
+            view.setGradient(start: .greenBlueEnd,
+                             end: .greenBlueStart,
                              isLine: false, index: 0)
         }
         violetCircles.forEach { view in

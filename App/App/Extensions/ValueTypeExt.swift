@@ -30,10 +30,20 @@ extension Double {
     }
     
     var formattedString: String {
-        String(format: "%2.2f", self)
+        if (self - Double(Int(self))) != 0 {
+            return String(format: "%2.2f", self)
+        }
+        return "\(Int(self))"
     }
-    var winCalcValue: Int {
-        Int(self * 100 - 100)
+    var winCalcValue: Double {
+        self * 100 - 100
+    }
+    
+    func formattedString(count: Int) -> String {
+        if (self - Double(Int(self))) != 0 {
+                return String(format: "%2.\(count)f", self)
+        }
+        return "\(Int(self))"
     }
 }
 
@@ -41,13 +51,6 @@ extension String: PDefaultValue {
     typealias T = String
     static var defaultValue: T {
         ""
-    }
-}
-
-extension Sequence where Iterator.Element: Hashable {
-    func distinct() -> [Iterator.Element] {
-        var seen: [Iterator.Element: Bool] = [:]
-        return self.filter { seen.updateValue(true, forKey: $0) == nil }
     }
 }
 

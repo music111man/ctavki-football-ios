@@ -94,6 +94,10 @@ final class AppCoordinator: PCoordinator {
     }
     
     func showActiveBetDetails() {
+        if (router?.topViewController as? MainVController) == nil {
+            router?.popToRootViewController(animated: false)
+        }
+        
         guard let topVC = router?.topViewController as? MainVController, let betId = activeBetToShow else { return }
         let vc: ForecastVController = ForecastVController.createFromNib() { vc in
             vc.betId = betId

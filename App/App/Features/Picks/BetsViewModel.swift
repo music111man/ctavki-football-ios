@@ -15,7 +15,7 @@ struct BetViewModel {
     let id: Int
     let result: Int
     let eventDate: Date
-    let betOutCome: BetOutcome?
+    let betOutCome: BetOutcome
     let homeTeam: Team?
     let goustTeam: Team?
     let resultText: String
@@ -27,12 +27,7 @@ struct BetGroup {
     let bets: [BetViewModel]
     
     var resaltbetSum: Int {
-        var sum: Int = 0
-        bets.forEach { bet in
-            sum += bet.result * (bet.betOutCome == .lost ? -1 : 1)
-        }
-        
-        return sum
+        bets.map {$0.result}.sum
     }
     var cellHeigth: CGFloat {
         BetsCell.heightOfTitle + BetView.cellHeigth * CGFloat(bets.count)
@@ -44,9 +39,7 @@ struct BetSection {
     let sum: Int?
     let bets: [BetGroup]
     var cellHeight: CGFloat {
-        var height: CGFloat = 0
-        bets.forEach { height += $0.cellHeigth}
-        return height
+        bets.map { $0.cellHeigth }.sum
     }
 }
 
@@ -79,7 +72,7 @@ final class BetsViewModel {
             
             let activeBetViewModels = activeBets.map { bet in
                 BetViewModel(id: bet.id,
-                             result: bet.result,
+                             result: Int(bet.result),
                              eventDate: bet.eventDate,
                              betOutCome: .active,
                              homeTeam: teams.first(where: { team in team.id == bet.team1Id }),
@@ -90,12 +83,12 @@ final class BetsViewModel {
             }
             let betViewModels = bets.map { bet in
                 BetViewModel(id: bet.id,
-                             result: bet.result,
+                             result: Int(bet.result),
                              eventDate: bet.eventDate,
-                             betOutCome: bet.outcome ?? (bet.isActive ? .active : .unknow),
+                             betOutCome: bet.outcome ?? .unknow,
                              homeTeam: teams.first(where: { team in team.id == bet.homeTeamId }),
                              goustTeam: teams.first(where: { team in team.id == bet.team2Id }),
-                             resultText: bet.outcome == nil ? "?" : "\(bet.result)")
+                             resultText: bet.outcome == nil ? "?" : bet.result.formattedString)
             }
             let activeGroups = activeBetViewModels.map { bet in
                 BetGroup(eventDate: bet.eventDate, active: true, bets: [bet])

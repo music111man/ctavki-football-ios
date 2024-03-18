@@ -50,7 +50,6 @@ final class HistoryService {
             let allBets: [Bet] = Repository.select(Bet.table.filter(Bet.homeTeamIdField == team.id
                                                                          || Bet.team2IdField == team.id)
                                                     .order(Bet.eventDateField.desc))
-            let matchTime = Date().matchTime
             let activeBets = allBets.filter { $0.isActive }.sorted { $0.eventDate < $01.eventDate }
             let betTypes: [BetType] = AppSettings.isAuthorized ? Repository.select(BetType.table
                                                                                             .filter(activeBets.compactMap({$0.typeId})
@@ -59,9 +58,9 @@ final class HistoryService {
             let teams: [Team] = Repository.select(Team.table)
             let activeBetViewModels = activeBets.map { bet in
                 BetViewModel(id: bet.id,
-                             result: bet.result,
+                             result: Int(bet.result),
                              eventDate: bet.eventDate,
-                             betOutCome: bet.outcome,
+                             betOutCome: .active,
                              homeTeam: teams.first(where: { team in team.id == bet.team1Id }),
                              goustTeam: teams.first(where: { team in team.id == bet.team2Id }),
                              resultText: betTypes.first(where: { type in
@@ -70,12 +69,12 @@ final class HistoryService {
             }
             let betViewModels = bets.map { bet in
                 BetViewModel(id: bet.id,
-                             result: bet.result,
+                             result: Int(bet.result),
                              eventDate: bet.eventDate,
-                             betOutCome: bet.outcome ?? (bet.isActive ? .active : .unknow),
+                             betOutCome: bet.outcome ?? .unknow,
                              homeTeam: teams.first(where: { team in team.id == bet.homeTeamId }),
                              goustTeam: teams.first(where: { team in team.id == bet.team2Id }),
-                             resultText:  bet.outcome == nil ? "?" : "\(bet.result)")
+                             resultText:  bet.outcome == nil ? "?" : bet.result.formattedString)
             }
             
             let activeGroups = activeBetViewModels.map { bet in

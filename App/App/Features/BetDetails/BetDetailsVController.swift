@@ -123,7 +123,7 @@ class BetDetailsVController: UIViewController {
                 case .active:
                     break
                 case .won:
-                    self.resultValLabel.text = R.string.localizable.winnings(factor.winCalcValue)
+                    self.resultValLabel.text = R.string.localizable.winnings(Int(factor.winCalcValue))
                     self.resultValLabel.textColor = R.color.won()
                 case .lost:
                     self.resultValLabel.text = R.string.localizable.loss()

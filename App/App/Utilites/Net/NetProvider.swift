@@ -16,12 +16,13 @@ extension Notification.Name {
 
 class NetProvider {
     
-    static func makeRequest<T: Decodable>(_ type: T.Type, _ target: ApiRequest,_ callback: ((T) -> Void)?)  {
+    static func makeRequest<T: Decodable>(_ type: T.Type, _ target: ApiRequest,_ callback: ((T?) -> Void)?)  {
         let provider = MoyaProvider<ApiRequest>()
         provider.request(target) { result in
             switch result {
             case .success(let response):
-                guard let data = try? JSONDecoder().decode(type, from: response.data) else {
+                let data = try? JSONDecoder().decode(type, from: response.data)
+                if data == nil {
                     printAppEvent("\(String(data: response.data, encoding: String.Encoding.utf8) ?? "no data")")
                     printAppEvent("\(target): can not deserialize to \(T.self)")
                     NotificationCenter.default.post(name: NSNotification.Name.deserializeError, object: target)
@@ -31,6 +32,7 @@ class NetProvider {
             case .failure(let error):
                 printAppEvent("\(target): \(error.errorDescription ?? "Unknown net error")")
                 NotificationCenter.default.post(name: NSNotification.Name.badNetRequest, object: target)
+                callback?(nil)
             }
             
         }
