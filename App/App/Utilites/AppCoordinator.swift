@@ -9,12 +9,14 @@ import Foundation
 import UIKit
 import RxCocoa
 import RxSwift
+import FirebaseCore
+import FirebaseMessaging
 
 protocol PCoordinator {
     func start()
 }
 
-final class AppCoordinator: PCoordinator {
+final class AppCoordinator: NSObject, PCoordinator {
     let window: UIWindow
     let mainCoordinator: MainCoordinator
     let syncService = SyncService()
@@ -25,9 +27,12 @@ final class AppCoordinator: PCoordinator {
         window.rootViewController as? UINavigationController
     }
     
-    init() {
+    init(_ application: UIApplication) {
         window = UIWindow(frame: UIScreen.main.bounds)
         mainCoordinator = MainCoordinator()
+        super.init()
+        configureFireBase(application)
+        
         mainCoordinator.delegate = self
         initNotificationEventHandlers()
         
@@ -132,5 +137,29 @@ extension AppCoordinator: MainCoordinatorDelegate {
             self?.router?.dismiss(animated: false)
         }
         router?.present(vc, animated: false)
+    }
+}
+
+extension AppCoordinator: UNUserNotificationCenterDelegate {
+    func configureFireBase(_ application: UIApplication) {
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+                
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (_, error) in
+            guard error == nil else{
+                printAppEvent(error!.localizedDescription)
+                return
+            }
+        }
+        application.registerForRemoteNotifications()
+    }
+}
+
+extension AppCoordinator: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        printAppEvent("fcmToken: \(fcmToken ?? "non")")
+        AppSettings.fcmToken = fcmToken ?? ""
     }
 }

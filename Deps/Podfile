@@ -8,7 +8,7 @@ workspace '../Ctavki.football.forecast'
 
 load 'Defs.rb'
 
-target 'App' do
+target 'Ctavki' do
   project_app_path
   swiftlint
   rswift
@@ -17,6 +17,7 @@ target 'App' do
   moya
   sqlite
   googleSignIn
+  firebase
 end
 
 # post install

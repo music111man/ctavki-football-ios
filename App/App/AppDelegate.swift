@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var mainCoordinator: PCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        mainCoordinator = AppCoordinator()
+        mainCoordinator = AppCoordinator(application)
         mainCoordinator.start()
         
         return true

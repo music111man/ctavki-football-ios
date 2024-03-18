@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1467024DB7CCF9E9DDD8C724 /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A862FB8A74992E1BEBD67C /* Pods_App.framework */; };
+		C0762C15F7EF98D33A2C8EB3 /* Pods_Ctavki.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B47A64B643F89A0D415439 /* Pods_Ctavki.framework */; };
 		F2040C612B8C9D4700DE01CE /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2040C602B8C9D4700DE01CE /* MainCoordinator.swift */; };
 		F2041A322B91D05C00DA42BB /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2041A312B91D05C00DA42BB /* Repository.swift */; };
 		F2041A342B92335800DA42BB /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2041A332B92335800DA42BB /* SyncService.swift */; };
@@ -95,9 +95,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29006E9B4812ADFD1289B7FF /* Pods-Ctavki.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctavki.release.xcconfig"; path = "Target Support Files/Pods-Ctavki/Pods-Ctavki.release.xcconfig"; sourceTree = "<group>"; };
 		57EB93648591D4F6970B396F /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
 		AE27349C0530710519C5E702 /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
-		D9A862FB8A74992E1BEBD67C /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5DFF97B211BE18E1EAA5C25 /* Pods-Ctavki.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ctavki.debug.xcconfig"; path = "Target Support Files/Pods-Ctavki/Pods-Ctavki.debug.xcconfig"; sourceTree = "<group>"; };
 		F2040C602B8C9D4700DE01CE /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		F2041A312B91D05C00DA42BB /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		F2041A332B92335800DA42BB /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 		F2A016392B9E6A1700B532C1 /* NoActiveBetsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoActiveBetsCell.xib; sourceTree = "<group>"; };
 		F2A03FE52B98E9FA00494CD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F2A03FE72B98E9FC00494CD0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		F2B47A64B643F89A0D415439 /* Pods_Ctavki.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctavki.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2DBFAEE2B8F7D7B00FC5069 /* Bet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bet.swift; sourceTree = "<group>"; };
 		F2DF9CA92BA86B5900898F4E /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		F2DF9CAB2BA899B900898F4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -197,7 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1467024DB7CCF9E9DDD8C724 /* Pods_App.framework in Frameworks */,
+				C0762C15F7EF98D33A2C8EB3 /* Pods_Ctavki.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				F2F186C72B87754F00FBDD22 /* Utilites.framework */,
-				D9A862FB8A74992E1BEBD67C /* Pods_App.framework */,
+				F2B47A64B643F89A0D415439 /* Pods_Ctavki.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -218,6 +220,8 @@
 			children = (
 				AE27349C0530710519C5E702 /* Pods-App.debug.xcconfig */,
 				57EB93648591D4F6970B396F /* Pods-App.release.xcconfig */,
+				C5DFF97B211BE18E1EAA5C25 /* Pods-Ctavki.debug.xcconfig */,
+				29006E9B4812ADFD1289B7FF /* Pods-Ctavki.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../Deps/Pods;
@@ -701,7 +705,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-App-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Ctavki-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -714,15 +718,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-App/Pods-App-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Ctavki/Pods-Ctavki-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-App/Pods-App-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Ctavki/Pods-Ctavki-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-App/Pods-App-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ctavki/Pods-Ctavki-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F207047E2B87A00C00DD6364 /* Run Script R.Swift */ = {
@@ -740,7 +744,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/$PRODUCT_MODULE_NAME/R.generated.swift,
+				"$SRCROOT/$PRODUCT_MODULE_NAME/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -970,7 +974,7 @@
 		};
 		F2FC034F2B86780B001C6BB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE27349C0530710519C5E702 /* Pods-App.debug.xcconfig */;
+			baseConfigurationReference = C5DFF97B211BE18E1EAA5C25 /* Pods-Ctavki.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1001,7 +1005,7 @@
 		};
 		F2FC03502B86780B001C6BB3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57EB93648591D4F6970B396F /* Pods-App.release.xcconfig */;
+			baseConfigurationReference = 29006E9B4812ADFD1289B7FF /* Pods-Ctavki.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

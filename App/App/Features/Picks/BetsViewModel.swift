@@ -88,7 +88,7 @@ final class BetsViewModel {
                              betOutCome: bet.outcome ?? .unknow,
                              homeTeam: teams.first(where: { team in team.id == bet.homeTeamId }),
                              goustTeam: teams.first(where: { team in team.id == bet.team2Id }),
-                             resultText: bet.outcome == nil ? "?" : bet.result.formattedString)
+                             resultText: bet.outcome == nil ? "?" : (bet.result < 0 ? bet.result * -1 : bet.result).formattedString)
             }
             let activeGroups = activeBetViewModels.map { bet in
                 BetGroup(eventDate: bet.eventDate, active: true, bets: [bet])

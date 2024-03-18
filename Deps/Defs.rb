@@ -27,6 +27,7 @@ end
 #def fastEasyMapping
 #    pod 'FastEasyMapping', "~> 1.0"
 #end
+
 def googleSignIn
     pod 'GoogleSignIn'
 end
@@ -84,7 +85,7 @@ def swiftDate
 end
 
 def firebase
-    pod 'Firebase/Crashlytics', '~> 8.1'
+#    pod 'Firebase/Crashlytics', '~> 8.1'
     pod 'Firebase/Analytics', '~> 8.1'
     pod 'Firebase/Messaging', '~> 8.1'
 end
