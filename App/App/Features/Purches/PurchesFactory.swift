@@ -8,9 +8,12 @@
 import UIKit
 
 final class PurchesFactory: VCFactory {
-    
-    override func create() -> UIViewController {
+   
+    private lazy var controller: PurchesVController = {
         PurchesVController()
+    }()
+    override func create() -> UIViewController {
+        controller
     }
    
 }

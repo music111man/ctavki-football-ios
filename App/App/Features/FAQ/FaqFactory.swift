@@ -13,6 +13,11 @@ final class FaqFactory: VCFactory {
         FaqVController()
     }()
     
+    override init() {
+        super.init()
+        self.controller.initFaqViews()
+    }
+    
     override func create() -> UIViewController {
        controller
     }

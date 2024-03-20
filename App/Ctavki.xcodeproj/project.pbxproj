@@ -51,7 +51,7 @@
 		F2888DCE2B9B624C007F62F2 /* BetResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2888DCD2B9B624C007F62F2 /* BetResultHeaderView.swift */; };
 		F291F1342B95F96C00BB8E58 /* NavigationTopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1332B95F96C00BB8E58 /* NavigationTopBarView.swift */; };
 		F291F1362B96250D00BB8E58 /* FeaureVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1352B96250D00BB8E58 /* FeaureVController.swift */; };
-		F291F1382B96355B00BB8E58 /* BetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1372B96355B00BB8E58 /* BetsViewModel.swift */; };
+		F291F1382B96355B00BB8E58 /* BetsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1372B96355B00BB8E58 /* BetsService.swift */; };
 		F291F13C2B9654CD00BB8E58 /* BetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F13A2B9654CD00BB8E58 /* BetsCell.swift */; };
 		F291F13D2B9654CD00BB8E58 /* BetsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F291F13B2B9654CD00BB8E58 /* BetsCell.xib */; };
 		F2973D052B9EEC2F003612E1 /* HistoryVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D032B9EEC2F003612E1 /* HistoryVController.swift */; };
@@ -78,11 +78,7 @@
 		F2DF9CAE2BA9C2F600898F4E /* PurchesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF9CAD2BA9C2F600898F4E /* PurchesService.swift */; };
 		F2DF9CB32BA9D8C600898F4E /* DonateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF9CB12BA9D8C600898F4E /* DonateCell.swift */; };
 		F2DF9CB42BA9D8C600898F4E /* DonateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2DF9CB22BA9D8C600898F4E /* DonateCell.xib */; };
-		F2DF9CB72BA9F4B700898F4E /* IAPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF9CB62BA9F4B700898F4E /* IAPConstants.swift */; };
-		F2DF9CBB2BA9F55800898F4E /* IAPPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF9CBA2BA9F55800898F4E /* IAPPersistence.swift */; };
-		F2DF9CC12BAA01D700898F4E /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF9CC02BAA01D700898F4E /* IAPManager.swift */; };
-		F2DF9CC62BAA08D000898F4E /* SKProduct+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF9CC52BAA08D000898F4E /* SKProduct+Extension.swift */; };
-		F2DF9CC82BAA090F00898F4E /* openssl in Resources */ = {isa = PBXBuildFile; fileRef = F2DF9CC72BAA090F00898F4E /* openssl */; };
+		F2DF9CC62BAA08D000898F4E /* SKProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF9CC52BAA08D000898F4E /* SKProduct.swift */; };
 		F2EA78C82B908DA6006B3A1C /* BetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78C72B908DA6006B3A1C /* BetType.swift */; };
 		F2EA78CA2B908ED2006B3A1C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78C92B908ED2006B3A1C /* Team.swift */; };
 		F2EA78CC2B909122006B3A1C /* Faq.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA78CB2B909122006B3A1C /* Faq.swift */; };
@@ -155,7 +151,7 @@
 		F2888DCD2B9B624C007F62F2 /* BetResultHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetResultHeaderView.swift; sourceTree = "<group>"; };
 		F291F1332B95F96C00BB8E58 /* NavigationTopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTopBarView.swift; sourceTree = "<group>"; };
 		F291F1352B96250D00BB8E58 /* FeaureVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaureVController.swift; sourceTree = "<group>"; };
-		F291F1372B96355B00BB8E58 /* BetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsViewModel.swift; sourceTree = "<group>"; };
+		F291F1372B96355B00BB8E58 /* BetsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsService.swift; sourceTree = "<group>"; };
 		F291F13A2B9654CD00BB8E58 /* BetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsCell.swift; sourceTree = "<group>"; };
 		F291F13B2B9654CD00BB8E58 /* BetsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetsCell.xib; sourceTree = "<group>"; };
 		F2973D032B9EEC2F003612E1 /* HistoryVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVController.swift; sourceTree = "<group>"; };
@@ -185,11 +181,7 @@
 		F2DF9CAD2BA9C2F600898F4E /* PurchesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchesService.swift; sourceTree = "<group>"; };
 		F2DF9CB12BA9D8C600898F4E /* DonateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateCell.swift; sourceTree = "<group>"; };
 		F2DF9CB22BA9D8C600898F4E /* DonateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DonateCell.xib; sourceTree = "<group>"; };
-		F2DF9CB62BA9F4B700898F4E /* IAPConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPConstants.swift; sourceTree = "<group>"; };
-		F2DF9CBA2BA9F55800898F4E /* IAPPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPPersistence.swift; sourceTree = "<group>"; };
-		F2DF9CC02BAA01D700898F4E /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
-		F2DF9CC52BAA08D000898F4E /* SKProduct+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKProduct+Extension.swift"; sourceTree = "<group>"; };
-		F2DF9CC72BAA090F00898F4E /* openssl */ = {isa = PBXFileReference; lastKnownFileType = folder; path = openssl; sourceTree = "<group>"; };
+		F2DF9CC52BAA08D000898F4E /* SKProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKProduct.swift; sourceTree = "<group>"; };
 		F2EA78C72B908DA6006B3A1C /* BetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetType.swift; sourceTree = "<group>"; };
 		F2EA78C92B908ED2006B3A1C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		F2EA78CB2B909122006B3A1C /* Faq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Faq.swift; sourceTree = "<group>"; };
@@ -354,7 +346,7 @@
 				F2888DCF2B9B643F007F62F2 /* UI */,
 				F22CE09B2B87BEDA00732FFB /* PicksVController.swift */,
 				F22CE0B02B88BC6E00732FFB /* PicksFactory.swift */,
-				F291F1372B96355B00BB8E58 /* BetsViewModel.swift */,
+				F291F1372B96355B00BB8E58 /* BetsService.swift */,
 			);
 			path = Picks;
 			sourceTree = "<group>";
@@ -586,11 +578,7 @@
 		F2DF9CB52BA9F49900898F4E /* IAP */ = {
 			isa = PBXGroup;
 			children = (
-				F2DF9CC72BAA090F00898F4E /* openssl */,
-				F2DF9CC52BAA08D000898F4E /* SKProduct+Extension.swift */,
-				F2DF9CB62BA9F4B700898F4E /* IAPConstants.swift */,
-				F2DF9CBA2BA9F55800898F4E /* IAPPersistence.swift */,
-				F2DF9CC02BAA01D700898F4E /* IAPManager.swift */,
+				F2DF9CC52BAA08D000898F4E /* SKProduct.swift */,
 				F2C051322BAAD62D0056FB75 /* Donates.storekit */,
 				F2C051332BAADDB00056FB75 /* IAPService.swift */,
 			);
@@ -731,7 +719,6 @@
 				F2973D0A2B9F2B43003612E1 /* HistoryVController.storyboard in Resources */,
 				F2DF9CAC2BA899BA00898F4E /* GoogleService-Info.plist in Resources */,
 				F2A03FE42B98E9FA00494CD0 /* Localizable.stringsdict in Resources */,
-				F2DF9CC82BAA090F00898F4E /* openssl in Resources */,
 				F2973D192B9F5B1C003612E1 /* BetsCellView.xib in Resources */,
 				F2DF9CB42BA9D8C600898F4E /* DonateCell.xib in Resources */,
 				F226F9FD2B9B943900F9D391 /* BetSectionHeaderView.xib in Resources */,
@@ -829,11 +816,9 @@
 				F226FA072B9C76DA00F9D391 /* FaqService.swift in Sources */,
 				F22CE0A02B87C5AF00732FFB /* PurchesVController.swift in Sources */,
 				F2045F2D2BA7330300EA6A65 /* ForecastVController.swift in Sources */,
-				F2DF9CC12BAA01D700898F4E /* IAPManager.swift in Sources */,
 				F2EA78CC2B909122006B3A1C /* Faq.swift in Sources */,
 				F2EB1A352B9A11520027D782 /* UIViewController.swift in Sources */,
 				F2045F312BA778B700EA6A65 /* ForecastService.swift in Sources */,
-				F2DF9CB72BA9F4B700898F4E /* IAPConstants.swift in Sources */,
 				F2EA78DC2B90CA29006B3A1C /* AppSettings.swift in Sources */,
 				F2A016322B9E49CD00B532C1 /* TeamsView.swift in Sources */,
 				F2041A322B91D05C00DA42BB /* Repository.swift in Sources */,
@@ -865,20 +850,19 @@
 				F251D6392B974EBD009ABC86 /* BetView.swift in Sources */,
 				F226FA052B9C75AE00F9D391 /* FaqViewModel.swift in Sources */,
 				F251D63B2B977389009ABC86 /* BetSectionHeaderView.swift in Sources */,
-				F2DF9CBB2BA9F55800898F4E /* IAPPersistence.swift in Sources */,
 				F2A0163A2B9E6A1700B532C1 /* NoActivebetsCell.swift in Sources */,
 				F291F13C2B9654CD00BB8E58 /* BetsCell.swift in Sources */,
 				F2684E112BA61E6E00AB0FBF /* R.generated.swift in Sources */,
 				F2EA78D52B90B60E006B3A1C /* BetOutcome.swift in Sources */,
 				F291F1362B96250D00BB8E58 /* FeaureVController.swift in Sources */,
-				F2DF9CC62BAA08D000898F4E /* SKProduct+Extension.swift in Sources */,
+				F2DF9CC62BAA08D000898F4E /* SKProduct.swift in Sources */,
 				F2EA78E02B9103F5006B3A1C /* ValueTypeExt.swift in Sources */,
 				F291F1342B95F96C00BB8E58 /* NavigationTopBarView.swift in Sources */,
 				F2EA78D72B90B97D006B3A1C /* AppUpdateAvailable.swift in Sources */,
 				F2045F2F2BA7772700EA6A65 /* ForecastViewModel.swift in Sources */,
 				F226FA0E2B9CC6A500F9D391 /* UIStackView.swift in Sources */,
 				F2DF9CAA2BA86B5900898F4E /* Sequence.swift in Sources */,
-				F291F1382B96355B00BB8E58 /* BetsViewModel.swift in Sources */,
+				F291F1382B96355B00BB8E58 /* BetsService.swift in Sources */,
 				F2973D212B9F7B73003612E1 /* TeamsViewCell.swift in Sources */,
 				F2EA78D02B90941D006B3A1C /* ApiResponseData.swift in Sources */,
 				F2EA78D92B90C8B0006B3A1C /* ApiRequest.swift in Sources */,
@@ -1042,7 +1026,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -1073,7 +1057,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;

@@ -59,6 +59,7 @@ final class TeamsService {
         DispatchQueue.global(qos: .background).async {[weak self] in
             defer { self?.refreshActivity?(false) }
             guard let self = self else { return }
+            printAppEvent("teams start: \(Date())")
             let allBets: [Bet] = Repository.select(Bet.table.order(Bet.eventDateField.desc))
             let matchTime = Date().matchTime
             let activeBets = allBets.filter { $0.isActive && $0.eventDate > matchTime }.sorted { $0.eventDate < $01.eventDate }
@@ -90,7 +91,7 @@ final class TeamsService {
             models.append(TeamsViewModel(R.string.localizable.with_bets_history_4_and_less(),
                                          teamSet,
                                          activeBets) { $0 < 5 })
-            
+            printAppEvent("teams end: \(Date())")
             self.teams.accept(models)
         }
     }

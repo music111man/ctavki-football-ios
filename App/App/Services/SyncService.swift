@@ -25,11 +25,17 @@ extension Notification.Name {
 final class SyncService {
     
     private let disposeBag = DisposeBag()
+    var isStartRefreshCircle = false
     init() {
         NotificationCenter.default.rx.notification(.tryToRefreshData)
             .subscribe {[weak self] _ in
-                DispatchQueue.global(qos: .background).async { [ weak self] in
-                    self?.refresh()
+                printAppEvent("tryToRefreshData event")
+                guard let self = self else { return }
+                if self.isStartRefreshCircle {
+                    self.refresh()
+                } else {
+                    self.isStartRefreshCircle = true
+                    self.startRefreshCircle()
                 }
             }.disposed(by: disposeBag)
             
@@ -92,8 +98,8 @@ final class SyncService {
     }
     
     func startRefreshCircle() {
+        self.refresh()
         DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + AppSettings.syncInterval) { [weak self] in
-            self?.refresh()
             self?.startRefreshCircle()
         }
     }

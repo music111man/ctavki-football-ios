@@ -17,8 +17,7 @@ final class TeamsVController: FeaureVController {
     var needAnimationOnWillAppend = false
     let stackView = UIStackView()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func initTeamViews() {
         teamsService = TeamsService {[weak self] refresh in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -26,19 +25,14 @@ final class TeamsVController: FeaureVController {
                 if refresh {
                     if self.refresher.isRefreshing { return }
                     self.activityView.isHidden = false
-//                    self.activityView.animateOpacity(0.2, 1)
-                    
+
                     return
                 }
-//                self.refresher.endRefreshing()
-//                self.activityView.animateOpacity(0.2, 0) {[weak self] in
-//                    self?.activityView.isHidden = true
-//                }
             }
         }
         
         teamsService.teams.observe(on: MainScheduler.instance).bind {[weak self] models in
-            self?.stackView.replaceArrangedSubviews({
+            self?.stackView.replaceWithHideAnimation({
                 models.map { model in
                     let view: TeamsView = .fromNib() { v in
                         v.configure(title: model.title, teams: model.teams)
@@ -51,33 +45,24 @@ final class TeamsVController: FeaureVController {
                     self?.activityView.isHidden = true
                     self?.refresher.endRefreshing()
                 }
+                printAppEvent("teams show: \(Date())")
             }
         }.disposed(by: disposeBag)
         
-//        teamsService.teams.bind(to: tableView.rx.items(cellIdentifier: TeamsViewCell.reuseIdentifier,
-//                                                       cellType: TeamsViewCell.self)) { [weak self] _, item, cell in
-//            cell.delegate = self
-//            cell.configure(model: item)
-//        }.disposed(by: disposeBag)
-        
         teamsService.updateData()
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        activityView.isHidden = true
+    }
     override func initTableView() {
-        //        tableView.register(UINib(resource: R.nib.teamsViewCell), forCellReuseIdentifier: TeamsViewCell.reuseIdentifier)
-        //        view.addSubview(tableView)
-        //        NSLayoutConstraint.activate([
-        //            tableView.topAnchor.constraint(equalTo: self.navigationBar.bottomAnchor),
-        //            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-        //            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-        //            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        //        ])
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.alwaysBounceVertical = true
         view.addSubview(scrollView)
-//        let containerView = UIView()
-//        containerView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(stackView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor),
@@ -93,13 +78,6 @@ final class TeamsVController: FeaureVController {
         stackView.axis = .vertical
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
-//        containerView.addSubview(stackView)
-//        NSLayoutConstraint.activate([
-//            stackView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: stackView.spacing),
-//            stackView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: stackView.spacing),
-//            stackView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -stackView.spacing),
-//            stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -stackView.spacing)
-//        ])
         scrollView.addSubview(refresher)
     }
     override func initUI() {
@@ -135,9 +113,8 @@ final class TeamsVController: FeaureVController {
     override func refreshData() -> Bool {
         
         if isUpdating { return false }
-        
         teamsService.updateData()
-        
+
         return true
     }
 }

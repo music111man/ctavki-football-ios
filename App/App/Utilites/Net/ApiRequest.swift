@@ -71,7 +71,6 @@ extension ApiRequest: TargetType {
     var headers: [String : String]? {
         switch self {
         case .checkForUpdates:
-            printAppEvent("user token: \(AppSettings.userToken)")
             return ["ApiKey" : AppSettings.apiKey,
                     "Authorization" : AppSettings.userToken,
                     "ClientVersion" : AppSettings.clientVersion,

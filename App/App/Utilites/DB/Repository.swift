@@ -28,6 +28,21 @@ final class Repository {
         
         return con
     }
+    
+    static func initTable<T: DBComparable>(t: T.Type) {
+        do {
+            try Self.db?.transaction {
+
+                    try Self.db?.run(t.table.create(ifNotExists: true) { builder in
+                        t.createColumns(builder: builder)
+                    })
+
+            }
+        } catch let error {
+            printAppEvent(error.localizedDescription)
+        }
+    }
+    
     @discardableResult
     static func refreshData<T: DBComparable>(_ items: [T]) -> Bool {
         defer { semaphore.signal() }
@@ -37,9 +52,6 @@ final class Repository {
         if items.isEmpty { return false }
         do {
             try Self.db?.transaction {
-                try Self.db?.run(T.table.create(ifNotExists: true) { builder in
-                    T.createColumns(builder: builder)
-                })
                 
                 deletedCount = try Self.db?.run(T.table.delete()) ?? 0
                 printAppEvent("delete \(deletedCount) old records from \(T.self)s")
@@ -48,7 +60,7 @@ final class Repository {
             }
             
         } catch let error {
-            print(error)
+            printAppEvent("Repository error: \(error.localizedDescription)")
         }
         
         return deletedCount + Int(insertCount) > 0
@@ -92,7 +104,6 @@ final class Repository {
         semaphore.wait()
         do {
             return try db?.scalar(selectQuery.count) ?? 0
-            
             
         } catch let error {
             printAppEvent("\(error)")

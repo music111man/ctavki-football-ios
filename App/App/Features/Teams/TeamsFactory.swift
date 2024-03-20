@@ -8,11 +8,15 @@
 import UIKit
 
 final class TeamsFactory: VCFactory {
+    let controller = TeamsVController()
+    override init() {
+        controller.initTeamViews()
+    }
     
     override func create() -> UIViewController {
         let navigator = getNavigator()
         if navigator.viewControllers.isEmpty {
-            navigator.pushViewController(TeamsVController(), animated: false)
+            navigator.pushViewController(controller, animated: false)
         }
         
         return navigator

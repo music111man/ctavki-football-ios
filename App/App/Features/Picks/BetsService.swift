@@ -43,7 +43,7 @@ struct BetSection {
     }
 }
 
-final class BetsViewModel {
+final class BetsService {
     typealias Callback = ([BetSection]) -> ()
     typealias BeginRefresh = () -> ()
     let disposeBag = DisposeBag()
@@ -60,6 +60,7 @@ final class BetsViewModel {
     
     func updateData() {
         beginRefrech?()
+        printAppEvent("start update bets data")
         DispatchQueue.global(qos: .background).async {[weak self] in
             guard let self = self else { return }
             let allBets: [Bet] = Repository.select(Bet.table.order(Bet.eventDateField.desc))

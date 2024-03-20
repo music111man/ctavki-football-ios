@@ -21,9 +21,7 @@ final class FaqVController: UIViewController {
     let imageView = UIImageView()
     var isFirstShow = true
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initUI()
+    func initFaqViews() {
         faqService.faqs.observe(on: MainScheduler.instance).bind {[weak self] models in
             self?.stackView.replaceWithHideAnimation({
                 models.map { model in
@@ -47,14 +45,21 @@ final class FaqVController: UIViewController {
                 self.activityView.animateOpacity(0.3, 1)
             }
         }.disposed(by: disposeBage)
+        faqService.loadData()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initUI()
+        activityView.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if isFirstShow {
-            isFirstShow.toggle()
-            faqService.loadData()
-        }
+//        if isFirstShow {
+//            isFirstShow.toggle()
+//            faqService.loadData()
+//        }
         
     }
     

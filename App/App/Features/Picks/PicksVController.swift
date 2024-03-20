@@ -12,30 +12,33 @@ import RxCocoa
 class PicksVController: FeaureVController {
 
     var sectionHeaderView: BetResultHeaderView!
-    let betsViewModel = BetsViewModel()
+    let service = BetsService()
     var betSections = [BetSection]()
     var titleSection: Int = 0
     var isFirstShow = true
-    
+    var didScroll = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NotificationCenter.default.rx.notification(Notification.Name.noDataForBetsScreen).subscribe {[weak self] _ in
             guard let self = self else { return }
-            if self.isFirstShow {
-                self.betsViewModel.updateData()
-            }
             self.refresher.endRefreshing()
+//            if isFirstShow {
+//                self.service.updateData()
+//            } else {
+//                self.refresher.endRefreshing()
+//            }
         }.disposed(by: disposeBag)
         
         NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
             self?.activityView.isHidden = false
             self?.activityView.animateOpacity(0.4, 1)
-            
+//            self?.betsViewModel.updateData()
         }.disposed(by: disposeBag)
         
-        betsViewModel.callback = { betSections in
-            printAppEvent("update bets data in screen")
+        service.callback = { betSections in
+            printAppEvent("update bets \(betSections.count) data in screen")
+            if betSections.count == 1 { return }
             DispatchQueue.main.async {[weak self] in
                 guard let self = self else { return }
                 self.betSections = betSections
@@ -50,11 +53,14 @@ class PicksVController: FeaureVController {
                 self.isFirstShow = false
             }
         }
+        service.updateData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.post(name: Notification.Name.tryToRefreshData, object: nil)
+        //if !isFirstShow {
+            NotificationCenter.default.post(name: Notification.Name.tryToRefreshData, object: nil)
+        //}
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -63,7 +69,6 @@ class PicksVController: FeaureVController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        sectionHeaderViewGradient.frame = sectionHeaderView.bounds
     }
     
     override func initUI() {
@@ -110,6 +115,7 @@ class PicksVController: FeaureVController {
     
     override func refreshData() -> Bool {
         if isFirstShow { return false }
+        didScroll = false
         NotificationCenter.default.post(name: Notification.Name.tryToRefreshData, object: nil)
         return true
     }
@@ -117,7 +123,6 @@ class PicksVController: FeaureVController {
         
         guard let section = tableView.indexPathsForVisibleRows?.first?.section,
                 section != titleSection else { return }
-        
         if section > 0,
            let month = betSections[section].eventDate?.monthAsString,
            let sum = betSections[section].sum {
@@ -143,6 +148,9 @@ class PicksVController: FeaureVController {
 extension PicksVController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         setTitle()
+        if let isEmpty = tableView.indexPathsForVisibleRows?.isEmpty, !isEmpty {
+            didScroll = true
+        }
     }
 }
 
@@ -178,16 +186,43 @@ extension PicksVController: UITableViewDataSource {
         
         return view
     }
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if didScroll {
+            view.transform = .init(scaleX: 0, y: 0)
+            UIView.animate(withDuration: 0.3) {
+                view.transform = .identity
+            }
+        } else {
+            let translationX = ((section % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
+            view.transform = .init(translationX: translationX, y: 0)
+            UIView.animate(withDuration: 0.4) {
+                view.transform = .identity
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         BetSectionHeaderView.height
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.transform = CGAffineTransform.init(scaleX: 0, y: 0)
-        UIView.animate(withDuration: 0.3) {
-            cell.transform = CGAffineTransform.identity
+        
+        if didScroll {
+            cell.transform = .init(scaleX: 0, y: 0)
+            UIView.animate(withDuration: 0.3) {
+                cell.transform = .identity
+            }
+        } else {
+            let translationX = ((indexPath.row % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
+            cell.transform = .init(translationX: translationX, y: 0)
+            UIView.animate(withDuration: 0.4) {
+                cell.transform = .identity
+            }
         }
+//        cell.transform = CGAffineTransform.init(scaleX: 0, y: 0)
+//        UIView.animate(withDuration: 0.3) {
+//            cell.transform = CGAffineTransform.identity
+//        }
     }
 }
 

@@ -22,12 +22,16 @@ final class AppCoordinator: NSObject, PCoordinator {
     let syncService = SyncService()
     let disposeBag = DisposeBag()
     var activeBetToShow: Int?
-    
+    var isAuthorized = false
     var router: UINavigationController? {
         window.rootViewController as? UINavigationController
     }
     
     init(_ application: UIApplication) {
+        Repository.initTable(t: Bet.self)
+        Repository.initTable(t: BetType.self)
+        Repository.initTable(t: Team.self)
+        Repository.initTable(t: Faq.self)
         window = UIWindow(frame: UIScreen.main.bounds)
         mainCoordinator = MainCoordinator()
         super.init()
@@ -35,15 +39,18 @@ final class AppCoordinator: NSObject, PCoordinator {
         
         mainCoordinator.delegate = self
         initNotificationEventHandlers()
-        
+        isAuthorized = AppSettings.isAuthorized
         AppSettings.authorizeEvent.bind { [weak self] isAuthorized in
-            self?.syncService.refresh()
+            if let self = self, isAuthorized != self.isAuthorized {
+                self.isAuthorized = isAuthorized
+                self.syncService.refresh()
+            }
         }.disposed(by: disposeBag)
     }
     
     func start() {
         AccountService.share.signIn()
-        syncService.startRefreshCircle()
+//        syncService.startRefreshCircle()
         
         window.rootViewController = mainCoordinator.start()
         router?.navigationBar.isHidden = true
@@ -160,7 +167,6 @@ extension AppCoordinator: UNUserNotificationCenterDelegate {
 
 extension AppCoordinator: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        printAppEvent("fcmToken: \(fcmToken ?? "non")")
         AppSettings.fcmToken = fcmToken ?? ""
     }
 }
