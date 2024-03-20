@@ -87,13 +87,25 @@ class HistoryVController: UIViewController {
             }
         }.disposed(by: disposeBag)
         
-        tableView.rx.willDisplayCell.bind { event in
-            event.cell.transform = .init(scaleX: 0, y: 0)
-            UIView.animate(withDuration: 0.3) {
-                event.cell.transform = .identity
+        tableView.rx.willDisplayCell.bind {[weak self] event in
+            if self?.didScroll ?? true {
+                event.cell.transform = .init(scaleX: 0, y: 0)
+                UIView.animate(withDuration: 0.3) {
+                    event.cell.transform = .identity
+                }
+            } else {
+                let translationX = ((event.indexPath.row % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
+                event.cell.transform = .init(translationX: translationX, y: 0)
+                UIView.animate(withDuration: 0.4) {
+                    event.cell.transform = .identity
+                }
             }
+            
         }.disposed(by: disposeBag)
         
+        tableView.rx.didScroll.bind { [weak self] in
+            self?.didScroll = true
+        }.disposed(by: disposeBag)
         
         
         backView.tap {[weak self] in
@@ -107,8 +119,10 @@ class HistoryVController: UIViewController {
         gradientSubTop.frame = subTitleView.bounds
     }
     
+    var didScroll = false
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        didScroll = false
         historyService.updateData()
     }
     
@@ -134,7 +148,7 @@ class HistoryVController: UIViewController {
     @objc
     private func callNeedRefresh() {
         if isUpdating { return }
-        
+        didScroll = false
         historyService.updateData()
 
     }

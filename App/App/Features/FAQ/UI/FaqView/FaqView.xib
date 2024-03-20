@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FaqView" customModule="App" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FaqView" customModule="Ctavki" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="393" height="345"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -36,6 +36,11 @@
                         <constraint firstAttribute="width" constant="30" id="OpX-ff-uMp"/>
                         <constraint firstAttribute="height" constant="30" id="vif-i2-Gqh"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="crRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Почему ставить на футбол более выгодно, чем на другие виды спорта?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5c-XO-J6K">
                     <rect key="frame" x="55" y="10" width="288" height="36"/>
@@ -62,7 +67,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="368" height="264"/>
                             <string key="text">ROI это сокращение, которое образовалась от словосочетания Return on Investment. В переводе означает \"окупаемость вложенных инвестиций\".  Вычисление показателя ROI в ставках осуществляется по следующей формуле:  ROI = Чистая прибыль / Сумма всех ставок * 100%.  Разберем на примере. Допустим, за месяц мы сделали 110 ставок по 100$ каждая. Это значит, что в сумме мы поставили 11 000$. А общая сумма чистой прибыли по итогам месяца составила 1700$.\r\nИтого, ROI = 1700 / 11000 * 100% = 15,45%.  Любой показатель от 10% и выше в месяц - это великолепный результат в ставках.</string>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" name="toolbarItem"/>
+                            <color key="textColor" name="text_theme"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -122,9 +127,6 @@
         </namedColor>
         <namedColor name="title_color">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="toolbarItem">
-            <color red="0.396078431372549" green="0.396078431372549" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

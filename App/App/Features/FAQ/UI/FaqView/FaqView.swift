@@ -55,7 +55,6 @@ class FaqView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         gradient?.frame = circleView.bounds
-        circleView.roundCorners()
         roundCorners(radius: circleView.bounds.width / 2)
         backView.roundCorners(radius: circleView.bounds.width / 2)
     }

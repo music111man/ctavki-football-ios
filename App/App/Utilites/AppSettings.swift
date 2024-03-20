@@ -37,6 +37,14 @@ final class AppSettings {
     
     private init(){}
     
+    public static var isRelease: Bool {
+        #if DEBUG
+        return false
+        #else
+        return true
+        #endif
+    }
+    
     static var baseUrl: URL {
         URL(string: "https://leader4015.work/ctavki_football/api")!
     }
@@ -142,6 +150,8 @@ final class AppSettings {
     static var isAuthorized: Bool {
         !Self.userToken.isEmpty
     }
+    @Storage(key: "needTourGuidShow", defaultValue: true)
+    static var needTourGuidShow: Bool
     
     static var authorizeEvent = BehaviorRelay<Bool>(value: !userToken.isEmpty)
 }

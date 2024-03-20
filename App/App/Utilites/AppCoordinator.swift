@@ -131,9 +131,10 @@ final class AppCoordinator: NSObject, PCoordinator {
 
 extension AppCoordinator: MainCoordinatorDelegate {
     func startGuidTour() {
-        guard let vc = TourGuidVController.create() else { return }
+        guard AppSettings.needTourGuidShow, AppSettings.isRelease, let vc = TourGuidVController.create() else { return }
         vc.modalPresentationStyle = .overCurrentContext
         vc.endAction = { [weak self] in
+            AppSettings.needTourGuidShow = false
             self?.router?.dismiss(animated: false)
         }
         router?.present(vc, animated: false)

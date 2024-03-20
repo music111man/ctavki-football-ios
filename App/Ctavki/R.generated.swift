@@ -141,7 +141,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 35 colors.
+  /// This `R.color` struct is generated, and contains static references to 37 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
@@ -203,10 +203,14 @@ struct R: Rswift.Validatable {
     static let text_theme = Rswift.ColorResource(bundle: R.hostingBundle, name: "text_theme")
     /// Color `title_color`.
     static let title_color = Rswift.ColorResource(bundle: R.hostingBundle, name: "title_color")
+    /// Color `title_theme`.
+    static let title_theme = Rswift.ColorResource(bundle: R.hostingBundle, name: "title_theme")
     /// Color `toolbarItem`.
     static let toolbarItem = Rswift.ColorResource(bundle: R.hostingBundle, name: "toolbarItem")
     /// Color `violet_end`.
     static let violet_end = Rswift.ColorResource(bundle: R.hostingBundle, name: "violet_end")
+    /// Color `violet_theme`.
+    static let violet_theme = Rswift.ColorResource(bundle: R.hostingBundle, name: "violet_theme")
     /// Color `viotet_start`.
     static let viotet_start = Rswift.ColorResource(bundle: R.hostingBundle, name: "viotet_start")
     /// Color `won_light`.
@@ -485,6 +489,15 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "title_theme", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func title_theme(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.title_theme, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "toolbarItem", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
@@ -499,6 +512,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func violet_end(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.violet_end, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "violet_theme", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func violet_theme(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.violet_theme, compatibleWith: traitCollection)
     }
     #endif
 
@@ -770,6 +792,14 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
+    /// `UIColor(named: "title_theme", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func title_theme(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.title_theme.name)
+    }
+    #endif
+
+    #if os(watchOS)
     /// `UIColor(named: "toolbarItem", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func toolbarItem(_: Void = ()) -> UIKit.UIColor? {
@@ -782,6 +812,14 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func violet_end(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.violet_end.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "violet_theme", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func violet_theme(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.violet_theme.name)
     }
     #endif
 
@@ -825,14 +863,22 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 1 files.
+  /// This `R.file` struct is generated, and contains static references to 2 files.
   struct file {
     /// Resource file `GoogleService-Info.plist`.
     static let googleServiceInfoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "GoogleService-Info", pathExtension: "plist")
+    /// Resource file `openssl`.
+    static let openssl = Rswift.FileResource(bundle: R.hostingBundle, name: "openssl", pathExtension: "")
 
     /// `bundle.url(forResource: "GoogleService-Info", withExtension: "plist")`
     static func googleServiceInfoPlist(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.googleServiceInfoPlist
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "openssl", withExtension: "")`
+    static func openssl(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.openssl
       return fileResource.bundle.url(forResource: fileResource)
     }
 
@@ -1034,7 +1080,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 10 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 11 nibs.
   struct nib {
     /// Nib `BetResultHeaderView`.
     static let betResultHeaderView = _R.nib._BetResultHeaderView()
@@ -1044,6 +1090,8 @@ struct R: Rswift.Validatable {
     static let betsCellView = _R.nib._BetsCellView()
     /// Nib `BetsCell`.
     static let betsCell = _R.nib._BetsCell()
+    /// Nib `DonateCell`.
+    static let donateCell = _R.nib._DonateCell()
     /// Nib `FaqView`.
     static let faqView = _R.nib._FaqView()
     /// Nib `NoActiveBetsCell`.
@@ -1086,6 +1134,14 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.betsCellView) instead")
     static func betsCellView(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.betsCellView)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "DonateCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.donateCell) instead")
+    static func donateCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.donateCell)
     }
     #endif
 
@@ -1153,6 +1209,10 @@ struct R: Rswift.Validatable {
       return R.nib.betsCellView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetsCellView
     }
 
+    static func donateCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DonateCell? {
+      return R.nib.donateCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DonateCell
+    }
+
     static func faqView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> FaqView? {
       return R.nib.faqView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? FaqView
     }
@@ -1182,7 +1242,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 72 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 81 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1220,6 +1280,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let balance = Rswift.StringResource(key: "balance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Bay
+      ///
+      /// Locales: en, ru, uk
+      static let buy = Rswift.StringResource(key: "buy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Bet amount: 100$
       ///
       /// Locales: en, ru, uk
@@ -1232,10 +1296,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let current_bets_m_of_n = Rswift.StringResource(key: "current_bets_m_of_n", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Could not complete purchase process. Please try again.
+      ///
+      /// Locales: en, ru, uk
+      static let buy_failed = Rswift.StringResource(key: "buy_failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Current series
       ///
       /// Locales: en, ru, uk
       static let current_series = Rswift.StringResource(key: "current_series", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Donate!
+      ///
+      /// Locales: en, ru, uk
+      static let donate = Rswift.StringResource(key: "donate", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Error
       ///
       /// Locales: en, ru, uk
@@ -1256,6 +1328,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let guid_paid_plans = Rswift.StringResource(key: "guid_paid_plans", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: If you have won at the bookmaker's office using our predictions, then please support our project and get protection against losses in your future bets!
+      ///
+      /// Locales: en, ru, uk
+      static let if_you_like_app_pls_support = Rswift.StringResource(key: "if_you_like_app_pls_support", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: In this section, the results of our predictions are calculated assuming we placed a $100 bet on each match. A green circle indicates the amount won, a red circle indicates the amount lost, and a grey circle represents the return of the bet.
       ///
       /// Locales: en, ru, uk
@@ -1276,6 +1352,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let loss = Rswift.StringResource(key: "loss", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Making donations is temporarily unavailable.
+      ///
+      /// Locales: en, ru, uk
+      static let buy_donate_disable = Rswift.StringResource(key: "buy_donate_disable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Match begins in %@
       ///
       /// Locales: en, ru, uk
@@ -1340,6 +1420,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let net_error = Rswift.StringResource(key: "net_error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Purchases are disabled in your device!
+      ///
+      /// Locales: en, ru, uk
+      static let buy_disabled = Rswift.StringResource(key: "buy_disabled", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: QUESTIONS (6/6)
       ///
       /// Locales: en, ru, uk
@@ -1412,6 +1496,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let teams_comparison = Rswift.StringResource(key: "teams_comparison", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Thank you for your donation! Your support means the world to us and helps keep our app thriving.  Warm regards, Ctavki Team
+      ///
+      /// Locales: en, ru, uk
+      static let thankful_speech = Rswift.StringResource(key: "thankful_speech", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: The application cannot process data received from the server. Contact support.
       ///
       /// Locales: en, ru, uk
@@ -1452,6 +1540,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let you_are_logged = Rswift.StringResource(key: "you_are_logged", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: You've successfully bought this purchase!
+      ///
+      /// Locales: en, ru, uk
+      static let buy_purchased = Rswift.StringResource(key: "buy_purchased", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: You've successfully restored your purchase!
+      ///
+      /// Locales: en, ru, uk
+      static let buy_restored = Rswift.StringResource(key: "buy_restored", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: my bal.
       ///
       /// Locales: en, ru, uk
@@ -1618,6 +1714,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("balance", bundle: bundle, comment: "")
       }
 
+      /// en translation: Bay
+      ///
+      /// Locales: en, ru, uk
+      static func buy(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("buy", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "buy"
+        }
+
+        return NSLocalizedString("buy", bundle: bundle, comment: "")
+      }
+
       /// en translation: Bet amount: 100$
       ///
       /// Locales: en, ru, uk
@@ -1665,6 +1776,21 @@ struct R: Rswift.Validatable {
         return String(format: format, locale: locale, value1, value2)
       }
 
+      /// en translation: Could not complete purchase process. Please try again.
+      ///
+      /// Locales: en, ru, uk
+      static func buy_failed(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("buy_failed", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "buy_failed"
+        }
+
+        return NSLocalizedString("buy_failed", bundle: bundle, comment: "")
+      }
+
       /// en translation: Current series
       ///
       /// Locales: en, ru, uk
@@ -1678,6 +1804,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("current_series", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Donate!
+      ///
+      /// Locales: en, ru, uk
+      static func donate(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("donate", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "donate"
+        }
+
+        return NSLocalizedString("donate", bundle: bundle, comment: "")
       }
 
       /// en translation: Error
@@ -1755,6 +1896,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("guid_paid_plans", bundle: bundle, comment: "")
       }
 
+      /// en translation: If you have won at the bookmaker's office using our predictions, then please support our project and get protection against losses in your future bets!
+      ///
+      /// Locales: en, ru, uk
+      static func if_you_like_app_pls_support(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("if_you_like_app_pls_support", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "if_you_like_app_pls_support"
+        }
+
+        return NSLocalizedString("if_you_like_app_pls_support", bundle: bundle, comment: "")
+      }
+
       /// en translation: In this section, the results of our predictions are calculated assuming we placed a $100 bet on each match. A green circle indicates the amount won, a red circle indicates the amount lost, and a grey circle represents the return of the bet.
       ///
       /// Locales: en, ru, uk
@@ -1828,6 +1984,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("loss", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Making donations is temporarily unavailable.
+      ///
+      /// Locales: en, ru, uk
+      static func buy_donate_disable(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("buy_donate_disable", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "buy_donate_disable"
+        }
+
+        return NSLocalizedString("buy_donate_disable", bundle: bundle, comment: "")
       }
 
       /// en translation: Match begins in %@
@@ -2078,6 +2249,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("net_error", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Purchases are disabled in your device!
+      ///
+      /// Locales: en, ru, uk
+      static func buy_disabled(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("buy_disabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "buy_disabled"
+        }
+
+        return NSLocalizedString("buy_disabled", bundle: bundle, comment: "")
       }
 
       /// en translation: QUESTIONS (6/6)
@@ -2350,6 +2536,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("teams_comparison", bundle: bundle, comment: "")
       }
 
+      /// en translation: Thank you for your donation! Your support means the world to us and helps keep our app thriving.  Warm regards, Ctavki Team
+      ///
+      /// Locales: en, ru, uk
+      static func thankful_speech(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("thankful_speech", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "thankful_speech"
+        }
+
+        return NSLocalizedString("thankful_speech", bundle: bundle, comment: "")
+      }
+
       /// en translation: The application cannot process data received from the server. Contact support.
       ///
       /// Locales: en, ru, uk
@@ -2500,6 +2701,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("you_are_logged", bundle: bundle, comment: "")
+      }
+
+      /// en translation: You've successfully bought this purchase!
+      ///
+      /// Locales: en, ru, uk
+      static func buy_purchased(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("buy_purchased", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "buy_purchased"
+        }
+
+        return NSLocalizedString("buy_purchased", bundle: bundle, comment: "")
+      }
+
+      /// en translation: You've successfully restored your purchase!
+      ///
+      /// Locales: en, ru, uk
+      static func buy_restored(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("buy_restored", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "buy_restored"
+        }
+
+        return NSLocalizedString("buy_restored", bundle: bundle, comment: "")
       }
 
       /// en translation: my bal.
@@ -2681,6 +2912,17 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
 
+    struct _DonateCell: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "DonateCell"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DonateCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DonateCell
+      }
+
+      fileprivate init() {}
+    }
+
     struct _FaqView: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "FaqView"
@@ -2697,7 +2939,6 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "shadow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shadow' is used in nib 'FaqView', but couldn't be loaded.") }
           if UIKit.UIColor(named: "text_theme", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_theme' is used in nib 'FaqView', but couldn't be loaded.") }
           if UIKit.UIColor(named: "title_color", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'title_color' is used in nib 'FaqView', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "toolbarItem", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'toolbarItem' is used in nib 'FaqView', but couldn't be loaded.") }
         }
       }
 

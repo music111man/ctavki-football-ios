@@ -40,7 +40,7 @@ class FeaureVController: UIViewController {
     func initUI() {
         activityView.setStyle()
         
-        view.backgroundColor = R.color.background_main_light()
+        view.backgroundColor = .backgroundMainLight
         refresher.attributedTitle = NSAttributedString(string: "")
         refresher.addTarget(self, action: #selector(callNeedRefresh), for: .valueChanged)
         

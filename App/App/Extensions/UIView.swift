@@ -22,11 +22,15 @@ extension UIView {
     }
     
     @discardableResult
-    func setGradient(start: UIColor?, end: UIColor?, isLine: Bool, index: UInt32? = nil) -> CAGradientLayer {
+    func setGradient(start: UIColor?, end: UIColor?, isLine: Bool?, index: UInt32? = nil) -> CAGradientLayer {
         let gradient = CAGradientLayer()
         gradient.colors = [(start ?? .clear).cgColor, (end ?? .clear).cgColor]
         gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradient.endPoint = isLine ? CGPoint(x: 1.0, y: 0.0) : CGPoint(x: 1.0, y: 1.0)
+        if let isLine = isLine {
+            gradient.endPoint = isLine ? CGPoint(x: 1.0, y: 0.0) : CGPoint(x: 1.0, y: 1.0)
+        } else {
+            gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
+        }
         if let index = index {
             layer.insertSublayer(gradient, at: index)
         } else {

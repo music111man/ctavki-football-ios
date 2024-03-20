@@ -1,0 +1,156 @@
+{
+  "identifier" : "45C8B2D1",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "899",
+      "familyShareable" : false,
+      "internalID" : "6479667927",
+      "localizations" : [
+        {
+          "description" : "Три ставки выиграют после гола на 95+ мин",
+          "displayName" : "Три защиты",
+          "locale" : "ru"
+        },
+        {
+          "description" : "Three bets will win after a goal for 95+ min",
+          "displayName" : "Three defenses",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "donate_10",
+      "referenceName" : "Donate 10",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "9690",
+      "familyShareable" : false,
+      "internalID" : "6479669252",
+      "localizations" : [
+        {
+          "description" : "Этот год судья будет свистеть вашей ставке",
+          "displayName" : "Судейская защита",
+          "locale" : "ru"
+        },
+        {
+          "description" : "This year the judge will whistle for your bet",
+          "displayName" : "Judicial protection",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "donate_100",
+      "referenceName" : "Donate 100",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "2399",
+      "familyShareable" : false,
+      "internalID" : "6479669368",
+      "localizations" : [
+        {
+          "description" : "10 ставок выиграют после счёта 0-2 в 1 тайме",
+          "displayName" : "Командная защита",
+          "locale" : "ru"
+        },
+        {
+          "description" : "This year the judge will whistle for your bet",
+          "displayName" : "Team defense",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "donate_25",
+      "referenceName" : "Donate 25",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "469",
+      "familyShareable" : false,
+      "internalID" : "6479665221",
+      "localizations" : [
+        {
+          "description" : "Одна ваша ставка выиграет после гола на 90мин",
+          "displayName" : "Одна защита",
+          "locale" : "ru"
+        },
+        {
+          "description" : "One of bets will win after a goal for 90 min",
+          "displayName" : "One defense",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "donate_5",
+      "referenceName" : "Donate 5",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6478200448",
+    "_developerTeamID" : "W6M6ZN9G8F",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 732616242.283342,
+    "_locale" : "ru",
+    "_storefront" : "RUS",
+    "_storeKitErrors" : [
+      {
+        "current" : {
+          "index" : 3,
+          "type" : "generic"
+        },
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : {
+          "index" : 2,
+          "type" : "generic"
+        },
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

@@ -88,3 +88,15 @@
 "average_coeff" = "Average odds";
 "roi_percentage" = "ROI, in %";
 "current_series" = "Current series";
+
+// Purches
+"thankful_speech" = "Thank you for your donation! Your support means the world to us and helps keep our app thriving.\n\nWarm regards, Ctavki Team";
+"if_you_like_app_pls_support" = "If you have won at the bookmaker\'s office using our predictions, then please support our project and get protection against losses in your future bets!";
+"buy" = "Bay";
+
+"buy_donate_disable" = "Making donations is temporarily unavailable.";
+"buy_disabled" = "Purchases are disabled in your device!";
+"buy_restored" = "You've successfully restored your purchase!";
+"buy_purchased" = "You've successfully bought this purchase!";
+"buy_failed" = "Could not complete purchase process.\nPlease try again.";
+"donate" = "Donate!";
