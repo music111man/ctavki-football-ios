@@ -47,6 +47,7 @@
 		F251D6392B974EBD009ABC86 /* BetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F251D6382B974EBD009ABC86 /* BetView.swift */; };
 		F251D63B2B977389009ABC86 /* BetSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F251D63A2B977389009ABC86 /* BetSectionHeaderView.swift */; };
 		F2684E112BA61E6E00AB0FBF /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2684E102BA61E6E00AB0FBF /* R.generated.swift */; };
+		F2840BEF2BADC4E300F2F84E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2840BEE2BADC4E300F2F84E /* StoreKit.framework */; };
 		F2888DCC2B9B61DD007F62F2 /* BetResultHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2888DCB2B9B61DD007F62F2 /* BetResultHeaderView.xib */; };
 		F2888DCE2B9B624C007F62F2 /* BetResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2888DCD2B9B624C007F62F2 /* BetResultHeaderView.swift */; };
 		F291F1342B95F96C00BB8E58 /* NavigationTopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291F1332B95F96C00BB8E58 /* NavigationTopBarView.swift */; };
@@ -147,6 +148,7 @@
 		F252FA562BA099A300DD3241 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = uk; path = uk.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F2684E102BA61E6E00AB0FBF /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = Ctavki/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		F2684E122BA634E300AB0FBF /* Ctavki.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Ctavki.entitlements; path = Ctavki/Ctavki.entitlements; sourceTree = "<group>"; };
+		F2840BEE2BADC4E300F2F84E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F2888DCB2B9B61DD007F62F2 /* BetResultHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetResultHeaderView.xib; sourceTree = "<group>"; };
 		F2888DCD2B9B624C007F62F2 /* BetResultHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetResultHeaderView.swift; sourceTree = "<group>"; };
 		F291F1332B95F96C00BB8E58 /* NavigationTopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTopBarView.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0762C15F7EF98D33A2C8EB3 /* Pods_Ctavki.framework in Frameworks */,
+				F2840BEF2BADC4E300F2F84E /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +223,7 @@
 		B1BE5B54A99FDD5DB51BFB5C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F2840BEE2BADC4E300F2F84E /* StoreKit.framework */,
 				F2F186C72B87754F00FBDD22 /* Utilites.framework */,
 				F2B47A64B643F89A0D415439 /* Pods_Ctavki.framework */,
 			);
@@ -1026,7 +1030,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -1057,7 +1061,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;

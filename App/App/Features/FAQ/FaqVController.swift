@@ -21,7 +21,8 @@ final class FaqVController: UIViewController {
     let imageView = UIImageView()
     var isFirstShow = true
     
-    func initFaqViews() {
+    @discardableResult
+    func initFaqViews() -> FaqVController {
         faqService.faqs.observe(on: MainScheduler.instance).bind {[weak self] models in
             self?.stackView.replaceWithHideAnimation({
                 models.map { model in
@@ -46,6 +47,7 @@ final class FaqVController: UIViewController {
             }
         }.disposed(by: disposeBage)
         faqService.loadData()
+        return self
     }
     
     override func viewDidLoad() {

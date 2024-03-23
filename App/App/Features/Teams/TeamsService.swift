@@ -38,28 +38,24 @@ struct TeamViewModel {
 }
 
 final class TeamsService {
-    typealias RefreshActivity = (Bool) -> ()
+    typealias RefreshActivity = () -> ()
     
     let disposeBag = DisposeBag()
-    var refreshActivity: RefreshActivity?
+    let refreshActivity = PublishRelay<Void>()
     
-    let teams = BehaviorRelay<[TeamsViewModel]>(value: [])
+    let teams = PublishRelay<[TeamsViewModel]>()
     
-    init(_ refreshActivity: RefreshActivity? = nil) {
-        self.refreshActivity = refreshActivity
-        
+    init() {
         NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
-                    self?.updateData()
+            self?.refreshActivity.accept(())
+            self?.updateData()
         }.disposed(by: disposeBag)
     }
-    
-    func updateData() {
-        refreshActivity?(true)
-//        teams.accept([])
+    @discardableResult
+    func updateData() -> TeamsService {
         DispatchQueue.global(qos: .background).async {[weak self] in
-            defer { self?.refreshActivity?(false) }
             guard let self = self else { return }
-            printAppEvent("teams start: \(Date())")
+            
             let allBets: [Bet] = Repository.select(Bet.table.order(Bet.eventDateField.desc))
             let matchTime = Date().matchTime
             let activeBets = allBets.filter { $0.isActive && $0.eventDate > matchTime }.sorted { $0.eventDate < $01.eventDate }
@@ -91,8 +87,10 @@ final class TeamsService {
             models.append(TeamsViewModel(R.string.localizable.with_bets_history_4_and_less(),
                                          teamSet,
                                          activeBets) { $0 < 5 })
-            printAppEvent("teams end: \(Date())")
+            
             self.teams.accept(models)
         }
+        
+        return self
     }
 }

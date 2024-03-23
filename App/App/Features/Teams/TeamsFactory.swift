@@ -9,9 +9,6 @@ import UIKit
 
 final class TeamsFactory: VCFactory {
     let controller = TeamsVController()
-    override init() {
-        controller.initTeamViews()
-    }
     
     override func create() -> UIViewController {
         let navigator = getNavigator()

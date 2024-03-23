@@ -10,16 +10,11 @@ import UIKit
 final class FaqFactory: VCFactory {
     
     private lazy var controller: FaqVController = {
-        FaqVController()
+        FaqVController().initFaqViews()
     }()
     
-    override init() {
-        super.init()
-        self.controller.initFaqViews()
-    }
-    
     override func create() -> UIViewController {
-       controller
+        controller
     }
     
 }

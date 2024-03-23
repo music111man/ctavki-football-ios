@@ -9,7 +9,7 @@ import Foundation
 import StoreKit
 
 typealias RequestProductsResult = Result<[SKProduct], Error>
-typealias PurchaseProductResult = Result<Bool, Error>
+typealias PurchaseProductResult = Result<Bool?, Error>
 
 protocol IAPServiceDelegate: AnyObject {
     func fetchAvailable(result: RequestProductsResult) -> Void
@@ -47,14 +47,13 @@ final class IAPService: NSObject {
     weak var delegate: IAPServiceDelegate?
     var purchesProductId: String?
     
-    var canMakePurchases: Bool { SKPaymentQueue.canMakePayments() }
+    var canMakePurchases: Bool { SKPaymentQueue.canMakePayments() && purchesProductId == nil }
     
     func requestProducts() {
         productRequest?.cancel()
-        let productRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
-        productRequest.delegate = self
-        productRequest.start()
-        self.productRequest = productRequest
+        productRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
+        productRequest?.delegate = self
+        productRequest?.start()
     }
     
     func purcheProduct(_ productId: String) {
@@ -90,29 +89,32 @@ extension IAPService: SKProductsRequestDelegate {
 
 extension IAPService: SKPaymentTransactionObserver {
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-
+        var result: Bool?
         for transaction in transactions {
+           
             guard let purchesProductId = self.purchesProductId else {
                 SKPaymentQueue.default().finishTransaction(transaction)
                 continue
             }
-            printAppEvent("transactionState: \(transaction.transactionState)")
             switch transaction.transactionState {
             case .purchased, .restored:
                 if transaction.payment.productIdentifier == purchesProductId {
-                    delegate?.processPurchase(result: .success(true))
-                } else {
-                    delegate?.processPurchase(result: .success(false))
+                    result = true
+                    self.purchesProductId = nil
                 }
                 SKPaymentQueue.default().finishTransaction(transaction)
-                self.purchesProductId = nil
             case .failed:
+                if transaction.payment.productIdentifier == purchesProductId {
+                    result = false
+                    self.purchesProductId = nil
+                }
                 SKPaymentQueue.default().finishTransaction(transaction)
-                self.purchesProductId = nil
             default:
-                break
+                continue
             }
         }
+
+        delegate?.processPurchase(result: .success(result))
     }
     
     

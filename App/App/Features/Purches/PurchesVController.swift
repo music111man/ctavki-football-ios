@@ -15,6 +15,7 @@ final class PurchesVController: FeaureVController {
     let titleLabel = UILabel()
     let warningLabel = UILabel()
     let service = PurchesService()
+    let blackView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,14 @@ final class PurchesVController: FeaureVController {
             self?.refresher.endRefreshing()
         }.disposed(by: disposeBag)
         service.endPurche.observe(on: MainScheduler.instance).bind {[weak self] message in
-            self?.showAlert(title: R.string.localizable.donate(), message: message)
+            
+            if let message = message {
+                self?.showAlert(title: R.string.localizable.donate(), message: message)
+            }
+            self?.tableView.animateOpacity(0.3, 1)
+            self?.blackView.animateOpacity(0.3, 0) {[weak self] in
+                self?.blackView.isHidden = true
+            }
         }.disposed(by: disposeBag)
         
         service.loadDonates()
@@ -69,6 +77,9 @@ final class PurchesVController: FeaureVController {
         view.addSubview(titleLabel)
         view.addSubview(tableView)
         view.addSubview(warningLabel)
+        blackView.backgroundColor = .black.withAlphaComponent(0.7)
+        blackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(blackView)
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 20),
             titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15),
@@ -82,6 +93,10 @@ final class PurchesVController: FeaureVController {
             warningLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30)
         ])
         tableView.register(UINib(resource: R.nib.donateCell), forCellReuseIdentifier: DonateCell.reuseIdentifier)
+        
+        blackView.frame = UIScreen.main.bounds
+        blackView.isHidden = true
+        blackView.layer.opacity = 0
     }
     
     override func titleName() -> String {
@@ -100,8 +115,9 @@ final class PurchesVController: FeaureVController {
 
 extension PurchesVController: DonateCellDelegate {
     func tapBuy(donate: Donate) {
-        if !service.makeDotane(donateId: donate.productId) {
-            showAlert(title: R.string.localizable.donate(), message: R.string.localizable.buy_disabled())
+        if service.makeDotane(donateId: donate.productId) {
+            blackView.isHidden = false
+            blackView.animateOpacity(0.5, 1)
         }
     }
     

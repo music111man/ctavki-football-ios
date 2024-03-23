@@ -23,7 +23,7 @@ final class PurchesService {
     let disposeBag = DisposeBag()
     let donates = BehaviorRelay<[Donate]>(value: [])
     let endLoad = PublishRelay<Bool>()
-    let endPurche = PublishRelay<String>()
+    let endPurche = PublishRelay<String?>()
 
     init() {
         IAPService.default.delegate = self
@@ -49,7 +49,6 @@ extension PurchesService: IAPServiceDelegate {
         switch result {
         case let .success(products):
             hasProducts = !products.isEmpty
-            printAppEvent("was load \(products.count) donates")
             donates.accept(
                 products.sorted(by: { $0.price.doubleValue < $1.price.doubleValue } ).map { Donate(productId: $0.productIdentifier,
                                                                                                    priceWithCurrency: $0.localizedCurrencyPrice,
@@ -64,9 +63,10 @@ extension PurchesService: IAPServiceDelegate {
     func processPurchase(result: PurchaseProductResult) {
         switch result {
         case let .success(ok):
-            let msg = ok ? R.string.localizable.thankful_speech() : R.string.localizable.buy_failed()
-            printAppEvent(msg)
-            endPurche.accept(msg)
+            if let ok = ok {
+                let msg = ok ? R.string.localizable.thankful_speech() : nil
+                endPurche.accept(msg)
+            }
         case .failure:
             printAppEvent(R.string.localizable.buy_failed())
             endPurche.accept(R.string.localizable.buy_failed())

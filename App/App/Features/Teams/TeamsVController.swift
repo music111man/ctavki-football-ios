@@ -12,50 +12,45 @@ import RxCocoa
 
 final class TeamsVController: FeaureVController {
     
-    var teamsService: TeamsService!
+    var teamsService = TeamsService()
     var isUpdating = false
     var needAnimationOnWillAppend = false
     let stackView = UIStackView()
     
-    func initTeamViews() {
-        teamsService = TeamsService {[weak self] refresh in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.isUpdating = refresh
-                if refresh {
-                    if self.refresher.isRefreshing { return }
-                    self.activityView.isHidden = false
-
-                    return
-                }
-            }
-        }
+    func initTeamsFeatures() {
+        teamsService = TeamsService()
+        teamsService.refreshActivity.observe(on: MainScheduler.instance).bind {[weak self] in
+            guard let self = self else { return }
+            
+            self.isUpdating = true
+            self.activityView.isHidden = false
+        }.disposed(by: disposeBag)
         
         teamsService.teams.observe(on: MainScheduler.instance).bind {[weak self] models in
             self?.stackView.replaceWithHideAnimation({
-                models.map { model in
+                printAppEvent("start create views")
+                let views = models.map { model in
                     let view: TeamsView = .fromNib() { v in
                         v.configure(title: model.title, teams: model.teams)
                     }
                     view.delegate = self
+                    
                     return view
                 }
+                printAppEvent("and create views")
+                return views
             }) {[weak self] in
-                self?.activityView.animateOpacity(0.3, 0.2) {[weak self] in
                     self?.activityView.isHidden = true
+                    self?.isUpdating = false
                     self?.refresher.endRefreshing()
-                }
-                printAppEvent("teams show: \(Date())")
             }
         }.disposed(by: disposeBag)
-        
-        teamsService.updateData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        activityView.isHidden = true
+        initTeamsFeatures()
+        teamsService.updateData()
     }
     override func initTableView() {
         let scrollView = UIScrollView()
@@ -121,23 +116,6 @@ final class TeamsVController: FeaureVController {
 
 extension TeamsVController: BetViewDelegate {
     func openTeamDetails(team: Team, onLeft: Bool) {
-//        let vc: HistoryVController = .createFromNib { vc in
-//            vc.configure(team: team)
-//        }
-//        UIView.transition(with: view,
-//                          duration: 0.4,
-//                          options: [onLeft ? .transitionFlipFromRight : .transitionFlipFromLeft],
-//                          animations: { [weak self] in
-//            self?.view.layer.opacity = 0
-//        }) {[weak self] _ in
-//            self?.view.layer.opacity = 1
-//            self?.navigationController?.pushViewController(vc, animated: false)
-//        }
-//        UIView.animate(withDuration: 0.3) { [weak self] in
-//            self?.tableView.transform = .init(scaleX: 0.01, y: 0.01)
-//        } completion: { [weak self] _ in
-//            self?.navigationController?.pushViewController(vc, animated: true)
-//        }
         needAnimationOnWillAppend = true
         NotificationCenter.default.post(name: Notification.Name.needOpenHistory, object: self, userInfo: [BetView.teamKeyUserInfo: team])
 
