@@ -15,6 +15,15 @@ enum SignInMethod {
     case telegram(uuid: String)
     case apple(idToken: String, userName: String)
     case non
+    
+    var toString: String? {
+        switch self {
+        case .apple: return "Apple"
+        case .google: return "Google"
+        case .telegram: return "Telegram"
+        default: return nil
+        }
+    }
 }
 
 final class AccountService: NSObject {
@@ -85,7 +94,7 @@ final class AccountService: NSObject {
     
     private func singInTelegram(_ uuid: String) {
         printAppEvent("start sign in telegram")
-        DispatchQueue.global(qos: .userInteractive).async {
+        DispatchQueue.global().async {
             NetProvider.makeRequest(SignInResponseEntity.self, .signInByTelegram(uuid: uuid)) {[weak self] response in
                 self?.processResponse(response: response)
             }
@@ -107,8 +116,13 @@ final class AccountService: NSObject {
     }
     
     private func processResponse(response: SignInResponseEntity?) {
-        defer { AppSettings.signInMethod = .non }
-        guard let response = response else { return }
+        defer {
+            printAppEvent("reset sing in method to non")
+            AppSettings.signInMethod = .non }
+        guard let response = response else {
+            printAppEvent("bad sign in response")
+            return
+        }
         
         if response.code != 200 {
             printAppEvent("sign in error: code \(response.code) msg: \(response.msg)")

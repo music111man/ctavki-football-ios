@@ -16,7 +16,7 @@ final class ForecastService {
     
     let disposeBag = DisposeBag()
     
-    let model = PublishRelay<ForecastViewModel>()
+    let model = PublishRelay<ForecastViewModel?>()
     
     let needUpdate = PublishRelay<Void>()
     
@@ -28,12 +28,15 @@ final class ForecastService {
     }
     
     func loadData() {
-        DispatchQueue.global(qos: .userInteractive).async {[weak self] in
+        DispatchQueue.global().async {[weak self] in
             guard let self = self,
                   let bet: Bet = Repository.selectTop(Bet.table.filter(Bet.idField == self.betId)),
                   let typeId = bet.typeId,
                   let betType: BetType = Repository.selectTop(BetType.table.filter(BetType.idField == typeId))
-                    else { return }
+            else {
+                self?.model.accept(nil)
+                return
+            }
             let activeBets: [Bet] = Repository.select(Bet.table.filter( Bet.outcomeField == nil
                                                                         && Bet.eventDateField > Date().matchTime ).order(Bet.eventDateField))
             let teams: [Team] = Repository.select(Team.table.where([bet.team1Id, bet.team2Id].contains(Team.idField)))

@@ -95,6 +95,7 @@
 		F2EB1A322B9A11040027D782 /* BetDetailsVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB1A302B9A11040027D782 /* BetDetailsVController.swift */; };
 		F2EB1A352B9A11520027D782 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB1A342B9A11520027D782 /* UIViewController.swift */; };
 		F2EB1A372B9A2E9C0027D782 /* BetDetailsVController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2EB1A362B9A2E9C0027D782 /* BetDetailsVController.storyboard */; };
+		F2F9B4EA2BB2FE520087B333 /* PushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F9B4E92BB2FE510087B333 /* PushManager.swift */; };
 		F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC033D2B867809001C6BB3 /* AppDelegate.swift */; };
 		F2FC03422B867809001C6BB3 /* MainVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC03412B867809001C6BB3 /* MainVController.swift */; };
 		F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2FC03462B86780B001C6BB3 /* Assets.xcassets */; };
@@ -200,6 +201,7 @@
 		F2EB1A342B9A11520027D782 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		F2EB1A362B9A2E9C0027D782 /* BetDetailsVController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BetDetailsVController.storyboard; sourceTree = "<group>"; };
 		F2F186C72B87754F00FBDD22 /* Utilites.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utilites.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2F9B4E92BB2FE510087B333 /* PushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushManager.swift; sourceTree = "<group>"; };
 		F2FC033A2B867809001C6BB3 /* Ctavki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctavki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FC033D2B867809001C6BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2FC03412B867809001C6BB3 /* MainVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVController.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				F22CE0932B87B87400732FFB /* AppCoordinator.swift */,
 				F22CE0B22B88BE4D00732FFB /* VCFactory.swift */,
 				F2EA78DB2B90CA29006B3A1C /* AppSettings.swift */,
+				F2F9B4E92BB2FE510087B333 /* PushManager.swift */,
 			);
 			path = Utilites;
 			sourceTree = "<group>";
@@ -838,6 +841,7 @@
 				F22CE09E2B87C53700732FFB /* TeamsVController.swift in Sources */,
 				F2888DCE2B9B624C007F62F2 /* BetResultHeaderView.swift in Sources */,
 				F2973D082B9EF96A003612E1 /* HistoryService.swift in Sources */,
+				F2F9B4EA2BB2FE520087B333 /* PushManager.swift in Sources */,
 				F2EA78DE2B910013006B3A1C /* JSONWrapHelpers.swift in Sources */,
 				F2C051342BAADDB00056FB75 /* IAPService.swift in Sources */,
 				F22CE0BC2B88F0D200732FFB /* TourGuidVController.swift in Sources */,
@@ -1030,7 +1034,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -1061,7 +1065,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;

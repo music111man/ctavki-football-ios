@@ -86,7 +86,7 @@ extension Bet: DBComparable {
     static var outcomeField: Expression<String?> { Expression<String?>(CodingKeys.outcome.rawValue) }
     static var reliabilityField: Expression<Int> { Expression<Int>(CodingKeys.reliability.rawValue) }
     
-    static func createColumns(builder: TableBuilder) {
+    static func createColumns(builder: SQLite.TableBuilder) {
         builder.column(Self.idField, primaryKey: true)
         builder.column(eventDateField)
         builder.column(team1IdField)

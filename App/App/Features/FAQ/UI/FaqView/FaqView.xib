@@ -20,10 +20,10 @@
                     <color key="backgroundColor" name="background_main_light"/>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nf9-9m-W8g">
-                    <rect key="frame" x="15" y="13" width="30" height="30"/>
+                    <rect key="frame" x="15" y="23.666666666666671" width="30" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFq-HO-Lhf">
-                            <rect key="frame" x="11.666666666666668" y="6.6666666666666679" width="6.6666666666666679" height="17"/>
+                            <rect key="frame" x="11.666666666666668" y="6.6666666666666643" width="6.6666666666666679" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" name="title_color"/>
                             <nil key="highlightedColor"/>
@@ -43,13 +43,13 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Почему ставить на футбол более выгодно, чем на другие виды спорта?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5c-XO-J6K">
-                    <rect key="frame" x="55" y="10" width="288" height="36"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <rect key="frame" x="55" y="10.000000000000004" width="288" height="57.333333333333343"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" name="text_theme"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="up_small_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="dzu-Xz-oIi">
-                    <rect key="frame" x="348" y="13" width="30" height="30"/>
+                    <rect key="frame" x="348" y="23.666666666666671" width="30" height="30"/>
                     <color key="tintColor" name="text_theme"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="T64-Or-Chd"/>

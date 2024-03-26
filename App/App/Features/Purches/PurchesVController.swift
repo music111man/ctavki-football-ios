@@ -24,13 +24,13 @@ final class PurchesVController: FeaureVController {
             cell.configure(item, self)
         }.disposed(by: disposeBag)
         
-        tableView.rx.willDisplayCell.bind { event in
-            let translationX = ((event.indexPath.row % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
-            event.cell.transform = .init(translationX: translationX, y: 0)
-            UIView.animate(withDuration: 0.7) {
-                event.cell.transform = .identity
-            }
-        }.disposed(by: disposeBag)
+//        tableView.rx.willDisplayCell.bind { event in
+//            let translationX = ((event.indexPath.row % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
+//            event.cell.transform = .init(translationX: translationX, y: 0)
+//            UIView.animate(withDuration: 0.7) {
+//                event.cell.transform = .identity
+//            }
+//        }.disposed(by: disposeBag)
         
         service.endLoad.observe(on: MainScheduler.instance).bind {[weak self] hasProducts in
             self?.warningLabel.isHidden = hasProducts

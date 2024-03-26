@@ -1,0 +1,15 @@
+{
+    "Simulator Target Bundle": "com.ctavki.football.forecast",
+    "aps": {
+        "alert": {
+            "body": "Новые правила вводятся, прочтите",
+            "title": "Вопрос-Ответы"
+        },
+	"sound": "default",
+	"badge": 1
+    },
+
+    "redirect_to": "REDIR_FAQ",
+    "redirect_to_tag_id": "",
+    "redirect_to_url": ""
+}

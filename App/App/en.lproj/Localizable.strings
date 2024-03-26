@@ -60,7 +60,7 @@
 "year_at_end" = "%@";
 "expecting" = "Expected";
 
-"bets_history" = "Bets history of";
+"bets_history" = "Bets history";
 "balance" = "Balance";
 "bets_made" = "Picks";
 
@@ -74,6 +74,7 @@
 "log_in_with_apple" = "Sign in with Apple";
 "log_in_with_google" = "Sign in with Google";
 "log_in_with_telegram" = "Sign in with Telegram";
+"log_in_unable" = "Sign in using %@ is temporarily unavailable, please try another method.";
 "you_are_logged" = "You have successfully logged in. Now all our free sports predictions are available to you.";
 "get_more_bets" = "Go to predictions";
 

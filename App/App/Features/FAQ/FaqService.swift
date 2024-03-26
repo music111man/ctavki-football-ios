@@ -23,7 +23,7 @@ final class FaqService {
     
     func loadData() {
         isLoading.accept(true)
-        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+        DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
             var models = [FaqViewModel]()
             let faqs: [Faq] = Repository.select(Faq.table)

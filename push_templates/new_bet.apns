@@ -1,0 +1,15 @@
+{
+    "Simulator Target Bundle": "com.ctavki.football.forecast",
+    "aps": {
+        "alert": {
+            "body": "новый прогноз с кэф. = 1,63",
+            "title": "Матч Грузия - Греция"
+        },
+	"sound": "default",
+	"badge": 1
+    },
+
+    "redirect_to": "REDIR_BET",
+    "redirect_to_tag_id": "680",
+    "redirect_to_url": ""
+}

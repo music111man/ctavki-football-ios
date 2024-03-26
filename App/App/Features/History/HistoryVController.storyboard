@@ -147,7 +147,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" name="background_main_light"/>
+                                <color key="backgroundColor" name="background_main"/>
                                 <constraints>
                                     <constraint firstItem="RCo-f0-tmQ" firstAttribute="top" secondItem="JrV-PY-q4S" secondAttribute="bottom" id="287-ga-7nJ"/>
                                     <constraint firstAttribute="bottom" secondItem="RCo-f0-tmQ" secondAttribute="bottom" id="2aM-ym-FeR"/>
@@ -211,8 +211,8 @@
         <namedColor name="background_light_theme">
             <color red="0.92549019607843142" green="0.98039215686274506" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="background_main_light">
-            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="background_main">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="bet_group_start">
             <color red="0.93333333333333335" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

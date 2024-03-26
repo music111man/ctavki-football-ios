@@ -18,13 +18,13 @@ extension Notification.Name {
 }
 
 protocol BetViewDelegate: AnyObject {
-    func openTeamDetails(team: Team, onLeft: Bool)
+    func openTeamDetails(teamId: Int, onLeft: Bool)
 }
 
 class BetView: UIView {
 
     static let betIdKeyForUserInfo = "betId"
-    static let teamKeyUserInfo = "team"
+    static let teamIdKeyUserInfo = "teamId"
     static let tapLeftUserInfo = "tapLeft"
     
     let homeTeamNameLabel = UILabel()
@@ -128,18 +128,18 @@ class BetView: UIView {
     private func initTapGesture() {
         resultView.tap {[weak self] in
             guard let self = self, let betId = self.betId else { return }
-            resultView.animateTapGesture(value: 0.8) {
-                switch self.betOutCome {
-                case .active:
-                    NotificationCenter.default.post(name: Notification.Name.needOpenActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
-                case .unknow:
-                    NotificationCenter.default.post(name: Notification.Name.needOpenNoActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
-                default:
-                    NotificationCenter.default.post(name: Notification.Name.needOpenBetDetails,
-                                                    object: self,
-                                                    userInfo: [Self.betIdKeyForUserInfo: betId])
-                }
+            
+            switch self.betOutCome {
+            case .active:
+                NotificationCenter.default.post(name: Notification.Name.needOpenActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
+            case .unknow:
+                NotificationCenter.default.post(name: Notification.Name.needOpenNoActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
+            default:
+                NotificationCenter.default.post(name: Notification.Name.needOpenBetDetails,
+                                                object: self,
+                                                userInfo: [Self.betIdKeyForUserInfo: betId])
             }
+
         }.disposed(by: disposeBag)
         
         homeTeamNameLabel.superview?.tap {[weak self] in
@@ -150,7 +150,7 @@ class BetView: UIView {
                 return
             }
             
-            self.delegate?.openTeamDetails(team: self.homeTeam, onLeft: true)
+            self.delegate?.openTeamDetails(teamId: self.homeTeam.id, onLeft: true)
         }.disposed(by: disposeBag)
         
         goustTeamNameLabel.superview?.tap {[weak self] in
@@ -160,7 +160,7 @@ class BetView: UIView {
                 NotificationCenter.default.post(name: Notification.Name.needOpenActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
                 return
             }
-            self.delegate?.openTeamDetails(team: self.goustTeam, onLeft: false)
+            self.delegate?.openTeamDetails(teamId: self.goustTeam.id, onLeft: false)
         }.disposed(by: disposeBag)
     }
 

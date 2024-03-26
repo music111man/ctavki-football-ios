@@ -1,0 +1,15 @@
+{
+    "Simulator Target Bundle": "com.ctavki.football.forecast",
+    "aps": {
+        "alert": {
+            "body": "Эта команда бьёт рекорды",
+            "title": "Команда"
+        },
+	"sound": "default",
+	"badge": 1
+    },
+
+    "redirect_to": "REDIR_TAG",
+    "redirect_to_tag_id": "10000",
+    "redirect_to_url": ""
+}

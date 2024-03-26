@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainViewDelegate {
-    func pushView(_ action: ToolBarView.MenuAction)
+    func pushView(_ action: ToolBarView.MenuAction, needSelectMenu: Bool)
 }
 
 final class MainVController: UIViewController {
@@ -17,6 +17,8 @@ final class MainVController: UIViewController {
     private let toolBar = ToolBarView()
     private let containerView = UIView()
     private let backView = UIView()
+    
+    var currentController: UIViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +28,7 @@ final class MainVController: UIViewController {
     func initUI() {
         view.backgroundColor = R.color.background_main_light()
         toolBar.initUI { [weak self] action in
-            self?.delegate?.pushView(action)
+            self?.delegate?.pushView(action,needSelectMenu: false)
         }
 
         toolBar.translatesAutoresizingMaskIntoConstraints = false
@@ -59,6 +61,7 @@ final class MainVController: UIViewController {
             childVC.removeFromParent()
         }
         addChild(vc)
+        currentController = vc
         vc.view.backgroundColor = UIColor.clear
         containerView.addSubview(vc.view)
         vc.view.translatesAutoresizingMaskIntoConstraints = false
@@ -71,29 +74,34 @@ final class MainVController: UIViewController {
         vc.didMove(toParent: self)
     }
 
-    func setChildVC(vc: UIViewController, flipFromRight: Bool? = nil,_ complite: (() -> Void)? = nil) {
-        guard let flipFromRight = flipFromRight else {
-            self.containerView.transform =  .init(scaleX: 0.01, y: 0.01)
-            self.containerView.layer.opacity = 0
-            self.add(vc: vc)
-            UIView.animate(withDuration: 0.4, animations: {[weak self] in
-                guard let self = self else { return }
-                self.containerView.transform = .identity
-                self.containerView.layer.opacity = 1
-            }, completion: { _ in
-                complite?()
-            })
-
-            return
+    func setChildVC(vc: UIViewController, action: ToolBarView.MenuAction? = nil, flipFromRight: Bool? = nil,_ complite: (() -> Void)? = nil) {
+        if let action = action {
+            toolBar.selectMenuBtn(action)
         }
-        UIView.transition(with: containerView,
-                          duration: 0.5,
-                          options: [flipFromRight ? .transitionFlipFromRight : .transitionFlipFromLeft],
-                          animations: { [weak self] in
-            self?.add(vc: vc)
-        }) { _ in
-            complite?()
-        }
+//        guard let flipFromRight = flipFromRight else {
+//            self.containerView.transform =  .init(scaleX: 0.01, y: 0.01)
+//            self.containerView.layer.opacity = 0
+//            self.add(vc: vc)
+//            UIView.animate(withDuration: 0.4, animations: {[weak self] in
+//                guard let self = self else { return }
+//                self.containerView.transform = .identity
+//                self.containerView.layer.opacity = 1
+//            }, completion: { _ in
+//                complite?()
+//            })
+//
+//            return
+//        }
+//        UIView.transition(with: containerView,
+//                          duration: 0.5,
+//                          options: [flipFromRight ? .transitionFlipFromRight : .transitionFlipFromLeft],
+//                          animations: { [weak self] in
+//            self?.add(vc: vc)
+//        }) { _ in
+//            complite?()
+//        }
+        add(vc: vc)
+        complite?()
     }
     
     func animate(onLeft: Bool? = nil, _ complite: @escaping() -> ()) {

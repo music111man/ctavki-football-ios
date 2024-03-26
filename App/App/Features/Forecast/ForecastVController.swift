@@ -99,6 +99,9 @@ class ForecastVController: UIViewController {
             self?.model = model
             self?.activityView.isHidden = true
             self?.refresher.endRefreshing()
+            if model == nil {
+                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
+            }
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
             self?.activityView.isHidden = false
@@ -106,23 +109,25 @@ class ForecastVController: UIViewController {
         }.disposed(by: disposeBag)
         
         teamView1.tap {[weak self] in
-            guard let team = self?.model?.team1 else { return }
+            guard let teamId = self?.model?.team1.id else { return }
             let vc: HistoryVController = .createFromNib { vc in
-                vc.configure(team: team)
+                vc.configure(teamId: teamId)
             }
-            self?.animate(onLeft: true) {[weak self] in
-                self?.navigationController?.pushViewController(vc, animated: false)
-            }
+//            self?.animate(onLeft: true) {[weak self] in
+//                self?.navigationController?.pushViewController(vc, animated: false)
+//            }
+            self?.navigationController?.pushViewController(vc, animated: true)
             
         }.disposed(by: disposeBag)
         teamView2.tap {[weak self] in
-            guard let team = self?.model?.team2 else { return }
+            guard let teamId = self?.model?.team2.id else { return }
             let vc: HistoryVController = .createFromNib { vc in
-                vc.configure(team: team)
+                vc.configure(teamId: teamId)
             }
-            self?.animate(onLeft: false) {[weak self] in
-                self?.navigationController?.pushViewController(vc, animated: false)
-            }
+//            self?.animate(onLeft: false) {[weak self] in
+//                self?.navigationController?.pushViewController(vc, animated: false)
+//            }
+            self?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: disposeBag)
         backBtnView.tap {[weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
@@ -135,12 +140,12 @@ class ForecastVController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        backView.transform = .init(scaleX: 0.01, y: 0.01)
-        backView.layer.opacity = 0
-        UIView.animate(withDuration: 0.3) {[weak self] in
-            self?.backView.layer.opacity = 1
-            self?.backView.transform = .identity
-        }
+//        backView.transform = .init(scaleX: 0.01, y: 0.01)
+//        backView.layer.opacity = 0
+//        UIView.animate(withDuration: 0.3) {[weak self] in
+//            self?.backView.layer.opacity = 1
+//            self?.backView.transform = .identity
+//        }
     }
    
     override func viewDidLayoutSubviews() {

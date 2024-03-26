@@ -58,6 +58,20 @@ final class ToolBarView: UIView {
         borderTopView.backgroundColor = R.color.toolbarItem()?.withAlphaComponent(0.5)
     }
     
+    func selectMenuBtn(_ action: MenuAction) {
+        buttons.forEach { $0.isSelected = false }
+        switch action {
+        case .bets:
+            buttons[0].isSelected = true
+        case .teams:
+            buttons[1].isSelected = true
+        case .pay:
+            buttons[2].isSelected = true
+        case .faq:
+            buttons[3].isSelected = true
+        }
+    }
+    
     private func addButtons(_ view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         let anchor = subviews.count > 1 ? subviews.last!.trailingAnchor : leadingAnchor

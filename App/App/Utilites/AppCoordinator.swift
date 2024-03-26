@@ -35,7 +35,8 @@ final class AppCoordinator: NSObject, PCoordinator {
         window = UIWindow(frame: UIScreen.main.bounds)
         mainCoordinator = MainCoordinator()
         super.init()
-        configureFireBase(application)
+        PushManager.config(application, self)
+//        configureFireBase(application)
         
         mainCoordinator.delegate = self
         initNotificationEventHandlers()
@@ -50,8 +51,6 @@ final class AppCoordinator: NSObject, PCoordinator {
     
     func start() {
         AccountService.share.signIn()
-//        syncService.startRefreshCircle()
-        
         window.rootViewController = mainCoordinator.start()
         router?.navigationBar.isHidden = true
         window.makeKeyAndVisible()
@@ -88,12 +87,12 @@ final class AppCoordinator: NSObject, PCoordinator {
             self?.showBetDetails(betId: betId)
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needOpenHistory).subscribe {[weak self] event in
-            guard let team = event.element?.userInfo?[BetView.teamKeyUserInfo] as? Team else {
+            guard let teamId = event.element?.userInfo?[BetView.teamIdKeyUserInfo] as? Int else {
                 printAppEvent("Unable open history - no arguments")
                 return
             }
             let tapLeft = event.element?.userInfo?[BetView.tapLeftUserInfo] as? Bool
-            self?.showHistory(team: team, animationDirectionLeft: tapLeft)
+            self?.showHistory(teamId: teamId, animationDirectionLeft: tapLeft)
         }.disposed(by: disposeBag)
     }
     
@@ -105,18 +104,19 @@ final class AppCoordinator: NSObject, PCoordinator {
         self.router?.present(vc, animated: false)
     }
     
-    func showActiveBetDetails() {
+    func showActiveBetDetails(betId: Int? = nil) {
         if (router?.topViewController as? MainVController) == nil {
             router?.popToRootViewController(animated: false)
         }
         
-        guard let topVC = router?.topViewController as? MainVController, let betId = activeBetToShow else { return }
+        guard let topVC = router?.topViewController as? MainVController, let betId = betId ?? activeBetToShow else { return }
         let vc: ForecastVController = ForecastVController.createFromNib() { vc in
             vc.betId = betId
         }
-        topVC.animate { [weak self] in
-            self?.router?.pushViewController(vc, animated: false)
-        }
+//        topVC.animate { [weak self] in
+//            self?.router?.pushViewController(vc, animated: false)
+//        }
+        router?.pushViewController(vc, animated: true)
     }
     
     func showAuthScreen(_ disposed: (() -> ())? = nil) {
@@ -125,14 +125,18 @@ final class AppCoordinator: NSObject, PCoordinator {
         self.router?.present(vc, animated: true)
     }
     
-    func showHistory(team: Team, animationDirectionLeft: Bool?) {
+    func showHistory(teamId: Int, animationDirectionLeft: Bool?) {
+        if (router?.topViewController as? MainVController) == nil {
+            router?.popToRootViewController(animated: false)
+        }
         guard let topVC = router?.topViewController as? MainVController else { return }
         let vc: HistoryVController = .createFromNib { vc in
-            vc.configure(team: team)
+            vc.configure(teamId: teamId)
         }
-        topVC.animate(onLeft: animationDirectionLeft) { [weak self] in
-            self?.router?.pushViewController(vc, animated: false)
-        }
+//        topVC.animate(onLeft: animationDirectionLeft) { [weak self] in
+//            self?.router?.pushViewController(vc, animated: false)
+//        }
+        router?.pushViewController(vc, animated: true)
     }
 }
 
@@ -148,25 +152,52 @@ extension AppCoordinator: MainCoordinatorDelegate {
     }
 }
 
-extension AppCoordinator: UNUserNotificationCenterDelegate {
-    func configureFireBase(_ application: UIApplication) {
-        FirebaseApp.configure()
-        Messaging.messaging().delegate = self
-        UNUserNotificationCenter.current().delegate = self
-        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+extension AppCoordinator: PushManagerDelegate {
+    func canShow(pushRedirect: PushRedirect) -> Bool {
+        switch pushRedirect {
+        case let .bet(betId):
+            if let vc = mainCoordinator.router.topViewController as? ForecastVController, vc.betId == betId {
+                return false
+            }
+            return true
+        default:
+            return true
+        }
+    }
+    
+    func openScreen(pushRedirect: PushRedirect) {
+        syncService.refresh() { [weak self] _ in
+            switch pushRedirect {
                 
-        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (_, error) in
-            guard error == nil else{
-                printAppEvent(error!.localizedDescription)
-                return
+            case .paid:
+                self?.openByMenuAction(.pay)
+            case .faq:
+                self?.openByMenuAction(.faq)
+            case let .team(id):
+                self?.showHistory(teamId: id, animationDirectionLeft: nil)
+            case .teams:
+                self?.openByMenuAction(.teams)
+            case let .url(urlStr):
+                if let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url)
+                }
+            case let .bet(id):
+                if AppSettings.isAuthorized {
+                    self?.showActiveBetDetails(betId: id)
+                } else {
+                    self?.activeBetToShow = id
+                    self?.showAuthScreen() { [weak self] in
+                        self?.showActiveBetDetails()
+                    }
+                }
             }
         }
-        application.registerForRemoteNotifications()
     }
-}
-
-extension AppCoordinator: MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        AppSettings.fcmToken = fcmToken ?? ""
+    
+    func openByMenuAction(_ action: ToolBarView.MenuAction) {
+        if (router?.topViewController as? MainVController) == nil {
+            router?.popToRootViewController(animated: false)
+        }
+        mainCoordinator.pushView(action, needSelectMenu: true)
     }
 }

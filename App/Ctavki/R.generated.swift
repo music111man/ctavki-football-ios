@@ -1234,7 +1234,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 81 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 82 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1280,7 +1280,7 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let bet_amount_100 = Rswift.StringResource(key: "bet_amount_100", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
-      /// en translation: Bets history of
+      /// en translation: Bets history
       ///
       /// Locales: en, ru, uk
       static let bets_history = Rswift.StringResource(key: "bets_history", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
@@ -1452,6 +1452,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let sign_in = Rswift.StringResource(key: "sign_in", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Sign in using %@ is temporarily unavailable, please try another method.
+      ///
+      /// Locales: en, ru, uk
+      static let log_in_unable = Rswift.StringResource(key: "log_in_unable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Sign in with Apple
       ///
       /// Locales: en, ru, uk
@@ -1736,7 +1740,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("bet_amount_100", bundle: bundle, comment: "")
       }
 
-      /// en translation: Bets history of
+      /// en translation: Bets history
       ///
       /// Locales: en, ru, uk
       static func bets_history(preferredLanguages: [String]? = nil) -> String {
@@ -2391,6 +2395,23 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("sign_in", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Sign in using %@ is temporarily unavailable, please try another method.
+      ///
+      /// Locales: en, ru, uk
+      static func log_in_unable(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("log_in_unable", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "log_in_unable"
+        }
+
+        let format = NSLocalizedString("log_in_unable", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
       }
 
       /// en translation: Sign in with Apple
@@ -3073,6 +3094,7 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "red_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'red_start' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "shadow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shadow' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "text_black", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_black' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "text_theme", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_theme' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "title_color", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'title_color' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "viotet_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'viotet_start' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
         }
@@ -3098,7 +3120,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "done", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'done' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
           if UIKit.UIColor(named: "background_light_theme", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_light_theme' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "background_main_light", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_main_light' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "background_main", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_main' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "bet_group_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'bet_group_start' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "green_blue_end", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_end' is used in storyboard 'HistoryVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "return", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'return' is used in storyboard 'HistoryVController', but couldn't be loaded.") }

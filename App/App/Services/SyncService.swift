@@ -99,7 +99,7 @@ final class SyncService {
     
     func startRefreshCircle() {
         self.refresh()
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + AppSettings.syncInterval) { [weak self] in
+        DispatchQueue.global().asyncAfter(deadline: .now() + AppSettings.syncInterval) { [weak self] in
             self?.startRefreshCircle()
         }
     }

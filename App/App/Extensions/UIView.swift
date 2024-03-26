@@ -116,7 +116,7 @@ extension UIView {
         return v
     }
     
-    func tap(animateTapGesture: Bool = true, 
+    func tap(animateTapGesture: Bool = false, 
              _ validateAction: @escaping (() -> Bool) = { true },
              _ action: @escaping () -> ()) -> Disposable {
         isUserInteractionEnabled = true

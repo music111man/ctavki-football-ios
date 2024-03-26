@@ -13,7 +13,7 @@ import UIKit
 
 struct BetViewModel {
     let id: Int
-    let result: Int
+    let result: Double
     let eventDate: Date
     let betOutCome: BetOutcome
     let homeTeam: Team?
@@ -26,7 +26,7 @@ struct BetGroup {
     let active: Bool
     let bets: [BetViewModel]
     
-    var resaltbetSum: Int {
+    var resaltbetSum: Double {
         bets.map {$0.result}.sum
     }
     var cellHeigth: CGFloat {
@@ -61,35 +61,30 @@ final class BetsService {
     func updateData() {
         beginRefrech?()
         printAppEvent("start update bets data")
-        DispatchQueue.global(qos: .background).async {[weak self] in
+        DispatchQueue.global().async {[weak self] in
             guard let self = self else { return }
             let allBets: [Bet] = Repository.select(Bet.table.order(Bet.eventDateField.desc))
             let activeBets = allBets.filter { $0.isActive }.sorted { $0.eventDate < $01.eventDate }
             let bets:[Bet] = allBets.filter { !$0.isActive }
             let teams: [Team] = Repository.select(Team.table)
-            let betTypes: [BetType] = AppSettings.isAuthorized ? Repository.select(BetType.table
-                                                                                            .filter(activeBets.compactMap({$0.typeId})
-                                                                                            .contains(BetType.idField))) : []
             
             let activeBetViewModels = activeBets.map { bet in
                 BetViewModel(id: bet.id,
-                             result: Int(bet.result),
+                             result: bet.result,
                              eventDate: bet.eventDate,
                              betOutCome: .active,
                              homeTeam: teams.first(where: { team in team.id == bet.team1Id }),
                              goustTeam: teams.first(where: { team in team.id == bet.team2Id }),
-                             resultText: betTypes.first(where: { type in
-                                                                type.id == bet.typeId
-                                                            })?.shortTitle ?? bet.factor?.formattedString ?? "0.0")
+                             resultText: bet.factor?.formattedString ?? "0.0")
             }
             let betViewModels = bets.map { bet in
                 BetViewModel(id: bet.id,
-                             result: Int(bet.result),
+                             result: bet.result,
                              eventDate: bet.eventDate,
                              betOutCome: bet.outcome ?? .unknow,
                              homeTeam: teams.first(where: { team in team.id == bet.homeTeamId }),
                              goustTeam: teams.first(where: { team in team.id == bet.team2Id }),
-                             resultText: bet.outcome == nil ? "?" : (bet.result < 0 ? bet.result * -1 : bet.result).formattedString)
+                             resultText: bet.outcome == nil ? "?" : (bet.result < 0 ? bet.result * -1 : bet.result).roundedString)
             }
             let activeGroups = activeBetViewModels.map { bet in
                 BetGroup(eventDate: bet.eventDate, active: true, bets: [bet])
@@ -100,10 +95,8 @@ final class BetsService {
             
             let betSections = groups.map({$0.eventDate.withoutDays}).distinct().map {date in
                 let filtered = groups.filter { $0.eventDate.withoutDays == date }
-                var sum: Int = 0
-                filtered.forEach { sum += $0.resaltbetSum }
                 
-                return BetSection(eventDate: date.withoutDays, sum: sum, bets: filtered)
+                return BetSection(eventDate: date.withoutDays, sum: Int(filtered.map { $0.resaltbetSum }.sum.rounded()), bets: filtered)
             }
             
             self.callback?([BetSection(eventDate: nil, sum: nil, bets: activeGroups)] + betSections)

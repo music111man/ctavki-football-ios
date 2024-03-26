@@ -23,7 +23,7 @@ class TeamsRowView: UIView {
             let view: TeamView = .fromNib() { v in
                 v.team = team
             }
-            width += view.minWidth + 30
+            width += view.minWidth + 20
             if width >= screenWidth {
                 unusedTeams.append(team)
                 continue
@@ -40,7 +40,7 @@ class TeamsRowView: UIView {
 }
 
 extension TeamsRowView: BetViewDelegate {
-    func openTeamDetails(team: Team, onLeft: Bool) {
-        delegate?.openTeamDetails(team: team, onLeft: onLeft)
+    func openTeamDetails(teamId: Int, onLeft: Bool) {
+        delegate?.openTeamDetails(teamId: teamId, onLeft: onLeft)
     }
 }

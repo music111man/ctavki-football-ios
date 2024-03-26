@@ -30,24 +30,25 @@ class TeamsView: UIView {
                 let row: TeamsRowView = .fromNib { v in
                     unusedTeams = v.configure(teams: unusedTeams)
                 }
-                row.transform = .init(scaleX: 0, y: 0)
+//                row.transform = .init(scaleX: 0, y: 0)
                 row.delegate = self
                 views.append(row)
             }
             
             return views
-        }) {[weak self] in
-            UIView.animate(withDuration: 0.3) { [weak self] in
-                self?.stackView.arrangedSubviews.forEach { $0.transform = .identity }
-            }
-        }
+        }) 
+//        {[weak self] in
+//            UIView.animate(withDuration: 0.3) { [weak self] in
+//                self?.stackView.arrangedSubviews.forEach { $0.transform = .identity }
+//            }
+//        }
         
     }
 
 }
 
 extension TeamsView: BetViewDelegate {
-    func openTeamDetails(team: Team, onLeft: Bool) {
-        delegate?.openTeamDetails(team: team, onLeft: onLeft)
+    func openTeamDetails(teamId: Int, onLeft: Bool) {
+        delegate?.openTeamDetails(teamId: teamId, onLeft: onLeft)
     }
 }

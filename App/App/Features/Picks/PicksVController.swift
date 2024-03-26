@@ -23,17 +23,12 @@ class PicksVController: FeaureVController {
         NotificationCenter.default.rx.notification(Notification.Name.noDataForBetsScreen).subscribe {[weak self] _ in
             guard let self = self else { return }
             self.refresher.endRefreshing()
-//            if isFirstShow {
-//                self.service.updateData()
-//            } else {
-//                self.refresher.endRefreshing()
-//            }
+            self.activityView.isHidden = true
         }.disposed(by: disposeBag)
         
         NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
             self?.activityView.isHidden = false
             self?.activityView.animateOpacity(0.4, 1)
-//            self?.betsViewModel.updateData()
         }.disposed(by: disposeBag)
         
         service.callback = { betSections in
@@ -186,48 +181,44 @@ extension PicksVController: UITableViewDataSource {
         
         return view
     }
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if didScroll {
-            view.transform = .init(scaleX: 0, y: 0)
-            UIView.animate(withDuration: 0.3) {
-                view.transform = .identity
-            }
-        } else {
-            let translationX = ((section % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
-            view.transform = .init(translationX: translationX, y: 0)
-            UIView.animate(withDuration: 0.4) {
-                view.transform = .identity
-            }
-        }
-    }
+//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        if didScroll {
+//            view.transform = .init(scaleX: 0, y: 0)
+//            UIView.animate(withDuration: 0.3) {
+//                view.transform = .identity
+//            }
+//        } else {
+//            let translationX = ((section % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
+//            view.transform = .init(translationX: translationX, y: 0)
+//            UIView.animate(withDuration: 0.4) {
+//                view.transform = .identity
+//            }
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         BetSectionHeaderView.height
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        if didScroll {
-            cell.transform = .init(scaleX: 0, y: 0)
-            UIView.animate(withDuration: 0.3) {
-                cell.transform = .identity
-            }
-        } else {
-            let translationX = ((indexPath.row % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
-            cell.transform = .init(translationX: translationX, y: 0)
-            UIView.animate(withDuration: 0.4) {
-                cell.transform = .identity
-            }
-        }
-//        cell.transform = CGAffineTransform.init(scaleX: 0, y: 0)
-//        UIView.animate(withDuration: 0.3) {
-//            cell.transform = CGAffineTransform.identity
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        
+//        if didScroll {
+//            cell.transform = .init(scaleX: 0, y: 0)
+//            UIView.animate(withDuration: 0.3) {
+//                cell.transform = .identity
+//            }
+//        } else {
+//            let translationX = ((indexPath.row % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
+//            cell.transform = .init(translationX: translationX, y: 0)
+//            UIView.animate(withDuration: 0.4) {
+//                cell.transform = .identity
+//            }
 //        }
-    }
+//    }
 }
 
 extension PicksVController: BetViewDelegate {
-    func openTeamDetails(team: Team, onLeft: Bool) {
-        NotificationCenter.default.post(name: Notification.Name.needOpenHistory, object: self, userInfo: [BetView.teamKeyUserInfo: team, BetView.tapLeftUserInfo: onLeft])
+    func openTeamDetails(teamId: Int, onLeft: Bool) {
+        NotificationCenter.default.post(name: Notification.Name.needOpenHistory, object: self, userInfo: [BetView.teamIdKeyUserInfo: teamId, BetView.tapLeftUserInfo: onLeft])
     }
 }

@@ -10,11 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TeamsRowView" customModule="App" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TeamsRowView" customModule="Ctavki" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="393" height="81"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gzn-N3-Fer">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gzn-N3-Fer">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="81"/>
                 </stackView>
             </subviews>

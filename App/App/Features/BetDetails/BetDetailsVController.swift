@@ -41,21 +41,25 @@ class BetDetailsVController: UIViewController {
         betSumLabel.text = R.string.localizable.bet_amount_100()
         factorLabel.text = R.string.localizable.odds_col()
         resultLabel.text = R.string.localizable.result()
-        containerView.transform = CGAffineTransform.init(scaleX: 0, y: 0)
-        containerView.isHidden = true
+//        containerView.transform = CGAffineTransform.init(scaleX: 0, y: 0)
         closeView.tap(animateTapGesture: false) {[weak self] in
-            guard let self = self else { return }
-            UIView.transition(with: self.containerView,
-                              duration: 0.5,
-                              options: [.transitionFlipFromLeft],
-                              animations: { [weak self] in
-                self?.containerView.layer.opacity = 0
-            }) { _ in
-                UIView.animate(withDuration: 0.3) {[weak self] in
-                    self?.view.layer.opacity = 0
-                } completion: {[weak self] _ in
-                    self?.dismiss(animated: false)
-                }
+//            guard let self = self else { return }
+//            UIView.transition(with: self.containerView,
+//                              duration: 0.5,
+//                              options: [.transitionFlipFromLeft],
+//                              animations: { [weak self] in
+//                self?.containerView.layer.opacity = 0
+//            }) { _ in
+//                UIView.animate(withDuration: 0.3) {[weak self] in
+//                    self?.view.layer.opacity = 0
+//                } completion: {[weak self] _ in
+//                    self?.dismiss(animated: false)
+//                }
+//            }
+            UIView.animate(withDuration: 0.3) {[weak self] in
+                self?.view.layer.opacity = 0
+            } completion: {[weak self] _ in
+                self?.dismiss(animated: false)
             }
         }.disposed(by: disposeBag)
         containerView.tap(animateTapGesture: false) {}.disposed(by: disposeBag)
@@ -73,6 +77,7 @@ class BetDetailsVController: UIViewController {
         super.viewWillAppear(animated)
         UIView.animate(withDuration: 0.3) {
             self.view.layer.opacity = 1
+//            self.containerView.transform = CGAffineTransform.identity
         }
     }
     
@@ -81,7 +86,7 @@ class BetDetailsVController: UIViewController {
     }
     
     func loadInfo() {
-        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+        DispatchQueue.global().async { [weak self] in
             guard let self = self,
                   let bet: Bet = Repository.selectTop(Bet.table.where(Bet.idField == self.betId)),
                   let typeId = bet.typeId,
@@ -137,10 +142,6 @@ class BetDetailsVController: UIViewController {
                 }
                 self.activityView.animateOpacity(0.4, 0) {[weak self] in
                     self?.activityView.isHidden = true
-                    self?.containerView.isHidden = false
-                    UIView.animate(withDuration: 0.4) {[weak self] in
-                        self?.containerView.transform = CGAffineTransform.identity
-                    }
                 }
             }
                                                       

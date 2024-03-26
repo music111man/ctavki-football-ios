@@ -32,7 +32,7 @@ extension Team: DBComparable {
     static var idField: Expression<Int> { Expression<Int>(CodingKeys.id.rawValue) }
     static var titleField: Expression<String> { Expression<String>(CodingKeys.title.rawValue) }
     
-    static func createColumns(builder: TableBuilder) {
+    static func createColumns(builder: SQLite.TableBuilder) {
         builder.column(idField, primaryKey: true)
         builder.column(titleField)
     }

@@ -13,15 +13,15 @@ final class Repository {
     private init() {}
     private static let semaphore = DispatchSemaphore(value: 1)
     static let dbName = "ctavki.sqlite3"
-    private static var con: Connection?
-
-    static var db: Connection? {
+    private static var con: SQLite.Connection?
+    
+    static var db: SQLite.Connection? {
         if Self.con != nil { return con }
         do {
             let fileUrl = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
                 .appendingPathComponent(Self.dbName)
             printAppEvent("Open db \(fileUrl.path)")
-            Self.con = try Connection(fileUrl.path)
+            Self.con = try SQLite.Connection(fileUrl.path)
         } catch let error {
             printAppEvent("\(error)")
         }
@@ -129,7 +129,7 @@ protocol DBComparable {
     static var table: Table { get }
     static var idField: Expression<Int> { get }
     
-    static func createColumns(builder: TableBuilder)
+    static func createColumns(builder: SQLite.TableBuilder)
     
     init(row: Row)
     

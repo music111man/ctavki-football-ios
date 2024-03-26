@@ -17,6 +17,8 @@ final class MainCoordinator {
     let mainVC = MainVController()
     weak var delegate: MainCoordinatorDelegate?
     
+    var lastMenuAction: ToolBarView.MenuAction?
+    
     init() {
         self.router = UINavigationController(rootViewController: mainVC)
         mainVC.delegate = self
@@ -32,17 +34,19 @@ final class MainCoordinator {
 }
 
 extension MainCoordinator: MainViewDelegate {
-    func pushView(_ action: ToolBarView.MenuAction) {
+    func pushView(_ action: ToolBarView.MenuAction, needSelectMenu: Bool) {
         factories.forEach { $0.clear() }
+        lastMenuAction = action
+        let selectAction = needSelectMenu ? action : nil
         switch action {
         case .bets:
-            mainVC.setChildVC(vc: factories[0].create(), flipFromRight: true)
+            mainVC.setChildVC(vc: factories[0].create(), action: selectAction, flipFromRight: true)
         case .teams:
-            mainVC.setChildVC(vc: factories[1].create(), flipFromRight: true)
+            mainVC.setChildVC(vc: factories[1].create(), action: selectAction, flipFromRight: true)
         case .pay:
-            mainVC.setChildVC(vc: factories[2].create(), flipFromRight: false)
+            mainVC.setChildVC(vc: factories[2].create(), action: selectAction, flipFromRight: false)
         case .faq:
-            mainVC.setChildVC(vc: factories[3].create(), flipFromRight: false)
+            mainVC.setChildVC(vc: factories[3].create(), action: selectAction, flipFromRight: false)
         }
     }
 }

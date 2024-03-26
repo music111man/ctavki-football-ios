@@ -34,7 +34,7 @@ class TeamView: UIView {
         
         tap { [weak self] in
             guard let self = self else { return }
-            delegate?.openTeamDetails(team: self.team.team, onLeft: true)
+            delegate?.openTeamDetails(teamId: self.team.team.id, onLeft: true)
         }.disposed(by: disposeBag)
     }
     

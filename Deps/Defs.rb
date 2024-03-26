@@ -33,7 +33,7 @@ def googleSignIn
 end
 
 def sqlite
-  pod 'SQLite.swift'
+  pod 'SQLite.swift', '~> 0.14.0'
 end 
 
 def moya

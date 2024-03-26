@@ -101,7 +101,7 @@ class BetsCell: UITableViewCell {
 }
 
 extension BetsCell: BetViewDelegate {
-    func openTeamDetails(team: Team, onLeft: Bool) {
-        delegate?.openTeamDetails(team: team, onLeft: onLeft)
+    func openTeamDetails(teamId: Int, onLeft: Bool) {
+        delegate?.openTeamDetails(teamId: teamId, onLeft: onLeft)
     }
 }

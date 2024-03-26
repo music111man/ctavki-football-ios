@@ -35,8 +35,11 @@ extension Double {
         }
         return "\(Int(self))"
     }
+    var roundedString: String {
+        "\(Int(self.rounded()))"
+    }
     var winCalcValue: Double {
-        self * 100 - 100
+        self * 100.0 - 100.0
     }
     
     func formattedString(count: Int) -> String {

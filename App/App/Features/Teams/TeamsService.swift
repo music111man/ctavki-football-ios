@@ -53,7 +53,7 @@ final class TeamsService {
     }
     @discardableResult
     func updateData() -> TeamsService {
-        DispatchQueue.global(qos: .background).async {[weak self] in
+        DispatchQueue.global().async {[weak self] in
             guard let self = self else { return }
             
             let allBets: [Bet] = Repository.select(Bet.table.order(Bet.eventDateField.desc))

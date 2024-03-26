@@ -12,6 +12,7 @@ extension Notification.Name {
 
     static let badNetRequest = Notification.Name("badNetRequest")
     static let deserializeError = Notification.Name("deserializeError")
+    static let internalServerError = Notification.Name("internalServerError")
 }
 
 class NetProvider {
@@ -21,14 +22,22 @@ class NetProvider {
         provider.request(target) { result in
             switch result {
             case .success(let response):
-                let data = try? JSONDecoder().decode(type, from: response.data)
-                if data == nil {
-                    printAppEvent("\(String(data: response.data, encoding: String.Encoding.utf8) ?? "no data")")
-                    printAppEvent("\(target): can not deserialize to \(T.self)")
-                    NotificationCenter.default.post(name: NSNotification.Name.deserializeError, object: target)
-                    break
+                if response.statusCode != 200 {
+                    printAppEvent("\(target): response status != 200")
+                    NotificationCenter.default.post(name: NSNotification.Name.internalServerError, object: target)
+                    callback?(nil)
+                } else {
+                    let data = try? JSONDecoder().decode(type, from: response.data)
+                    if data == nil {
+                        printAppEvent("\(String(data: response.data, encoding: String.Encoding.utf8) ?? "no data")")
+                        printAppEvent("\(target): can not deserialize to \(T.self)")
+                        NotificationCenter.default.post(name: NSNotification.Name.deserializeError, object: target)
+                        
+                        break
+                    }
+                    callback?(data)
                 }
-                callback?(data)
+                
             case .failure(let error):
                 printAppEvent("\(target): \(error.errorDescription ?? "Unknown net error")")
                 NotificationCenter.default.post(name: NSNotification.Name.badNetRequest, object: target)

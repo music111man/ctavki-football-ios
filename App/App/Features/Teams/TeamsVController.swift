@@ -17,7 +17,7 @@ final class TeamsVController: FeaureVController {
     var needAnimationOnWillAppend = false
     let stackView = UIStackView()
     
-    func initTeamsFeatures() {
+    func initTeamsFeatures() -> UIViewController {
         teamsService = TeamsService()
         teamsService.refreshActivity.observe(on: MainScheduler.instance).bind {[weak self] in
             guard let self = self else { return }
@@ -45,12 +45,15 @@ final class TeamsVController: FeaureVController {
                     self?.refresher.endRefreshing()
             }
         }.disposed(by: disposeBag)
+        teamsService.updateData()
+        return self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initTeamsFeatures()
-        teamsService.updateData()
+//        initTeamsFeatures()
+//        teamsService.updateData()
+        activityView.isHidden = true
     }
     override func initTableView() {
         let scrollView = UIScrollView()
@@ -82,15 +85,15 @@ final class TeamsVController: FeaureVController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if needAnimationOnWillAppend {
-            needAnimationOnWillAppend = false
-            stackView.superview?.transform = .init(scaleX: 0.01, y: 0.01)
-            stackView.superview?.layer.opacity = 0
-            UIView.animate(withDuration: 0.3) {[weak self] in
-                self?.stackView.superview?.transform = .identity
-                self?.stackView.superview?.layer.opacity = 1
-            }
-        }
+//        if needAnimationOnWillAppend {
+//            needAnimationOnWillAppend = false
+//            stackView.superview?.transform = .init(scaleX: 0.01, y: 0.01)
+//            stackView.superview?.layer.opacity = 0
+//            UIView.animate(withDuration: 0.3) {[weak self] in
+//                self?.stackView.superview?.transform = .identity
+//                self?.stackView.superview?.layer.opacity = 1
+//            }
+//        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -115,9 +118,9 @@ final class TeamsVController: FeaureVController {
 }
 
 extension TeamsVController: BetViewDelegate {
-    func openTeamDetails(team: Team, onLeft: Bool) {
-        needAnimationOnWillAppend = true
-        NotificationCenter.default.post(name: Notification.Name.needOpenHistory, object: self, userInfo: [BetView.teamKeyUserInfo: team])
+    func openTeamDetails(teamId: Int, onLeft: Bool) {
+//        needAnimationOnWillAppend = true
+        NotificationCenter.default.post(name: Notification.Name.needOpenHistory, object: self, userInfo: [BetView.teamIdKeyUserInfo: teamId])
 
     }
 }

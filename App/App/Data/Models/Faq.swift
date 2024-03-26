@@ -36,7 +36,7 @@ extension Faq: DBComparable {
     static var questionField: Expression<String> { Expression<String>(CodingKeys.question.rawValue) }
     static var answerField: Expression<String> { Expression<String>(CodingKeys.answer.rawValue) }
     
-    static func createColumns(builder: TableBuilder) {
+    static func createColumns(builder: SQLite.TableBuilder) {
         builder.column(idField, primaryKey: true)
         builder.column(questionField)
         builder.column(answerField)

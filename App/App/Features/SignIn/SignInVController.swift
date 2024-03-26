@@ -28,7 +28,7 @@ class SignInVController: UIViewController {
     let accountService = AccountService.share
     var gradient: CAGradientLayer!
     var appleBtnView: UIView?
-    
+    var singInMethodName: String?
     var disposed: (() -> ())?
     
     override func viewDidLoad() {
@@ -61,36 +61,46 @@ class SignInVController: UIViewController {
         }.disposed(by: disposeBag)
         containerView.tap(animateTapGesture: false) { }.disposed(by: disposeBag)
         closeView.tap {[weak self] in
-            guard let self = self else { return }
-            UIView.transition(with: self.containerView,
-                              duration: 0.5,
-                              options: [.transitionFlipFromLeft],
-                              animations: { [weak self] in
-                self?.containerView.layer.opacity = 0
-            }) { _ in
-                UIView.animate(withDuration: 0.3) {[weak self] in
-                    self?.view.layer.opacity = 0
-                } completion: {[weak self] _ in
-                    self?.dismiss(animated: false)
-                }
-            }
-        }.disposed(by: disposeBag)
-        goToView.superview?.tap {
+//            guard let self = self else { return }
+//            UIView.transition(with: self.containerView,
+//                              duration: 0.5,
+//                              options: [.transitionFlipFromLeft],
+//                              animations: { [weak self] in
+//                self?.containerView.layer.opacity = 0
+//            }) { _ in
+//                UIView.animate(withDuration: 0.3) {[weak self] in
+//                    self?.view.layer.opacity = 0
+//                } completion: {[weak self] _ in
+//                    self?.dismiss(animated: false)
+//                }
+//            }
             UIView.animate(withDuration: 0.3) {[weak self] in
-                self?.containerView.transform = .init(scaleX: 0.01, y: 0.01)
                 self?.view.layer.opacity = 0
             } completion: {[weak self] _ in
-                self?.dismiss(animated: false) { [weak self] in
-                    self?.disposed?()
-                }
+                self?.dismiss(animated: false)
             }
+        }.disposed(by: disposeBag)
+        goToView.superview?.tap {[weak self] in
+//            UIView.animate(withDuration: 0.3) {[weak self] in
+//                self?.containerView.transform = .init(scaleX: 0.01, y: 0.01)
+//                self?.view.layer.opacity = 0
+//            } completion: {[weak self] _ in
+//                self?.dismiss(animated: false) { [weak self] in
+//                    self?.disposed?()
+//                }
+//            }
+            self?.dismiss(animated: false) { [weak self] in
+                                self?.disposed?()
+                            }
         }.disposed(by: disposeBag)
         
         googleBtnView.tap {[weak self] in
+            self?.singInMethodName = SignInMethod.google(idToken: "").toString
             self?.accountService.signInByGoogle(presenting: self!)
         }.disposed(by: disposeBag)
         
         telegramBtnView.tap {[weak self] in
+            self?.singInMethodName = SignInMethod.telegram(uuid: "").toString
             self?.accountService.signInByTelegram()
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification).subscribe {[weak self] _ in
@@ -104,18 +114,35 @@ class SignInVController: UIViewController {
             authorizationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
             stackView.insertArrangedSubview(authorizationButton, at: 0)
             authorizationButton.tap {[weak self] in
+                self?.singInMethodName = SignInMethod.apple(idToken: "", userName: "").toString
                 self?.accountService.signInByApple(presenting: self!)
             }.disposed(by: disposeBag)
             appleBtnView = authorizationButton
         }
         
+        NotificationCenter.default.rx.notification(Notification.Name.internalServerError).subscribe {[weak self] _ in
+            self?.activityView.isHidden = true
+            if let metnodName = self?.singInMethodName {
+                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.log_in_unable(metnodName))
+            }
+         }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(Notification.Name.badServerResponse).subscribe {[weak self] _ in
+            self?.activityView.isHidden = true
+            if let metnodName = self?.singInMethodName {
+                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.log_in_unable(metnodName))
+            }
+         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.deserializeError).subscribe {[weak self] _ in
             self?.activityView.isHidden = true
-            self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
+            if self?.singInMethodName != nil {
+                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
+            }
          }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.badNetRequest).subscribe {[weak self] _ in
             self?.activityView.isHidden = true
-            self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.net_error())
+            if self?.singInMethodName != nil {
+                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.net_error())
+            }
          }.disposed(by: disposeBag)
         
         activityView.isHidden = !accountService.signIn()
@@ -128,15 +155,15 @@ class SignInVController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        containerView.transform = .init(scaleX: 0.01, y: 0.01)
-        view.layer.opacity = 0
-        UIView.animate(withDuration: 0.3, animations: {[weak self] in
-            self?.view.layer.opacity = 1
-            self?.containerView.transform = .identity
-        }) {[weak self] _ in
-            guard let self = self else { return }
-            self.gradient.frame = self.goToView.bounds
-        }
+//        containerView.transform = .init(scaleX: 0.01, y: 0.01)
+//        view.layer.opacity = 0
+//        UIView.animate(withDuration: 0.3, animations: {[weak self] in
+//            self?.view.layer.opacity = 1
+//            self?.containerView.transform = .identity
+//        }) {[weak self] _ in
+//            guard let self = self else { return }
+//            self.gradient.frame = self.goToView.bounds
+//        }
     }
 }
 

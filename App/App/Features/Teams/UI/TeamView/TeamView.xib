@@ -11,32 +11,44 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TeamView" customModule="App" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="65"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TeamView" customModule="Ctavki" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="46"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ygt-k8-UHK">
-                    <rect key="frame" x="10" y="10" width="373" height="45"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                    <color key="textColor" name="text_black"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CbD-wt-69k">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="46"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ygt-k8-UHK">
+                            <rect key="frame" x="10" y="13.333333333333334" width="373" height="19.333333333333329"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" name="text_black"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Ygt-k8-UHK" secondAttribute="trailing" constant="10" id="b5i-ci-hMH"/>
+                        <constraint firstItem="Ygt-k8-UHK" firstAttribute="leading" secondItem="CbD-wt-69k" secondAttribute="leading" constant="10" id="sB1-oo-oRz"/>
+                        <constraint firstAttribute="height" constant="46" id="vAG-jc-Sjx"/>
+                        <constraint firstItem="Ygt-k8-UHK" firstAttribute="centerY" secondItem="CbD-wt-69k" secondAttribute="centerY" id="vjJ-Fl-JSg"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="background_light"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Ygt-k8-UHK" secondAttribute="bottom" constant="10" id="N5R-XQ-XaR"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ygt-k8-UHK" secondAttribute="trailing" constant="10" id="bsj-Po-eyI"/>
-                <constraint firstItem="Ygt-k8-UHK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="l9G-p7-8Eu"/>
-                <constraint firstItem="Ygt-k8-UHK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="nDu-27-LaG"/>
+                <constraint firstAttribute="trailing" secondItem="CbD-wt-69k" secondAttribute="trailing" id="3gX-fB-BiJ"/>
+                <constraint firstAttribute="bottom" secondItem="CbD-wt-69k" secondAttribute="bottom" id="Dk4-DM-Eo4"/>
+                <constraint firstItem="CbD-wt-69k" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RU0-It-Vws"/>
+                <constraint firstItem="CbD-wt-69k" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SgO-Er-nDO"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="label" destination="Ygt-k8-UHK" id="baf-LP-Oa3"/>
-                <outlet property="leftConstraint" destination="nDu-27-LaG" id="aGz-o1-r9F"/>
-                <outlet property="rigthConstraint" destination="bsj-Po-eyI" id="MTA-bR-sjV"/>
+                <outlet property="leftConstraint" destination="sB1-oo-oRz" id="zNN-0y-8UE"/>
+                <outlet property="rigthConstraint" destination="b5i-ci-hMH" id="OUr-gk-5lb"/>
             </connections>
-            <point key="canvasLocation" x="127.48091603053435" y="281.33802816901408"/>
+            <point key="canvasLocation" x="127.48091603053435" y="274.64788732394368"/>
         </view>
     </objects>
     <resources>

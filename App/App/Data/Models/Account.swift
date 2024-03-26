@@ -47,7 +47,7 @@ extension Account: DBComparable {
     static var alreadyRegisteredField: Expression<Int> { Expression<Int>(CodingKeys.alreadyRegistered.rawValue) }
     static var subscribedField: Expression<Int?> { Expression<Int?>(CodingKeys.subscribed.rawValue) }
     
-    static func createColumns(builder: TableBuilder) {
+    static func createColumns(builder: SQLite.TableBuilder) {
         builder.column(idField, primaryKey: true)
         builder.column(emailField)
         builder.column(nameField)

@@ -1,0 +1,15 @@
+{
+    "Simulator Target Bundle": "com.ctavki.football.forecast",
+    "aps": {
+        "alert": {
+            "body": "Гугл сошёл с ума и не ищет пончики!",
+            "title": "Новости"
+        },
+	"sound": "default",
+	"badge": 1
+    },
+
+    "redirect_to": "REDIR_URL",
+    "redirect_to_tag_id": "",
+    "redirect_to_url": "http://google.com"
+}

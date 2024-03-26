@@ -9,10 +9,10 @@ import UIKit
 
 final class FaqFactory: VCFactory {
     
-    private lazy var controller: FaqVController = {
-        FaqVController().initFaqViews()
-    }()
-    
+//    private lazy var controller: FaqVController = {
+//        FaqVController().initFaqViews()
+//    }()
+    let controller = FaqVController().initFaqViews()
     override func create() -> UIViewController {
         controller
     }

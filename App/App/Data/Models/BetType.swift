@@ -38,7 +38,7 @@ extension BetType: DBComparable {
     static var longTitleField: Expression<String> { Expression<String>(CodingKeys.longTitle.rawValue) }
     static var descriptionField: Expression<String> { Expression<String>(CodingKeys.description.rawValue) }
     
-    static func createColumns(builder: TableBuilder) {
+    static func createColumns(builder: SQLite.TableBuilder) {
         builder.column(idField, primaryKey: true)
         builder.column(shortTitleField)
         builder.column(longTitleField)

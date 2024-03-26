@@ -27,7 +27,7 @@ class HistoryVController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     let refresher = UIRefreshControl()
     var isUpdating = false
-    var team: Team!
+    var teamId: Int!
     var historyService: HistoryService!
     let disposeBag = DisposeBag()
     var gradientTop: CAGradientLayer!
@@ -36,7 +36,7 @@ class HistoryVController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        historyService = HistoryService(team: team) {[weak self] refresh in
+        historyService = HistoryService(teamId: teamId) {[weak self] refresh in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.isUpdating = refresh
@@ -54,7 +54,10 @@ class HistoryVController: UIViewController {
             }
         }
         historyService.teamModel.observe(on: MainScheduler.instance).bind {[weak self] model in
-            guard let self = self else { return }
+            guard let self = self, let model = model else {
+                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
+                return
+            }
             
             self.teamLabel.text = model.title
             self.betsCountLabel.text = "\(model.betsCount)"
@@ -75,33 +78,33 @@ class HistoryVController: UIViewController {
                     let view: BetsCellView = BetsCellView.fromNib() {v in
                         v.delegate = self
                         v.configure(model)
-                        v.transform = .init(scaleX: 0, y: 0)
+//                        v.transform = .init(scaleX: 0, y: 0)
                     }
 
                     return view
                 }
             }) {
-                UIView.animate(withDuration: 0.3) { [weak self] in
-                    self?.activBetsStackView.arrangedSubviews.forEach { $0.transform = .identity }
-                }
+//                UIView.animate(withDuration: 0.3) { [weak self] in
+//                    self?.activBetsStackView.arrangedSubviews.forEach { $0.transform = .identity }
+//                }
             }
         }.disposed(by: disposeBag)
         
-        tableView.rx.willDisplayCell.bind {[weak self] event in
-            if self?.didScroll ?? true {
-                event.cell.transform = .init(scaleX: 0, y: 0)
-                UIView.animate(withDuration: 0.3) {
-                    event.cell.transform = .identity
-                }
-            } else {
-                let translationX = ((event.indexPath.row % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
-                event.cell.transform = .init(translationX: translationX, y: 0)
-                UIView.animate(withDuration: 0.4) {
-                    event.cell.transform = .identity
-                }
-            }
-            
-        }.disposed(by: disposeBag)
+//        tableView.rx.willDisplayCell.bind {[weak self] event in
+//            if self?.didScroll ?? true {
+//                event.cell.transform = .init(scaleX: 0, y: 0)
+//                UIView.animate(withDuration: 0.3) {
+//                    event.cell.transform = .identity
+//                }
+//            } else {
+//                let translationX = ((event.indexPath.row % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
+//                event.cell.transform = .init(translationX: translationX, y: 0)
+//                UIView.animate(withDuration: 0.4) {
+//                    event.cell.transform = .identity
+//                }
+//            }
+//            
+//        }.disposed(by: disposeBag)
         
         tableView.rx.didScroll.bind { [weak self] in
             self?.didScroll = true
@@ -116,7 +119,7 @@ class HistoryVController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gradientTop.frame = navigationView.bounds
-        gradientSubTop.frame = subTitleView.bounds
+//        gradientSubTop.frame = subTitleView.bounds
     }
     
     var didScroll = false
@@ -128,7 +131,7 @@ class HistoryVController: UIViewController {
     
     func initUI() {
         gradientTop = navigationView.setGradient(start: .greenBlueStart, end: .greenBlueEnd, isLine: true, index: 0)
-        gradientSubTop = subTitleView.setGradient(start: .betGroupStart, end: .betGroupEnd, isLine: true, index: 0)
+//        gradientSubTop = subTitleView.setGradient(start: .betGroupStart, end: .betGroupEnd, isLine: true, index: 0)
         refresher.attributedTitle = NSAttributedString(string: "")
         refresher.addTarget(self, action: #selector(callNeedRefresh), for: .valueChanged)
         tableView.addSubview(refresher)
@@ -139,9 +142,9 @@ class HistoryVController: UIViewController {
         tableView.register(UINib(resource: R.nib.betsCell), forCellReuseIdentifier: BetsCell.reuseIdentifier)
     }
 
-    func configure(team: Team) {
-        self.team = team
-        self.historyService?.team = team
+    func configure(teamId: Int) {
+        self.teamId = teamId
+        self.historyService?.teamId = teamId
         
     }
     
@@ -155,8 +158,8 @@ class HistoryVController: UIViewController {
 }
 
 extension HistoryVController: BetViewDelegate {
-    func openTeamDetails(team: Team, onLeft: Bool) {
-        if historyService.team.id == team.id {
+    func openTeamDetails(teamId: Int, onLeft: Bool) {
+        if historyService.teamId == teamId {
             self.teamLabel.transform = .init(scaleX: 1.2, y: 1.2)
             self.subTitleView.layer.opacity = 0
             UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 20) {[weak self] in
@@ -165,14 +168,15 @@ extension HistoryVController: BetViewDelegate {
             }
             return
         }
-        historyService.team = team
-        UIView.transition(with: containerView,
-                          duration: 0.4,
-                          options: [onLeft ? .transitionFlipFromRight : .transitionFlipFromLeft],
-                          animations: { [weak self] in
-            self?.historyService.updateData()
-        }) { _ in
-           
-        }
+        historyService.teamId = teamId
+//        UIView.transition(with: containerView,
+//                          duration: 0.4,
+//                          options: [onLeft ? .transitionFlipFromRight : .transitionFlipFromLeft],
+//                          animations: { [weak self] in
+//            self?.historyService.updateData()
+//        }) { _ in
+//           
+//        }
+        historyService.updateData()
     }
 }
