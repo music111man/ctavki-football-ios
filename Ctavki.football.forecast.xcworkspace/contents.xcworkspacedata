@@ -2,12 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/music111man/Documents/Work/Freelans/Ctavki/Ctavki.iOS/App/Ctavki.xcodeproj">
+      location = "group:App/Ctavki.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Deps/Pods/Pods.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:App/Ctavki.xcodeproj">
    </FileRef>
 </Workspace>
