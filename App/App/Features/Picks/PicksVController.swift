@@ -9,6 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+extension Notification.Name {
+    static let tryToShowTourGuid = Notification.Name("tryToShowTourGuid")
+}
+
 class PicksVController: FeaureVController {
 
     var sectionHeaderView: BetResultHeaderView!
@@ -46,6 +50,7 @@ class PicksVController: FeaureVController {
                     }
                 }
                 self.isFirstShow = false
+                NotificationCenter.default.post(name: Notification.Name.tryToShowTourGuid, object: nil)
             }
         }
         service.updateData()
@@ -53,10 +58,7 @@ class PicksVController: FeaureVController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //if !isFirstShow {
-            NotificationCenter.default.post(name: Notification.Name.tryToRefreshData, object: nil)
-        //}
-        
+        NotificationCenter.default.post(name: Notification.Name.tryToRefreshData, object: nil)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -181,40 +183,10 @@ extension PicksVController: UITableViewDataSource {
         
         return view
     }
-//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-//        if didScroll {
-//            view.transform = .init(scaleX: 0, y: 0)
-//            UIView.animate(withDuration: 0.3) {
-//                view.transform = .identity
-//            }
-//        } else {
-//            let translationX = ((section % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
-//            view.transform = .init(translationX: translationX, y: 0)
-//            UIView.animate(withDuration: 0.4) {
-//                view.transform = .identity
-//            }
-//        }
-//    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         BetSectionHeaderView.height
     }
-    
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        
-//        if didScroll {
-//            cell.transform = .init(scaleX: 0, y: 0)
-//            UIView.animate(withDuration: 0.3) {
-//                cell.transform = .identity
-//            }
-//        } else {
-//            let translationX = ((indexPath.row % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
-//            cell.transform = .init(translationX: translationX, y: 0)
-//            UIView.animate(withDuration: 0.4) {
-//                cell.transform = .identity
-//            }
-//        }
-//    }
 }
 
 extension PicksVController: BetViewDelegate {

@@ -33,4 +33,21 @@ extension String {
             return regex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: replaceWith)
         } catch { return self}
     }
+    
+    var containsOnlyLettersAndWhitespace: Bool {
+                let allowed = CharacterSet.letters.union(.whitespaces)
+                return unicodeScalars.allSatisfy(allowed.contains)
+            
+    }
+    
+    var isCorrectUserName: Bool {
+        if self.count < 3 ||
+           self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return false }
+        
+        return containsOnlyLettersAndWhitespace
+    }
+    var removeDublicateSpaces: String {
+        let regexValue = try! NSRegularExpression(pattern: "\\s", options: [])
+        return regexValue.stringByReplacingMatches(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count), withTemplate: " ").trimmingCharacters(in: .whitespaces)
+    }
 }

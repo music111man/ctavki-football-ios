@@ -41,21 +41,8 @@ class BetDetailsVController: UIViewController {
         betSumLabel.text = R.string.localizable.bet_amount_100()
         factorLabel.text = R.string.localizable.odds_col()
         resultLabel.text = R.string.localizable.result()
-//        containerView.transform = CGAffineTransform.init(scaleX: 0, y: 0)
         closeView.tap(animateTapGesture: false) {[weak self] in
-//            guard let self = self else { return }
-//            UIView.transition(with: self.containerView,
-//                              duration: 0.5,
-//                              options: [.transitionFlipFromLeft],
-//                              animations: { [weak self] in
-//                self?.containerView.layer.opacity = 0
-//            }) { _ in
-//                UIView.animate(withDuration: 0.3) {[weak self] in
-//                    self?.view.layer.opacity = 0
-//                } completion: {[weak self] _ in
-//                    self?.dismiss(animated: false)
-//                }
-//            }
+
             UIView.animate(withDuration: 0.3) {[weak self] in
                 self?.view.layer.opacity = 0
             } completion: {[weak self] _ in
@@ -77,7 +64,6 @@ class BetDetailsVController: UIViewController {
         super.viewWillAppear(animated)
         UIView.animate(withDuration: 0.3) {
             self.view.layer.opacity = 1
-//            self.containerView.transform = CGAffineTransform.identity
         }
     }
     

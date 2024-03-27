@@ -26,11 +26,17 @@ enum SignInMethod {
     }
 }
 
+protocol AccountServiceDelegate: AnyObject {
+    func getUserName(name: String, _ complite: ((String) -> Void)?)
+}
+
 final class AccountService: NSObject {
     
     static let share = AccountService()
     
     private override init(){}
+    
+    weak var delegate: AccountServiceDelegate?
     
     @available(iOS 13.0, *)
     func signInByApple(presenting vc: ASAuthorizationControllerPresentationContextProviding) {
@@ -109,7 +115,12 @@ final class AccountService: NSObject {
     }
     
     private func singInApple(_ idToken: String, _ userName: String) {
-        printAppEvent("start sign in apple")
+        if userName.isEmpty {
+            AppSettings.signInMethod = .non
+            printAppEvent("can not start sign in apple - no user name")
+            return
+        }
+        printAppEvent("start sign in apple as \(userName)")
         NetProvider.makeRequest(SignInResponseEntity.self, .signInByApple(idToken: idToken, userName: userName)) {[weak self] response in
             self?.processResponse(response: response)
         }
@@ -152,10 +163,41 @@ extension AccountService: ASAuthorizationControllerDelegate {
               let tokenData = credential.authorizationCode,
               let token = String(data: tokenData, encoding: .utf8) else { return }
 
-        let userName = "\(credential.fullName?.givenName ?? "") \(credential.fullName?.familyName ?? "")"
+        var userName = ""
+        if let givenName = credential.fullName?.givenName, !givenName.isEmpty {
+            userName = givenName
+        }
+        if let familyName = credential.fullName?.familyName, !familyName.isEmpty {
+            if userName.isEmpty {
+                userName = familyName
+            } else {
+                userName = "\(userName) \(familyName)"
+            }
+        }
         printAppEvent("apple sign in for \(userName)")
-        AppSettings.signInMethod = .apple(idToken: token, userName: userName)
-        signIn()
+        if AppSettings.userNameApple.isEmpty {
+            // Особенности работы апи от эппл - имя пользователя можно получить всего один раз
+            // Потому сохраняем его на будущее, так как если в первый раз не залогинились,
+            // Следующие попытки не будут возвращать имя пользователя - используем то. что
+            // В превый раз сохранили
+            AppSettings.userNameApple = userName
+        }
+        // Будем спрашивать пользователя
+        if userName.isEmpty {
+            delegate?.getUserName(name: AppSettings.userNameApple) {[weak self] userName in
+                if userName.isEmpty { return }
+                AppSettings.userNameApple = userName
+                printAppEvent("apple sign in for entered name: \(userName)")
+                AppSettings.signInMethod = .apple(idToken: token, userName: AppSettings.userNameApple)
+                DispatchQueue.global().async {[weak self] in
+                    self?.signIn()
+                }
+                
+            }
+        } else {
+            AppSettings.signInMethod = .apple(idToken: token, userName: AppSettings.userNameApple)
+            signIn()
+        }
     }
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         printAppEvent("\(error)")

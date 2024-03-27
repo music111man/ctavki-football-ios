@@ -23,6 +23,7 @@ final class AppCoordinator: NSObject, PCoordinator {
     let disposeBag = DisposeBag()
     var activeBetToShow: Int?
     var isAuthorized = false
+    var wasUpdated = false
     var router: UINavigationController? {
         window.rootViewController as? UINavigationController
     }
@@ -35,10 +36,8 @@ final class AppCoordinator: NSObject, PCoordinator {
         window = UIWindow(frame: UIScreen.main.bounds)
         mainCoordinator = MainCoordinator()
         super.init()
+        UIApplication.shared.applicationIconBadgeNumber = 0
         PushManager.config(application, self)
-//        configureFireBase(application)
-        
-        mainCoordinator.delegate = self
         initNotificationEventHandlers()
         isAuthorized = AppSettings.isAuthorized
         AppSettings.authorizeEvent.bind { [weak self] isAuthorized in
@@ -94,7 +93,19 @@ final class AppCoordinator: NSObject, PCoordinator {
             let tapLeft = event.element?.userInfo?[BetView.tapLeftUserInfo] as? Bool
             self?.showHistory(teamId: teamId, animationDirectionLeft: tapLeft)
         }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(Notification.Name.tryToShowTourGuid).subscribe {[weak self] _ in
+            self?.startGuidTour()
+        }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification).subscribe {_ in
+            UIApplication.shared.applicationIconBadgeNumber = 0
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {[weak self] in
+                printAppEvent("willEnterForegroundNotification event")
+                self?.syncService.refresh()
+            }
+        }.disposed(by: disposeBag)
     }
+    
+    
     
     func showBetDetails(betId: Int) {
         let vc: BetDetailsVController = BetDetailsVController.createFromNib() { vc in
@@ -109,13 +120,11 @@ final class AppCoordinator: NSObject, PCoordinator {
             router?.popToRootViewController(animated: false)
         }
         
-        guard let topVC = router?.topViewController as? MainVController, let betId = betId ?? activeBetToShow else { return }
+        guard let betId = betId ?? activeBetToShow else { return }
         let vc: ForecastVController = ForecastVController.createFromNib() { vc in
             vc.betId = betId
         }
-//        topVC.animate { [weak self] in
-//            self?.router?.pushViewController(vc, animated: false)
-//        }
+
         router?.pushViewController(vc, animated: true)
     }
     
@@ -129,20 +138,15 @@ final class AppCoordinator: NSObject, PCoordinator {
         if (router?.topViewController as? MainVController) == nil {
             router?.popToRootViewController(animated: false)
         }
-        guard let topVC = router?.topViewController as? MainVController else { return }
+        
         let vc: HistoryVController = .createFromNib { vc in
             vc.configure(teamId: teamId)
         }
-//        topVC.animate(onLeft: animationDirectionLeft) { [weak self] in
-//            self?.router?.pushViewController(vc, animated: false)
-//        }
         router?.pushViewController(vc, animated: true)
     }
-}
 
-extension AppCoordinator: MainCoordinatorDelegate {
     func startGuidTour() {
-        guard AppSettings.needTourGuidShow, AppSettings.isRelease, let vc = TourGuidVController.create() else { return }
+        guard AppSettings.needTourGuidShow, let vc = TourGuidVController.create() else { return }
         vc.modalPresentationStyle = .overCurrentContext
         vc.endAction = { [weak self] in
             AppSettings.needTourGuidShow = false
@@ -166,29 +170,33 @@ extension AppCoordinator: PushManagerDelegate {
     }
     
     func openScreen(pushRedirect: PushRedirect) {
+        printAppEvent("try open fby tap push")
         syncService.refresh() { [weak self] _ in
-            switch pushRedirect {
-                
-            case .paid:
-                self?.openByMenuAction(.pay)
-            case .faq:
-                self?.openByMenuAction(.faq)
-            case let .team(id):
-                self?.showHistory(teamId: id, animationDirectionLeft: nil)
-            case .teams:
-                self?.openByMenuAction(.teams)
-            case let .url(urlStr):
-                if let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url)
-                }
-            case let .bet(id):
-                if AppSettings.isAuthorized {
-                    self?.showActiveBetDetails(betId: id)
-                } else {
-                    self?.activeBetToShow = id
-                    self?.showAuthScreen() { [weak self] in
-                        self?.showActiveBetDetails()
-                    }
+            self?.processPushDirect(pushRedirect)
+        }
+    }
+    
+    private func processPushDirect(_ pushRedirect: PushRedirect) {
+        switch pushRedirect {
+        case .paid:
+            self.openByMenuAction(.pay)
+        case .faq:
+            self.openByMenuAction(.faq)
+        case let .team(id):
+            self.showHistory(teamId: id, animationDirectionLeft: nil)
+        case .teams:
+            self.openByMenuAction(.teams)
+        case let .url(urlStr):
+            if let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+        case let .bet(id):
+            if AppSettings.isAuthorized {
+                self.showActiveBetDetails(betId: id)
+            } else {
+                self.activeBetToShow = id
+                self.showAuthScreen() { [weak self] in
+                    self?.showActiveBetDetails()
                 }
             }
         }

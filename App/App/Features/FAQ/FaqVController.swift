@@ -58,11 +58,6 @@ final class FaqVController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        if isFirstShow {
-//            isFirstShow.toggle()
-//            faqService.loadData()
-//        }
-        
     }
     
     func initUI() {

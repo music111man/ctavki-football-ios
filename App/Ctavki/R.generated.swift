@@ -1234,7 +1234,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 82 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 86 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1288,6 +1288,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let current_bets_m_of_n = Rswift.StringResource(key: "current_bets_m_of_n", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Cancel
+      ///
+      /// Locales: en, ru, uk
+      static let cancel_Ok = Rswift.StringResource(key: "cancel_Ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Could not complete purchase process. Please try again.
       ///
       /// Locales: en, ru, uk
@@ -1500,10 +1504,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let server_data_error = Rswift.StringResource(key: "server_data_error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: The entered data is incorrect. Try again.
+      ///
+      /// Locales: en, ru, uk
+      static let incorrect_user_name = Rswift.StringResource(key: "incorrect_user_name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: The match is already underway, the first half has been played
       ///
       /// Locales: en, ru, uk
       static let match_being_played_break = Rswift.StringResource(key: "match_being_played_break", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: This may not be the first attempt to log in using Apple. Due to the nature of Apple services, we are forced to ask you to enter your First and Last Name to successfully log in using Apple.
+      ///
+      /// Locales: en, ru, uk
+      static let log_in_with_apple_desc = Rswift.StringResource(key: "log_in_with_apple_desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: To see free predictions you got to sign in with your Apple or Telegram account!
       ///
       /// Locales: en, ru, uk
@@ -1544,6 +1556,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let buy_restored = Rswift.StringResource(key: "buy_restored", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Your first and last name
+      ///
+      /// Locales: en, ru, uk
+      static let enter_name = Rswift.StringResource(key: "enter_name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: my bal.
       ///
       /// Locales: en, ru, uk
@@ -1770,6 +1786,21 @@ struct R: Rswift.Validatable {
 
         let format = NSLocalizedString("current_bets_m_of_n", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1, value2)
+      }
+
+      /// en translation: Cancel
+      ///
+      /// Locales: en, ru, uk
+      static func cancel_Ok(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("cancel_Ok", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "cancel_Ok"
+        }
+
+        return NSLocalizedString("cancel_Ok", bundle: bundle, comment: "")
       }
 
       /// en translation: Could not complete purchase process. Please try again.
@@ -2579,6 +2610,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("server_data_error", bundle: bundle, comment: "")
       }
 
+      /// en translation: The entered data is incorrect. Try again.
+      ///
+      /// Locales: en, ru, uk
+      static func incorrect_user_name(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("incorrect_user_name", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "incorrect_user_name"
+        }
+
+        return NSLocalizedString("incorrect_user_name", bundle: bundle, comment: "")
+      }
+
       /// en translation: The match is already underway, the first half has been played
       ///
       /// Locales: en, ru, uk
@@ -2592,6 +2638,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("match_being_played_break", bundle: bundle, comment: "")
+      }
+
+      /// en translation: This may not be the first attempt to log in using Apple. Due to the nature of Apple services, we are forced to ask you to enter your First and Last Name to successfully log in using Apple.
+      ///
+      /// Locales: en, ru, uk
+      static func log_in_with_apple_desc(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("log_in_with_apple_desc", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "log_in_with_apple_desc"
+        }
+
+        return NSLocalizedString("log_in_with_apple_desc", bundle: bundle, comment: "")
       }
 
       /// en translation: To see free predictions you got to sign in with your Apple or Telegram account!
@@ -2744,6 +2805,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("buy_restored", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Your first and last name
+      ///
+      /// Locales: en, ru, uk
+      static func enter_name(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("enter_name", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "enter_name"
+        }
+
+        return NSLocalizedString("enter_name", bundle: bundle, comment: "")
       }
 
       /// en translation: my bal.

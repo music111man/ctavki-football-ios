@@ -50,19 +50,6 @@ final class MenuButton: UIView {
         didSet {
             
             if isSelected {
-//                animationView.isHidden = false
-//                animationView.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
-//                animationView.layer.opacity = 1
-//                UIView.animate(withDuration: 0.5, animations: {
-//                        self.animationView.transform = .identity
-//                    self.animationView.layer.opacity = 0
-//                   
-//                        }, completion: { _ in
-//                            self.animationView.isHidden = true
-//                            self.label.textColor =  R.color.selected_toolbar_item()
-//                            self.label.font = UIFont.boldSystemFont(ofSize: 12.0)
-//                            self.imageView.tintColor =  R.color.selected_toolbar_item()
-//                    })
                 self.label.textColor =  R.color.selected_toolbar_item()
                 self.label.font = UIFont.boldSystemFont(ofSize: 12.0)
                 self.imageView.tintColor =  R.color.selected_toolbar_item()

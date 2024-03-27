@@ -66,7 +66,7 @@ final class PushManager: NSObject {
     static func config(_ application: UIApplication,_ delegate: PushManagerDelegate) {
         let manager = PushManager()
         manager.delegate = delegate
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        
         FirebaseApp.configure()
         Messaging.messaging().delegate = manager
         

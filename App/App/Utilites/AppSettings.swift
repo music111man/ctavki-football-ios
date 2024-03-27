@@ -37,13 +37,13 @@ final class AppSettings {
     
     private init(){}
     
-    public static var isRelease: Bool {
-        #if DEBUG
-        return false
-        #else
-        return true
-        #endif
-    }
+//    public static var isRelease: Bool {
+//        #if DEBUG
+//        return false
+//        #else
+//        return true
+//        #endif
+//    }
     
     static var baseUrl: URL {
         URL(string: "https://leader4015.work/ctavki_football/api")!
@@ -95,10 +95,13 @@ final class AppSettings {
         }
     }
     
+    @Storage(key: "userNameApple", defaultValue: "")
+    static var userNameApple: String
+    
     @Storage(key: "userName", defaultValue: "")
     static var userName: String
     
-    static let clientVersion = "1.0.0"
+    static let clientVersion = "2.0.0"
     
     static let apiKey = "QPejRtrJ9dv7u@8p4hrA4eY!P3XYyu"
     
@@ -150,7 +153,7 @@ final class AppSettings {
     static var isAuthorized: Bool {
         !Self.userToken.isEmpty
     }
-    @Storage(key: "needTourGuidShow", defaultValue: true)
+    @Storage(key: "needTourGuidShow1", defaultValue: true)
     static var needTourGuidShow: Bool
     
     static var authorizeEvent = BehaviorRelay<Bool>(value: !userToken.isEmpty)

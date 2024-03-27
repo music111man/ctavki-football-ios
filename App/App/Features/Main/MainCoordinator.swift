@@ -7,15 +7,10 @@
 
 import UIKit
 
-protocol MainCoordinatorDelegate: AnyObject {
-    func startGuidTour()
-}
-
 final class MainCoordinator {
     let router: UINavigationController
     var factories: [PVCFactory] = [PicksFactory(), TeamsFactory(), PurchesFactory(), FaqFactory()]
     let mainVC = MainVController()
-    weak var delegate: MainCoordinatorDelegate?
     
     var lastMenuAction: ToolBarView.MenuAction?
     
@@ -25,9 +20,7 @@ final class MainCoordinator {
     }
     
     func start() -> UINavigationController {
-        mainVC.setChildVC(vc: factories[0].create()) {[weak self] in
-            self?.delegate?.startGuidTour()
-        }
+        mainVC.setChildVC(vc: factories[0].create())
         
         return router
     }
@@ -40,13 +33,13 @@ extension MainCoordinator: MainViewDelegate {
         let selectAction = needSelectMenu ? action : nil
         switch action {
         case .bets:
-            mainVC.setChildVC(vc: factories[0].create(), action: selectAction, flipFromRight: true)
+            mainVC.setChildVC(vc: factories[0].create(), action: selectAction)
         case .teams:
-            mainVC.setChildVC(vc: factories[1].create(), action: selectAction, flipFromRight: true)
+            mainVC.setChildVC(vc: factories[1].create(), action: selectAction)
         case .pay:
-            mainVC.setChildVC(vc: factories[2].create(), action: selectAction, flipFromRight: false)
+            mainVC.setChildVC(vc: factories[2].create(), action: selectAction)
         case .faq:
-            mainVC.setChildVC(vc: factories[3].create(), action: selectAction, flipFromRight: false)
+            mainVC.setChildVC(vc: factories[3].create(), action: selectAction)
         }
     }
 }

@@ -17,8 +17,6 @@ extension Notification.Name {
 final class NavigationTopBarView: UIView {
     static let height = UIView.safeAreaHeight + 90
     private let titleLabel = UILabel()
-    private let tapAuthAnimate = UIView()
-    private var tapBackAnimate: UIView?
     private let disposeBag = DisposeBag()
     private var gradient: CAGradientLayer!
     private let tapAutorizeView = UIView()
@@ -87,32 +85,9 @@ final class NavigationTopBarView: UIView {
             iconView.leftAnchor.constraint(equalTo: iconContainerView.leftAnchor, constant: 15)
         ])
         if icon == nil {
-            let tapBackAnimate = UIView()
-            tapBackAnimate.translatesAutoresizingMaskIntoConstraints = false
-            tapBackAnimate.backgroundColor = R.color.green_blue_end()
-            tapBackAnimate.layer.opacity = 0
-            iconContainerView.insertSubview(tapBackAnimate, at: 0)
-            NSLayoutConstraint.activate([
-                tapBackAnimate.widthAnchor.constraint(equalToConstant: 120),
-                tapBackAnimate.heightAnchor.constraint(equalToConstant: 120),
-                tapBackAnimate.centerYAnchor.constraint(equalTo: iconView.centerYAnchor),
-                tapBackAnimate.centerXAnchor.constraint(equalTo: iconView.centerXAnchor)
-            ])
-            tapBackAnimate.layer.cornerRadius = 60
-            self.tapBackAnimate = tapBackAnimate
-            let tapGesture = UITapGestureRecognizer()
-            tapGesture.rx.event.bind {[weak self] _ in
-                self?.tapBackAnimate?.layer.opacity = 1
-                self?.tapBackAnimate?.transform = CGAffineTransform.init(scaleX: 0, y: 0)
-                UIView.animate(withDuration: 0.3) {
-                    self?.tapBackAnimate?.transform = CGAffineTransform.identity
-                    self?.tapBackAnimate?.layer.opacity = 0
-                } completion: {[weak self] _ in
-                    self?.callback?()
-                }
-                
+            iconContainerView.tap {[weak self] in
+                self?.callback?()
             }.disposed(by: disposeBag)
-            iconContainerView.addGestureRecognizer(tapGesture)
         }
         
         let rightLabel = UILabel()
@@ -128,10 +103,6 @@ final class NavigationTopBarView: UIView {
         iconImage.translatesAutoresizingMaskIntoConstraints = false
         tapAutorizeView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(tapAutorizeView)
-        tapAuthAnimate.backgroundColor = R.color.green_blue_start()
-        tapAuthAnimate.layer.cornerRadius = 60
-        tapAuthAnimate.translatesAutoresizingMaskIntoConstraints = false
-        tapAutorizeView.addSubview(tapAuthAnimate)
         tapAutorizeView.addSubview(rightLabel)
         tapAutorizeView.addSubview(iconImage)
         
@@ -140,10 +111,6 @@ final class NavigationTopBarView: UIView {
             tapAutorizeView.widthAnchor.constraint(equalToConstant: 40),
             tapAutorizeView.rightAnchor.constraint(equalTo: rightAnchor),
             tapAutorizeView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            tapAuthAnimate.centerXAnchor.constraint(equalTo: tapAutorizeView.centerXAnchor),
-            tapAuthAnimate.centerYAnchor.constraint(equalTo: tapAutorizeView.centerYAnchor),
-            tapAuthAnimate.heightAnchor.constraint(equalToConstant: 120),
-            tapAuthAnimate.widthAnchor.constraint(equalToConstant: 120),
             rightLabel.rightAnchor.constraint(equalTo: tapAutorizeView.rightAnchor, constant: -10),
             rightLabel.centerYAnchor.constraint(equalTo: tapAutorizeView.centerYAnchor),
             iconImage.heightAnchor.constraint(equalToConstant: 20),
@@ -151,19 +118,9 @@ final class NavigationTopBarView: UIView {
             iconImage.centerYAnchor.constraint(equalTo: rightLabel.centerYAnchor),
             iconImage.rightAnchor.constraint(equalTo: tapAutorizeView.rightAnchor,constant: -10)
         ])
-        let tapGestore = UITapGestureRecognizer()
-        tapAuthAnimate.layer.opacity = 0
-        tapGestore.rx.event.bind {[weak self] _ in
-            self?.tapAuthAnimate.layer.opacity = 1
-            self?.tapAuthAnimate.transform = CGAffineTransform.init(scaleX: 0, y: 0)
-            UIView.animate(withDuration: 0.3) {
-                self?.tapAuthAnimate.transform = CGAffineTransform.identity
-                self?.tapAuthAnimate.layer.opacity = 0
-            } completion: { _ in
-                NotificationCenter.default.post(name: Notification.Name.tapAutozire, object: nil)
-            }
+        tapAutorizeView.tap {
+            NotificationCenter.default.post(name: Notification.Name.tapAutozire, object: nil)
         }.disposed(by: disposeBag)
-        tapAutorizeView.addGestureRecognizer(tapGestore)
         
         AppSettings.authorizeEvent.bind { isAutorize in
             if isAutorize {

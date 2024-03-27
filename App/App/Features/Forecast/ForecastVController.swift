@@ -113,9 +113,6 @@ class ForecastVController: UIViewController {
             let vc: HistoryVController = .createFromNib { vc in
                 vc.configure(teamId: teamId)
             }
-//            self?.animate(onLeft: true) {[weak self] in
-//                self?.navigationController?.pushViewController(vc, animated: false)
-//            }
             self?.navigationController?.pushViewController(vc, animated: true)
             
         }.disposed(by: disposeBag)
@@ -124,9 +121,6 @@ class ForecastVController: UIViewController {
             let vc: HistoryVController = .createFromNib { vc in
                 vc.configure(teamId: teamId)
             }
-//            self?.animate(onLeft: false) {[weak self] in
-//                self?.navigationController?.pushViewController(vc, animated: false)
-//            }
             self?.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: disposeBag)
         backBtnView.tap {[weak self] in
@@ -136,16 +130,6 @@ class ForecastVController: UIViewController {
             self?.activityView.isHidden = false
         }.disposed(by: disposeBag)
         service.loadData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        backView.transform = .init(scaleX: 0.01, y: 0.01)
-//        backView.layer.opacity = 0
-//        UIView.animate(withDuration: 0.3) {[weak self] in
-//            self?.backView.layer.opacity = 1
-//            self?.backView.transform = .identity
-//        }
     }
    
     override func viewDidLayoutSubviews() {

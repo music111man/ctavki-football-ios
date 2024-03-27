@@ -33,6 +33,7 @@ class SignInVController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        AccountService.share.delegate = self
         view.backgroundColor = .black.withAlphaComponent(0.6)
         AppSettings.authorizeEvent.asObservable().observe(on: MainScheduler.instance).bind {[weak self] isSignIn in
             self?.activityView.isHidden = true
@@ -61,19 +62,6 @@ class SignInVController: UIViewController {
         }.disposed(by: disposeBag)
         containerView.tap(animateTapGesture: false) { }.disposed(by: disposeBag)
         closeView.tap {[weak self] in
-//            guard let self = self else { return }
-//            UIView.transition(with: self.containerView,
-//                              duration: 0.5,
-//                              options: [.transitionFlipFromLeft],
-//                              animations: { [weak self] in
-//                self?.containerView.layer.opacity = 0
-//            }) { _ in
-//                UIView.animate(withDuration: 0.3) {[weak self] in
-//                    self?.view.layer.opacity = 0
-//                } completion: {[weak self] _ in
-//                    self?.dismiss(animated: false)
-//                }
-//            }
             UIView.animate(withDuration: 0.3) {[weak self] in
                 self?.view.layer.opacity = 0
             } completion: {[weak self] _ in
@@ -81,14 +69,6 @@ class SignInVController: UIViewController {
             }
         }.disposed(by: disposeBag)
         goToView.superview?.tap {[weak self] in
-//            UIView.animate(withDuration: 0.3) {[weak self] in
-//                self?.containerView.transform = .init(scaleX: 0.01, y: 0.01)
-//                self?.view.layer.opacity = 0
-//            } completion: {[weak self] _ in
-//                self?.dismiss(animated: false) { [weak self] in
-//                    self?.disposed?()
-//                }
-//            }
             self?.dismiss(animated: false) { [weak self] in
                                 self?.disposed?()
                             }
@@ -152,24 +132,43 @@ class SignInVController: UIViewController {
         super.viewDidLayoutSubviews()
         gradient.frame = goToView.bounds
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        containerView.transform = .init(scaleX: 0.01, y: 0.01)
-//        view.layer.opacity = 0
-//        UIView.animate(withDuration: 0.3, animations: {[weak self] in
-//            self?.view.layer.opacity = 1
-//            self?.containerView.transform = .identity
-//        }) {[weak self] _ in
-//            guard let self = self else { return }
-//            self.gradient.frame = self.goToView.bounds
-//        }
-    }
 }
 
 @available(iOS 13.0, *)
 extension SignInVController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
+    }
+}
+
+extension SignInVController: AccountServiceDelegate {
+    func getUserName(name: String, _ complite: ((String) -> Void)?) {
+        DispatchQueue.main.async { [weak self] in
+            let alert = UIAlertController(title: R.string.localizable.log_in_with_apple(),
+                                          message: R.string.localizable.log_in_with_apple_desc(),
+                                          preferredStyle: .alert)
+            
+            alert.addTextField { textField in
+                textField.placeholder = R.string.localizable.enter_name()
+                textField.text = name.isEmpty ? nil : name
+            }
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) {[weak self] _ in
+                guard let textField = alert.textFields?[0],
+                      let userName = textField.text,
+                      userName.isCorrectUserName else {
+                    self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.incorrect_user_name()) {
+                        complite?("")
+                    }
+                    return
+                }
+                
+                complite?(userName.removeDublicateSpaces)
+            })
+            alert.addAction(UIAlertAction(title: R.string.localizable.cancel_Ok(), style: UIAlertAction.Style.cancel) {_ in
+                complite?("")
+            })
+            self?.present(alert, animated: true)
+        }
     }
 }

@@ -9,6 +9,7 @@
 "error" = "Error";
 "server_data_error" = "The application cannot process data received from the server.\nContact support.";
 "net_error" = "Problems with Internet connection";
+"cancel_Ok" = "Cancel";
 
 "my_balance" = "my bal.";
 "sign_in" = "Sign In";
@@ -77,6 +78,9 @@
 "log_in_unable" = "Sign in using %@ is temporarily unavailable, please try another method.";
 "you_are_logged" = "You have successfully logged in. Now all our free sports predictions are available to you.";
 "get_more_bets" = "Go to predictions";
+"log_in_with_apple_desc" = "This may not be the first attempt to log in using Apple.\nDue to the nature of Apple services, we are forced to ask you to enter your First and Last Name to successfully log in using Apple.";
+"enter_name" = "Your first and last name";
+"incorrect_user_name" = "The entered data is incorrect. Try again.";
 
 // Forecast
 "current_bets_m_of_n" = "CURRENT BETS (%d of %d)";

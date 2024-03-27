@@ -78,33 +78,12 @@ class HistoryVController: UIViewController {
                     let view: BetsCellView = BetsCellView.fromNib() {v in
                         v.delegate = self
                         v.configure(model)
-//                        v.transform = .init(scaleX: 0, y: 0)
                     }
 
                     return view
                 }
-            }) {
-//                UIView.animate(withDuration: 0.3) { [weak self] in
-//                    self?.activBetsStackView.arrangedSubviews.forEach { $0.transform = .identity }
-//                }
-            }
+            })
         }.disposed(by: disposeBag)
-        
-//        tableView.rx.willDisplayCell.bind {[weak self] event in
-//            if self?.didScroll ?? true {
-//                event.cell.transform = .init(scaleX: 0, y: 0)
-//                UIView.animate(withDuration: 0.3) {
-//                    event.cell.transform = .identity
-//                }
-//            } else {
-//                let translationX = ((event.indexPath.row % 2) > 0 ? 1 : -1) * UIScreen.main.bounds.width
-//                event.cell.transform = .init(translationX: translationX, y: 0)
-//                UIView.animate(withDuration: 0.4) {
-//                    event.cell.transform = .identity
-//                }
-//            }
-//            
-//        }.disposed(by: disposeBag)
         
         tableView.rx.didScroll.bind { [weak self] in
             self?.didScroll = true
@@ -119,7 +98,6 @@ class HistoryVController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gradientTop.frame = navigationView.bounds
-//        gradientSubTop.frame = subTitleView.bounds
     }
     
     var didScroll = false
@@ -131,7 +109,6 @@ class HistoryVController: UIViewController {
     
     func initUI() {
         gradientTop = navigationView.setGradient(start: .greenBlueStart, end: .greenBlueEnd, isLine: true, index: 0)
-//        gradientSubTop = subTitleView.setGradient(start: .betGroupStart, end: .betGroupEnd, isLine: true, index: 0)
         refresher.attributedTitle = NSAttributedString(string: "")
         refresher.addTarget(self, action: #selector(callNeedRefresh), for: .valueChanged)
         tableView.addSubview(refresher)
@@ -169,14 +146,6 @@ extension HistoryVController: BetViewDelegate {
             return
         }
         historyService.teamId = teamId
-//        UIView.transition(with: containerView,
-//                          duration: 0.4,
-//                          options: [onLeft ? .transitionFlipFromRight : .transitionFlipFromLeft],
-//                          animations: { [weak self] in
-//            self?.historyService.updateData()
-//        }) { _ in
-//           
-//        }
         historyService.updateData()
     }
 }

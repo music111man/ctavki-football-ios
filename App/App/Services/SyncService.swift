@@ -38,7 +38,7 @@ final class SyncService {
                     self.startRefreshCircle()
                 }
             }.disposed(by: disposeBag)
-            
+        
     }
     
     func refresh(_ complite: ((Bool) -> ())? = nil ) {
