@@ -6,6 +6,12 @@
 //
 
 import UIKit
+import RxSwift
+
+extension Notification.Name {
+    static let hideMainToolBar = Notification.Name("hideMainToolBar")
+    static let showMainToolBar = Notification.Name("showMainToolBar")
+}
 
 protocol MainViewDelegate {
     func pushView(_ action: ToolBarView.MenuAction, needSelectMenu: Bool)
@@ -17,12 +23,22 @@ final class MainVController: UIViewController {
     private let toolBar = ToolBarView()
     private let containerView = UIView()
     private let backView = UIView()
+    let disposeBag = DisposeBag()
     
     var currentController: UIViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        NotificationCenter.default.rx.notification(Notification.Name.hideMainToolBar).subscribe {[weak self] _ in
+            self?.toolBar.animateOpacity(0.3, 0) {[weak self] in
+                self?.toolBar.isHidden = true
+            }
+        }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(Notification.Name.showMainToolBar).subscribe {[weak self] _ in
+            self?.toolBar.isHidden = false
+            self?.toolBar.animateOpacity(0.3, 1)
+        }.disposed(by: disposeBag)
     }
 
     func initUI() {

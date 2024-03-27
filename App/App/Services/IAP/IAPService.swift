@@ -6,21 +6,25 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 import StoreKit
 
 typealias RequestProductsResult = Result<[SKProduct], Error>
 typealias PurchaseProductResult = Result<Bool?, Error>
-
-protocol IAPServiceDelegate: AnyObject {
-    func fetchAvailable(result: RequestProductsResult) -> Void
-    func processPurchase(result: PurchaseProductResult) -> Void
-}
 
 enum PurchasesError: Error {
     case purchaseInProgress
     case productNotFound
     case unknown
 }
+enum ProductIdentifiers: String, CaseIterable {
+    case donate5 = "donate_5"
+    case donate10 = "donate_10"
+    case donate25 = "donate_25"
+    case donate100 = "donate_100"
+}
+
 enum IAPPurchesResult {
     case disabled
     case restored
@@ -40,34 +44,29 @@ enum IAPPurchesResult {
 final class IAPService: NSObject {
     
     static let `default` = IAPService()
-    
-    private var products: [String: SKProduct]?
-    private let productIdentifiers = Set<String>(["donate_5", "donate_10", "donate_25", "donate_100"])
+    let productsResult = BehaviorRelay<RequestProductsResult>(value: .success([]))
+    let purchaseProductResult = PublishRelay<PurchaseProductResult>()
+    private var products: [SKProduct]?
     private var productRequest: SKProductsRequest?
-    weak var delegate: IAPServiceDelegate?
+
     var purchesProductId: String?
     
     var canMakePurchases: Bool { SKPaymentQueue.canMakePayments() && purchesProductId == nil }
     
     func requestProducts() {
         productRequest?.cancel()
-        productRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
+        productRequest = SKProductsRequest(productIdentifiers: Set(ProductIdentifiers.allCases.map { $0.rawValue }))
         productRequest?.delegate = self
         productRequest?.start()
     }
     
-    func purcheProduct(_ productId: String) {
+    func purcheProduct(_ product: SKProduct) {
         if purchesProductId != nil {
-            delegate?.processPurchase(result: .failure(PurchasesError.purchaseInProgress))
-            return
-        }
-
-        guard let product = products?[productId] else {
-            delegate?.processPurchase(result: .failure(PurchasesError.productNotFound))
+            purchaseProductResult.accept(.failure(PurchasesError.purchaseInProgress))
             return
         }
         
-        purchesProductId = productId
+        purchesProductId = product.productIdentifier
         let payment = SKPayment(product: product)
         SKPaymentQueue.default().add(self)
         SKPaymentQueue.default().add(payment)
@@ -76,14 +75,11 @@ final class IAPService: NSObject {
 
 extension IAPService: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        products = [String: SKProduct]()
-        response.products.forEach {products?[$0.productIdentifier] = $0 }
-        
-        delegate?.fetchAvailable(result: .success(response.products))
+        productsResult.accept(.success(response.products))
     }
     
     func request(_ request: SKRequest, didFailWithError error: Error) {
-        delegate?.fetchAvailable(result: .failure(error))
+        productsResult.accept(.failure(error))
     }
 }
 
@@ -114,7 +110,7 @@ extension IAPService: SKPaymentTransactionObserver {
             }
         }
 
-        delegate?.processPurchase(result: .success(result))
+        purchaseProductResult.accept(.success(result))
     }
     
     

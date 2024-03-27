@@ -105,3 +105,11 @@
 "buy_purchased" = "You've successfully bought this purchase!";
 "buy_failed" = "Could not complete purchase process.\nPlease try again.";
 "donate" = "Donate!";
+"donate_5_title" = "One defense";
+"donate_5_desc" = "One of your bets will win after a goal in the 90th minute!";
+"donate_10_title" = "Three defenses";
+"donate_10_desc" = "Three of your bets will win after a goal in 95+ minutes!";
+"donate_25_title" = "Team defense";
+"donate_25_desc" = "10 of your bets will win after the score is 0-2 in the first half!";
+"donate_100_title" = "Judicial protection";
+"donate_100_desc" = "For the next year, the judge will only whistle in favor of your bet!";

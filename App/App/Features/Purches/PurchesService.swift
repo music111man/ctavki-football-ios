@@ -19,14 +19,20 @@ struct Donate {
 
 final class PurchesService {
     
-    
+    var products: [SKProduct]?
     let disposeBag = DisposeBag()
     let donates = BehaviorRelay<[Donate]>(value: [])
-    let endLoad = PublishRelay<Bool>()
+    let endLoad = BehaviorRelay<Bool>(value: true)
     let endPurche = PublishRelay<String?>()
 
     init() {
-        IAPService.default.delegate = self
+        IAPService.default.productsResult.bind {[weak self] result in
+            self?.fetchAvailable(result: result)
+        }.disposed(by: disposeBag)
+        
+        IAPService.default.purchaseProductResult.bind {[weak self] result in
+            self?.processPurchase(result: result)
+        }.disposed(by: disposeBag)
     }
     
     func loadDonates() {
@@ -34,26 +40,31 @@ final class PurchesService {
     }
     
     func makeDotane(donateId: String) -> Bool {
-        if !IAPService.default.canMakePurchases  { return false }
-        IAPService.default.purcheProduct(donateId)
+        guard IAPService.default.canMakePurchases,
+              let product = products?.first(where: {$0.productIdentifier == donateId} )  else { return false }
+        IAPService.default.purcheProduct(product)
         
         return true
     }
-}
 
-extension PurchesService: IAPServiceDelegate {
     func fetchAvailable(result: RequestProductsResult) {
         var hasProducts = false
         defer { endLoad.accept(hasProducts) }
         
         switch result {
         case let .success(products):
+            self.products = products
             hasProducts = !products.isEmpty
             donates.accept(
-                products.sorted(by: { $0.price.doubleValue < $1.price.doubleValue } ).map { Donate(productId: $0.productIdentifier,
-                                                                                                   priceWithCurrency: $0.localizedCurrencyPrice,
-                                                                                                   name: $0.localizedTitle,
-                                                                                                   description: $0.localizedDescription) })
+                products.sorted(by: { $0.price.doubleValue < $1.price.doubleValue } )
+                    .map { p in
+                        guard let id = ProductIdentifiers.init(rawValue: p.productIdentifier) else { return nil }
+                        
+                        return Donate(productId: p.productIdentifier,
+                                  priceWithCurrency: p.localizedCurrencyPrice,
+                                  name: id.toTitle,
+                                      description: id.toDesc) }
+                    .compactMap({$0}))
         case let .failure(error):
             printAppEvent(error.localizedDescription)
             donates.accept([])
@@ -70,6 +81,33 @@ extension PurchesService: IAPServiceDelegate {
         case .failure:
             printAppEvent(R.string.localizable.buy_failed())
             endPurche.accept(R.string.localizable.buy_failed())
+        }
+    }
+}
+
+extension ProductIdentifiers {
+    var toTitle: String {
+        switch self {
+        case .donate5:
+            R.string.localizable.donate_5_title()
+        case .donate10:
+            R.string.localizable.donate_10_title()
+        case .donate25:
+            R.string.localizable.donate_25_title()
+        case .donate100:
+            R.string.localizable.donate_100_title()
+        }
+    }
+    var toDesc: String {
+        switch self {
+        case .donate5:
+            R.string.localizable.donate_5_desc()
+        case .donate10:
+            R.string.localizable.donate_10_desc()
+        case .donate25:
+            R.string.localizable.donate_25_desc()
+        case .donate100:
+            R.string.localizable.donate_100_desc()
         }
     }
 }

@@ -62,7 +62,6 @@ class FeaureVController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
-        tableView.showsVerticalScrollIndicator = false
     }
     
     func titleName() -> String {

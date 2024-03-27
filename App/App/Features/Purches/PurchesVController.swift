@@ -37,10 +37,9 @@ final class PurchesVController: FeaureVController {
             self?.tableView.animateOpacity(0.3, 1)
             self?.blackView.animateOpacity(0.3, 0) {[weak self] in
                 self?.blackView.isHidden = true
+                NotificationCenter.default.post(name: Notification.Name.showMainToolBar, object: nil)
             }
         }.disposed(by: disposeBag)
-        
-        service.loadDonates()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,10 +68,36 @@ final class PurchesVController: FeaureVController {
         view.addSubview(titleLabel)
         view.addSubview(tableView)
         view.addSubview(warningLabel)
-        blackView.backgroundColor = .black.withAlphaComponent(0.7)
-        blackView.translatesAutoresizingMaskIntoConstraints = false
+//        blackView.backgroundColor = .black.withAlphaComponent(0.1)
+//        blackView.translatesAutoresizingMaskIntoConstraints = false
+        blackView.frame = UIScreen.main.bounds
+        blackView.isHidden = true
+        blackView.layer.opacity = 0
+        blackView.isUserInteractionEnabled = false
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame =  UIScreen.main.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blackView.addSubview(blurEffectView)
+        let activity = UIActivityIndicatorView()
+        activity.setStyle()
+        activity.color = .white
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        activity.startAnimating()
+        blackView.addSubview(activity)
+        let imageView = UIImageView(image: R.image.pay())
+        imageView.contentMode = .scaleAspectFill
+        imageView.tintColor = .white
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        blackView.addSubview(imageView)
         view.addSubview(blackView)
         NSLayoutConstraint.activate([
+            activity.centerXAnchor.constraint(equalTo: blackView.centerXAnchor),
+            activity.centerYAnchor.constraint(equalTo: blackView.centerYAnchor, constant: 50),
+            imageView.centerXAnchor.constraint(equalTo: blackView.centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: blackView.topAnchor,constant: 250),
+            imageView.widthAnchor.constraint(equalToConstant: 200),
+            imageView.heightAnchor.constraint(equalToConstant: 200),
             titleLabel.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 20),
             titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15),
             titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
@@ -86,9 +111,8 @@ final class PurchesVController: FeaureVController {
         ])
         tableView.register(UINib(resource: R.nib.donateCell), forCellReuseIdentifier: DonateCell.reuseIdentifier)
         
-        blackView.frame = UIScreen.main.bounds
-        blackView.isHidden = true
-        blackView.layer.opacity = 0
+        
+       
     }
     
     override func titleName() -> String {
@@ -109,6 +133,7 @@ extension PurchesVController: DonateCellDelegate {
     func tapBuy(donate: Donate) {
         if service.makeDotane(donateId: donate.productId) {
             blackView.isHidden = false
+            NotificationCenter.default.post(name: Notification.Name.hideMainToolBar, object: nil)
             blackView.animateOpacity(0.5, 1)
         }
     }

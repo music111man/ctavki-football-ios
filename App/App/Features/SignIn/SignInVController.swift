@@ -26,7 +26,7 @@ class SignInVController: UIViewController {
     @IBOutlet weak var goToLabel: UILabel!
     let disposeBag = DisposeBag()
     let accountService = AccountService.share
-    var gradient: CAGradientLayer!
+//    var gradient: CAGradientLayer!
     var appleBtnView: UIView?
     var singInMethodName: String?
     var disposed: (() -> ())?
@@ -52,7 +52,7 @@ class SignInVController: UIViewController {
         googleLabel.text = R.string.localizable.log_in_with_google()
         telegramLabel.text = R.string.localizable.log_in_with_telegram()
         goToLabel.text = R.string.localizable.get_more_bets().uppercased()
-        gradient = goToView.setGradient(start: .greenBlueStart, end: .greenBlueEnd, isLine: true, index: 0)
+        goToView.setGradient(start: .greenBlueStart, end: .greenBlueEnd, isLine: true, index: 0).frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 90, height: 50)
         view.tap(animateTapGesture: false) {
            UIView.animate(withDuration: 0.3) {[weak self] in
                self?.view.layer.opacity = 0
@@ -126,11 +126,6 @@ class SignInVController: UIViewController {
          }.disposed(by: disposeBag)
         
         activityView.isHidden = !accountService.signIn()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        gradient.frame = goToView.bounds
     }
 }
 

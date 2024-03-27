@@ -36,6 +36,8 @@ final class AppCoordinator: NSObject, PCoordinator {
         window = UIWindow(frame: UIScreen.main.bounds)
         mainCoordinator = MainCoordinator()
         super.init()
+        IAPService.default.requestProducts()
+        
         UIApplication.shared.applicationIconBadgeNumber = 0
         PushManager.config(application, self)
         initNotificationEventHandlers()

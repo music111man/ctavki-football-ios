@@ -1234,7 +1234,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 86 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 94 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1248,6 +1248,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let year_at_end = Rswift.StringResource(key: "year_at_end", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: 10 of your bets will win after the score is 0-2 in the first half!
+      ///
+      /// Locales: en, ru, uk
+      static let donate_25_desc = Rswift.StringResource(key: "donate_25_desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Accurate match prediction
       ///
       /// Locales: en, ru, uk
@@ -1312,6 +1316,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let expecting = Rswift.StringResource(key: "expecting", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: For the next year, the judge will only whistle in favor of your bet!
+      ///
+      /// Locales: en, ru, uk
+      static let donate_100_desc = Rswift.StringResource(key: "donate_100_desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Go to predictions
       ///
       /// Locales: en, ru, uk
@@ -1332,6 +1340,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let guid_results = Rswift.StringResource(key: "guid_results", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Judicial protection
+      ///
+      /// Locales: en, ru, uk
+      static let donate_100_title = Rswift.StringResource(key: "donate_100_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: LOGIN
       ///
       /// Locales: en, ru, uk
@@ -1384,6 +1396,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let odds_col = Rswift.StringResource(key: "odds_col", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: One defense
+      ///
+      /// Locales: en, ru, uk
+      static let donate_5_title = Rswift.StringResource(key: "donate_5_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: One of your bets will win after a goal in the 90th minute!
+      ///
+      /// Locales: en, ru, uk
+      static let donate_5_desc = Rswift.StringResource(key: "donate_5_desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: PREDICTIONS
       ///
       /// Locales: en, ru, uk
@@ -1488,6 +1508,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let tooltip_teams_title = Rswift.StringResource(key: "tooltip_teams_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Team defense
+      ///
+      /// Locales: en, ru, uk
+      static let donate_25_title = Rswift.StringResource(key: "donate_25_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Teams
       ///
       /// Locales: en, ru, uk
@@ -1516,6 +1540,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let log_in_with_apple_desc = Rswift.StringResource(key: "log_in_with_apple_desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Three defenses
+      ///
+      /// Locales: en, ru, uk
+      static let donate_10_title = Rswift.StringResource(key: "donate_10_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Three of your bets will win after a goal in 95+ minutes!
+      ///
+      /// Locales: en, ru, uk
+      static let donate_10_desc = Rswift.StringResource(key: "donate_10_desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: To see free predictions you got to sign in with your Apple or Telegram account!
       ///
       /// Locales: en, ru, uk
@@ -1630,6 +1662,21 @@ struct R: Rswift.Validatable {
 
         let format = NSLocalizedString("year_at_end", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: 10 of your bets will win after the score is 0-2 in the first half!
+      ///
+      /// Locales: en, ru, uk
+      static func donate_25_desc(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("donate_25_desc", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "donate_25_desc"
+        }
+
+        return NSLocalizedString("donate_25_desc", bundle: bundle, comment: "")
       }
 
       /// en translation: Accurate match prediction
@@ -1878,6 +1925,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("expecting", bundle: bundle, comment: "")
       }
 
+      /// en translation: For the next year, the judge will only whistle in favor of your bet!
+      ///
+      /// Locales: en, ru, uk
+      static func donate_100_desc(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("donate_100_desc", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "donate_100_desc"
+        }
+
+        return NSLocalizedString("donate_100_desc", bundle: bundle, comment: "")
+      }
+
       /// en translation: Go to predictions
       ///
       /// Locales: en, ru, uk
@@ -1951,6 +2013,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("guid_results", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Judicial protection
+      ///
+      /// Locales: en, ru, uk
+      static func donate_100_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("donate_100_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "donate_100_title"
+        }
+
+        return NSLocalizedString("donate_100_title", bundle: bundle, comment: "")
       }
 
       /// en translation: LOGIN
@@ -2156,6 +2233,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("odds_col", bundle: bundle, comment: "")
+      }
+
+      /// en translation: One defense
+      ///
+      /// Locales: en, ru, uk
+      static func donate_5_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("donate_5_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "donate_5_title"
+        }
+
+        return NSLocalizedString("donate_5_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: One of your bets will win after a goal in the 90th minute!
+      ///
+      /// Locales: en, ru, uk
+      static func donate_5_desc(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("donate_5_desc", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "donate_5_desc"
+        }
+
+        return NSLocalizedString("donate_5_desc", bundle: bundle, comment: "")
       }
 
       /// en translation: PREDICTIONS
@@ -2550,6 +2657,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("tooltip_teams_title", bundle: bundle, comment: "")
       }
 
+      /// en translation: Team defense
+      ///
+      /// Locales: en, ru, uk
+      static func donate_25_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("donate_25_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "donate_25_title"
+        }
+
+        return NSLocalizedString("donate_25_title", bundle: bundle, comment: "")
+      }
+
       /// en translation: Teams
       ///
       /// Locales: en, ru, uk
@@ -2653,6 +2775,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("log_in_with_apple_desc", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Three defenses
+      ///
+      /// Locales: en, ru, uk
+      static func donate_10_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("donate_10_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "donate_10_title"
+        }
+
+        return NSLocalizedString("donate_10_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Three of your bets will win after a goal in 95+ minutes!
+      ///
+      /// Locales: en, ru, uk
+      static func donate_10_desc(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("donate_10_desc", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "donate_10_desc"
+        }
+
+        return NSLocalizedString("donate_10_desc", bundle: bundle, comment: "")
       }
 
       /// en translation: To see free predictions you got to sign in with your Apple or Telegram account!

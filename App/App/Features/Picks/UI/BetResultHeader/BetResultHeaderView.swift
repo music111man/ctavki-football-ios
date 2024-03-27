@@ -31,9 +31,7 @@ class BetResultHeaderView: UIView {
         tapAnimationView.isHidden = true
         betsImageView.image = betsImageView.image?.withRenderingMode(.alwaysTemplate)
         returnView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnToTop)))
-        UIView.animate(withDuration: 1, delay: 0, options: [.autoreverse, .repeat]) {[weak self] in
-            self?.upRowImageView.transform = .init(translationX: 0, y: 5)
-        }
+        
         upRowImageView.layer.opacity = 0.8
     }
     
