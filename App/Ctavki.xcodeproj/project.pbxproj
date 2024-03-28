@@ -17,6 +17,7 @@
 		F2045F312BA778B700EA6A65 /* ForecastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2045F302BA778B700EA6A65 /* ForecastService.swift */; };
 		F2045F332BA7953400EA6A65 /* UIActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2045F322BA7953400EA6A65 /* UIActivityIndicatorView.swift */; };
 		F20704832B87A33800DD6364 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F20704852B87A33800DD6364 /* Localizable.strings */; };
+		F209FBEF2BB576BD0043BCE2 /* GoogleAnaliticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209FBEE2BB576BD0043BCE2 /* GoogleAnaliticsService.swift */; };
 		F2218ACB2BA2FCD200C53C46 /* SignInVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218ACA2BA2FCD200C53C46 /* SignInVController.swift */; };
 		F2218ACD2BA2FCF500C53C46 /* SignInVController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2218ACC2BA2FCF500C53C46 /* SignInVController.storyboard */; };
 		F2218ACF2BA3244E00C53C46 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218ACE2BA3244E00C53C46 /* AccountService.swift */; };
@@ -95,7 +96,7 @@
 		F2EB1A322B9A11040027D782 /* BetDetailsVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB1A302B9A11040027D782 /* BetDetailsVController.swift */; };
 		F2EB1A352B9A11520027D782 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB1A342B9A11520027D782 /* UIViewController.swift */; };
 		F2EB1A372B9A2E9C0027D782 /* BetDetailsVController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2EB1A362B9A2E9C0027D782 /* BetDetailsVController.storyboard */; };
-		F2F9B4EA2BB2FE520087B333 /* PushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F9B4E92BB2FE510087B333 /* PushManager.swift */; };
+		F2F9B4EA2BB2FE520087B333 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F9B4E92BB2FE510087B333 /* PushService.swift */; };
 		F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC033D2B867809001C6BB3 /* AppDelegate.swift */; };
 		F2FC03422B867809001C6BB3 /* MainVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC03412B867809001C6BB3 /* MainVController.swift */; };
 		F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2FC03462B86780B001C6BB3 /* Assets.xcassets */; };
@@ -116,6 +117,7 @@
 		F2045F322BA7953400EA6A65 /* UIActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorView.swift; sourceTree = "<group>"; };
 		F20704842B87A33800DD6364 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F20704862B87A33A00DD6364 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F209FBEE2BB576BD0043BCE2 /* GoogleAnaliticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAnaliticsService.swift; sourceTree = "<group>"; };
 		F2218ACA2BA2FCD200C53C46 /* SignInVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVController.swift; sourceTree = "<group>"; };
 		F2218ACC2BA2FCF500C53C46 /* SignInVController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInVController.storyboard; sourceTree = "<group>"; };
 		F2218ACE2BA3244E00C53C46 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
@@ -201,7 +203,7 @@
 		F2EB1A342B9A11520027D782 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		F2EB1A362B9A2E9C0027D782 /* BetDetailsVController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BetDetailsVController.storyboard; sourceTree = "<group>"; };
 		F2F186C72B87754F00FBDD22 /* Utilites.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utilites.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F2F9B4E92BB2FE510087B333 /* PushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushManager.swift; sourceTree = "<group>"; };
+		F2F9B4E92BB2FE510087B333 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		F2FC033A2B867809001C6BB3 /* Ctavki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ctavki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FC033D2B867809001C6BB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2FC03412B867809001C6BB3 /* MainVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVController.swift; sourceTree = "<group>"; };
@@ -271,7 +273,6 @@
 				F22CE0932B87B87400732FFB /* AppCoordinator.swift */,
 				F22CE0B22B88BE4D00732FFB /* VCFactory.swift */,
 				F2EA78DB2B90CA29006B3A1C /* AppSettings.swift */,
-				F2F9B4E92BB2FE510087B333 /* PushManager.swift */,
 			);
 			path = Utilites;
 			sourceTree = "<group>";
@@ -279,9 +280,11 @@
 		F20704702B878BAF00DD6364 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F209FBEE2BB576BD0043BCE2 /* GoogleAnaliticsService.swift */,
 				F2DF9CB52BA9F49900898F4E /* IAP */,
 				F2041A332B92335800DA42BB /* SyncService.swift */,
 				F2218ACE2BA3244E00C53C46 /* AccountService.swift */,
+				F2F9B4E92BB2FE510087B333 /* PushService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -817,6 +820,7 @@
 				F22CE0A22B87C5F900732FFB /* FaqVController.swift in Sources */,
 				F22CE0A92B87DBB100732FFB /* ToolBarView.swift in Sources */,
 				F22CE09C2B87BEDA00732FFB /* PicksVController.swift in Sources */,
+				F209FBEF2BB576BD0043BCE2 /* GoogleAnaliticsService.swift in Sources */,
 				F226F9FA2B9B8D0200F9D391 /* UITableView.swift in Sources */,
 				F2EA78C82B908DA6006B3A1C /* BetType.swift in Sources */,
 				F22CE0B32B88BE4D00732FFB /* VCFactory.swift in Sources */,
@@ -841,7 +845,7 @@
 				F22CE09E2B87C53700732FFB /* TeamsVController.swift in Sources */,
 				F2888DCE2B9B624C007F62F2 /* BetResultHeaderView.swift in Sources */,
 				F2973D082B9EF96A003612E1 /* HistoryService.swift in Sources */,
-				F2F9B4EA2BB2FE520087B333 /* PushManager.swift in Sources */,
+				F2F9B4EA2BB2FE520087B333 /* PushService.swift in Sources */,
 				F2EA78DE2B910013006B3A1C /* JSONWrapHelpers.swift in Sources */,
 				F2C051342BAADDB00056FB75 /* IAPService.swift in Sources */,
 				F22CE0BC2B88F0D200732FFB /* TourGuidVController.swift in Sources */,
@@ -1034,7 +1038,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -1065,7 +1069,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;

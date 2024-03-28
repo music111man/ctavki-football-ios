@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class ForecastVController: UIViewController {
-
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var activityView: UIActivityIndicatorView!
@@ -53,7 +53,6 @@ class ForecastVController: UIViewController {
     @IBOutlet weak var titlelabel: UILabel!
     
     let refresher = UIRefreshControl()
-    
     let disposeBag = DisposeBag()
     let service = ForecastService()
     
@@ -130,6 +129,11 @@ class ForecastVController: UIViewController {
             self?.activityView.isHidden = false
         }.disposed(by: disposeBag)
         service.loadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        GoogleAnaliticsService.logViewVisited(param: .betId(betId))
     }
    
     override func viewDidLayoutSubviews() {

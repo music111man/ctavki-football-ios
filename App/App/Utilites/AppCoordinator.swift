@@ -36,10 +36,11 @@ final class AppCoordinator: NSObject, PCoordinator {
         window = UIWindow(frame: UIScreen.main.bounds)
         mainCoordinator = MainCoordinator()
         super.init()
+        FirebaseApp.configure()
         IAPService.default.requestProducts()
         
         UIApplication.shared.applicationIconBadgeNumber = 0
-        PushManager.config(application, self)
+        PushService.config(application, self)
         initNotificationEventHandlers()
         isAuthorized = AppSettings.isAuthorized
         AppSettings.authorizeEvent.bind { [weak self] isAuthorized in
@@ -193,6 +194,7 @@ extension AppCoordinator: PushManagerDelegate {
                 UIApplication.shared.open(url)
             }
         case let .bet(id):
+            GoogleAnaliticsService.logTapPush(param: .betId(id))
             if AppSettings.isAuthorized {
                 self.showActiveBetDetails(betId: id)
             } else {

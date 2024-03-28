@@ -60,14 +60,16 @@ protocol PushManagerDelegate: AnyObject {
     func openScreen(pushRedirect: PushRedirect)
 }
 
-final class PushManager: NSObject {
+final class PushService: NSObject {
     private var delegate: PushManagerDelegate!
     
     static func config(_ application: UIApplication,_ delegate: PushManagerDelegate) {
-        let manager = PushManager()
-        manager.delegate = delegate
+        if FirebaseApp.app() == nil {
+            fatalError("FirebaseApp.configure() must be call before!!!")
+        }
         
-        FirebaseApp.configure()
+        let manager = PushService()
+        manager.delegate = delegate
         Messaging.messaging().delegate = manager
         
         UNUserNotificationCenter.current().delegate = manager
@@ -83,7 +85,7 @@ final class PushManager: NSObject {
     }
 }
 
-extension PushManager: UNUserNotificationCenterDelegate {
+extension PushService: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         UIApplication.shared.applicationIconBadgeNumber = 0
@@ -114,7 +116,7 @@ extension PushManager: UNUserNotificationCenterDelegate {
     }
 }
 
-extension PushManager: MessagingDelegate {
+extension PushService: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         AppSettings.fcmToken = fcmToken ?? ""
         printAppEvent("fnc token: \(AppSettings.fcmToken)")
