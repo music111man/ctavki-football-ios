@@ -33,6 +33,7 @@ class SignInVController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityView.setStyle()
         AccountService.share.delegate = self
         view.backgroundColor = .black.withAlphaComponent(0.6)
         AppSettings.authorizeEvent.asObservable().observe(on: MainScheduler.instance).bind {[weak self] isSignIn in

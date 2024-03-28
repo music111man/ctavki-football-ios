@@ -763,8 +763,8 @@
                                             <constraint firstItem="qXE-8h-jne" firstAttribute="leading" secondItem="8lo-TK-aar" secondAttribute="leading" id="tzf-Xg-nCh"/>
                                         </constraints>
                                     </scrollView>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="hOq-21-ojp">
-                                        <rect key="frame" x="186.66666666666666" y="445" width="20" height="20"/>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="hOq-21-ojp">
+                                        <rect key="frame" x="178" y="436.66666666666669" width="37" height="37"/>
                                         <color key="color" name="shadow"/>
                                     </activityIndicatorView>
                                 </subviews>

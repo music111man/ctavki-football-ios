@@ -87,6 +87,7 @@ class ForecastVController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityView.setStyle()
         refresher.attributedTitle = NSAttributedString(string: "")
         refresher.rx.controlEvent(UIControl.Event.valueChanged).bind {[weak self] in
             self?.service.loadData()
@@ -138,7 +139,6 @@ class ForecastVController: UIViewController {
    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        activityView.setStyle()
         gradientsBlueGreen.forEach { $0.layer.sublayers?.first?.frame = $0.bounds }
         blueGreenCircles.forEach { $0.layer.sublayers?.first?.frame = $0.bounds }
         violetCircles.forEach { $0.layer.sublayers?.first?.frame = $0.bounds }

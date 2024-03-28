@@ -209,9 +209,9 @@
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Mgo-2q-4Wf">
-                                        <rect key="frame" x="156.66666666666666" y="196.33333333333334" width="20" height="20"/>
-                                        <color key="color" name="text_black"/>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Mgo-2q-4Wf">
+                                        <rect key="frame" x="148" y="188.00000000000003" width="37" height="37"/>
+                                        <color key="color" name="shadow"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" name="background_main"/>
