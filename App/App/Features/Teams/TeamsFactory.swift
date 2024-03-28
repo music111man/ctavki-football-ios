@@ -11,13 +11,6 @@ final class TeamsFactory: VCFactory {
     let controller = TeamsVController().initTeamsFeatures()
     
     override func create() -> UIViewController {
-//        let navigator = getNavigator()
-//        if navigator.viewControllers.isEmpty {
-//            navigator.pushViewController(controller, animated: false)
-//        }
-//        
-//        return navigator
-        
         return controller
     }
 }

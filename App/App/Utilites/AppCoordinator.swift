@@ -19,7 +19,7 @@ protocol PCoordinator {
 final class AppCoordinator: NSObject, PCoordinator {
     let window: UIWindow
     let mainCoordinator: MainCoordinator
-    let syncService = SyncService()
+    let syncService = SyncService.shared
     let disposeBag = DisposeBag()
     var activeBetToShow: Int?
     var isAuthorized = false
@@ -38,7 +38,7 @@ final class AppCoordinator: NSObject, PCoordinator {
         super.init()
         FirebaseApp.configure()
         IAPService.default.requestProducts()
-        
+        syncService.refresh()
         UIApplication.shared.applicationIconBadgeNumber = 0
         PushService.config(application, self)
         initNotificationEventHandlers()
@@ -64,7 +64,6 @@ final class AppCoordinator: NSObject, PCoordinator {
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needOpenBetDetails).subscribe {[weak self] event in
             guard let betId = event.element?.userInfo?[BetView.betIdKeyForUserInfo] as? Int else { return }
-            printAppEvent("tap to show bet id=\(betId)")
             self?.showBetDetails(betId: betId)
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needOpenActiveBetDetails).subscribe {[weak self] event in
@@ -79,7 +78,6 @@ final class AppCoordinator: NSObject, PCoordinator {
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needOpenNoActiveBetDetails).subscribe {[weak self] event in
             guard let betId = event.element?.userInfo?[BetView.betIdKeyForUserInfo] as? Int else { return }
-            printAppEvent("tap to show bet id=\(betId)")
             guard AppSettings.isAuthorized  else {
                 self?.showAuthScreen { [weak self] in
                     self?.showActiveBetDetails()
@@ -99,12 +97,10 @@ final class AppCoordinator: NSObject, PCoordinator {
         NotificationCenter.default.rx.notification(Notification.Name.tryToShowTourGuid).subscribe {[weak self] _ in
             self?.startGuidTour()
         }.disposed(by: disposeBag)
-        NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification).subscribe {_ in
+        NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification).subscribe {[weak self] _ in
             UIApplication.shared.applicationIconBadgeNumber = 0
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {[weak self] in
-                printAppEvent("willEnterForegroundNotification event")
-                self?.syncService.refresh()
-            }
+            printAppEvent("willEnterForegroundNotification event")
+            self?.syncService.refresh()
         }.disposed(by: disposeBag)
     }
     
@@ -173,7 +169,6 @@ extension AppCoordinator: PushManagerDelegate {
     }
     
     func openScreen(pushRedirect: PushRedirect) {
-        printAppEvent("try open fby tap push")
         syncService.refresh() { [weak self] _ in
             self?.processPushDirect(pushRedirect)
         }

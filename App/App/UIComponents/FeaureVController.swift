@@ -47,6 +47,7 @@ class FeaureVController: UIViewController {
         navigationBar.initUI(parent: view, title: titleName(), icon: icon())
         activityView.translatesAutoresizingMaskIntoConstraints = false
         activityView.color = R.color.shadow()
+        activityView.setStyle()
         view.addSubview(activityView)
         NSLayoutConstraint.activate([
             activityView.centerXAnchor.constraint(equalTo: view.centerXAnchor),

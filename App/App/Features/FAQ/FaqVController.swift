@@ -46,7 +46,9 @@ final class FaqVController: UIViewController {
                 self.activityView.animateOpacity(0.3, 1)
             }
         }.disposed(by: disposeBage)
-        faqService.loadData()
+        SyncService.shared.refresh {[weak self] _ in
+            self?.faqService.loadData()
+        }
         return self
     }
     
@@ -131,7 +133,12 @@ final class FaqVController: UIViewController {
     }
 
     @objc func callNeedRefresh() {
-        faqService.loadData()
+        SyncService.shared.refresh {[weak self] hasNew in
+            self?.refresher.endRefreshing()
+            if hasNew {
+                self?.faqService.loadData()
+            }
+        }
     }
 }
 

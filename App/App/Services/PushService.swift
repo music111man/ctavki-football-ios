@@ -119,13 +119,13 @@ extension PushService: UNUserNotificationCenterDelegate {
 extension PushService: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         AppSettings.fcmToken = fcmToken ?? ""
-        printAppEvent("fnc token: \(AppSettings.fcmToken)")
+        printAppEvent("fnc token: \(AppSettings.fcmToken)", marker: ">>pushServ ")
         if fcmToken == nil { return }
         
         let topicAll = "all"
         Messaging.messaging().subscribe(toTopic: topicAll) { error in
             if let error = error {
-                printAppEvent("Subscribed to topic \"\(topicAll)\" with error: \(error.localizedDescription)")
+                printAppEvent("Subscribed to topic \"\(topicAll)\" with error: \(error.localizedDescription)", marker: ">>pushServ ")
             }
         }
     }

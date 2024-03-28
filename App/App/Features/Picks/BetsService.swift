@@ -48,19 +48,19 @@ final class BetsService {
     typealias BeginRefresh = () -> ()
     let disposeBag = DisposeBag()
     var callback: Callback?
-    var beginRefrech: BeginRefresh?
+    var beginRefresh: BeginRefresh?
     
     init() {
         NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
             if self?.callback == nil { return }
-            printAppEvent("call needUpdateBetsScreen at BetsViewModel handler")
+            printAppEvent("call needUpdateBetsScreen at BetsViewModel handler", marker: ">>betServ ")
+            self?.beginRefresh?()
             self?.updateData()
         }.disposed(by: disposeBag)
     }
     
     func updateData() {
-        beginRefrech?()
-        printAppEvent("start update bets data")
+        printAppEvent("start update bets data", marker: ">>betServ ")
         DispatchQueue.global().async {[weak self] in
             guard let self = self else { return }
             let allBets: [Bet] = Repository.select(Bet.table.order(Bet.eventDateField.desc))

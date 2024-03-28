@@ -13,8 +13,6 @@ import SQLite
 extension Notification.Name {
     static let needUpdateApp = Notification.Name("needUpdateApp")
     static let badServerResponse = Notification.Name("badServerResponse")
-    static let tryToRefreshData = Notification.Name("tryToRefreshData")
-    static let noDataForBetsScreen = Notification.Name("noDataForBetsScreen")
     static let wasSyncBetTypeData = Notification.Name("wasSyncBetTypeData")
     static let wasSyncTeamData = Notification.Name("wasSyncTeamData")
     static let wasSyncFaqData = Notification.Name("wasSyncFaqData")
@@ -23,27 +21,25 @@ extension Notification.Name {
 }
 
 final class SyncService {
-    
+    typealias Complite = (Bool) -> Void
     private let disposeBag = DisposeBag()
-    var isStartRefreshCircle = false
-    init() {
-        NotificationCenter.default.rx.notification(.tryToRefreshData)
-            .subscribe {[weak self] _ in
-                printAppEvent("tryToRefreshData event")
-                guard let self = self else { return }
-                if self.isStartRefreshCircle {
-                    self.refresh()
-                } else {
-                    self.isStartRefreshCircle = true
-                    self.startRefreshCircle()
-                }
-            }.disposed(by: disposeBag)
-        
+    var compliteTasks = [Complite?]()
+    var lastUpdateDate: Date?
+    static let shared = SyncService()
+    let dispatchQueue = DispatchQueue(label: "syncService", qos: .background)
+    var dispatchWorkItem: DispatchWorkItem?
+    
+    private init() {
     }
     
-    func refresh(_ complite: ((Bool) -> ())? = nil ) {
+    func refresh(_ complite: Complite? = nil ) {
+        compliteTasks.append(complite)
+        if compliteTasks.count > 1 {
+            return
+        }
+        
         printAppEvent("start sync")
-        NetProvider.makeRequest(ApiResponseData.self, .checkForUpdates) { responseData in
+        NetProvider.makeRequest(ApiResponseData.self, .checkForUpdates) {[weak self] responseData in
             guard let responseData = responseData else {
                 complite?(false)
                 return
@@ -72,35 +68,29 @@ final class SyncService {
             Repository.refreshData(responseData.bets)
             Repository.refreshData(responseData.faqs)
             Repository.refreshData(responseData.betTypes)
-            
-//            if !responseData.teams.isEmpty {
-//                NotificationCenter.default.post(name: NSNotification.Name.wasSyncTeamData, object: nil)
-//            }
             if !responseData.faqs.isEmpty {
                 NotificationCenter.default.post(name: NSNotification.Name.needUpdatFaqsScreen, object: nil)
             }
-//            
-//            if !responseData.betTypes.isEmpty {
-//                NotificationCenter.default.post(name: NSNotification.Name.wasSyncBetTypeData, object: nil)
-//            }
             if !responseData.teams.isEmpty || !responseData.bets.isEmpty || !responseData.betTypes.isEmpty {
                 NotificationCenter.default.post(name: NSNotification.Name.needUpdateBetsScreen, object: nil)
-            } else {
-                NotificationCenter.default.post(name: NSNotification.Name.noDataForBetsScreen, object: nil)
             }
-            let noData = responseData.teams.isEmpty
+            let newData = !(responseData.teams.isEmpty
                         && responseData.bets.isEmpty
                         && responseData.betTypes.isEmpty
-                        && responseData.faqs.isEmpty
-            printAppEvent("Refresh data \(!noData)")
-            complite?(!noData)
-        }
-    }
-    
-    func startRefreshCircle() {
-        self.refresh()
-        DispatchQueue.global().asyncAfter(deadline: .now() + AppSettings.syncInterval) { [weak self] in
-            self?.startRefreshCircle()
+                        && responseData.faqs.isEmpty)
+            self?.lastUpdateDate = Date()
+            self?.compliteTasks.compactMap{$0}.forEach{ complite in
+                complite(newData)
+            }
+            printAppEvent("refresh data \(newData)")
+            self?.compliteTasks.removeAll()
+            self?.dispatchWorkItem?.cancel()
+            let item = DispatchWorkItem {[weak self] in
+                self?.refresh()
+            }
+            self?.dispatchWorkItem = item
+            self?.dispatchQueue.asyncAfter(deadline: .now() + AppSettings.syncInterval,
+                                           execute: item)
         }
     }
 }

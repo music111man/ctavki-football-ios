@@ -20,7 +20,7 @@ final class Repository {
         do {
             let fileUrl = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
                 .appendingPathComponent(Self.dbName)
-            printAppEvent("Open db \(fileUrl.path)")
+            printAppEvent("Open db \(fileUrl.path)", marker: ">>")
             Self.con = try SQLite.Connection(fileUrl.path)
         } catch let error {
             printAppEvent("\(error)")
@@ -54,13 +54,13 @@ final class Repository {
             try Self.db?.transaction {
                 
                 deletedCount = try Self.db?.run(T.table.delete()) ?? 0
-                printAppEvent("delete \(deletedCount) old records from \(T.self)s")
+                printAppEvent("delete \(deletedCount) old records from \(T.self)s", marker: ">>db ")
                 insertCount = try Self.db?.run(T.table.insertMany(or: .replace, items.map({ $0.setters }))) ?? 0
-                printAppEvent("insert \(insertCount) new records to \(T.self)s")
+                printAppEvent("insert \(insertCount) new records to \(T.self)s", marker: ">>db ")
             }
             
         } catch let error {
-            printAppEvent("Repository error: \(error.localizedDescription)")
+            printAppEvent("Repository error: \(error.localizedDescription)", marker: ">>db ")
         }
         
         return deletedCount + Int(insertCount) > 0
@@ -77,7 +77,7 @@ final class Repository {
             }
             
         } catch let error {
-            printAppEvent("\(error)")
+            printAppEvent("\(error)", marker: ">>db ")
             return []
         }
         
@@ -94,7 +94,7 @@ final class Repository {
             return nil
             
         } catch let error {
-            printAppEvent("\(error)")
+            printAppEvent("\(error)", marker: ">>db ")
             return nil
         }
     }
@@ -106,7 +106,7 @@ final class Repository {
             return try db?.scalar(selectQuery.count) ?? 0
             
         } catch let error {
-            printAppEvent("\(error)")
+            printAppEvent("\(error)", marker: ">>db ")
             return 0
         }
     }
@@ -119,7 +119,7 @@ final class Repository {
             
             
         } catch let error {
-            printAppEvent("\(error)")
+            printAppEvent("\(error)", marker: ">>db ")
             return nil
         }
     }

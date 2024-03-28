@@ -30,19 +30,12 @@ class TeamsView: UIView {
                 let row: TeamsRowView = .fromNib { v in
                     unusedTeams = v.configure(teams: unusedTeams)
                 }
-//                row.transform = .init(scaleX: 0, y: 0)
                 row.delegate = self
                 views.append(row)
             }
             
             return views
-        }) 
-//        {[weak self] in
-//            UIView.animate(withDuration: 0.3) { [weak self] in
-//                self?.stackView.arrangedSubviews.forEach { $0.transform = .identity }
-//            }
-//        }
-        
+        })
     }
 
 }

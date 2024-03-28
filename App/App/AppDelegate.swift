@@ -8,8 +8,8 @@
 import UIKit
 import GoogleSignIn
 
-func printAppEvent(_ event: String) {
-    print("\(Date().format("HH:mm:ss"))->>>\(event)")
+func printAppEvent(_ event: String, marker: String = ">>>") {
+    print("\(Date().format("HH:mm:ss"))-\(marker)\(event)")
 }
 
 @main

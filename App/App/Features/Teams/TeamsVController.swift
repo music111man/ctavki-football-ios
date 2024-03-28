@@ -13,7 +13,6 @@ import RxCocoa
 final class TeamsVController: FeaureVController {
     
     var teamsService = TeamsService()
-    var isUpdating = false
     var needAnimationOnWillAppend = false
     let stackView = UIStackView()
     
@@ -21,14 +20,11 @@ final class TeamsVController: FeaureVController {
         teamsService = TeamsService()
         teamsService.refreshActivity.observe(on: MainScheduler.instance).bind {[weak self] in
             guard let self = self else { return }
-            
-            self.isUpdating = true
             self.activityView.isHidden = false
         }.disposed(by: disposeBag)
         
         teamsService.teams.observe(on: MainScheduler.instance).bind {[weak self] models in
             self?.stackView.replaceWithHideAnimation({
-                printAppEvent("start create views")
                 let views = models.map { model in
                     let view: TeamsView = .fromNib() { v in
                         v.configure(title: model.title, teams: model.teams)
@@ -37,15 +33,15 @@ final class TeamsVController: FeaureVController {
                     
                     return view
                 }
-                printAppEvent("and create views")
                 return views
             }) {[weak self] in
                     self?.activityView.isHidden = true
-                    self?.isUpdating = false
                     self?.refresher.endRefreshing()
             }
         }.disposed(by: disposeBag)
-        teamsService.updateData()
+        SyncService.shared.refresh {[weak self] _ in
+            self?.teamsService.updateData()
+        }
         return self
     }
     
@@ -98,9 +94,13 @@ final class TeamsVController: FeaureVController {
     }
     
     override func refreshData() -> Bool {
-        
-        if isUpdating { return false }
-        teamsService.updateData()
+
+        SyncService.shared.refresh {[weak self] hasNew in
+            self?.refresher.endRefreshing()
+            if hasNew {
+                self?.teamsService.updateData()
+            }
+        }
 
         return true
     }
