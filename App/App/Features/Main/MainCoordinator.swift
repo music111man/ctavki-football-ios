@@ -9,7 +9,7 @@ import UIKit
 
 final class MainCoordinator {
     let router: UINavigationController
-    var factories: [PVCFactory] = [PicksFactory(), TeamsFactory(), PurchesFactory(), FaqFactory()]
+    var factories = [PVCFactory]()
     let mainVC = MainVController()
     
     var lastMenuAction: ToolBarView.MenuAction?
@@ -20,6 +20,7 @@ final class MainCoordinator {
     }
     
     func start() -> UINavigationController {
+        factories.append(contentsOf: [PicksFactory(), TeamsFactory(), PurchesFactory(), FaqFactory()])
         mainVC.setChildVC(vc: factories[0].create())
         
         return router

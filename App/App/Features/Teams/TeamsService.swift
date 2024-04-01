@@ -41,56 +41,47 @@ final class TeamsService {
     typealias RefreshActivity = () -> ()
     
     let disposeBag = DisposeBag()
-    let refreshActivity = PublishRelay<Void>()
     
-    let teams = PublishRelay<[TeamsViewModel]>()
-    
-    init() {
-        NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
-            self?.refreshActivity.accept(())
-            self?.updateData()
-        }.disposed(by: disposeBag)
+    func load() -> Single<[TeamsViewModel]> {
+        let queryBets: Observable<[Bet]> = Repository.selectObservable(Bet.table.order(Bet.eventDateField.desc))
+        let queryTeams: Observable<[Team]> = Repository.selectObservable(Team.table)
+        return Observable.combineLatest(queryBets, queryTeams) {[weak self] (allBets, teams) -> [TeamsViewModel] in
+            let data = self?.createModels(allBets: allBets, teams: teams) ?? []
+            
+            return data
+        }.asSingle()
     }
-    @discardableResult
-    func updateData() -> TeamsService {
-        DispatchQueue.global().async {[weak self] in
-            guard let self = self else { return }
-            
-            let allBets: [Bet] = Repository.select(Bet.table.order(Bet.eventDateField.desc))
-            let matchTime = Date().matchTime
-            let activeBets = allBets.filter { $0.isActive && $0.eventDate > matchTime }.sorted { $0.eventDate < $01.eventDate }
-            let bets:[Bet] = allBets.filter { !$0.isActive }
-            let teams: [Team] = Repository.select(Team.table)
-            let activeTeams = teams.filter { team in
-                activeBets.contains(where: { $0.team2Id == team.id || $0.team1Id == team.id })
-            }.map {TeamViewModel(betCount: 1, team: $0)}
-            
-            let teamSet = teams.map { team in
-                
-                TeamViewModel(betCount: bets.filter({ $0.team2Id == team.id || $0.team1Id == team.id }).count, team: team)
-            }.filter({ $0.betCount > 0 })
-            
-            var models = [TeamsViewModel]()
-            if !activeBets.isEmpty {
-                models.append(TeamsViewModel(title: R.string.localizable.with_current_picks(),
-                                             teams: activeTeams))
-            }
-            models.append(TeamsViewModel(R.string.localizable.with_bets_history_n_and_more(15),
-                                         teamSet,
-                                         activeBets) { $0 >= 15 })
-            models.append(TeamsViewModel(R.string.localizable.with_bets_history_n_and_more(10),
-                                         teamSet,
-                                         activeBets) { $0 >= 10 && $0 < 15 })
-            models.append(TeamsViewModel(R.string.localizable.with_bets_history_n_and_more(5),
-                                         teamSet,
-                                         activeBets) { $0 >= 5 && $0 < 10 })
-            models.append(TeamsViewModel(R.string.localizable.with_bets_history_4_and_less(),
-                                         teamSet,
-                                         activeBets) { $0 < 5 })
-            
-            self.teams.accept(models)
-        }
+    
+    private func createModels(allBets: [Bet], teams: [Team]) -> [TeamsViewModel] {
+        let matchTime = Date().matchTime
+        let activeBets = allBets.filter { $0.isActive && $0.eventDate > matchTime }.sorted { $0.eventDate < $01.eventDate }
+        let bets:[Bet] = allBets.filter { !$0.isActive }
+        let activeTeams = teams.filter { team in
+            activeBets.contains(where: { $0.team2Id == team.id || $0.team1Id == team.id })
+        }.map {TeamViewModel(betCount: 1, team: $0)}
         
-        return self
+        let teamSet = teams.map { team in
+            TeamViewModel(betCount: bets.filter({ $0.team2Id == team.id || $0.team1Id == team.id }).count, team: team)
+        }.filter({ $0.betCount > 0 })
+        
+        var models = [TeamsViewModel]()
+        if !activeBets.isEmpty {
+            models.append(TeamsViewModel(title: R.string.localizable.with_current_picks(),
+                                         teams: activeTeams))
+        }
+        models.append(TeamsViewModel(R.string.localizable.with_bets_history_n_and_more(15),
+                                     teamSet,
+                                     activeBets) { $0 >= 15 })
+        models.append(TeamsViewModel(R.string.localizable.with_bets_history_n_and_more(10),
+                                     teamSet,
+                                     activeBets) { $0 >= 10 && $0 < 15 })
+        models.append(TeamsViewModel(R.string.localizable.with_bets_history_n_and_more(5),
+                                     teamSet,
+                                     activeBets) { $0 >= 5 && $0 < 10 })
+        models.append(TeamsViewModel(R.string.localizable.with_bets_history_4_and_less(),
+                                     teamSet,
+                                     activeBets) { $0 < 5 })
+        
+        return models
     }
 }

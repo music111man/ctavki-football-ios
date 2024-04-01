@@ -16,14 +16,15 @@ final class FaqVController: UIViewController {
     let navigationBar = NavigationTopBarView()
     let stackView = UIStackView()
     let faqService = FaqService()
-    let disposeBage = DisposeBag()
+    let disposeBag = DisposeBag()
     let refresher = UIRefreshControl()
     let imageView = UIImageView()
     var isFirstShow = true
+    let faqs = PublishRelay<[FaqViewModel]>()
     
     @discardableResult
     func initFaqViews() -> FaqVController {
-        faqService.faqs.observe(on: MainScheduler.instance).bind {[weak self] models in
+        faqs.observe(on: MainScheduler.instance).bind {[weak self] models in
             self?.stackView.replaceWithHideAnimation({
                 models.map { model in
                     let view: FaqView = FaqView.fromNib()
@@ -37,19 +38,35 @@ final class FaqVController: UIViewController {
                     self?.refresher.endRefreshing()
                 }
             }
-        }.disposed(by: disposeBage)
-        
-        faqService.isLoading.observe(on: MainScheduler.instance).bind { [weak self] isLoading in
-            guard let self = self else { return }
-            if isLoading && !self.refresher.isRefreshing {
-                self.activityView.isHidden = false
-                self.activityView.animateOpacity(0.3, 1)
-            }
-        }.disposed(by: disposeBage)
+        }.disposed(by: disposeBag)
+    
         SyncService.shared.refresh {[weak self] _ in
-            self?.faqService.loadData()
+            guard let self = self else { return }
+            self.loadFaq()
+            NotificationCenter.default.rx.notification(Notification.Name.needUpdatFaqsScreen).subscribe {[weak self] _ in
+                self?.activityView.isHidden = false
+                self?.loadFaq()
+            }.disposed(by: self.disposeBag)
         }
+        
+        refresher.rx.controlEvent(UIControl.Event.valueChanged).bind {
+            SyncService.shared.refresh {[weak self] hasNew in
+                if hasNew {
+                    self?.loadFaq()
+                } else {
+                    self?.refresher.endRefreshing()
+                }
+            }
+            
+        }.disposed(by: disposeBag)
+        
         return self
+    }
+    
+    func loadFaq() {
+        faqService.load().observe(on: MainScheduler.instance).subscribe {[weak self] models in
+            self?.faqs.accept(models)
+        }.disposed(by: self.disposeBag)
     }
     
     override func viewDidLoad() {
@@ -104,7 +121,6 @@ final class FaqVController: UIViewController {
         ])
         activityView.startAnimating()
         refresher.attributedTitle = NSAttributedString(string: "")
-        refresher.addTarget(self, action: #selector(callNeedRefresh), for: .valueChanged)
         scrollView.addSubview(refresher)
         
         imageView.image = R.image.up_small_arrow()?.withRenderingMode(.alwaysTemplate)
@@ -128,17 +144,8 @@ final class FaqVController: UIViewController {
                     self?.imageView.isHidden = true
                 }
             }
-        }.disposed(by: disposeBage)
+        }.disposed(by: disposeBag)
         imageView.layer.opacity = 0
-    }
-
-    @objc func callNeedRefresh() {
-        SyncService.shared.refresh {[weak self] hasNew in
-            self?.refresher.endRefreshing()
-            if hasNew {
-                self?.faqService.loadData()
-            }
-        }
     }
 }
 

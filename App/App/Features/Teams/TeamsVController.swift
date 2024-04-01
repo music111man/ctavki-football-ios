@@ -15,32 +15,16 @@ final class TeamsVController: FeaureVController {
     var teamsService = TeamsService()
     var needAnimationOnWillAppend = false
     let stackView = UIStackView()
-    
+
     func initTeamsFeatures() -> UIViewController {
-        teamsService = TeamsService()
-        teamsService.refreshActivity.observe(on: MainScheduler.instance).bind {[weak self] in
-            guard let self = self else { return }
-            self.activityView.isHidden = false
-        }.disposed(by: disposeBag)
-        
-        teamsService.teams.observe(on: MainScheduler.instance).bind {[weak self] models in
-            self?.stackView.replaceWithHideAnimation({
-                let views = models.map { model in
-                    let view: TeamsView = .fromNib() { v in
-                        v.configure(title: model.title, teams: model.teams)
-                    }
-                    view.delegate = self
-                    
-                    return view
-                }
-                return views
-            }) {[weak self] in
-                    self?.activityView.isHidden = true
-                    self?.refresher.endRefreshing()
-            }
-        }.disposed(by: disposeBag)
         SyncService.shared.refresh {[weak self] _ in
-            self?.teamsService.updateData()
+            guard let self = self else { return }
+            
+            self.updateTeams()
+            NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
+                self?.activityView.isHidden = false
+                self?.updateTeams()
+            }.disposed(by: self.disposeBag)
         }
         return self
     }
@@ -49,10 +33,10 @@ final class TeamsVController: FeaureVController {
         super.viewDidLoad()
         activityView.isHidden = true
     }
+    
     override func initTableView() {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.showsVerticalScrollIndicator = false
         scrollView.alwaysBounceVertical = true
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
@@ -72,6 +56,7 @@ final class TeamsVController: FeaureVController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(refresher)
     }
+    
     override func initUI() {
         super.initUI()
         navigationBar.hideAuthBtn()
@@ -96,13 +81,38 @@ final class TeamsVController: FeaureVController {
     override func refreshData() -> Bool {
 
         SyncService.shared.refresh {[weak self] hasNew in
-            self?.refresher.endRefreshing()
+            
             if hasNew {
-                self?.teamsService.updateData()
+                self?.updateTeams()
+            } else {
+                self?.refresher.endRefreshing()
             }
         }
 
         return true
+    }
+    
+    private func updateTeams() {
+        teamsService.load().observe(on: MainScheduler.instance).subscribe {[weak self] models in
+            guard let self = self else {
+                self?.activityView.isHidden = true
+                self?.refresher.endRefreshing()
+                return
+            }
+            
+            self.stackView.replaceWithHideAnimation({
+                let views = models.map { model in
+                    let view = TeamsView().configure(title: model.title, teams: model.teams)
+                    view.delegate = self
+                    
+                    return view
+                }
+                return views
+            }) {[weak self] in
+                    self?.activityView.isHidden = true
+                    self?.refresher.endRefreshing()
+            }
+        }.disposed(by: disposeBag)
     }
 }
 

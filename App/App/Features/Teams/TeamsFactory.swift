@@ -8,9 +8,9 @@
 import UIKit
 
 final class TeamsFactory: VCFactory {
-    let controller = TeamsVController().initTeamsFeatures()
+    var controller = TeamsVController().initTeamsFeatures()
     
     override func create() -> UIViewController {
-        return controller
+        controller
     }
 }

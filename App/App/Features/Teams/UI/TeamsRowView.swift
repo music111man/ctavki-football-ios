@@ -9,20 +9,26 @@ import UIKit
 
 class TeamsRowView: UIView {
 
-    @IBOutlet weak var stackView: UIStackView!
-    
-    @IBOutlet weak var leftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var rightConstraint: NSLayoutConstraint!
+    let stackView = UIStackView()
     weak var delegate: BetViewDelegate?
     
     func configure(teams: [TeamViewModel]) -> [TeamViewModel] {
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.alignment = .fill
+        stackView.distribution = .fillProportionally
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            stackView.leftAnchor.constraint(equalTo: leftAnchor)
+        ])
         var unusedTeams = [TeamViewModel]()
         var width: CGFloat = 0
         let screenWidth = UIScreen.main.bounds.width
         for team in teams {
-            let view: TeamView = .fromNib() { v in
-                v.team = team
-            }
+            let view = TeamView().config(team: team)
             width += view.minWidth + 20
             if width >= screenWidth {
                 unusedTeams.append(team)
@@ -31,8 +37,9 @@ class TeamsRowView: UIView {
             view.delegate = self
             stackView.addArrangedSubview(view)
         }
-        if stackView.arrangedSubviews.count == 1 {
-            rightConstraint.isActive = false
+        
+        if stackView.arrangedSubviews.count > 1 {
+            stackView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         }
         
         return unusedTeams

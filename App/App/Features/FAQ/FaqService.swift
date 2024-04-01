@@ -12,29 +12,17 @@ import RxCocoa
 final class FaqService {
     
     let disposeBag = DisposeBag()
-    var faqs = BehaviorRelay<[FaqViewModel]>(value: [])
-    var isLoading = BehaviorRelay<Bool>(value: false)
     
-    init() {
-        NotificationCenter.default.rx.notification(Notification.Name.needUpdatFaqsScreen).subscribe {[weak self] _ in
-            self?.loadData()
-        }.disposed(by: disposeBag)
+    func load() -> Single<[FaqViewModel]> {
+        let observer: Observable<[Faq]> = Repository.selectObservable(Faq.table)
+        return observer.map { faqs -> [FaqViewModel] in
+                var models = [FaqViewModel]()
+                var index = 0
+                for faq in  faqs {
+                    index += 1
+                    models.append(FaqViewModel(index: index, question: faq.question, answer: faq.answer))
+                }
+                return models
+            }.asSingle()
     }
-    
-    func loadData() {
-        isLoading.accept(true)
-        DispatchQueue.global().async { [weak self] in
-            guard let self = self else { return }
-            var models = [FaqViewModel]()
-            let faqs: [Faq] = Repository.select(Faq.table)
-            var index = 0
-            for faq in  faqs {
-                index += 1
-                models.append(FaqViewModel(index: index, question: faq.question, answer: faq.answer))
-            }
-            self.faqs.accept(models)
-            self.isLoading.accept(false)
-        }
-    }
-    
 }

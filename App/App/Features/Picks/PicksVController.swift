@@ -20,34 +20,38 @@ class PicksVController: FeaureVController {
     var betSections = [BetSection]()
     var titleSection: Int = 0
     var didScroll = false
+    var isAppeare = false
+    
+    @discardableResult
+    func initBetViews() -> UIViewController {
+        
+        SyncService.shared.refresh() {[weak self] _ in
+            guard let self = self else { return }
+            self.updateData()
+            NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
+                printAppEvent("call needUpdateBetsScreen at BetsViewModel handler", marker: ">>betServ ")
+                self?.activityView.isHidden = false
+                self?.updateData()
+            }.disposed(by: disposeBag)
+        }
+        
+        return self
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        service.beginRefresh = {[weak self] in
-            self?.activityView.isHidden = false
-        }
-        
-        service.callback = { betSections in
-            printAppEvent("update bets \(betSections.count) data in screen", marker: ">>picks ")
-            if betSections.count == 1 { return }
-            DispatchQueue.main.async {[weak self] in
-                guard let self = self else { return }
-                self.betSections = betSections
-                self.setTitle()
-                self.tableView.reloadData()
-                self.refresher.endRefreshing()
-                self.activityView.isHidden = true
-                NotificationCenter.default.post(name: Notification.Name.tryToShowTourGuid, object: nil)
-            }
-        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        SyncService.shared.refresh() {[weak self] _ in
-            self?.service.updateData()
+        if isAppeare {
+            SyncService.shared.refresh() {[weak self] hasNew in
+                if hasNew {
+                    self?.updateData()
+                }
+            }
         }
+        isAppeare = true
     }
 
     override func initUI() {
@@ -94,14 +98,31 @@ class PicksVController: FeaureVController {
     
     override func refreshData() -> Bool {
         didScroll = false
-        SyncService.shared.refresh() {[weak self] hasData in
-            self?.refresher.endRefreshing()
-            if hasData {
-                self?.service.updateData()
+        SyncService.shared.refresh() {[weak self] hasNew in
+            if hasNew {
+                self?.updateData()
+            } else {
+                self?.refresher.endRefreshing()
             }
         }
         return true
     }
+    
+    private func updateData() {
+        service.load().observe(on: MainScheduler.instance).subscribe {[weak self] betSections in
+            guard let self = self else { return }
+            self.betSections = betSections
+            self.setTitle()
+            self.tableView.reloadData()
+            self.refresher.endRefreshing()
+            self.activityView.isHidden = true
+            if AppSettings.needTourGuidShow {
+                NotificationCenter.default.post(name: Notification.Name.tryToShowTourGuid,
+                                                object: nil)
+            }
+        }.disposed(by: disposeBag)
+    }
+    
     private func setTitle() {
         
         guard let section = tableView.indexPathsForVisibleRows?.first?.section,

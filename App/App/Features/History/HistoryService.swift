@@ -14,40 +14,27 @@ struct TeamHistoryViewModel {
     let title: String
     let betsCount: Int
     let amount: Int
+    let betGroups: [BetGroup]
 }
 
 final class HistoryService {
     typealias RefreshActivity = (Bool) -> ()
     var teamId: Int
-    let teamModel: BehaviorRelay<TeamHistoryViewModel?>
-    let betGroups = BehaviorRelay<[BetGroup]>(value: [])
-    let activeBetGroups = BehaviorRelay<[BetGroup]>(value: [])
     let disposeBag = DisposeBag()
-    var refreshActivity: RefreshActivity?
     
-    init(teamId: Int,_ refreshActivity: RefreshActivity? = nil) {
-        self.refreshActivity = refreshActivity
+    init(teamId: Int) {
         self.teamId = teamId
-        teamModel = BehaviorRelay(value: TeamHistoryViewModel(title: "...", betsCount: 0, amount: 0))
-        NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
-                    self?.updateData()
-        }.disposed(by: disposeBag)
     }
     
-    
-    func updateData() {
-        refreshActivity?(true)
-        DispatchQueue.global().async {[weak self] in
-            defer { self?.refreshActivity?(false) }
-            guard let self = self else { return }
-            let teams: [Team] = Repository.select(Team.table)
-            guard let team = teams.first(where: {$0.id == self.teamId}) else {
-                teamModel.accept(nil)
-                return
-            }
-            let allBets: [Bet] = Repository.select(Bet.table.filter(Bet.homeTeamIdField == self.teamId
-                                                                    || Bet.team2IdField == self.teamId)
-                                                    .order(Bet.eventDateField.desc))
+    func load() -> Single<TeamHistoryViewModel?> {
+        let teams: Observable<[Team]> = Repository.selectObservable(Team.table)
+        let allBets: Observable<[Bet]> = Repository.selectObservable(Bet.table.filter(Bet.homeTeamIdField == self.teamId
+                                                                || Bet.team2IdField == self.teamId)
+                                                .order(Bet.eventDateField.desc))
+        
+        return Observable.combineLatest(teams, allBets).map {[weak self](teams, allBets) -> TeamHistoryViewModel? in
+            guard let self = self, let team = teams.first(where: {$0.id == self.teamId}) else { return nil }
+            
             let activeBets = allBets.filter { $0.isActive }.sorted { $0.eventDate < $01.eventDate }
 
             let bets:[Bet] = allBets.filter { !$0.isActive }
@@ -79,10 +66,12 @@ final class HistoryService {
                 BetGroup(eventDate: date, active: false, bets: betViewModels.filter { $0.eventDate.withoutTimeStamp == date })
             }
             let amount = Int(groups.map { $0.resaltbetSum }.sum.rounded())
-            self.teamModel.accept(TeamHistoryViewModel(title: team.title, betsCount: bets.count, amount: amount))
-            self.betGroups.accept(activeGroups + groups)
-//            self.activeBetGroups.accept(activeGroups)
-        }
+            return TeamHistoryViewModel(title: team.title,
+                                        betsCount: bets.count,
+                                        amount: amount,
+                                        betGroups: activeGroups + groups)
+
+        }.asSingle()
     }
 }
 

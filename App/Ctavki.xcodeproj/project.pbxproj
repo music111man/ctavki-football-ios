@@ -59,16 +59,11 @@
 		F2973D052B9EEC2F003612E1 /* HistoryVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D032B9EEC2F003612E1 /* HistoryVController.swift */; };
 		F2973D082B9EF96A003612E1 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D072B9EF96A003612E1 /* HistoryService.swift */; };
 		F2973D0A2B9F2B43003612E1 /* HistoryVController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2973D092B9F2B43003612E1 /* HistoryVController.storyboard */; };
-		F2973D102B9F4599003612E1 /* TeamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2973D0F2B9F4599003612E1 /* TeamView.xib */; };
 		F2973D122B9F4811003612E1 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D112B9F4811003612E1 /* TeamView.swift */; };
-		F2973D142B9F526C003612E1 /* TeamsRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2973D132B9F526C003612E1 /* TeamsRowView.xib */; };
 		F2973D162B9F5284003612E1 /* TeamsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D152B9F5284003612E1 /* TeamsRowView.swift */; };
 		F2973D192B9F5B1C003612E1 /* BetsCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2973D182B9F5B1C003612E1 /* BetsCellView.xib */; };
 		F2973D1B2B9F5B4A003612E1 /* BetsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D1A2B9F5B4A003612E1 /* BetsCellView.swift */; };
-		F2973D212B9F7B73003612E1 /* TeamsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D1F2B9F7B73003612E1 /* TeamsViewCell.swift */; };
-		F2973D222B9F7B73003612E1 /* TeamsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2973D202B9F7B73003612E1 /* TeamsViewCell.xib */; };
 		F2973D242B9F7D45003612E1 /* TeamsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D232B9F7D45003612E1 /* TeamsService.swift */; };
-		F2A016302B9E499000B532C1 /* TeamsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A0162F2B9E499000B532C1 /* TeamsView.xib */; };
 		F2A016322B9E49CD00B532C1 /* TeamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A016312B9E49CD00B532C1 /* TeamsView.swift */; };
 		F2A0163A2B9E6A1700B532C1 /* NoActivebetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A016382B9E6A1700B532C1 /* NoActivebetsCell.swift */; };
 		F2A0163B2B9E6A1700B532C1 /* NoActiveBetsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A016392B9E6A1700B532C1 /* NoActiveBetsCell.xib */; };
@@ -162,16 +157,11 @@
 		F2973D032B9EEC2F003612E1 /* HistoryVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVController.swift; sourceTree = "<group>"; };
 		F2973D072B9EF96A003612E1 /* HistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryService.swift; sourceTree = "<group>"; };
 		F2973D092B9F2B43003612E1 /* HistoryVController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HistoryVController.storyboard; sourceTree = "<group>"; };
-		F2973D0F2B9F4599003612E1 /* TeamView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamView.xib; sourceTree = "<group>"; };
 		F2973D112B9F4811003612E1 /* TeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
-		F2973D132B9F526C003612E1 /* TeamsRowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamsRowView.xib; sourceTree = "<group>"; };
 		F2973D152B9F5284003612E1 /* TeamsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsRowView.swift; sourceTree = "<group>"; };
 		F2973D182B9F5B1C003612E1 /* BetsCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetsCellView.xib; sourceTree = "<group>"; };
 		F2973D1A2B9F5B4A003612E1 /* BetsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsCellView.swift; sourceTree = "<group>"; };
-		F2973D1F2B9F7B73003612E1 /* TeamsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewCell.swift; sourceTree = "<group>"; };
-		F2973D202B9F7B73003612E1 /* TeamsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamsViewCell.xib; sourceTree = "<group>"; };
 		F2973D232B9F7D45003612E1 /* TeamsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsService.swift; sourceTree = "<group>"; };
-		F2A0162F2B9E499000B532C1 /* TeamsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamsView.xib; sourceTree = "<group>"; };
 		F2A016312B9E49CD00B532C1 /* TeamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsView.swift; sourceTree = "<group>"; };
 		F2A016382B9E6A1700B532C1 /* NoActivebetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoActivebetsCell.swift; sourceTree = "<group>"; };
 		F2A016392B9E6A1700B532C1 /* NoActiveBetsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoActiveBetsCell.xib; sourceTree = "<group>"; };
@@ -478,24 +468,6 @@
 			path = History;
 			sourceTree = "<group>";
 		};
-		F2973D0B2B9F411F003612E1 /* TeamsRowView */ = {
-			isa = PBXGroup;
-			children = (
-				F2973D132B9F526C003612E1 /* TeamsRowView.xib */,
-				F2973D152B9F5284003612E1 /* TeamsRowView.swift */,
-			);
-			path = TeamsRowView;
-			sourceTree = "<group>";
-		};
-		F2973D0E2B9F4505003612E1 /* TeamView */ = {
-			isa = PBXGroup;
-			children = (
-				F2973D0F2B9F4599003612E1 /* TeamView.xib */,
-				F2973D112B9F4811003612E1 /* TeamView.swift */,
-			);
-			path = TeamView;
-			sourceTree = "<group>";
-		};
 		F2973D172B9F5AE7003612E1 /* BetsCellView */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,33 +477,14 @@
 			path = BetsCellView;
 			sourceTree = "<group>";
 		};
-		F2973D1C2B9F7B2B003612E1 /* TeamCell */ = {
-			isa = PBXGroup;
-			children = (
-				F2973D1F2B9F7B73003612E1 /* TeamsViewCell.swift */,
-				F2973D202B9F7B73003612E1 /* TeamsViewCell.xib */,
-			);
-			path = TeamCell;
-			sourceTree = "<group>";
-		};
 		F2A0162D2B9E494700B532C1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				F2973D1C2B9F7B2B003612E1 /* TeamCell */,
-				F2973D0E2B9F4505003612E1 /* TeamView */,
-				F2973D0B2B9F411F003612E1 /* TeamsRowView */,
-				F2A0162E2B9E497100B532C1 /* TeamsView */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		F2A0162E2B9E497100B532C1 /* TeamsView */ = {
-			isa = PBXGroup;
-			children = (
-				F2A0162F2B9E499000B532C1 /* TeamsView.xib */,
+				F2973D112B9F4811003612E1 /* TeamView.swift */,
+				F2973D152B9F5284003612E1 /* TeamsRowView.swift */,
 				F2A016312B9E49CD00B532C1 /* TeamsView.swift */,
 			);
-			path = TeamsView;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		F2A016332B9E5E8000B532C1 /* NoActiveBets */ = {
@@ -722,9 +675,6 @@
 				F20704832B87A33800DD6364 /* Localizable.strings in Resources */,
 				F2218ACD2BA2FCF500C53C46 /* SignInVController.storyboard in Resources */,
 				F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */,
-				F2973D142B9F526C003612E1 /* TeamsRowView.xib in Resources */,
-				F2973D222B9F7B73003612E1 /* TeamsViewCell.xib in Resources */,
-				F2A016302B9E499000B532C1 /* TeamsView.xib in Resources */,
 				F2EB1A372B9A2E9C0027D782 /* BetDetailsVController.storyboard in Resources */,
 				F2973D0A2B9F2B43003612E1 /* HistoryVController.storyboard in Resources */,
 				F2DF9CAC2BA899BA00898F4E /* GoogleService-Info.plist in Resources */,
@@ -733,7 +683,6 @@
 				F2DF9CB42BA9D8C600898F4E /* DonateCell.xib in Resources */,
 				F226F9FD2B9B943900F9D391 /* BetSectionHeaderView.xib in Resources */,
 				F2888DCC2B9B61DD007F62F2 /* BetResultHeaderView.xib in Resources */,
-				F2973D102B9F4599003612E1 /* TeamView.xib in Resources */,
 				F291F13D2B9654CD00BB8E58 /* BetsCell.xib in Resources */,
 				F226FA0A2B9CA0E200F9D391 /* FaqView.xib in Resources */,
 			);
@@ -875,7 +824,6 @@
 				F226FA0E2B9CC6A500F9D391 /* UIStackView.swift in Sources */,
 				F2DF9CAA2BA86B5900898F4E /* Sequence.swift in Sources */,
 				F291F1382B96355B00BB8E58 /* BetsService.swift in Sources */,
-				F2973D212B9F7B73003612E1 /* TeamsViewCell.swift in Sources */,
 				F2EA78D02B90941D006B3A1C /* ApiResponseData.swift in Sources */,
 				F2EA78D92B90C8B0006B3A1C /* ApiRequest.swift in Sources */,
 				F22CE0B12B88BC6E00732FFB /* PicksFactory.swift in Sources */,
@@ -1038,7 +986,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -1069,7 +1017,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;

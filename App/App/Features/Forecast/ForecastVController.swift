@@ -89,23 +89,23 @@ class ForecastVController: UIViewController {
         super.viewDidLoad()
         activityView.setStyle()
         refresher.attributedTitle = NSAttributedString(string: "")
-        refresher.rx.controlEvent(UIControl.Event.valueChanged).bind {[weak self] in
-            self?.service.loadData()
+        refresher.rx.controlEvent(UIControl.Event.valueChanged).bind {
+            SyncService.shared.refresh {[weak self] hasNew in
+                if hasNew {
+                    self?.loadForecast()
+                } else {
+                    self?.refresher.endRefreshing()
+                }
+            }
+            
         }.disposed(by: disposeBag)
         scrollView.addSubview(refresher)
         initLabels()
         initGradients()
-        service.model.observe(on: MainScheduler.instance).bind {[weak self] model in
-            self?.model = model
-            self?.activityView.isHidden = true
-            self?.refresher.endRefreshing()
-            if model == nil {
-                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
-            }
-        }.disposed(by: disposeBag)
+        
         NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
             self?.activityView.isHidden = false
-            self?.service.loadData()
+            self?.loadForecast()
         }.disposed(by: disposeBag)
         
         teamView1.tap {[weak self] in
@@ -126,10 +126,8 @@ class ForecastVController: UIViewController {
         backBtnView.tap {[weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
         }.disposed(by: disposeBag)
-        service.needUpdate.observe(on: MainScheduler.instance).bind { [weak self] in
-            self?.activityView.isHidden = false
-        }.disposed(by: disposeBag)
-        service.loadData()
+        
+        loadForecast()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -186,6 +184,17 @@ class ForecastVController: UIViewController {
                              end: .redEnd,
                              isLine: false, index: 0)
         }
+    }
+    
+    private func loadForecast() {
+        service.load().observe(on: MainScheduler.instance).subscribe {[weak self] model in
+            self?.model = model
+            self?.activityView.isHidden = true
+            self?.refresher.endRefreshing()
+            if model == nil {
+                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
+            }
+        }.disposed(by: disposeBag)
     }
     
     func animate(onLeft: Bool, _ complite: @escaping() -> ()) {

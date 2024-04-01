@@ -1072,7 +1072,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 11 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 7 nibs.
   struct nib {
     /// Nib `BetResultHeaderView`.
     static let betResultHeaderView = _R.nib._BetResultHeaderView()
@@ -1088,14 +1088,6 @@ struct R: Rswift.Validatable {
     static let faqView = _R.nib._FaqView()
     /// Nib `NoActiveBetsCell`.
     static let noActiveBetsCell = _R.nib._NoActiveBetsCell()
-    /// Nib `TeamView`.
-    static let teamView = _R.nib._TeamView()
-    /// Nib `TeamsRowView`.
-    static let teamsRowView = _R.nib._TeamsRowView()
-    /// Nib `TeamsViewCell`.
-    static let teamsViewCell = _R.nib._TeamsViewCell()
-    /// Nib `TeamsView`.
-    static let teamsView = _R.nib._TeamsView()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "BetResultHeaderView", in: bundle)`
@@ -1153,38 +1145,6 @@ struct R: Rswift.Validatable {
     }
     #endif
 
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "TeamView", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.teamView) instead")
-    static func teamView(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.teamView)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "TeamsRowView", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.teamsRowView) instead")
-    static func teamsRowView(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.teamsRowView)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "TeamsView", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.teamsView) instead")
-    static func teamsView(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.teamsView)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "TeamsViewCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.teamsViewCell) instead")
-    static func teamsViewCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.teamsViewCell)
-    }
-    #endif
-
     static func betResultHeaderView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BetResultHeaderView? {
       return R.nib.betResultHeaderView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetResultHeaderView
     }
@@ -1211,22 +1171,6 @@ struct R: Rswift.Validatable {
 
     static func noActiveBetsCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NoActiveBetsCell? {
       return R.nib.noActiveBetsCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NoActiveBetsCell
-    }
-
-    static func teamView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamView? {
-      return R.nib.teamView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamView
-    }
-
-    static func teamsRowView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamsRowView? {
-      return R.nib.teamsRowView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsRowView
-    }
-
-    static func teamsView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamsView? {
-      return R.nib.teamsView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsView
-    }
-
-    static func teamsViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamsViewCell? {
-      return R.nib.teamsViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsViewCell
     }
 
     fileprivate init() {}
@@ -3201,50 +3145,6 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "text_theme", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_theme' is used in nib 'NoActiveBetsCell', but couldn't be loaded.") }
           if UIKit.UIColor(named: "toolbarItem", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'toolbarItem' is used in nib 'NoActiveBetsCell', but couldn't be loaded.") }
         }
-      }
-
-      fileprivate init() {}
-    }
-
-    struct _TeamView: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "TeamView"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamView
-      }
-
-      fileprivate init() {}
-    }
-
-    struct _TeamsRowView: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "TeamsRowView"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamsRowView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsRowView
-      }
-
-      fileprivate init() {}
-    }
-
-    struct _TeamsView: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "TeamsView"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamsView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsView
-      }
-
-      fileprivate init() {}
-    }
-
-    struct _TeamsViewCell: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "TeamsViewCell"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TeamsViewCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TeamsViewCell
       }
 
       fileprivate init() {}

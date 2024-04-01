@@ -16,7 +16,7 @@ final class ToolBarView: UIView {
     }
     typealias Action = (_ action: MenuAction) -> ()
     
-    private var action: Action!
+    var action: Action!
     private var buttons = [MenuButton]()
     private let borderTopView = UIView()
     func initUI(action: @escaping Action) {

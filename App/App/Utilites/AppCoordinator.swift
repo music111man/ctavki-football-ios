@@ -29,16 +29,13 @@ final class AppCoordinator: NSObject, PCoordinator {
     }
     
     init(_ application: UIApplication) {
-        Repository.initTable(t: Bet.self)
-        Repository.initTable(t: BetType.self)
-        Repository.initTable(t: Team.self)
-        Repository.initTable(t: Faq.self)
+        Repository.initDB(ts: [Bet.self, BetType.self, Team.self, Faq.self, Account.self])
         window = UIWindow(frame: UIScreen.main.bounds)
         mainCoordinator = MainCoordinator()
         super.init()
         FirebaseApp.configure()
         IAPService.default.requestProducts()
-        syncService.refresh()
+        
         UIApplication.shared.applicationIconBadgeNumber = 0
         PushService.config(application, self)
         initNotificationEventHandlers()
@@ -49,6 +46,8 @@ final class AppCoordinator: NSObject, PCoordinator {
                 self.syncService.refresh()
             }
         }.disposed(by: disposeBag)
+        syncService.refresh()
+        
     }
     
     func start() {

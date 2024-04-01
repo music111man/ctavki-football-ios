@@ -8,13 +8,8 @@
 import UIKit
 
 final class PicksFactory: VCFactory {
-    
+    let controller = PicksVController().initBetViews()
     override func create() -> UIViewController {
-        let navigator = getNavigator()
-        if navigator.viewControllers.isEmpty {
-            navigator.pushViewController(PicksVController(), animated: false)
-        }
-        
-        return navigator
+        return controller
     }
 }

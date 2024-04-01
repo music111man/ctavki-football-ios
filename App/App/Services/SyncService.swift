@@ -63,27 +63,32 @@ final class SyncService {
             AppSettings.giftFreeBetsCount = responseData.giftFreeBetsCount
             AppSettings.userBetsLeft = responseData.userBetsLeft
             AppSettings.isSubscribedToTgChannel = responseData.isSubscribedToTgChannel
+            Repository.async {[weak self] in
+                Repository.refreshData(responseData.teams)
+                Repository.refreshData(responseData.bets)
+                Repository.refreshData(responseData.faqs)
+                Repository.refreshData(responseData.betTypes)
+                
+                
+                
+                if !responseData.faqs.isEmpty {
+                    NotificationCenter.default.post(name: NSNotification.Name.needUpdatFaqsScreen, object: nil)
+                }
+                if !responseData.teams.isEmpty || !responseData.bets.isEmpty || !responseData.betTypes.isEmpty {
+                    NotificationCenter.default.post(name: NSNotification.Name.needUpdateBetsScreen, object: nil)
+                }
+                let newData = !(responseData.teams.isEmpty
+                                && responseData.bets.isEmpty
+                                && responseData.betTypes.isEmpty
+                                && responseData.faqs.isEmpty)
+                self?.lastUpdateDate = Date()
+                self?.compliteTasks.compactMap{$0}.forEach{ complite in
+                    complite(newData)
+                }
             
-            Repository.refreshData(responseData.teams)
-            Repository.refreshData(responseData.bets)
-            Repository.refreshData(responseData.faqs)
-            Repository.refreshData(responseData.betTypes)
-            if !responseData.faqs.isEmpty {
-                NotificationCenter.default.post(name: NSNotification.Name.needUpdatFaqsScreen, object: nil)
+                printAppEvent("refresh data \(newData)")
+                self?.compliteTasks.removeAll()
             }
-            if !responseData.teams.isEmpty || !responseData.bets.isEmpty || !responseData.betTypes.isEmpty {
-                NotificationCenter.default.post(name: NSNotification.Name.needUpdateBetsScreen, object: nil)
-            }
-            let newData = !(responseData.teams.isEmpty
-                        && responseData.bets.isEmpty
-                        && responseData.betTypes.isEmpty
-                        && responseData.faqs.isEmpty)
-            self?.lastUpdateDate = Date()
-            self?.compliteTasks.compactMap{$0}.forEach{ complite in
-                complite(newData)
-            }
-            printAppEvent("refresh data \(newData)")
-            self?.compliteTasks.removeAll()
             self?.dispatchWorkItem?.cancel()
             let item = DispatchWorkItem {[weak self] in
                 self?.refresh()
