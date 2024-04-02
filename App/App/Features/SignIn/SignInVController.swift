@@ -11,6 +11,9 @@ import AuthenticationServices
 
 class SignInVController: UIViewController {
 
+    @IBOutlet weak var signOutLabel: UILabel!
+    @IBOutlet weak var signOutView: UIView!
+    @IBOutlet weak var signOutContainerView: UIView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var telegramBtnView: UIView!
     @IBOutlet weak var googleBtnView: UIView!
@@ -44,6 +47,7 @@ class SignInVController: UIViewController {
             self?.googleBtnView.isHidden = isSignIn
             self?.telegramBtnView.isHidden = isSignIn
             self?.appleBtnView?.isHidden = isSignIn
+            self?.signOutContainerView.isHidden = !AppSettings.enableSignOut
             if #available(iOS 13.0, *) {
                 self?.stackView.arrangedSubviews.first?.isHidden = isSignIn
             }
@@ -63,11 +67,7 @@ class SignInVController: UIViewController {
         }.disposed(by: disposeBag)
         containerView.tap(animateTapGesture: false) { }.disposed(by: disposeBag)
         closeView.tap {[weak self] in
-            UIView.animate(withDuration: 0.3) {[weak self] in
-                self?.view.layer.opacity = 0
-            } completion: {[weak self] _ in
-                self?.dismiss(animated: false)
-            }
+            self?.close()
         }.disposed(by: disposeBag)
         goToView.superview?.tap {[weak self] in
             self?.dismiss(animated: false) { [weak self] in
@@ -84,7 +84,7 @@ class SignInVController: UIViewController {
             self?.singInMethodName = SignInMethod.telegram(uuid: "").toString
             self?.accountService.signInByTelegram()
         }.disposed(by: disposeBag)
-        NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification).subscribe {[weak self] _ in
+        NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
             self?.activityView.isHidden = !(self?.accountService.signIn() ?? false)
          }.disposed(by: disposeBag)
         
@@ -95,38 +95,55 @@ class SignInVController: UIViewController {
             authorizationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
             stackView.insertArrangedSubview(authorizationButton, at: 0)
             authorizationButton.tap {[weak self] in
-                self?.singInMethodName = SignInMethod.apple(idToken: "", userName: "").toString
+                self?.singInMethodName = SignInMethod.apple(idToken: "", jwt: "", userName: "", userEmail: "").toString
                 self?.accountService.signInByApple(presenting: self!)
             }.disposed(by: disposeBag)
             appleBtnView = authorizationButton
         }
         
-        NotificationCenter.default.rx.notification(Notification.Name.internalServerError).subscribe {[weak self] _ in
+        NotificationCenter.default.rx.notification(Notification.Name.internalServerError).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
             self?.activityView.isHidden = true
             if let metnodName = self?.singInMethodName {
-                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.log_in_unable(metnodName))
+                self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.log_in_unable(metnodName))
             }
          }.disposed(by: disposeBag)
-        NotificationCenter.default.rx.notification(Notification.Name.badServerResponse).subscribe {[weak self] _ in
+        NotificationCenter.default.rx.notification(Notification.Name.badServerResponse).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
             self?.activityView.isHidden = true
             if let metnodName = self?.singInMethodName {
-                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.log_in_unable(metnodName))
+                self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.log_in_unable(metnodName))
             }
          }.disposed(by: disposeBag)
-        NotificationCenter.default.rx.notification(Notification.Name.deserializeError).subscribe {[weak self] _ in
+        NotificationCenter.default.rx.notification(Notification.Name.deserializeError).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
             self?.activityView.isHidden = true
             if self?.singInMethodName != nil {
-                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
+                self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
             }
          }.disposed(by: disposeBag)
-        NotificationCenter.default.rx.notification(Notification.Name.badNetRequest).subscribe {[weak self] _ in
+        NotificationCenter.default.rx.notification(Notification.Name.badNetRequest).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
             self?.activityView.isHidden = true
             if self?.singInMethodName != nil {
-                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.net_error())
+                self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.net_error())
             }
          }.disposed(by: disposeBag)
         
         activityView.isHidden = !accountService.signIn()
+        signOutLabel.text = R.string.localizable.sign_out()
+        signOutContainerView.isHidden = !AppSettings.enableSignOut
+        signOutView.tap {[weak self] in
+            self?.showOkCancelAlert(title: R.string.localizable.sign_out(), message: R.string.localizable.sing_out_desc()) {[weak self] in
+                AppSettings.signInMethod = .singOut
+                self?.accountService.signIn()
+                self?.close()
+            }
+        }.disposed(by: disposeBag)
+    }
+    
+    func close() {
+        UIView.animate(withDuration: 0.3) {[weak self] in
+            self?.view.layer.opacity = 0
+        } completion: {[weak self] _ in
+            self?.dismiss(animated: false)
+        }
     }
 }
 
@@ -138,33 +155,13 @@ extension SignInVController: ASAuthorizationControllerPresentationContextProvidi
 }
 
 extension SignInVController: AccountServiceDelegate {
-    func getUserName(name: String, _ complite: ((String) -> Void)?) {
-        DispatchQueue.main.async { [weak self] in
-            let alert = UIAlertController(title: R.string.localizable.log_in_with_apple(),
-                                          message: R.string.localizable.log_in_with_apple_desc(),
-                                          preferredStyle: .alert)
-            
-            alert.addTextField { textField in
-                textField.placeholder = R.string.localizable.enter_name()
-                textField.text = name.isEmpty ? nil : name
-            }
-            
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) {[weak self] _ in
-                guard let textField = alert.textFields?[0],
-                      let userName = textField.text,
-                      userName.isCorrectUserName else {
-                    self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.incorrect_user_name()) {
-                        complite?("")
-                    }
-                    return
-                }
-                
-                complite?(userName.removeDublicateSpaces)
-            })
-            alert.addAction(UIAlertAction(title: R.string.localizable.cancel_Ok(), style: UIAlertAction.Style.cancel) {_ in
-                complite?("")
-            })
-            self?.present(alert, animated: true)
+    func showSettingsWarning() {
+        showOkCancelAlert(title: R.string.localizable.log_in_with_apple(),
+                  message: R.string.localizable.log_in_with_apple_desc(),
+                  okText: R.string.localizable.settings(),
+                  cancelText: R.string.localizable.cancel_Ok()) {
+            let urlString = "App-Prefs:root=APPLE_ID"
+            UIApplication.shared.open(URL(string: urlString)!, options: [:], completionHandler: nil)
         }
     }
 }

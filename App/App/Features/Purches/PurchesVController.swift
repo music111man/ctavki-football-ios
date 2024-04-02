@@ -32,7 +32,7 @@ final class PurchesVController: FeaureVController {
         service.endPurche.observe(on: MainScheduler.instance).bind {[weak self] message in
             
             if let message = message {
-                self?.showAlert(title: R.string.localizable.donate(), message: message)
+                self?.showOkAlert(title: R.string.localizable.donate(), message: message)
             }
             self?.tableView.animateOpacity(0.3, 1)
             self?.blackView.animateOpacity(0.3, 0) {[weak self] in
@@ -104,7 +104,7 @@ final class PurchesVController: FeaureVController {
             tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 20),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             warningLabel.centerYAnchor.constraint(equalTo: tableView.centerYAnchor),
             warningLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
             warningLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30)

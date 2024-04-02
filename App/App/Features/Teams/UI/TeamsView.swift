@@ -43,10 +43,10 @@ class TeamsView: UIView {
             separatorView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 5),
             separatorView.leftAnchor.constraint(equalTo: headerLabel.leftAnchor),
             separatorView.rightAnchor.constraint(equalTo: headerLabel.rightAnchor),
-            stackView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 10),
+            stackView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 0),
             stackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
             stackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5)
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         ])
         let g = separatorView.setGradient(colors: [.backgroundMain,
                                                    .betGroupHeader,

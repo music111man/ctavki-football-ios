@@ -13,7 +13,8 @@ import AuthenticationServices
 enum SignInMethod {
     case google(idToken: String)
     case telegram(uuid: String)
-    case apple(idToken: String, userName: String)
+    case apple(idToken: String, jwt: String, userName: String, userEmail: String)
+    case singOut
     case non
     
     var toString: String? {
@@ -27,7 +28,7 @@ enum SignInMethod {
 }
 
 protocol AccountServiceDelegate: AnyObject {
-    func getUserName(name: String, _ complite: ((String) -> Void)?)
+    func showSettingsWarning()
 }
 
 final class AccountService: NSObject {
@@ -92,9 +93,14 @@ final class AccountService: NSObject {
         case let .google(idToken):
             singInGoogle(idToken)
             return true
-        case .apple(let idToken, let userName):
-            singInApple(idToken, userName)
+        case .apple(let idToken, let jwt, let userName, let userEmail):
+            singInApple(idToken, jwt, userName, userEmail)
             return true
+        case .singOut:
+            AppSettings.enableSignOut = false
+            AppSettings.userName = ""
+            AppSettings.userToken = ""
+            return false
         }
     }
     
@@ -114,24 +120,27 @@ final class AccountService: NSObject {
         }
     }
     
-    private func singInApple(_ idToken: String, _ userName: String) {
+    private func singInApple(_ idToken: String,_ jwt: String, _ userName: String, _ userEmail: String) {
         if userName.isEmpty {
+            delegate?.showSettingsWarning()
             AppSettings.signInMethod = .non
             printAppEvent("can not start sign in apple - no user name")
+            
             return
         }
-        printAppEvent("start sign in apple as \(userName)")
-        NetProvider.makeRequest(SignInResponseEntity.self, .signInByApple(idToken: idToken, userName: userName)) {[weak self] response in
-            self?.processResponse(response: response)
+        printAppEvent("start sign in apple as \(userName) with \(userEmail)")
+        NetProvider.makeRequest(SignInResponseEntity.self, .signInByApple(idToken: idToken, jwt: jwt, userName: userName, userEmail: userEmail)) {[weak self] response in
+            self?.processResponse(response: response, enableSingOut: true)
         }
     }
     
-    private func processResponse(response: SignInResponseEntity?) {
+    private func processResponse(response: SignInResponseEntity?, enableSingOut: Bool = false) {
         defer {
             printAppEvent("reset sing in method to non")
             AppSettings.signInMethod = .non }
         guard let response = response else {
             printAppEvent("bad sign in response")
+            
             return
         }
         
@@ -149,9 +158,10 @@ final class AccountService: NSObject {
                               alreadyRegistered: response.alreadyRegistered,
                               subscribed: response.subscribed)
         Repository.refreshData([account])
+        AppSettings.enableSignOut = enableSingOut
         AppSettings.userName = response.name
         AppSettings.userToken = response.jwt
-        
+
         return
     }
 }
@@ -161,8 +171,10 @@ extension AccountService: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
               let tokenData = credential.authorizationCode,
-              let token = String(data: tokenData, encoding: .utf8) else { return }
-
+              let token = String(data: tokenData, encoding: .utf8),
+              let identityTokenData = credential.identityToken,
+              let jwt = String(data: identityTokenData, encoding: .utf8) else { return }
+//        printAppEvent("identityToken: \(jwt)")
         var userName = ""
         if let givenName = credential.fullName?.givenName, !givenName.isEmpty {
             userName = givenName
@@ -174,30 +186,11 @@ extension AccountService: ASAuthorizationControllerDelegate {
                 userName = "\(userName) \(familyName)"
             }
         }
-        printAppEvent("apple sign in for \(userName)")
-        if AppSettings.userNameApple.isEmpty {
-            // Особенности работы апи от эппл - имя пользователя можно получить всего один раз
-            // Потому сохраняем его на будущее, так как если в первый раз не залогинились,
-            // Следующие попытки не будут возвращать имя пользователя - используем то. что
-            // В превый раз сохранили
-            AppSettings.userNameApple = userName
-        }
-        // Будем спрашивать пользователя
-        if userName.isEmpty {
-            delegate?.getUserName(name: AppSettings.userNameApple) {[weak self] userName in
-                if userName.isEmpty { return }
-                AppSettings.userNameApple = userName
-                printAppEvent("apple sign in for entered name: \(userName)")
-                AppSettings.signInMethod = .apple(idToken: token, userName: AppSettings.userNameApple)
-                DispatchQueue.global().async {[weak self] in
-                    self?.signIn()
-                }
-                
-            }
-        } else {
-            AppSettings.signInMethod = .apple(idToken: token, userName: AppSettings.userNameApple)
-            signIn()
-        }
+        let userEmail = credential.email ?? ""
+        
+        AppSettings.signInMethod = .apple(idToken: token, jwt: jwt, userName: userName, userEmail: userEmail)
+        signIn()
+
     }
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         printAppEvent("\(error)")

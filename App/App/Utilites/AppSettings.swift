@@ -34,6 +34,9 @@ final class AppSettings {
     
     private static let signInMethodKey = "signInMethodKey"
     private static let tokenFoSignInKey = "tokenForSignIn"
+    private static let appleJWTKey = "appleJWTKey"
+    private static let appleUserEmail = "appleUserEmail"
+    private static let appleUserName = "appleUserName"
     
     private init(){}
     
@@ -64,10 +67,18 @@ final class AppSettings {
             case let .telegram(uuid):
                 UserDefaults.standard.setValue(2, forKey: Self.signInMethodKey)
                 UserDefaults.standard.setValue(uuid, forKey: Self.tokenFoSignInKey)
-            case .apple(let idToken, let userName):
+            case .apple(let idToken, let jwt, let userName, let userEmail):
                 UserDefaults.standard.setValue(3, forKey: Self.signInMethodKey)
                 UserDefaults.standard.setValue(idToken, forKey: Self.tokenFoSignInKey)
-                Self.userName = userName
+                UserDefaults.standard.setValue(jwt, forKey: Self.appleJWTKey)
+                if !userName.isEmpty {
+                    UserDefaults.standard.setValue(userName, forKey: Self.appleUserName)
+                }
+                if !userEmail.isEmpty {
+                    UserDefaults.standard.setValue(userEmail, forKey: Self.appleUserEmail)
+                }
+            case .singOut:
+                UserDefaults.standard.setValue(4, forKey: Self.signInMethodKey)
             }
         }
         get {
@@ -83,9 +94,14 @@ final class AppSettings {
                     return .telegram(uuid: token)
                 }
             case 3:
-                if let token = UserDefaults.standard.string(forKey: Self.tokenFoSignInKey), !Self.userName.isEmpty {
-                    return .apple(idToken: token, userName: Self.userName)
+                if let token = UserDefaults.standard.string(forKey: Self.tokenFoSignInKey),
+                 let jwt = UserDefaults.standard.string(forKey: Self.appleJWTKey) {
+                    let userName = UserDefaults.standard.string(forKey: Self.appleUserName) ?? ""
+                    let userEmail = UserDefaults.standard.string(forKey: Self.appleUserEmail) ?? ""
+                    return .apple(idToken: token, jwt: jwt, userName: userName, userEmail: userEmail)
                 }
+            case 4:
+                return .singOut
             default:
                 break
             }
@@ -95,13 +111,10 @@ final class AppSettings {
         }
     }
     
-    @Storage(key: "userNameApple", defaultValue: "")
-    static var userNameApple: String
-    
     @Storage(key: "userName", defaultValue: "")
     static var userName: String
     
-    static let clientVersion = "2.0.0"
+    static let clientVersion = "1.0"
     
     static let apiKey = "QPejRtrJ9dv7u@8p4hrA4eY!P3XYyu"
     
@@ -149,6 +162,9 @@ final class AppSettings {
             authorizeEvent.accept(!newValue.isEmpty)
         }
     }
+    
+    @Storage(key: "enableSignOut", defaultValue: false)
+    static var enableSignOut: Bool
     
     static var isAuthorized: Bool {
         !Self.userToken.isEmpty

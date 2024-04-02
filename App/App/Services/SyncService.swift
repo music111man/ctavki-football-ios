@@ -49,13 +49,10 @@ final class SyncService {
                 complite?(false)
                 return
             }
-            if responseData.appupdate != .none {
-                NotificationCenter.default.post(name: NSNotification.Name.needUpdateApp, object: responseData.appupdate)
-                
-            }
+            
             if responseData.appupdate == .required {
-                complite?(false)
-                return
+                NotificationCenter.default.post(name: NSNotification.Name.needUpdateApp, object: nil)
+                
             }
             AppSettings.lastTimeSynced = responseData.newLastTimeDataUpdated
             AppSettings.lastLocaleThenUpdate = Locale.current.identifier
@@ -82,8 +79,10 @@ final class SyncService {
                                 && responseData.betTypes.isEmpty
                                 && responseData.faqs.isEmpty)
                 self?.lastUpdateDate = Date()
-                self?.compliteTasks.compactMap{$0}.forEach{ complite in
-                    complite(newData)
+                DispatchQueue.main.async {[weak self] in
+                    self?.compliteTasks.compactMap{$0}.forEach{ complite in
+                        complite(newData)
+                    }
                 }
             
                 printAppEvent("refresh data \(newData)")

@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m33-Fd-BYC">
-                                <rect key="frame" x="30" y="219.66666666666666" width="333" height="412.66666666666674"/>
+                                <rect key="frame" x="30" y="179.66666666666666" width="333" height="492.66666666666674"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account_circle" translatesAutoresizingMaskIntoConstraints="NO" id="BIS-6h-atR">
                                         <rect key="frame" x="131.66666666666666" y="30" width="70" height="70"/>
@@ -35,11 +35,12 @@
                                         <color key="textColor" name="bet_group_header"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы должны войти чтобы посмотреть прогнозы" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKA-ru-1fn">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы должны войти чтобы посмотреть прогнозы" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKA-ru-1fn">
                                         <rect key="frame" x="20" y="149.33333333333334" width="293" height="38.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" name="selected_toolbar_item"/>
                                         <nil key="highlightedColor"/>
+                                        <lineBreakStrategy key="lineBreakStrategy" hangulWordPriority="YES"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bc0-jx-knS">
                                         <rect key="frame" x="305" y="-12" width="40" height="40"/>
@@ -65,7 +66,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LS0-Dy-cnC">
-                                        <rect key="frame" x="15" y="207.66666666666663" width="303" height="190"/>
+                                        <rect key="frame" x="15" y="207.66666666666663" width="303" height="270"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OmU-OQ-b73">
                                                 <rect key="frame" x="0.0" y="0.0" width="303" height="50"/>
@@ -207,10 +208,45 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LdB-dO-cnR">
+                                                <rect key="frame" x="0.0" y="210.00000000000006" width="303" height="60"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Rd-VD-FNp">
+                                                        <rect key="frame" x="154.33333333333337" y="20.666666666666632" width="148.66666666666663" height="39.333333333333343"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выйти из аккаунта" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4y-3W-E16">
+                                                                <rect key="frame" x="0.0" y="9.9999999999999982" width="148.66666666666666" height="19.333333333333329"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                                <color key="textColor" name="selected_toolbar_item"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="h4y-3W-E16" firstAttribute="leading" secondItem="3Rd-VD-FNp" secondAttribute="leading" id="8Rt-o5-cUa"/>
+                                                            <constraint firstAttribute="bottom" secondItem="h4y-3W-E16" secondAttribute="bottom" constant="10" id="GdZ-62-1hU"/>
+                                                            <constraint firstAttribute="trailing" secondItem="h4y-3W-E16" secondAttribute="trailing" id="NcC-Fz-tBB"/>
+                                                            <constraint firstAttribute="bottom" secondItem="h4y-3W-E16" secondAttribute="bottom" constant="10" id="TS7-xI-CRG"/>
+                                                            <constraint firstItem="h4y-3W-E16" firstAttribute="top" secondItem="3Rd-VD-FNp" secondAttribute="top" constant="10" id="wdb-bl-HEo"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" name="background_white"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="3Rd-VD-FNp" secondAttribute="trailing" id="7Vl-wv-gkX"/>
+                                                    <constraint firstAttribute="bottom" secondItem="3Rd-VD-FNp" secondAttribute="bottom" id="Osc-D9-sOC"/>
+                                                    <constraint firstAttribute="height" constant="60" id="h4F-Dw-IPS"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                     </stackView>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Mgo-2q-4Wf">
-                                        <rect key="frame" x="148" y="188.00000000000003" width="37" height="37"/>
+                                        <rect key="frame" x="148" y="228.00000000000003" width="37" height="36.999999999999972"/>
                                         <color key="color" name="shadow"/>
                                     </activityIndicatorView>
                                 </subviews>
@@ -255,6 +291,9 @@
                         <outlet property="goToView" destination="lz1-SM-lns" id="zNe-XF-Asv"/>
                         <outlet property="googleBtnView" destination="OmU-OQ-b73" id="ON7-IQ-f3i"/>
                         <outlet property="googleLabel" destination="y1J-cD-Cq7" id="gpF-QW-btb"/>
+                        <outlet property="signOutContainerView" destination="LdB-dO-cnR" id="1mJ-Vr-mW9"/>
+                        <outlet property="signOutLabel" destination="h4y-3W-E16" id="77l-wQ-p1e"/>
+                        <outlet property="signOutView" destination="3Rd-VD-FNp" id="9Qz-ZH-kLZ"/>
                         <outlet property="stackView" destination="LS0-Dy-cnC" id="QeD-dF-mTK"/>
                         <outlet property="subTitleLabel" destination="fKA-ru-1fn" id="6SP-FF-VAe"/>
                         <outlet property="telegramBtnView" destination="9nX-Hk-5kd" id="uC2-YS-qUO"/>
@@ -272,6 +311,9 @@
         <image name="google" width="256" height="256"/>
         <image name="telegram" width="512" height="512"/>
         <namedColor name="background_main">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="background_white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="bet_group_end">

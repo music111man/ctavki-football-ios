@@ -96,7 +96,7 @@
                 <constraint firstAttribute="trailing" secondItem="dzu-Xz-oIi" secondAttribute="trailing" constant="15" id="u7c-fi-IqV"/>
                 <constraint firstAttribute="trailing" secondItem="B6C-8v-JDq" secondAttribute="trailing" constant="10" id="v8L-Ma-ITQ"/>
                 <constraint firstItem="nf9-9m-W8g" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="yDM-xn-Fpl"/>
-                <constraint firstItem="B6C-8v-JDq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="q5c-XO-J6K" secondAttribute="bottom" priority="750" constant="5" id="yrU-K7-NO0"/>
+                <constraint firstItem="B6C-8v-JDq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="q5c-XO-J6K" secondAttribute="bottom" priority="750" constant="10" id="yrU-K7-NO0"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

@@ -17,11 +17,11 @@ final class TeamsVController: FeaureVController {
     let stackView = UIStackView()
 
     func initTeamsFeatures() -> UIViewController {
+        activityView.isHidden = false
         SyncService.shared.refresh {[weak self] _ in
             guard let self = self else { return }
-            
             self.updateTeams()
-            NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
+            NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
                 self?.activityView.isHidden = false
                 self?.updateTeams()
             }.disposed(by: self.disposeBag)
@@ -31,7 +31,6 @@ final class TeamsVController: FeaureVController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityView.isHidden = true
     }
     
     override func initTableView() {
@@ -61,15 +60,7 @@ final class TeamsVController: FeaureVController {
         super.initUI()
         navigationBar.hideAuthBtn()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
+
     override func titleName() -> String {
         R.string.localizable.screen_teams_title()
     }

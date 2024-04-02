@@ -78,7 +78,7 @@ class BetDetailsVController: UIViewController {
                   let typeId = bet.typeId,
                   let factor = bet.factor,
                   let betType: BetType = Repository.selectTop(BetType.table.where(BetType.idField == typeId)) else {
-                self?.showAlert(title: R.string.localizable.error()) {[weak self] in
+                self?.showOkAlert(title: R.string.localizable.error()) {[weak self] in
                     self?.dismiss(animated: true)
                 }
                 return

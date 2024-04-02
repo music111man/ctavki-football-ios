@@ -18,21 +18,31 @@ extension UIViewController {
         return vc
     }
     
-    func showAlert(title: String, message: String? = nil, complite: (() -> ())? = nil) {
-        if Thread.isMainThread {
+    func showOkAlert(title: String, message: String? = nil, okText: String = "OK",
+                   _ okAction: (() -> ())? = nil) {
+        DispatchQueue.main.async { [weak self] in
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) {_ in 
-                complite?()
+            alert.addAction(UIAlertAction(title: okText, style: UIAlertAction.Style.default) {_ in
+                okAction?()
             })
-            present(alert, animated: true)
-        } else {
-            DispatchQueue.main.async { [weak self] in
-                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) {_ in
-                    complite?()
-                })
-                self?.present(alert, animated: true)
-            }
+            self?.present(alert, animated: true)
         }
+
+    }
+    
+    func showOkCancelAlert(title: String, message: String? = nil, okText: String = "OK", cancelText: String? = nil,
+                   _ okAction: @escaping(() -> ()),
+                   _ cancelAction: (() -> ())? = nil) {
+        DispatchQueue.main.async { [weak self] in
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: okText, style: UIAlertAction.Style.default) {_ in
+                okAction()
+            })
+            alert.addAction(UIAlertAction(title: cancelText ?? R.string.localizable.cancel_Ok(), style: UIAlertAction.Style.cancel) {_ in
+                cancelAction?()
+            })
+            self?.present(alert, animated: true)
+        }
+
     }
 }

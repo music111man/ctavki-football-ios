@@ -46,26 +46,29 @@ final class AppCoordinator: NSObject, PCoordinator {
                 self.syncService.refresh()
             }
         }.disposed(by: disposeBag)
-        syncService.refresh()
-        
     }
     
     func start() {
-        AccountService.share.signIn()
+        if !AccountService.share.signIn() {
+            syncService.refresh()
+        }
         window.rootViewController = mainCoordinator.start()
         router?.navigationBar.isHidden = true
         window.makeKeyAndVisible()
     }
     
     func initNotificationEventHandlers() {
-        NotificationCenter.default.rx.notification(Notification.Name.tapAutozire).subscribe {[weak self] _ in
+        NotificationCenter.default.rx.notification(Notification.Name.needUpdateApp).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
+            self?.router?.showOkAlert(title: R.string.localizable.warning(), message: R.string.localizable.update_app_msg())
+        }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(Notification.Name.tapAutozire).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
            self?.showAuthScreen()
         }.disposed(by: disposeBag)
-        NotificationCenter.default.rx.notification(Notification.Name.needOpenBetDetails).subscribe {[weak self] event in
+        NotificationCenter.default.rx.notification(Notification.Name.needOpenBetDetails).observe(on: MainScheduler.instance).subscribe {[weak self] event in
             guard let betId = event.element?.userInfo?[BetView.betIdKeyForUserInfo] as? Int else { return }
             self?.showBetDetails(betId: betId)
         }.disposed(by: disposeBag)
-        NotificationCenter.default.rx.notification(Notification.Name.needOpenActiveBetDetails).subscribe {[weak self] event in
+        NotificationCenter.default.rx.notification(Notification.Name.needOpenActiveBetDetails).observe(on: MainScheduler.instance).subscribe {[weak self] event in
             self?.activeBetToShow = event.element?.userInfo?[BetView.betIdKeyForUserInfo] as? Int
             guard AppSettings.isAuthorized  else {
                 self?.showAuthScreen { [weak self] in
@@ -75,7 +78,7 @@ final class AppCoordinator: NSObject, PCoordinator {
             }
             self?.showActiveBetDetails()
         }.disposed(by: disposeBag)
-        NotificationCenter.default.rx.notification(Notification.Name.needOpenNoActiveBetDetails).subscribe {[weak self] event in
+        NotificationCenter.default.rx.notification(Notification.Name.needOpenNoActiveBetDetails).observe(on: MainScheduler.instance).subscribe {[weak self] event in
             guard let betId = event.element?.userInfo?[BetView.betIdKeyForUserInfo] as? Int else { return }
             guard AppSettings.isAuthorized  else {
                 self?.showAuthScreen { [weak self] in
@@ -85,7 +88,7 @@ final class AppCoordinator: NSObject, PCoordinator {
             }
             self?.showBetDetails(betId: betId)
         }.disposed(by: disposeBag)
-        NotificationCenter.default.rx.notification(Notification.Name.needOpenHistory).subscribe {[weak self] event in
+        NotificationCenter.default.rx.notification(Notification.Name.needOpenHistory).observe(on: MainScheduler.instance).subscribe {[weak self] event in
             guard let teamId = event.element?.userInfo?[BetView.teamIdKeyUserInfo] as? Int else {
                 printAppEvent("Unable open history - no arguments")
                 return
@@ -93,7 +96,7 @@ final class AppCoordinator: NSObject, PCoordinator {
             let tapLeft = event.element?.userInfo?[BetView.tapLeftUserInfo] as? Bool
             self?.showHistory(teamId: teamId, animationDirectionLeft: tapLeft)
         }.disposed(by: disposeBag)
-        NotificationCenter.default.rx.notification(Notification.Name.tryToShowTourGuid).subscribe {[weak self] _ in
+        NotificationCenter.default.rx.notification(Notification.Name.tryToShowTourGuid).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
             self?.startGuidTour()
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification).subscribe {[weak self] _ in

@@ -1178,7 +1178,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 94 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 100 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1204,6 +1204,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let guid_faq = Rswift.StringResource(key: "guid_faq", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Are you sure you want to log out of your account? When you exit, your account on the server will be deleted.
+      ///
+      /// Locales: en, ru, uk
+      static let sing_out_desc = Rswift.StringResource(key: "sing_out_desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Attention!
+      ///
+      /// Locales: en, ru, uk
+      static let warning = Rswift.StringResource(key: "warning", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Average odds
       ///
       /// Locales: en, ru, uk
@@ -1260,6 +1268,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let expecting = Rswift.StringResource(key: "expecting", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: For the application to work properly, please update it!
+      ///
+      /// Locales: en, ru, uk
+      static let update_app_msg = Rswift.StringResource(key: "update_app_msg", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: For the next year, the judge will only whistle in favor of your bet!
       ///
       /// Locales: en, ru, uk
@@ -1416,10 +1428,22 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let screen_paid_title = Rswift.StringResource(key: "screen_paid_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Settings
+      ///
+      /// Locales: en, ru, uk
+      static let settings = Rswift.StringResource(key: "settings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Sign In
       ///
       /// Locales: en, ru, uk
       static let sign_in = Rswift.StringResource(key: "sign_in", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Sign Out
+      ///
+      /// Locales: en, ru, uk
+      static let out = Rswift.StringResource(key: "out", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Sign Out
+      ///
+      /// Locales: en, ru, uk
+      static let sign_out = Rswift.StringResource(key: "sign_out", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Sign in using %@ is temporarily unavailable, please try another method.
       ///
       /// Locales: en, ru, uk
@@ -1480,10 +1504,6 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let match_being_played_break = Rswift.StringResource(key: "match_being_played_break", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
-      /// en translation: This may not be the first attempt to log in using Apple. Due to the nature of Apple services, we are forced to ask you to enter your First and Last Name to successfully log in using Apple.
-      ///
-      /// Locales: en, ru, uk
-      static let log_in_with_apple_desc = Rswift.StringResource(key: "log_in_with_apple_desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Three defenses
       ///
       /// Locales: en, ru, uk
@@ -1496,6 +1516,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let guid_login = Rswift.StringResource(key: "guid_login", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: To successfully log into your account, you need to reset the previous attempt by logging into your smartphone settings. To do this, go to Settings -> Apple Id -> Sign in and security -> Sign in with Apple -> Forecast Football and click "Don't use Apple ID "
+      ///
+      /// Locales: en, ru, uk
+      static let log_in_with_apple_desc = Rswift.StringResource(key: "log_in_with_apple_desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Total bets
       ///
       /// Locales: en, ru, uk
@@ -1651,6 +1675,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("guid_faq", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Are you sure you want to log out of your account? When you exit, your account on the server will be deleted.
+      ///
+      /// Locales: en, ru, uk
+      static func sing_out_desc(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("sing_out_desc", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "sing_out_desc"
+        }
+
+        return NSLocalizedString("sing_out_desc", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Attention!
+      ///
+      /// Locales: en, ru, uk
+      static func warning(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("warning", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "warning"
+        }
+
+        return NSLocalizedString("warning", bundle: bundle, comment: "")
       }
 
       /// en translation: Average odds
@@ -1867,6 +1921,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("expecting", bundle: bundle, comment: "")
+      }
+
+      /// en translation: For the application to work properly, please update it!
+      ///
+      /// Locales: en, ru, uk
+      static func update_app_msg(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("update_app_msg", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "update_app_msg"
+        }
+
+        return NSLocalizedString("update_app_msg", bundle: bundle, comment: "")
       }
 
       /// en translation: For the next year, the judge will only whistle in favor of your bet!
@@ -2464,6 +2533,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("screen_paid_title", bundle: bundle, comment: "")
       }
 
+      /// en translation: Settings
+      ///
+      /// Locales: en, ru, uk
+      static func settings(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("settings", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "settings"
+        }
+
+        return NSLocalizedString("settings", bundle: bundle, comment: "")
+      }
+
       /// en translation: Sign In
       ///
       /// Locales: en, ru, uk
@@ -2477,6 +2561,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("sign_in", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Sign Out
+      ///
+      /// Locales: en, ru, uk
+      static func out(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("out", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "out"
+        }
+
+        return NSLocalizedString("out", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Sign Out
+      ///
+      /// Locales: en, ru, uk
+      static func sign_out(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("sign_out", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "sign_out"
+        }
+
+        return NSLocalizedString("sign_out", bundle: bundle, comment: "")
       }
 
       /// en translation: Sign in using %@ is temporarily unavailable, please try another method.
@@ -2706,21 +2820,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("match_being_played_break", bundle: bundle, comment: "")
       }
 
-      /// en translation: This may not be the first attempt to log in using Apple. Due to the nature of Apple services, we are forced to ask you to enter your First and Last Name to successfully log in using Apple.
-      ///
-      /// Locales: en, ru, uk
-      static func log_in_with_apple_desc(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("log_in_with_apple_desc", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "log_in_with_apple_desc"
-        }
-
-        return NSLocalizedString("log_in_with_apple_desc", bundle: bundle, comment: "")
-      }
-
       /// en translation: Three defenses
       ///
       /// Locales: en, ru, uk
@@ -2764,6 +2863,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("guid_login", bundle: bundle, comment: "")
+      }
+
+      /// en translation: To successfully log into your account, you need to reset the previous attempt by logging into your smartphone settings. To do this, go to Settings -> Apple Id -> Sign in and security -> Sign in with Apple -> Forecast Football and click "Don't use Apple ID "
+      ///
+      /// Locales: en, ru, uk
+      static func log_in_with_apple_desc(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("log_in_with_apple_desc", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "log_in_with_apple_desc"
+        }
+
+        return NSLocalizedString("log_in_with_apple_desc", bundle: bundle, comment: "")
       }
 
       /// en translation: Total bets
@@ -3297,6 +3411,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "telegram", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'telegram' is used in storyboard 'SignInVController', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
           if UIKit.UIColor(named: "background_main", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_main' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "background_white", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_white' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "bet_group_end", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'bet_group_end' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "bet_group_header", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'bet_group_header' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "blue_gray_400", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'blue_gray_400' is used in storyboard 'SignInVController', but couldn't be loaded.") }

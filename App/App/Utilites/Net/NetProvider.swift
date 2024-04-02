@@ -32,7 +32,7 @@ class NetProvider {
                         printAppEvent("\(String(data: response.data, encoding: String.Encoding.utf8) ?? "no data")")
                         printAppEvent("\(target): can not deserialize to \(T.self)")
                         NotificationCenter.default.post(name: NSNotification.Name.deserializeError, object: target)
-                        
+                        callback?(nil)
                         break
                     }
                     callback?(data)

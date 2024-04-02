@@ -30,25 +30,27 @@ final class MainVController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        NotificationCenter.default.rx.notification(Notification.Name.hideMainToolBar).subscribe {[weak self] _ in
+        NotificationCenter.default.rx.notification(Notification.Name.hideMainToolBar).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
             self?.toolBar.animateOpacity(0.3, 0) {[weak self] in
                 self?.toolBar.isHidden = true
             }
         }.disposed(by: disposeBag)
-        NotificationCenter.default.rx.notification(Notification.Name.showMainToolBar).subscribe {[weak self] _ in
+        NotificationCenter.default.rx.notification(Notification.Name.showMainToolBar).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
             self?.toolBar.isHidden = false
             self?.toolBar.animateOpacity(0.3, 1)
         }.disposed(by: disposeBag)
+        
     }
 
     func initUI() {
-        view.backgroundColor = R.color.background_main_light()
+        view.backgroundColor = .backgroundLightTheme
         toolBar.initUI { [weak self] action in
             self?.delegate?.pushView(action,needSelectMenu: false)
         }
 
         toolBar.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.backgroundColor = .backgroundMainLight
         backView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(backView)
         backView.addSubview(containerView)

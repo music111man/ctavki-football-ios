@@ -64,7 +64,7 @@
                                         <rect key="frame" x="0.0" y="100" width="393" height="810"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qXE-8h-jne">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="747.66666666666663"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="782.66666666666663"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZm-ln-h4J">
                                                         <rect key="frame" x="40" y="20" width="313" height="14.333333333333336"/>
@@ -169,20 +169,20 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAB-4Z-aCA">
-                                                        <rect key="frame" x="40" y="134.33333333333334" width="313" height="14.333333333333343"/>
+                                                        <rect key="frame" x="40" y="144.33333333333334" width="313" height="14.333333333333343"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" name="bet_group_header"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IWS-UH-cv3">
-                                                        <rect key="frame" x="15" y="153.66666666666666" width="363" height="1"/>
+                                                        <rect key="frame" x="15" y="163.66666666666669" width="363" height="1"/>
                                                         <color key="backgroundColor" name="blue_gray_400"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="P47-dE-Qn5"/>
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ef8-aP-ubl">
-                                                        <rect key="frame" x="15" y="164.66666666666669" width="363" height="53.666666666666657"/>
+                                                        <rect key="frame" x="15" y="174.66666666666669" width="363" height="53.666666666666657"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJu-gO-SOJ">
                                                                 <rect key="frame" x="15" y="16" width="333" height="21.666666666666671"/>
@@ -205,7 +205,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="phu-pJ-1Gb">
-                                                        <rect key="frame" x="15" y="164.66666666666669" width="363" height="53.666666666666657"/>
+                                                        <rect key="frame" x="15" y="174.66666666666669" width="363" height="53.666666666666657"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="shadowed" value="YES"/>
@@ -215,7 +215,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rXZ-eA-goY">
-                                                        <rect key="frame" x="0.0" y="249.33333333333331" width="348" height="48"/>
+                                                        <rect key="frame" x="0.0" y="264.33333333333331" width="348" height="48"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Lq-rZ-5Q6">
                                                                 <rect key="frame" x="15" y="13.333333333333373" width="273" height="21.666666666666671"/>
@@ -236,7 +236,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSu-K7-DM7">
-                                                        <rect key="frame" x="298" y="233.33333333333331" width="80" height="80"/>
+                                                        <rect key="frame" x="298" y="248.33333333333331" width="80" height="80"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nA5-BF-TYB">
                                                                 <rect key="frame" x="33" y="24.333333333333371" width="14.333333333333336" height="31.333333333333329"/>
@@ -260,20 +260,20 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHy-As-rfX">
-                                                        <rect key="frame" x="40" y="323.33333333333331" width="313" height="14.333333333333314"/>
+                                                        <rect key="frame" x="40" y="358.33333333333331" width="313" height="14.333333333333314"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" name="bet_group_header"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f7P-VM-VLy">
-                                                        <rect key="frame" x="15" y="342.66666666666669" width="363" height="1"/>
+                                                        <rect key="frame" x="15" y="377.66666666666669" width="363" height="1"/>
                                                         <color key="backgroundColor" name="blue_gray_400"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="XD8-08-DQH"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o0Q-Y0-8cR">
-                                                        <rect key="frame" x="50" y="353.66666666666669" width="293" height="54"/>
+                                                        <rect key="frame" x="50" y="388.66666666666669" width="293" height="54"/>
                                                         <subviews>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTd-Mr-x0o">
                                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
@@ -342,7 +342,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8h-mC-urL">
-                                                        <rect key="frame" x="50" y="417.66666666666663" width="293" height="54"/>
+                                                        <rect key="frame" x="50" y="452.66666666666663" width="293" height="54"/>
                                                         <subviews>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XA4-Dk-Qdp">
                                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
@@ -407,7 +407,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f76-tx-hQv">
-                                                        <rect key="frame" x="50" y="481.66666666666663" width="293" height="54"/>
+                                                        <rect key="frame" x="50" y="516.66666666666663" width="293" height="54"/>
                                                         <subviews>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Vj-ev-Wdt">
                                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
@@ -472,7 +472,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2e9-RR-8Q7">
-                                                        <rect key="frame" x="50" y="545.66666666666663" width="293" height="54"/>
+                                                        <rect key="frame" x="50" y="580.66666666666663" width="293" height="54"/>
                                                         <subviews>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9dR-EG-VZS">
                                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
@@ -537,7 +537,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tni-MO-hCr">
-                                                        <rect key="frame" x="50" y="609.66666666666663" width="293" height="54"/>
+                                                        <rect key="frame" x="50" y="644.66666666666663" width="293" height="54"/>
                                                         <subviews>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vk4-ZG-lgm">
                                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
@@ -602,7 +602,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZxU-dF-e0d">
-                                                        <rect key="frame" x="50" y="673.66666666666663" width="293" height="54"/>
+                                                        <rect key="frame" x="50" y="708.66666666666663" width="293" height="54"/>
                                                         <subviews>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUq-3d-itM">
                                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
@@ -669,7 +669,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="vHy-As-rfX" firstAttribute="top" secondItem="PSu-K7-DM7" secondAttribute="bottom" constant="10" id="0wd-Ph-Tbx"/>
+                                                    <constraint firstItem="vHy-As-rfX" firstAttribute="top" secondItem="PSu-K7-DM7" secondAttribute="bottom" constant="30" id="0wd-Ph-Tbx"/>
                                                     <constraint firstItem="Tni-MO-hCr" firstAttribute="trailing" secondItem="2e9-RR-8Q7" secondAttribute="trailing" id="1OD-f8-0tM"/>
                                                     <constraint firstAttribute="trailing" secondItem="f7P-VM-VLy" secondAttribute="trailing" constant="15" id="1cn-Zp-kCX"/>
                                                     <constraint firstItem="rXZ-eA-goY" firstAttribute="leading" secondItem="qXE-8h-jne" secondAttribute="leading" id="2II-uF-QxP"/>
@@ -707,7 +707,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="qZm-ln-h4J" secondAttribute="trailing" constant="40" id="UK8-Zu-r1B"/>
                                                     <constraint firstAttribute="trailing" secondItem="IWS-UH-cv3" secondAttribute="trailing" constant="15" id="V6O-cj-hA3"/>
                                                     <constraint firstItem="8Vj-ev-Wdt" firstAttribute="height" secondItem="qTd-Mr-x0o" secondAttribute="height" id="WGR-nk-bj1"/>
-                                                    <constraint firstItem="PSu-K7-DM7" firstAttribute="top" secondItem="Ef8-aP-ubl" secondAttribute="bottom" constant="15" id="WTb-rq-tYl"/>
+                                                    <constraint firstItem="PSu-K7-DM7" firstAttribute="top" secondItem="Ef8-aP-ubl" secondAttribute="bottom" constant="20" id="WTb-rq-tYl"/>
                                                     <constraint firstItem="vk4-ZG-lgm" firstAttribute="width" secondItem="qTd-Mr-x0o" secondAttribute="width" id="YB1-Nq-9L2"/>
                                                     <constraint firstItem="PSu-K7-DM7" firstAttribute="leading" secondItem="rXZ-eA-goY" secondAttribute="trailing" constant="-50" id="YzG-1J-PyF"/>
                                                     <constraint firstItem="GV0-AV-8gQ" firstAttribute="width" secondItem="qTd-Mr-x0o" secondAttribute="width" id="ZYd-Mg-iwd"/>
@@ -726,7 +726,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="rAB-4Z-aCA" secondAttribute="trailing" constant="40" id="kV6-ya-uh0"/>
                                                     <constraint firstItem="2e9-RR-8Q7" firstAttribute="top" secondItem="f76-tx-hQv" secondAttribute="bottom" constant="10" id="lI2-T3-4SF"/>
                                                     <constraint firstItem="rXZ-eA-goY" firstAttribute="centerY" secondItem="PSu-K7-DM7" secondAttribute="centerY" id="mNh-jU-ycE"/>
-                                                    <constraint firstItem="rAB-4Z-aCA" firstAttribute="top" secondItem="8En-Dc-UKf" secondAttribute="bottom" constant="30" id="mdZ-M6-kBw"/>
+                                                    <constraint firstItem="rAB-4Z-aCA" firstAttribute="top" secondItem="8En-Dc-UKf" secondAttribute="bottom" constant="40" id="mdZ-M6-kBw"/>
                                                     <constraint firstItem="ZxU-dF-e0d" firstAttribute="trailing" secondItem="2e9-RR-8Q7" secondAttribute="trailing" id="mi2-ZX-CEV"/>
                                                     <constraint firstItem="t8h-mC-urL" firstAttribute="leading" secondItem="o0Q-Y0-8cR" secondAttribute="leading" id="mry-ue-N8G"/>
                                                     <constraint firstItem="RNY-rx-2Pd" firstAttribute="height" secondItem="qTd-Mr-x0o" secondAttribute="height" id="nwu-rI-J8X"/>

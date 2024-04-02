@@ -24,11 +24,13 @@ class PicksVController: FeaureVController {
     
     @discardableResult
     func initBetViews() -> UIViewController {
-        
+        activityView.isHidden = false
         SyncService.shared.refresh() {[weak self] _ in
             guard let self = self else { return }
             self.updateData()
-            NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
+            NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen)
+                .observe(on: MainScheduler.instance)
+                .subscribe {[weak self] _ in
                 printAppEvent("call needUpdateBetsScreen at BetsViewModel handler", marker: ">>betServ ")
                 self?.activityView.isHidden = false
                 self?.updateData()

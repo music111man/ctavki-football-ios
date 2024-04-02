@@ -24,6 +24,7 @@ final class FaqVController: UIViewController {
     
     @discardableResult
     func initFaqViews() -> FaqVController {
+        
         faqs.observe(on: MainScheduler.instance).bind {[weak self] models in
             self?.stackView.replaceWithHideAnimation({
                 models.map { model in
@@ -33,17 +34,17 @@ final class FaqVController: UIViewController {
                     return view
                 }
             }) {[weak self] in
-                self?.activityView.animateOpacity(0.3, 0.2) {[weak self] in
-                    self?.activityView.isHidden = true
-                    self?.refresher.endRefreshing()
-                }
+                 self?.activityView.isHidden = true
+                self?.refresher.endRefreshing()
             }
         }.disposed(by: disposeBag)
-    
+        activityView.isHidden = false
         SyncService.shared.refresh {[weak self] _ in
             guard let self = self else { return }
             self.loadFaq()
-            NotificationCenter.default.rx.notification(Notification.Name.needUpdatFaqsScreen).subscribe {[weak self] _ in
+            NotificationCenter.default.rx.notification(Notification.Name.needUpdatFaqsScreen)
+                .observe(on: MainScheduler.instance)
+                .subscribe {[weak self] _ in
                 self?.activityView.isHidden = false
                 self?.loadFaq()
             }.disposed(by: self.disposeBag)
@@ -72,7 +73,7 @@ final class FaqVController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        activityView.isHidden = true
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -119,7 +120,9 @@ final class FaqVController: UIViewController {
             activityView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        let hidden = activityView.isHidden
         activityView.startAnimating()
+        activityView.isHidden = hidden
         refresher.attributedTitle = NSAttributedString(string: "")
         scrollView.addSubview(refresher)
         

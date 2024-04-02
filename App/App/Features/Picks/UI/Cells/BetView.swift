@@ -71,8 +71,8 @@ class BetView: UIView {
         addSubview(teamsView)
         homeTeamNameLabel.isUserInteractionEnabled = true
         goustTeamNameLabel.isUserInteractionEnabled = true
-        let homeView = teamView(label: homeTeamNameLabel)
-        let goustView = teamView(label: goustTeamNameLabel)
+        let homeView = teamView(label: homeTeamNameLabel, left: true)
+        let goustView = teamView(label: goustTeamNameLabel, left: false)
         teamsView.addSubview(homeView)
         teamsView.addSubview(goustView)
         NSLayoutConstraint.activate([
@@ -164,7 +164,7 @@ class BetView: UIView {
         }.disposed(by: disposeBag)
     }
 
-    private func teamView(label: UILabel) -> UIView {
+    private func teamView(label: UILabel, left: Bool) -> UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.textColor = R.color.text_black()
@@ -177,8 +177,8 @@ class BetView: UIView {
         parentView.setshadow()
         parentView.addSubview(label)
         NSLayoutConstraint.activate([
-            label.leftAnchor.constraint(equalTo: parentView.leftAnchor, constant: 10),
-            label.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: -10),
+            label.leftAnchor.constraint(equalTo: parentView.leftAnchor, constant: left ? 15 : 25),
+            label.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: left ? -25 : -15),
             label.centerYAnchor.constraint(equalTo: parentView.centerYAnchor)
         ])
         

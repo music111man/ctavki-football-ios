@@ -52,7 +52,9 @@ class HistoryVController: UIViewController {
             self?.navigationController?.popToRootViewController(animated: true)
         }.disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
+        NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen)
+            .observe(on: MainScheduler.instance)
+            .subscribe {[weak self] _ in
             self?.activityView.isHidden = false
             self?.updateData()
         }.disposed(by: disposeBag)
@@ -76,7 +78,7 @@ class HistoryVController: UIViewController {
             self?.refresher.endRefreshing()
             self?.activityView.isHidden = true
             guard let self = self, let model = model else {
-                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
+                self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
                 return
             }
             self.teamLabel.text = model.title

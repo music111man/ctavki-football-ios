@@ -56,6 +56,7 @@ final class ToolBarView: UIView {
             borderTopView.heightAnchor.constraint(equalToConstant: 1),
         ])
         borderTopView.backgroundColor = R.color.toolbarItem()?.withAlphaComponent(0.5)
+        backgroundColor = .backgroundLightTheme
     }
     
     func selectMenuBtn(_ action: MenuAction) {

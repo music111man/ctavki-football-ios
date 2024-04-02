@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import RxSwift
 
 final class MainCoordinator {
     let router: UINavigationController
     var factories = [PVCFactory]()
     let mainVC = MainVController()
+    let disposeBag = DisposeBag()
     
     var lastMenuAction: ToolBarView.MenuAction?
     

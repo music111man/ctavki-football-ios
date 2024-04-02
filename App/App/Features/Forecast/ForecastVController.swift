@@ -103,7 +103,9 @@ class ForecastVController: UIViewController {
         initLabels()
         initGradients()
         
-        NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).subscribe {[weak self] _ in
+        NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen)
+            .observe(on: MainScheduler.instance)
+            .subscribe {[weak self] _ in
             self?.activityView.isHidden = false
             self?.loadForecast()
         }.disposed(by: disposeBag)
@@ -192,7 +194,7 @@ class ForecastVController: UIViewController {
             self?.activityView.isHidden = true
             self?.refresher.endRefreshing()
             if model == nil {
-                self?.showAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
+                self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
             }
         }.disposed(by: disposeBag)
     }
