@@ -13,6 +13,7 @@ enum ApiRequest {
     case signInByTelegram(uuid: String)
     case signInByGoogle(idToken: String)
     case signInByApple(idToken: String, jwt: String, userName: String, userEmail: String)
+    case signOutFromApple
 }
 
 extension ApiRequest: TargetType {
@@ -30,6 +31,8 @@ extension ApiRequest: TargetType {
             return "login/sign-in-with-google.php"
         case .signInByApple:
             return "login/sign-in-with-apple.php"
+        case .signOutFromApple:
+            return "login/sign-out-apple.php"
         }
     }
     
@@ -37,7 +40,7 @@ extension ApiRequest: TargetType {
         switch self {
         case .checkForUpdates:
             return .get
-        case .signInByTelegram, .signInByGoogle, .signInByApple:
+        case .signInByTelegram, .signInByGoogle, .signInByApple, .signOutFromApple:
             return .post
         }
     }
@@ -66,12 +69,14 @@ extension ApiRequest: TargetType {
                                                             "user_email": userEmail,
                                                            "fcmToken": AppSettings.fcmToken],
                                                encoding: JSONEncoding.default)
+        case .signOutFromApple:
+            return Moya.Task.requestPlain
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .checkForUpdates:
+        case .checkForUpdates, .signOutFromApple:
             return ["ApiKey" : AppSettings.apiKey,
                     "Authorization" : AppSettings.userToken,
                     "ClientVersion" : AppSettings.clientVersion,

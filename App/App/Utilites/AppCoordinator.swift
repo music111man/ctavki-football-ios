@@ -49,7 +49,7 @@ final class AppCoordinator: NSObject, PCoordinator {
     }
     
     func start() {
-        if !AccountService.share.signIn() {
+        if !AccountService.share.signAction() {
             syncService.refresh()
         }
         window.rootViewController = mainCoordinator.start()

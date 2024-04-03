@@ -56,7 +56,7 @@ final class AppSettings {
         URL(string: "https://tg.pulse.is/Ctavki_com_bot?start=656da09a90e51fa8e30af51c|uuid=\(uuid)")!
     }
 
-    static  var signInMethod: SignInMethod {
+    static  var signMethod: SignMethod {
         set {
             switch newValue {
             case .non:
@@ -77,7 +77,7 @@ final class AppSettings {
                 if !userEmail.isEmpty {
                     UserDefaults.standard.setValue(userEmail, forKey: Self.appleUserEmail)
                 }
-            case .singOut:
+            case .singOutFromApple:
                 UserDefaults.standard.setValue(4, forKey: Self.signInMethodKey)
             }
         }
@@ -101,7 +101,7 @@ final class AppSettings {
                     return .apple(idToken: token, jwt: jwt, userName: userName, userEmail: userEmail)
                 }
             case 4:
-                return .singOut
+                return .singOutFromApple
             default:
                 break
             }
@@ -114,7 +114,7 @@ final class AppSettings {
     @Storage(key: "userName", defaultValue: "")
     static var userName: String
     
-    static let clientVersion = "1.0"
+    static let clientVersion = "2.0.0"
     
     static let apiKey = "QPejRtrJ9dv7u@8p4hrA4eY!P3XYyu"
     

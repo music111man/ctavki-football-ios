@@ -102,7 +102,10 @@ class ForecastVController: UIViewController {
         scrollView.addSubview(refresher)
         initLabels()
         initGradients()
-        
+        NotificationCenter.default.rx.notification(Notification.Name.needUpdateApp).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
+            self?.refresher.endRefreshing()
+            self?.activityView.isHidden = true
+        }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen)
             .observe(on: MainScheduler.instance)
             .subscribe {[weak self] _ in

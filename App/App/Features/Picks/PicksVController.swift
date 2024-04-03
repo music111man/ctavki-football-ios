@@ -25,6 +25,10 @@ class PicksVController: FeaureVController {
     @discardableResult
     func initBetViews() -> UIViewController {
         activityView.isHidden = false
+        NotificationCenter.default.rx.notification(Notification.Name.needUpdateApp).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
+            self?.refresher.endRefreshing()
+            self?.activityView.isHidden = true
+        }.disposed(by: disposeBag)
         SyncService.shared.refresh() {[weak self] _ in
             guard let self = self else { return }
             self.updateData()

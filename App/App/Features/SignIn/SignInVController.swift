@@ -27,6 +27,7 @@ class SignInVController: UIViewController {
     @IBOutlet weak var activityView: UIActivityIndicatorView!
     @IBOutlet weak var goToView: UIView!
     @IBOutlet weak var goToLabel: UILabel!
+    
     let disposeBag = DisposeBag()
     let accountService = AccountService.share
 //    var gradient: CAGradientLayer!
@@ -76,26 +77,26 @@ class SignInVController: UIViewController {
         }.disposed(by: disposeBag)
         
         googleBtnView.tap {[weak self] in
-            self?.singInMethodName = SignInMethod.google(idToken: "").toString
+            self?.singInMethodName = SignMethod.google(idToken: "").toString
             self?.accountService.signInByGoogle(presenting: self!)
         }.disposed(by: disposeBag)
         
         telegramBtnView.tap {[weak self] in
-            self?.singInMethodName = SignInMethod.telegram(uuid: "").toString
+            self?.singInMethodName = SignMethod.telegram(uuid: "").toString
             self?.accountService.signInByTelegram()
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
-            self?.activityView.isHidden = !(self?.accountService.signIn() ?? false)
+            self?.activityView.isHidden = !(self?.accountService.signAction() ?? false)
          }.disposed(by: disposeBag)
         
-        if #available(iOS 13.0, *), !AppSettings.isAuthorized {
+        if #available(iOS 13.0, *) {
             let authorizationButton = ASAuthorizationAppleIDButton(type: .signIn, style: .white)
             authorizationButton.shadowed = true
             authorizationButton.cornerRadius = 8
             authorizationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
             stackView.insertArrangedSubview(authorizationButton, at: 0)
             authorizationButton.tap {[weak self] in
-                self?.singInMethodName = SignInMethod.apple(idToken: "", jwt: "", userName: "", userEmail: "").toString
+                self?.singInMethodName = SignMethod.apple(idToken: "", jwt: "", userName: "", userEmail: "").toString
                 self?.accountService.signInByApple(presenting: self!)
             }.disposed(by: disposeBag)
             appleBtnView = authorizationButton
@@ -126,14 +127,15 @@ class SignInVController: UIViewController {
             }
          }.disposed(by: disposeBag)
         
-        activityView.isHidden = !accountService.signIn()
+        activityView.isHidden = !accountService.signAction()
         signOutLabel.text = R.string.localizable.sign_out()
         signOutContainerView.isHidden = !AppSettings.enableSignOut
         signOutView.tap {[weak self] in
             self?.showOkCancelAlert(title: R.string.localizable.sign_out(), message: R.string.localizable.sing_out_desc()) {[weak self] in
-                AppSettings.signInMethod = .singOut
-                self?.accountService.signIn()
-                self?.close()
+                self?.activityView.isHidden = false
+                self?.singInMethodName = SignMethod.singOutFromApple.toString
+                AppSettings.signMethod = .singOutFromApple
+                self?.accountService.signAction()
             }
         }.disposed(by: disposeBag)
     }

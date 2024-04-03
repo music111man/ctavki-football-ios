@@ -51,7 +51,10 @@ class HistoryVController: UIViewController {
         backView.tap {[weak self] in
             self?.navigationController?.popToRootViewController(animated: true)
         }.disposed(by: disposeBag)
-        
+        NotificationCenter.default.rx.notification(Notification.Name.needUpdateApp).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
+            self?.refresher.endRefreshing()
+            self?.activityView.isHidden = true
+        }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen)
             .observe(on: MainScheduler.instance)
             .subscribe {[weak self] _ in

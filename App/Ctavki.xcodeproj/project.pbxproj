@@ -21,7 +21,7 @@
 		F2218ACB2BA2FCD200C53C46 /* SignInVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218ACA2BA2FCD200C53C46 /* SignInVController.swift */; };
 		F2218ACD2BA2FCF500C53C46 /* SignInVController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2218ACC2BA2FCF500C53C46 /* SignInVController.storyboard */; };
 		F2218ACF2BA3244E00C53C46 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218ACE2BA3244E00C53C46 /* AccountService.swift */; };
-		F2218AD12BA3632C00C53C46 /* SignInResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218AD02BA3632C00C53C46 /* SignInResponseEntity.swift */; };
+		F2218AD12BA3632C00C53C46 /* SignInOutResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218AD02BA3632C00C53C46 /* SignInOutResponseEntity.swift */; };
 		F2218AD32BA3657500C53C46 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2218AD22BA3657500C53C46 /* Account.swift */; };
 		F226F9FA2B9B8D0200F9D391 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226F9F92B9B8D0200F9D391 /* UITableView.swift */; };
 		F226F9FD2B9B943900F9D391 /* BetSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F226F9FC2B9B943900F9D391 /* BetSectionHeaderView.xib */; };
@@ -116,7 +116,7 @@
 		F2218ACA2BA2FCD200C53C46 /* SignInVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVController.swift; sourceTree = "<group>"; };
 		F2218ACC2BA2FCF500C53C46 /* SignInVController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInVController.storyboard; sourceTree = "<group>"; };
 		F2218ACE2BA3244E00C53C46 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
-		F2218AD02BA3632C00C53C46 /* SignInResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponseEntity.swift; sourceTree = "<group>"; };
+		F2218AD02BA3632C00C53C46 /* SignInOutResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInOutResponseEntity.swift; sourceTree = "<group>"; };
 		F2218AD22BA3657500C53C46 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		F226F9F92B9B8D0200F9D391 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		F226F9FC2B9B943900F9D391 /* BetSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetSectionHeaderView.xib; sourceTree = "<group>"; };
@@ -515,7 +515,7 @@
 				F2EA78D42B90B60E006B3A1C /* BetOutcome.swift */,
 				F2EA78D62B90B97D006B3A1C /* AppUpdateAvailable.swift */,
 				F2EA78DD2B910013006B3A1C /* JSONWrapHelpers.swift */,
-				F2218AD02BA3632C00C53C46 /* SignInResponseEntity.swift */,
+				F2218AD02BA3632C00C53C46 /* SignInOutResponseEntity.swift */,
 				F2218AD22BA3657500C53C46 /* Account.swift */,
 			);
 			path = Models;
@@ -807,7 +807,7 @@
 				F2EB1A322B9A11040027D782 /* BetDetailsVController.swift in Sources */,
 				F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */,
 				F2218ACF2BA3244E00C53C46 /* AccountService.swift in Sources */,
-				F2218AD12BA3632C00C53C46 /* SignInResponseEntity.swift in Sources */,
+				F2218AD12BA3632C00C53C46 /* SignInOutResponseEntity.swift in Sources */,
 				F251D6392B974EBD009ABC86 /* BetView.swift in Sources */,
 				F226FA052B9C75AE00F9D391 /* FaqViewModel.swift in Sources */,
 				F251D63B2B977389009ABC86 /* BetSectionHeaderView.swift in Sources */,

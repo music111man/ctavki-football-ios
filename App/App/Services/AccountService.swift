@@ -10,11 +10,11 @@ import UIKit
 import GoogleSignIn
 import AuthenticationServices
 
-enum SignInMethod {
+enum SignMethod {
     case google(idToken: String)
     case telegram(uuid: String)
     case apple(idToken: String, jwt: String, userName: String, userEmail: String)
-    case singOut
+    case singOutFromApple
     case non
     
     var toString: String? {
@@ -22,6 +22,7 @@ enum SignInMethod {
         case .apple: return "Apple"
         case .google: return "Google"
         case .telegram: return "Telegram"
+        case .singOutFromApple: return "Apple"
         default: return nil
         }
     }
@@ -62,8 +63,8 @@ final class AccountService: NSObject {
             signInResult.user.refreshTokensIfNeeded {[weak self] user, error in
                 guard error == nil else { return }
                 guard let user = user, let idToken = user.idToken?.tokenString else { return }
-                AppSettings.signInMethod = .google(idToken: idToken)
-                self?.signIn()
+                AppSettings.signMethod = .google(idToken: idToken)
+                self?.signAction()
             }
         }
     }
@@ -75,7 +76,7 @@ final class AccountService: NSObject {
             UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
                 if success {
                     printAppEvent("will sing in by telegram with uuid: \(uuid)")
-                    AppSettings.signInMethod = .telegram(uuid: uuid)
+                    AppSettings.signMethod = .telegram(uuid: uuid)
                 }
             })
         }
@@ -83,8 +84,8 @@ final class AccountService: NSObject {
     }
     
     @discardableResult
-    func signIn() -> Bool {
-        switch AppSettings.signInMethod {
+    func signAction() -> Bool {
+        switch AppSettings.signMethod {
         case .non:
             return false
         case let .telegram(uuid):
@@ -96,11 +97,31 @@ final class AccountService: NSObject {
         case .apple(let idToken, let jwt, let userName, let userEmail):
             singInApple(idToken, jwt, userName, userEmail)
             return true
-        case .singOut:
-            AppSettings.enableSignOut = false
-            AppSettings.userName = ""
-            AppSettings.userToken = ""
-            return false
+        case .singOutFromApple:
+            singOutApple()
+            return true
+        }
+    }
+    
+    private func singOutApple() {
+        printAppEvent("start sign out from apple")
+        DispatchQueue.global().async {
+            NetProvider.makeRequest(SignOutResponseEntity.self, .signOutFromApple) {response in
+                defer {
+                    printAppEvent("reset sing out method to non")
+                    AppSettings.signMethod = .non
+                }
+                guard let code = response?.code, code == 200 else {
+                    printAppEvent("sign out error: code \(response?.code ?? 0) msg: \(response?.msg ?? "unknown error")")
+                    NotificationCenter.default.post(name: NSNotification.Name.badServerResponse, object: nil)
+                    AppSettings.authorizeEvent.accept(true)
+                    return
+                }
+                AppSettings.enableSignOut = false
+                AppSettings.userName = ""
+                AppSettings.userToken = ""
+                
+            }
         }
     }
     
@@ -123,7 +144,7 @@ final class AccountService: NSObject {
     private func singInApple(_ idToken: String,_ jwt: String, _ userName: String, _ userEmail: String) {
         if userName.isEmpty {
             delegate?.showSettingsWarning()
-            AppSettings.signInMethod = .non
+            AppSettings.signMethod = .non
             printAppEvent("can not start sign in apple - no user name")
             
             return
@@ -137,7 +158,7 @@ final class AccountService: NSObject {
     private func processResponse(response: SignInResponseEntity?, enableSingOut: Bool = false) {
         defer {
             printAppEvent("reset sing in method to non")
-            AppSettings.signInMethod = .non }
+            AppSettings.signMethod = .non }
         guard let response = response else {
             printAppEvent("bad sign in response")
             
@@ -188,8 +209,8 @@ extension AccountService: ASAuthorizationControllerDelegate {
         }
         let userEmail = credential.email ?? ""
         
-        AppSettings.signInMethod = .apple(idToken: token, jwt: jwt, userName: userName, userEmail: userEmail)
-        signIn()
+        AppSettings.signMethod = .apple(idToken: token, jwt: jwt, userName: userName, userEmail: userEmail)
+        signAction()
 
     }
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {

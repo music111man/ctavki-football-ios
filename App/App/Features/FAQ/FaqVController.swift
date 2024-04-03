@@ -24,7 +24,10 @@ final class FaqVController: UIViewController {
     
     @discardableResult
     func initFaqViews() -> FaqVController {
-        
+        NotificationCenter.default.rx.notification(Notification.Name.needUpdateApp).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
+            self?.refresher.endRefreshing()
+            self?.activityView.isHidden = true
+        }.disposed(by: disposeBag)
         faqs.observe(on: MainScheduler.instance).bind {[weak self] models in
             self?.stackView.replaceWithHideAnimation({
                 models.map { model in

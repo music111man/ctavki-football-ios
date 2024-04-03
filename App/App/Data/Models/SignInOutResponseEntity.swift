@@ -32,3 +32,7 @@ struct SignInResponseEntity: Decodable {
         case jwt
     }
 }
+struct SignOutResponseEntity: Decodable {
+    let code: Int
+    let msg: String
+}
