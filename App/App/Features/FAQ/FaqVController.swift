@@ -29,7 +29,7 @@ final class FaqVController: UIViewController {
             self?.activityView.isHidden = true
         }.disposed(by: disposeBag)
         faqs.observe(on: MainScheduler.instance).bind {[weak self] models in
-            self?.stackView.replaceWithHideAnimation({
+            self?.stackView.replaceArrangedSubviews({
                 models.map { model in
                     let view: FaqView = FaqView.fromNib()
                     view.model = model

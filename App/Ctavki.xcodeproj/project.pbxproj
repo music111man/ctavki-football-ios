@@ -68,6 +68,9 @@
 		F2A0163A2B9E6A1700B532C1 /* NoActivebetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A016382B9E6A1700B532C1 /* NoActivebetsCell.swift */; };
 		F2A0163B2B9E6A1700B532C1 /* NoActiveBetsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A016392B9E6A1700B532C1 /* NoActiveBetsCell.xib */; };
 		F2A03FE42B98E9FA00494CD0 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = F2A03FE62B98E9FA00494CD0 /* Localizable.stringsdict */; };
+		F2AF45612BBEF15100D5EBCA /* ForecastPageVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AF45602BBEF15100D5EBCA /* ForecastPageVController.swift */; };
+		F2AF45632BBF043500D5EBCA /* ForecastPageVController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2AF45622BBF043500D5EBCA /* ForecastPageVController.storyboard */; };
+		F2AF45652BBF2DD300D5EBCA /* UIPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AF45642BBF2DD300D5EBCA /* UIPageViewController.swift */; };
 		F2C051342BAADDB00056FB75 /* IAPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C051332BAADDB00056FB75 /* IAPService.swift */; };
 		F2DBFAEF2B8F7D7B00FC5069 /* Bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DBFAEE2B8F7D7B00FC5069 /* Bet.swift */; };
 		F2DF9CAA2BA86B5900898F4E /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF9CA92BA86B5900898F4E /* Sequence.swift */; };
@@ -167,6 +170,9 @@
 		F2A016392B9E6A1700B532C1 /* NoActiveBetsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoActiveBetsCell.xib; sourceTree = "<group>"; };
 		F2A03FE52B98E9FA00494CD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F2A03FE72B98E9FC00494CD0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		F2AF45602BBEF15100D5EBCA /* ForecastPageVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastPageVController.swift; sourceTree = "<group>"; };
+		F2AF45622BBF043500D5EBCA /* ForecastPageVController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForecastPageVController.storyboard; sourceTree = "<group>"; };
+		F2AF45642BBF2DD300D5EBCA /* UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewController.swift; sourceTree = "<group>"; };
 		F2B47A64B643F89A0D415439 /* Pods_Ctavki.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctavki.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2C051322BAAD62D0056FB75 /* Donates.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Donates.storekit; sourceTree = "<group>"; };
 		F2C051332BAADDB00056FB75 /* IAPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPService.swift; sourceTree = "<group>"; };
@@ -251,6 +257,8 @@
 				F2045F2C2BA7330300EA6A65 /* ForecastVController.swift */,
 				F2045F2E2BA7772700EA6A65 /* ForecastViewModel.swift */,
 				F2045F302BA778B700EA6A65 /* ForecastService.swift */,
+				F2AF45602BBEF15100D5EBCA /* ForecastPageVController.swift */,
+				F2AF45622BBF043500D5EBCA /* ForecastPageVController.storyboard */,
 			);
 			path = Forecast;
 			sourceTree = "<group>";
@@ -405,6 +413,7 @@
 				F226FA0D2B9CC6A500F9D391 /* UIStackView.swift */,
 				F2045F322BA7953400EA6A65 /* UIActivityIndicatorView.swift */,
 				F2DF9CA92BA86B5900898F4E /* Sequence.swift */,
+				F2AF45642BBF2DD300D5EBCA /* UIPageViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -684,6 +693,7 @@
 				F226F9FD2B9B943900F9D391 /* BetSectionHeaderView.xib in Resources */,
 				F2888DCC2B9B61DD007F62F2 /* BetResultHeaderView.xib in Resources */,
 				F291F13D2B9654CD00BB8E58 /* BetsCell.xib in Resources */,
+				F2AF45632BBF043500D5EBCA /* ForecastPageVController.storyboard in Resources */,
 				F226FA0A2B9CA0E200F9D391 /* FaqView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -789,9 +799,11 @@
 				F2DF9CB32BA9D8C600898F4E /* DonateCell.swift in Sources */,
 				F226FA0C2B9CA14A00F9D391 /* FaqView.swift in Sources */,
 				F2045F332BA7953400EA6A65 /* UIActivityIndicatorView.swift in Sources */,
+				F2AF45652BBF2DD300D5EBCA /* UIPageViewController.swift in Sources */,
 				F22CE0B52B88C20900732FFB /* TeamsFactory.swift in Sources */,
 				F22CE0A72B87D3C100732FFB /* MenuButton.swift in Sources */,
 				F22CE09E2B87C53700732FFB /* TeamsVController.swift in Sources */,
+				F2AF45612BBEF15100D5EBCA /* ForecastPageVController.swift in Sources */,
 				F2888DCE2B9B624C007F62F2 /* BetResultHeaderView.swift in Sources */,
 				F2973D082B9EF96A003612E1 /* HistoryService.swift in Sources */,
 				F2F9B4EA2BB2FE520087B333 /* PushService.swift in Sources */,
@@ -986,7 +998,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -1017,7 +1029,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;

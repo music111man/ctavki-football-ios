@@ -162,7 +162,7 @@ extension SignInVController: AccountServiceDelegate {
                   message: R.string.localizable.log_in_with_apple_desc(),
                   okText: R.string.localizable.settings(),
                   cancelText: R.string.localizable.cancel_Ok()) {
-            let urlString = "App-Prefs:root=APPLE_ID"
+            let urlString = "App-prefs:APPLE_ACCOUNT&path=PASSWORD_AND_SECURITY"
             UIApplication.shared.open(URL(string: urlString)!, options: [:], completionHandler: nil)
         }
     }

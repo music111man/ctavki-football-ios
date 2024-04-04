@@ -57,7 +57,7 @@ struct PushKeys {
 
 protocol PushManagerDelegate: AnyObject {
     func canShow(pushRedirect: PushRedirect) -> Bool
-    func openScreen(pushRedirect: PushRedirect)
+    func openScreen(pushRedirect: PushRedirect?)
 }
 
 final class PushService: NSObject {
@@ -89,28 +89,29 @@ extension PushService: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         UIApplication.shared.applicationIconBadgeNumber = 0
-        guard let redirectStr = notification.request.content.userInfo[PushKeys.redirectTo] as? String,
+        if let redirectStr = notification.request.content.userInfo[PushKeys.redirectTo] as? String,
               let redirect = PushRedirect(redirectStr,
                                           id: notification.request.content.userInfo[PushKeys.redirectToTagId] as? String,
-                                          url: notification.request.content.userInfo[PushKeys.redirectToUrl] as? String) else {
-            return
+                                          url: notification.request.content.userInfo[PushKeys.redirectToUrl] as? String) {
+            if delegate.canShow(pushRedirect: redirect) {
+                completionHandler([.alert, .sound, .badge])
+            }
         }
-        printAppEvent((notification.request.content.userInfo[PushKeys.redirectTo] as? String) ?? "no data")
-        if delegate.canShow(pushRedirect: redirect) {
-            completionHandler([.alert, .sound, .badge])
-        }
+        
+        completionHandler([.alert, .sound, .badge])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
+        completionHandler()
         UIApplication.shared.applicationIconBadgeNumber = 0
         guard let redirectStr = response.notification.request.content.userInfo[PushKeys.redirectTo] as? String,
               let redirect = PushRedirect(redirectStr,
                                           id: response.notification.request.content.userInfo[PushKeys.redirectToTagId] as? String,
                                           url: response.notification.request.content.userInfo[PushKeys.redirectToUrl] as? String) else {
+            delegate.openScreen(pushRedirect: nil)
             return
         }
-        completionHandler()
+        
         
         delegate.openScreen(pushRedirect: redirect)
     }

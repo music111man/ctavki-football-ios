@@ -95,7 +95,7 @@ final class TeamsVController: FeaureVController {
                 return
             }
             
-            self.stackView.replaceWithHideAnimation({
+            self.stackView.replaceArrangedSubviews({
                 let views = models.map { model in
                     let view = TeamsView().configure(title: model.title, teams: model.teams)
                     view.delegate = self

@@ -73,6 +73,9 @@ final class MainVController: UIViewController {
     }
 
     func add(vc: UIViewController) {
+        if currentController == vc {
+            return
+        }
         if let childVC = self.children.first {
             childVC.didMove(toParent: nil)
             childVC.view.removeFromSuperview()
@@ -91,12 +94,23 @@ final class MainVController: UIViewController {
         ])
         vc.didMove(toParent: self)
     }
+    
+    private func scrollToTop(v: UIView) {
+        v.subviews.forEach {v in
+            if let scrollView = v as? UIScrollView {
+                scrollView.setContentOffset(.zero, animated: true)
+            }
+        }
+    }
 
-    func setChildVC(vc: UIViewController, action: ToolBarView.MenuAction? = nil, _ complite: (() -> Void)? = nil) {
+    func setChildVC(vc: UIViewController, action: ToolBarView.MenuAction? = nil, needScrollToTop: Bool = false, _ complite: (() -> Void)? = nil) {
         if let action = action {
             toolBar.selectMenuBtn(action)
         }
         add(vc: vc)
+        if needScrollToTop {
+            scrollToTop(v: vc.view)
+        }
         complite?()
     }
     

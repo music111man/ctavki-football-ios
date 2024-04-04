@@ -89,10 +89,12 @@ struct R: Rswift.Validatable {
   }
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
   struct storyboard {
     /// Storyboard `BetDetailsVController`.
     static let betDetailsVController = _R.storyboard.betDetailsVController()
+    /// Storyboard `ForecastPageVController`.
+    static let forecastPageVController = _R.storyboard.forecastPageVController()
     /// Storyboard `ForecastVController`.
     static let forecastVController = _R.storyboard.forecastVController()
     /// Storyboard `HistoryVController`.
@@ -106,6 +108,13 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "BetDetailsVController", bundle: ...)`
     static func betDetailsVController(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.betDetailsVController)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "ForecastPageVController", bundle: ...)`
+    static func forecastPageVController(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.forecastPageVController)
     }
     #endif
 
@@ -3275,6 +3284,9 @@ struct _R: Rswift.Validatable {
       try betDetailsVController.validate()
       #endif
       #if os(iOS) || os(tvOS)
+      try forecastPageVController.validate()
+      #endif
+      #if os(iOS) || os(tvOS)
       try forecastVController.validate()
       #endif
       #if os(iOS) || os(tvOS)
@@ -3315,6 +3327,31 @@ struct _R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    struct forecastPageVController: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let forecastPageVController = StoryboardViewControllerResource<ForecastPageVController>(identifier: "ForecastPageVController")
+      let name = "ForecastPageVController"
+
+      func forecastPageVController(_: Void = ()) -> ForecastPageVController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: forecastPageVController)
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "arrow_back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'arrow_back' is used in storyboard 'ForecastPageVController', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "background_main", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_main' is used in storyboard 'ForecastPageVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "green_blue_end", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_end' is used in storyboard 'ForecastPageVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "shadow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shadow' is used in storyboard 'ForecastPageVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "title_color", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'title_color' is used in storyboard 'ForecastPageVController', but couldn't be loaded.") }
+        }
+        if _R.storyboard.forecastPageVController().forecastPageVController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'forecastPageVController' could not be loaded from storyboard 'ForecastPageVController' as 'ForecastPageVController'.") }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     struct forecastVController: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let forecastVController = StoryboardViewControllerResource<ForecastVController>(identifier: "ForecastVController")
@@ -3325,7 +3362,6 @@ struct _R: Rswift.Validatable {
       }
 
       static func validate() throws {
-        if UIKit.UIImage(named: "arrow_back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'arrow_back' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
           if UIKit.UIColor(named: "background_light", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_light' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "background_main", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'background_main' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
@@ -3334,7 +3370,6 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "green_blue_end", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_end' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "green_blue_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_start' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "red_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'red_start' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "shadow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shadow' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "text_black", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_black' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "text_theme", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'text_theme' is used in storyboard 'ForecastVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "title_color", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'title_color' is used in storyboard 'ForecastVController', but couldn't be loaded.") }

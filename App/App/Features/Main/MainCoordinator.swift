@@ -27,6 +27,20 @@ final class MainCoordinator {
         
         return router
     }
+    func openByPush(_ action: ToolBarView.MenuAction) {
+        factories.forEach { $0.clear() }
+        lastMenuAction = action
+        switch action {
+        case .bets:
+            mainVC.setChildVC(vc: factories[0].create(), action: action, needScrollToTop: true)
+        case .teams:
+            mainVC.setChildVC(vc: factories[1].create(), action: action, needScrollToTop: true)
+        case .pay:
+            mainVC.setChildVC(vc: factories[2].create(), action: action, needScrollToTop: true)
+        case .faq:
+            mainVC.setChildVC(vc: factories[3].create(), action: action, needScrollToTop: true)
+        }
+    }
 }
 
 extension MainCoordinator: MainViewDelegate {

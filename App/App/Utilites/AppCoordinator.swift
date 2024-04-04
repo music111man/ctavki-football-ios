@@ -93,8 +93,7 @@ final class AppCoordinator: NSObject, PCoordinator {
                 printAppEvent("Unable open history - no arguments")
                 return
             }
-            let tapLeft = event.element?.userInfo?[BetView.tapLeftUserInfo] as? Bool
-            self?.showHistory(teamId: teamId, animationDirectionLeft: tapLeft)
+            self?.showHistory(teamId: teamId)
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.tryToShowTourGuid).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
             self?.startGuidTour()
@@ -122,10 +121,10 @@ final class AppCoordinator: NSObject, PCoordinator {
         }
         
         guard let betId = betId ?? activeBetToShow else { return }
-        let vc: ForecastVController = ForecastVController.createFromNib() { vc in
-            vc.betId = betId
+        let vc: ForecastPageVController = ForecastPageVController.createFromNib { v in
+            v.selectedBetId = betId
         }
-
+        
         router?.pushViewController(vc, animated: true)
     }
     
@@ -135,7 +134,7 @@ final class AppCoordinator: NSObject, PCoordinator {
         self.router?.present(vc, animated: true)
     }
     
-    func showHistory(teamId: Int, animationDirectionLeft: Bool?) {
+    func showHistory(teamId: Int) {
         if (router?.topViewController as? MainVController) == nil {
             router?.popToRootViewController(animated: false)
         }
@@ -161,7 +160,7 @@ extension AppCoordinator: PushManagerDelegate {
     func canShow(pushRedirect: PushRedirect) -> Bool {
         switch pushRedirect {
         case let .bet(betId):
-            if let vc = mainCoordinator.router.topViewController as? ForecastVController, vc.betId == betId {
+            if let vc = router?.topViewController as? ForecastPageVController, vc.selectedBetId == betId {
                 return false
             }
             return true
@@ -170,7 +169,13 @@ extension AppCoordinator: PushManagerDelegate {
         }
     }
     
-    func openScreen(pushRedirect: PushRedirect) {
+    func openScreen(pushRedirect: PushRedirect?) {
+        guard let pushRedirect = pushRedirect else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {[weak self] in
+                self?.openByPushAction(.bets)
+            }
+            return
+        }
         syncService.refresh() { [weak self] _ in
             self?.processPushDirect(pushRedirect)
         }
@@ -179,13 +184,13 @@ extension AppCoordinator: PushManagerDelegate {
     private func processPushDirect(_ pushRedirect: PushRedirect) {
         switch pushRedirect {
         case .paid:
-            self.openByMenuAction(.pay)
+            self.openByPushAction(.pay)
         case .faq:
-            self.openByMenuAction(.faq)
+            self.openByPushAction(.faq)
         case let .team(id):
-            self.showHistory(teamId: id, animationDirectionLeft: nil)
+            self.showHistory(teamId: id)
         case .teams:
-            self.openByMenuAction(.teams)
+            self.openByPushAction(.teams)
         case let .url(urlStr):
             if let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url)
@@ -208,5 +213,11 @@ extension AppCoordinator: PushManagerDelegate {
             router?.popToRootViewController(animated: false)
         }
         mainCoordinator.pushView(action, needSelectMenu: true)
+    }
+    func openByPushAction(_ action: ToolBarView.MenuAction) {
+        if (router?.topViewController as? MainVController) == nil {
+            router?.popToRootViewController(animated: false)
+        }
+        mainCoordinator.openByPush(action)
     }
 }
