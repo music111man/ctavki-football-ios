@@ -38,6 +38,9 @@ class SignInVController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         activityView.setStyle()
+        if #available(iOS 14.0, *) {
+            subTitleLabel.lineBreakStrategy = .hangulWordPriority
+        }
         AccountService.share.delegate = self
         view.backgroundColor = .black.withAlphaComponent(0.6)
         AppSettings.authorizeEvent.observe(on: MainScheduler.instance).bind {[weak self] isSignIn in

@@ -169,6 +169,14 @@
 		F2AF45602BBEF15100D5EBCA /* ForecastPageVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastPageVController.swift; sourceTree = "<group>"; };
 		F2AF45622BBF043500D5EBCA /* ForecastPageVController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForecastPageVController.storyboard; sourceTree = "<group>"; };
 		F2AF45642BBF2DD300D5EBCA /* UIPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewController.swift; sourceTree = "<group>"; };
+		F2AF45662BC1825700D5EBCA /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F2AF45672BC1825700D5EBCA /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = be; path = be.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		F2AF45682BC182B800D5EBCA /* kk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = kk; path = kk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F2AF45692BC182B800D5EBCA /* kk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = kk; path = kk.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		F2AF456A2BC1831100D5EBCA /* ky */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ky; path = ky.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F2AF456B2BC1831100D5EBCA /* ky */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ky; path = ky.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		F2AF456C2BC186D300D5EBCA /* ka */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ka; path = ka.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F2AF456D2BC186D300D5EBCA /* ka */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ka; path = ka.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F2B47A64B643F89A0D415439 /* Pods_Ctavki.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ctavki.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2C051322BAAD62D0056FB75 /* Donates.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Donates.storekit; sourceTree = "<group>"; };
 		F2C051332BAADDB00056FB75 /* IAPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPService.swift; sourceTree = "<group>"; };
@@ -648,6 +656,10 @@
 				Base,
 				ru,
 				uk,
+				be,
+				kk,
+				ky,
+				ka,
 			);
 			mainGroup = F2FC03312B867809001C6BB3;
 			productRefGroup = F2FC033B2B867809001C6BB3 /* Products */;
@@ -836,6 +848,10 @@
 				F20704842B87A33800DD6364 /* en */,
 				F20704862B87A33A00DD6364 /* ru */,
 				F252FA552BA099A200DD3241 /* uk */,
+				F2AF45662BC1825700D5EBCA /* be */,
+				F2AF45682BC182B800D5EBCA /* kk */,
+				F2AF456A2BC1831100D5EBCA /* ky */,
+				F2AF456C2BC186D300D5EBCA /* ka */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -846,6 +862,10 @@
 				F2A03FE52B98E9FA00494CD0 /* en */,
 				F2A03FE72B98E9FC00494CD0 /* ru */,
 				F252FA562BA099A300DD3241 /* uk */,
+				F2AF45672BC1825700D5EBCA /* be */,
+				F2AF45692BC182B800D5EBCA /* kk */,
+				F2AF456B2BC1831100D5EBCA /* ky */,
+				F2AF456D2BC186D300D5EBCA /* ka */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -982,11 +1002,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Ctavki ";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ctavki - прогнозы на футбол!";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1013,11 +1033,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Ctavki ";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ctavki - прогнозы на футбол!";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

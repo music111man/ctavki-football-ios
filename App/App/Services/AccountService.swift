@@ -163,7 +163,7 @@ final class AccountService: NSObject {
         }
         
         printAppEvent("start sign in apple as \(userName) with \(userEmail)")
-        NetProvider.makeRequest(SignInResponseEntity.self, .signInByApple(idToken: idToken, jwt: jwt, userName: userName, userEmail: userEmail)) {[weak self] response in
+        NetProvider.makeRequest(SignInResponseEntity.self, .signInByApple(idToken: idToken, userName: userName, userEmail: userEmail)) {[weak self] response in
             self?.processResponse(response: response, enableSingOut: true)
         }
     }

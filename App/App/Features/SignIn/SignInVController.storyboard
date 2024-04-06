@@ -35,12 +35,11 @@
                                         <color key="textColor" name="bet_group_header"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы должны войти чтобы посмотреть прогнозы" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKA-ru-1fn">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы должны войти чтобы посмотреть прогнозы" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKA-ru-1fn">
                                         <rect key="frame" x="20" y="149.33333333333334" width="293" height="38.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" name="selected_toolbar_item"/>
                                         <nil key="highlightedColor"/>
-                                        <lineBreakStrategy key="lineBreakStrategy" hangulWordPriority="YES"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bc0-jx-knS">
                                         <rect key="frame" x="305" y="-12" width="40" height="40"/>
@@ -245,7 +244,7 @@
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Mgo-2q-4Wf">
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Mgo-2q-4Wf">
                                         <rect key="frame" x="148" y="228.00000000000003" width="37" height="36.999999999999972"/>
                                         <color key="color" name="shadow"/>
                                     </activityIndicatorView>

@@ -12,7 +12,7 @@ enum ApiRequest {
     case checkForUpdates
     case signInByTelegram(uuid: String)
     case signInByGoogle(idToken: String)
-    case signInByApple(idToken: String, jwt: String, userName: String, userEmail: String)
+    case signInByApple(idToken: String, userName: String, userEmail: String)
     case signOutFromApple
 }
 
@@ -63,7 +63,7 @@ extension ApiRequest: TargetType {
             return Moya.Task.requestParameters(parameters: ["idToken": idToken,
                                                            "fcmToken": AppSettings.fcmToken],
                                                encoding: JSONEncoding.default)
-        case .signInByApple(let idToken, let jwt, let userName, let userEmail):
+        case .signInByApple(let idToken, let userName, let userEmail):
             return Moya.Task.requestParameters(parameters: ["idToken": idToken,
                                                             "user_name": userName,
                                                             "user_email": userEmail,
