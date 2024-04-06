@@ -40,8 +40,8 @@ class SignInVController: UIViewController {
         activityView.setStyle()
         AccountService.share.delegate = self
         view.backgroundColor = .black.withAlphaComponent(0.6)
-        AppSettings.authorizeEvent.asObservable().observe(on: MainScheduler.instance).bind {[weak self] isSignIn in
-            self?.activityView.isHidden = true
+        AppSettings.authorizeEvent.observe(on: MainScheduler.instance).bind {[weak self] isSignIn in
+            self?.activityView.stopAnimating()
             self?.titleLabel.text = isSignIn ? AppSettings.userName : R.string.localizable.you_are_not_logged_in()
             self?.subTitleLabel.text = !isSignIn ? R.string.localizable.we_gift_free_bets_to_new_users() : R.string.localizable.you_are_logged()
             self?.goToView.superview?.isHidden = !isSignIn
@@ -82,11 +82,21 @@ class SignInVController: UIViewController {
         }.disposed(by: disposeBag)
         
         telegramBtnView.tap {[weak self] in
-            self?.singInMethodName = SignMethod.telegram(uuid: "").toString
-            self?.accountService.signInByTelegram()
+            guard let self = self, self.accountService.canSignInByTelegram() else { 
+                self?.showOkAlert(title: R.string.localizable.warning(),
+                                  message: R.string.localizable.telegram_not_installed())
+                return
+            }
+            
+            self.singInMethodName = SignMethod.telegram(uuid: "").toString
+            self.accountService.signInByTelegram()
+
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
-            self?.activityView.isHidden = !(self?.accountService.signAction() ?? false)
+            guard let self = self else { return }
+            if self.accountService.signAction() {
+                self.activityView.startAnimating()
+            }
          }.disposed(by: disposeBag)
         
         if #available(iOS 13.0, *) {
@@ -103,13 +113,13 @@ class SignInVController: UIViewController {
         }
         
         NotificationCenter.default.rx.notification(Notification.Name.internalServerError).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
-            self?.activityView.isHidden = true
+            self?.activityView.stopAnimating()
             if let metnodName = self?.singInMethodName {
                 self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.log_in_unable(metnodName))
             }
          }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.badServerResponse).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
-            self?.activityView.isHidden = true
+            self?.activityView.stopAnimating()
             if let metnodName = self?.singInMethodName {
                 self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.log_in_unable(metnodName))
             }
@@ -121,13 +131,15 @@ class SignInVController: UIViewController {
             }
          }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.badNetRequest).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
-            self?.activityView.isHidden = true
+            self?.activityView.stopAnimating()
             if self?.singInMethodName != nil {
                 self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.net_error())
             }
          }.disposed(by: disposeBag)
         
-        activityView.isHidden = !accountService.signAction()
+        if accountService.signAction() {
+            activityView.startAnimating()
+        }
         signOutLabel.text = R.string.localizable.sign_out()
         signOutContainerView.isHidden = !AppSettings.enableSignOut
         signOutView.tap {[weak self] in

@@ -245,7 +245,7 @@
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Mgo-2q-4Wf">
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Mgo-2q-4Wf">
                                         <rect key="frame" x="148" y="228.00000000000003" width="37" height="36.999999999999972"/>
                                         <color key="color" name="shadow"/>
                                     </activityIndicatorView>

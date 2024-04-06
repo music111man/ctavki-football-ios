@@ -10,15 +10,13 @@ import Foundation
 struct SignInResponseEntity: Decodable {
     let code: Int
     let msg: String
-    @StringDecodable
-    var userId: Int
-    let email: String
-    let name: String
-    @StringDecodable
-    var betsLeft: Int
-    let alreadyRegistered: Int
+    var userId: String?
+    let email: String?
+    let name: String?
+    var betsLeft: String?
+    let alreadyRegistered: Int?
     let subscribed: Int?
-    let jwt: String
+    let jwt: String?
     
     enum CodingKeys: String, CodingKey {
         case code

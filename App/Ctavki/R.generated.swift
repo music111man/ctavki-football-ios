@@ -1081,14 +1081,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 7 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
   struct nib {
     /// Nib `BetResultHeaderView`.
     static let betResultHeaderView = _R.nib._BetResultHeaderView()
     /// Nib `BetSectionHeaderView`.
     static let betSectionHeaderView = _R.nib._BetSectionHeaderView()
-    /// Nib `BetsCellView`.
-    static let betsCellView = _R.nib._BetsCellView()
     /// Nib `BetsCell`.
     static let betsCell = _R.nib._BetsCell()
     /// Nib `DonateCell`.
@@ -1119,14 +1117,6 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.betsCell) instead")
     static func betsCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.betsCell)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "BetsCellView", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.betsCellView) instead")
-    static func betsCellView(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.betsCellView)
     }
     #endif
 
@@ -1166,10 +1156,6 @@ struct R: Rswift.Validatable {
       return R.nib.betsCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetsCell
     }
 
-    static func betsCellView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BetsCellView? {
-      return R.nib.betsCellView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetsCellView
-    }
-
     static func donateCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DonateCell? {
       return R.nib.donateCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DonateCell
     }
@@ -1187,7 +1173,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 101 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 102 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1277,6 +1263,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let expecting = Rswift.StringResource(key: "expecting", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Failed to sign in using %@, please try another method.
+      ///
+      /// Locales: en, ru, uk
+      static let log_in_unable = Rswift.StringResource(key: "log_in_unable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: For the application to work properly, please update it!
       ///
       /// Locales: en, ru, uk
@@ -1457,10 +1447,6 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let sign_out = Rswift.StringResource(key: "sign_out", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
-      /// en translation: Sign in using %@ is temporarily unavailable, please try another method.
-      ///
-      /// Locales: en, ru, uk
-      static let log_in_unable = Rswift.StringResource(key: "log_in_unable", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Sign in with Apple
       ///
       /// Locales: en, ru, uk
@@ -1517,6 +1503,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let match_being_played_break = Rswift.StringResource(key: "match_being_played_break", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: The presence of the Telegram application could not be detected.  To successfully log in, you must install Telegram on your smartphone.
+      ///
+      /// Locales: en, ru, uk
+      static let telegram_not_installed = Rswift.StringResource(key: "telegram_not_installed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Three defenses
       ///
       /// Locales: en, ru, uk
@@ -1934,6 +1924,23 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("expecting", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Failed to sign in using %@, please try another method.
+      ///
+      /// Locales: en, ru, uk
+      static func log_in_unable(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("log_in_unable", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "log_in_unable"
+        }
+
+        let format = NSLocalizedString("log_in_unable", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
       }
 
       /// en translation: For the application to work properly, please update it!
@@ -2621,23 +2628,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("sign_out", bundle: bundle, comment: "")
       }
 
-      /// en translation: Sign in using %@ is temporarily unavailable, please try another method.
-      ///
-      /// Locales: en, ru, uk
-      static func log_in_unable(_ value1: String, preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("log_in_unable", bundle: hostingBundle, comment: "")
-          return String(format: format, locale: applicationLocale, value1)
-        }
-
-        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "log_in_unable"
-        }
-
-        let format = NSLocalizedString("log_in_unable", bundle: bundle, comment: "")
-        return String(format: format, locale: locale, value1)
-      }
-
       /// en translation: Sign in with Apple
       ///
       /// Locales: en, ru, uk
@@ -2846,6 +2836,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("match_being_played_break", bundle: bundle, comment: "")
+      }
+
+      /// en translation: The presence of the Telegram application could not be detected.  To successfully log in, you must install Telegram on your smartphone.
+      ///
+      /// Locales: en, ru, uk
+      static func telegram_not_installed(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("telegram_not_installed", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "telegram_not_installed"
+        }
+
+        return NSLocalizedString("telegram_not_installed", bundle: bundle, comment: "")
       }
 
       /// en translation: Three defenses
@@ -3223,17 +3228,6 @@ struct _R: Rswift.Validatable {
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BetsCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetsCell
-      }
-
-      fileprivate init() {}
-    }
-
-    struct _BetsCellView: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "BetsCellView"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> BetsCellView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BetsCellView
       }
 
       fileprivate init() {}

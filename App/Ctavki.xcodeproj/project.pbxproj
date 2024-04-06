@@ -61,8 +61,6 @@
 		F2973D0A2B9F2B43003612E1 /* HistoryVController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2973D092B9F2B43003612E1 /* HistoryVController.storyboard */; };
 		F2973D122B9F4811003612E1 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D112B9F4811003612E1 /* TeamView.swift */; };
 		F2973D162B9F5284003612E1 /* TeamsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D152B9F5284003612E1 /* TeamsRowView.swift */; };
-		F2973D192B9F5B1C003612E1 /* BetsCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2973D182B9F5B1C003612E1 /* BetsCellView.xib */; };
-		F2973D1B2B9F5B4A003612E1 /* BetsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D1A2B9F5B4A003612E1 /* BetsCellView.swift */; };
 		F2973D242B9F7D45003612E1 /* TeamsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2973D232B9F7D45003612E1 /* TeamsService.swift */; };
 		F2A016322B9E49CD00B532C1 /* TeamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A016312B9E49CD00B532C1 /* TeamsView.swift */; };
 		F2A0163A2B9E6A1700B532C1 /* NoActivebetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A016382B9E6A1700B532C1 /* NoActivebetsCell.swift */; };
@@ -162,8 +160,6 @@
 		F2973D092B9F2B43003612E1 /* HistoryVController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HistoryVController.storyboard; sourceTree = "<group>"; };
 		F2973D112B9F4811003612E1 /* TeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		F2973D152B9F5284003612E1 /* TeamsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsRowView.swift; sourceTree = "<group>"; };
-		F2973D182B9F5B1C003612E1 /* BetsCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetsCellView.xib; sourceTree = "<group>"; };
-		F2973D1A2B9F5B4A003612E1 /* BetsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsCellView.swift; sourceTree = "<group>"; };
 		F2973D232B9F7D45003612E1 /* TeamsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsService.swift; sourceTree = "<group>"; };
 		F2A016312B9E49CD00B532C1 /* TeamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsView.swift; sourceTree = "<group>"; };
 		F2A016382B9E6A1700B532C1 /* NoActivebetsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoActivebetsCell.swift; sourceTree = "<group>"; };
@@ -439,7 +435,6 @@
 		F2888DCF2B9B643F007F62F2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				F2973D172B9F5AE7003612E1 /* BetsCellView */,
 				F2A016332B9E5E8000B532C1 /* NoActiveBets */,
 				F226F9FB2B9B93F900F9D391 /* BetSectionHeader */,
 				F2888DD02B9B647A007F62F2 /* BetResultHeader */,
@@ -475,15 +470,6 @@
 				F2973D092B9F2B43003612E1 /* HistoryVController.storyboard */,
 			);
 			path = History;
-			sourceTree = "<group>";
-		};
-		F2973D172B9F5AE7003612E1 /* BetsCellView */ = {
-			isa = PBXGroup;
-			children = (
-				F2973D182B9F5B1C003612E1 /* BetsCellView.xib */,
-				F2973D1A2B9F5B4A003612E1 /* BetsCellView.swift */,
-			);
-			path = BetsCellView;
 			sourceTree = "<group>";
 		};
 		F2A0162D2B9E494700B532C1 /* UI */ = {
@@ -688,7 +674,6 @@
 				F2973D0A2B9F2B43003612E1 /* HistoryVController.storyboard in Resources */,
 				F2DF9CAC2BA899BA00898F4E /* GoogleService-Info.plist in Resources */,
 				F2A03FE42B98E9FA00494CD0 /* Localizable.stringsdict in Resources */,
-				F2973D192B9F5B1C003612E1 /* BetsCellView.xib in Resources */,
 				F2DF9CB42BA9D8C600898F4E /* DonateCell.xib in Resources */,
 				F226F9FD2B9B943900F9D391 /* BetSectionHeaderView.xib in Resources */,
 				F2888DCC2B9B61DD007F62F2 /* BetResultHeaderView.xib in Resources */,
@@ -769,7 +754,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2973D242B9F7D45003612E1 /* TeamsService.swift in Sources */,
-				F2973D1B2B9F5B4A003612E1 /* BetsCellView.swift in Sources */,
 				F2DBFAEF2B8F7D7B00FC5069 /* Bet.swift in Sources */,
 				F2218ACB2BA2FCD200C53C46 /* SignInVController.swift in Sources */,
 				F2FC03422B867809001C6BB3 /* MainVController.swift in Sources */,

@@ -70,6 +70,11 @@ final class AccountService: NSObject {
         }
     }
     
+    func canSignInByTelegram() -> Bool {
+        guard let url = URL(string: "tg://") else { return false }
+        return UIApplication.shared.canOpenURL(url)
+    }
+    
     func signInByTelegram() {
         let uuid = UUID().uuidString
         let url = AppSettings.telegramBotUrl(uuid)
@@ -81,7 +86,6 @@ final class AccountService: NSObject {
                 }
             })
         }
-        
     }
     
     @discardableResult
@@ -174,23 +178,31 @@ final class AccountService: NSObject {
             return
         }
         
-        if response.code != 200 {
+        guard response.code == 200,
+              let userIdStr = response.userId,
+              let userId = Int(userIdStr),
+              let email = response.email,
+              let name = response.name,
+              let betsLeftStr = response.betsLeft,
+              let betsLeft = Int(betsLeftStr),
+              let alreadyRegistered = response.alreadyRegistered,
+              let jwt = response.jwt else {
             printAppEvent("sign in error: code \(response.code) msg: \(response.msg)")
             NotificationCenter.default.post(name: NSNotification.Name.badServerResponse, object: nil)
             AppSettings.authorizeEvent.accept(false)
             return
         }
         
-        let account = Account(id: response.userId,
-                              email: response.email,
-                              name: response.name,
-                              betsLeft: response.betsLeft,
-                              alreadyRegistered: response.alreadyRegistered,
+        let account = Account(id: userId,
+                              email: email,
+                              name: name,
+                              betsLeft: betsLeft,
+                              alreadyRegistered: alreadyRegistered,
                               subscribed: response.subscribed)
         Repository.refreshData([account])
         AppSettings.enableSignOut = enableSingOut
-        AppSettings.userName = response.name
-        AppSettings.userToken = response.jwt
+        AppSettings.userName = name
+        AppSettings.userToken = jwt
 
         return
     }

@@ -81,7 +81,8 @@
 "log_in_with_apple" = "Sign in with Apple";
 "log_in_with_google" = "Sign in with Google";
 "log_in_with_telegram" = "Sign in with Telegram";
-"log_in_unable" = "Sign in using %@ is temporarily unavailable, please try another method.";
+"telegram_not_installed" = "The presence of the Telegram application could not be detected.\n To successfully log in, you must install Telegram on your smartphone.";
+"log_in_unable" = "Failed to sign in using %@, please try another method.";
 "you_are_logged" = "You have successfully logged in. Now all our free sports predictions are available to you.";
 "get_more_bets" = "Go to predictions";
 "log_in_with_apple_email" = "Please use your real email!";

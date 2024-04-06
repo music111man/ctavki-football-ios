@@ -92,7 +92,6 @@ class ForecastVController: UIViewController {
     
     func initModelData() {
         guard let m = model else { return }
-        matchTimeLabel.text = BetsCell.getFlexibleTimeLeftToMatch(date: m.bet.eventDate)
         forecastLabel.text = m.betTypeTitle
         teamLabel1.text = m.team1.title
         teamLabel2.text = m.team2.title
@@ -109,6 +108,18 @@ class ForecastVController: UIViewController {
         roiTeam2Label.text = m.roi2.formattedString(count: 1)
         seriaTeam1Label.text = m.seria1.asString
         seriaTeam2Label.text = m.seria2.asString
+        updateMatchTimeLabel()
+    }
+    
+    func updateMatchTimeLabel() {
+        guard let m = model else { return }
+        let titleTime = BetsCell.getFlexibleTimeLeftToMatch(date: m.bet.eventDate)
+        if titleTime != matchTimeLabel.text {
+            matchTimeLabel.text = titleTime
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
+            self?.updateMatchTimeLabel()
+        }
     }
 
     func initLabels() {
