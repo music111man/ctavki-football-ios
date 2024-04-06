@@ -29,7 +29,8 @@ enum SignMethod {
 }
 
 protocol AccountServiceDelegate: AnyObject {
-    func showSettingsWarning()
+    func showNameWarning()
+    func showEmailWarning()
 }
 
 final class AccountService: NSObject {
@@ -143,12 +144,20 @@ final class AccountService: NSObject {
     
     private func singInApple(_ idToken: String,_ jwt: String, _ userName: String, _ userEmail: String) {
         if userName.isEmpty {
-            delegate?.showSettingsWarning()
+            delegate?.showNameWarning()
             AppSettings.signMethod = .non
             printAppEvent("can not start sign in apple - no user name")
             
             return
         }
+        if userEmail.isEmpty {
+            delegate?.showEmailWarning()
+            AppSettings.signMethod = .non
+            printAppEvent("can not start sign in apple - fake email")
+            
+            return
+        }
+        
         printAppEvent("start sign in apple as \(userName) with \(userEmail)")
         NetProvider.makeRequest(SignInResponseEntity.self, .signInByApple(idToken: idToken, jwt: jwt, userName: userName, userEmail: userEmail)) {[weak self] response in
             self?.processResponse(response: response, enableSingOut: true)
@@ -195,7 +204,7 @@ extension AccountService: ASAuthorizationControllerDelegate {
               let token = String(data: tokenData, encoding: .utf8),
               let identityTokenData = credential.identityToken,
               let jwt = String(data: identityTokenData, encoding: .utf8) else { return }
-//        printAppEvent("identityToken: \(jwt)")
+
         var userName = ""
         if let givenName = credential.fullName?.givenName, !givenName.isEmpty {
             userName = givenName
@@ -207,8 +216,11 @@ extension AccountService: ASAuthorizationControllerDelegate {
                 userName = "\(userName) \(familyName)"
             }
         }
-        let userEmail = credential.email ?? ""
-        
+        var userEmail = ""
+        if let email = credential.email, !email.lowercased().contains("@privaterelay.appleid.com") {
+            userEmail = email
+        }
+        printAppEvent("apple user: \(userName) and email: \(credential.email ?? "none")")
         AppSettings.signMethod = .apple(idToken: token, jwt: jwt, userName: userName, userEmail: userEmail)
         signAction()
 

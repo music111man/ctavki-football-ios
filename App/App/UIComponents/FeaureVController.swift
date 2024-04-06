@@ -33,9 +33,7 @@ class FeaureVController: UIViewController {
             self?.activityView.isHidden = true
         }.disposed(by: disposeBag)
         initUI()
-        let hidden = activityView.isHidden
-        activityView.startAnimating()
-        activityView.isHidden = hidden
+        activityView.hidesWhenStopped = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,8 +46,6 @@ class FeaureVController: UIViewController {
     func initUI() {
         view.backgroundColor = .backgroundMainLight
         refresher.attributedTitle = NSAttributedString(string: "")
-        refresher.addTarget(self, action: #selector(callNeedRefresh), for: .valueChanged)
-        
         navigationBar.initUI(parent: view, title: titleName(), icon: icon())
         activityView.translatesAutoresizingMaskIntoConstraints = false
         activityView.color = R.color.shadow()
@@ -77,16 +73,5 @@ class FeaureVController: UIViewController {
     
     func icon() -> UIImage? {
         nil
-    }
-    
-    @objc
-    private func callNeedRefresh() {
-        if !refreshData() {
-            refresher.endRefreshing()
-        }
-    }
-    
-    func refreshData() -> Bool {
-        fatalError("-> Not implemented refreshData()!!!")
     }
 }

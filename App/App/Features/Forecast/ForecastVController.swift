@@ -45,10 +45,10 @@ class ForecastVController: UIViewController {
     @IBOutlet weak var teamLabel1: UILabel!
     @IBOutlet weak var teamView2: UIView!
     @IBOutlet weak var teamView1: UIView!
-    @IBOutlet var gradientsBlueGreen: [UIView]!
     @IBOutlet var separators: [UIView]!
     @IBOutlet weak var matchTimeLabel: UILabel!
 
+    var g: CAGradientLayer?
     let disposeBag = DisposeBag()
 
     var model: ForecastViewModel?
@@ -85,7 +85,6 @@ class ForecastVController: UIViewController {
    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        gradientsBlueGreen.forEach { $0.layer.sublayers?.first?.frame = $0.bounds }
         blueGreenCircles.forEach { $0.layer.sublayers?.first?.frame = $0.bounds }
         violetCircles.forEach { $0.layer.sublayers?.first?.frame = $0.bounds }
         redCircles.forEach { $0.layer.sublayers?.first?.frame = $0.bounds }
@@ -132,12 +131,11 @@ class ForecastVController: UIViewController {
                         .frame = CGRect(origin: CGPoint.zero,
                                         size: CGSize(width: UIScreen.main.bounds.width - 30, height: 1))
         }
-        
-        gradientsBlueGreen.forEach { view in
-            view.setGradient(start: .greenBlueStart,
-                             end: .greenBlueEnd,
-                             isLine: true, index: 0)
-        }
+        g = forecastLabel.superview?.setGradient(start: .greenBlueStart,
+                                            end: .greenBlueEnd,
+                                            isLine: true, index: 0)
+        g?.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 100.0))
+
         blueGreenCircles.forEach { view in
             view.setGradient(start: .greenBlueEnd,
                              end: .greenBlueStart,
@@ -154,36 +152,4 @@ class ForecastVController: UIViewController {
                              isLine: false, index: 0)
         }
     }
-    
-//    private func loadForecast() {
-//        service.loadModels().observe(on: MainScheduler.instance).subscribe( {[weak self] event in
-//            //let models = try? event.get()
-//            self?.activityView.isHidden = true
-//            self?.refresher.endRefreshing()
-//            guard let models = try? event.get(), 
-//                    let model = models.first(where: {$0.bet.id == self?.betId}) else {
-//                self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
-//                return
-//            }
-//            self?.model = model
-//        }).disposed(by: disposeBag)
-//    }
-//    
-//    func animate(onLeft: Bool, _ complite: @escaping() -> ()) {
-//
-//        UIView.transition(with: backView,
-//                          duration: 0.4,
-//                          options: [onLeft ? .transitionFlipFromRight : .transitionFlipFromLeft],
-//                          animations: {[weak self] in
-//            self?.backView.layer.opacity = 0
-//            
-//        }) {[weak self] _ in
-//            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) { [weak self] in
-//                self?.backView.layer.opacity = 1
-//            }
-//            complite()
-//        }
-//        
-//        return
-//    }
 }

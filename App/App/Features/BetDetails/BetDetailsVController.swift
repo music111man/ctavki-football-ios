@@ -42,20 +42,11 @@ class BetDetailsVController: UIViewController {
         factorLabel.text = R.string.localizable.odds_col()
         resultLabel.text = R.string.localizable.result()
         closeView.tap(animateTapGesture: false) {[weak self] in
-
-            UIView.animate(withDuration: 0.3) {[weak self] in
-                self?.view.layer.opacity = 0
-            } completion: {[weak self] _ in
-                self?.dismiss(animated: false)
-            }
+            self?.close()
         }.disposed(by: disposeBag)
         containerView.tap(animateTapGesture: false) {}.disposed(by: disposeBag)
-        view.tap(animateTapGesture: false) {
-           UIView.animate(withDuration: 0.3) {[weak self] in
-               self?.view.layer.opacity = 0
-           } completion: {[weak self] _ in
-               self?.dismiss(animated: false)
-           }
+        view.tap(animateTapGesture: false) {[weak self] in
+            self?.close()
         }.disposed(by: disposeBag)
         loadInfo()
     }
@@ -64,6 +55,14 @@ class BetDetailsVController: UIViewController {
         super.viewWillAppear(animated)
         UIView.animate(withDuration: 0.3) {
             self.view.layer.opacity = 1
+        }
+    }
+    
+    func close() {
+        UIView.animate(withDuration: 0.3) {[weak self] in
+            self?.view.layer.opacity = 0
+        } completion: {[weak self] _ in
+            self?.dismiss(animated: false)
         }
     }
     
@@ -79,7 +78,7 @@ class BetDetailsVController: UIViewController {
                   let factor = bet.factor,
                   let betType: BetType = Repository.selectTop(BetType.table.where(BetType.idField == typeId)) else {
                 self?.showOkAlert(title: R.string.localizable.error()) {[weak self] in
-                    self?.dismiss(animated: true)
+                    self?.close()
                 }
                 return
             }
@@ -126,9 +125,7 @@ class BetDetailsVController: UIViewController {
                     self.resultValLabel.text = R.string.localizable.expecting()
                     self.resultValLabel.textColor = R.color.text_black()
                 }
-                self.activityView.animateOpacity(0.4, 0) {[weak self] in
-                    self?.activityView.isHidden = true
-                }
+                self.activityView.stopAnimating()
             }
                                                       
         }

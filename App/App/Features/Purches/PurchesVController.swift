@@ -40,6 +40,11 @@ final class PurchesVController: FeaureVController {
                 NotificationCenter.default.post(name: Notification.Name.showMainToolBar, object: nil)
             }
         }.disposed(by: disposeBag)
+        
+        refresher.rx.controlEvent(UIControl.Event.valueChanged).bind {[weak self] in
+            self?.warningLabel.isHidden = true
+            self?.service.loadDonates()
+        }.disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -68,8 +73,6 @@ final class PurchesVController: FeaureVController {
         view.addSubview(titleLabel)
         view.addSubview(tableView)
         view.addSubview(warningLabel)
-//        blackView.backgroundColor = .black.withAlphaComponent(0.1)
-//        blackView.translatesAutoresizingMaskIntoConstraints = false
         blackView.frame = UIScreen.main.bounds
         blackView.isHidden = true
         blackView.layer.opacity = 0
@@ -120,12 +123,6 @@ final class PurchesVController: FeaureVController {
     }
     override func icon() -> UIImage? {
         R.image.pay()
-    }
-    
-    override func refreshData() -> Bool {
-        warningLabel.isHidden = true
-        service.loadDonates()
-        return true
     }
 }
 

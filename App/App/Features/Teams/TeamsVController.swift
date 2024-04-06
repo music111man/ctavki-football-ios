@@ -35,6 +35,15 @@ final class TeamsVController: FeaureVController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refresher.rx.controlEvent(UIControl.Event.valueChanged).bind {
+            SyncService.shared.refresh {[weak self] hasNew in
+                if hasNew {
+                    self?.updateTeams()
+                } else {
+                    self?.refresher.endRefreshing()
+                }
+            }
+        }.disposed(by: disposeBag)
     }
     
     override func initTableView() {
@@ -71,20 +80,6 @@ final class TeamsVController: FeaureVController {
     
     override func icon() -> UIImage? {
         R.image.teams()
-    }
-    
-    override func refreshData() -> Bool {
-
-        SyncService.shared.refresh {[weak self] hasNew in
-            
-            if hasNew {
-                self?.updateTeams()
-            } else {
-                self?.refresher.endRefreshing()
-            }
-        }
-
-        return true
     }
     
     private func updateTeams() {

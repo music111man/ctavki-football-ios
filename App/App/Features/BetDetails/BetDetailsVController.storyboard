@@ -131,7 +131,7 @@
                                     <constraint firstItem="aS6-D7-rAi" firstAttribute="leading" secondItem="kA9-OO-LjQ" secondAttribute="leading" constant="15" id="vSb-ia-KpO"/>
                                 </constraints>
                             </view>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HSb-pa-eoG">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HSb-pa-eoG">
                                 <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
                                 <color key="color" name="shadow"/>
                             </activityIndicatorView>

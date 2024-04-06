@@ -12,7 +12,6 @@ import RxCocoa
 extension Notification.Name {
     static let needOpenBetDetails = Notification.Name("needOpenBetDetails")
     static let needOpenActiveBetDetails = Notification.Name("needOpenActiveBetDetails")
-    static let needOpenNoActiveBetDetails = Notification.Name("needOpenNoActiveBetDetails")
     static let needOpenHistory = Notification.Name("needOpenHistory")
     
 }
@@ -132,8 +131,6 @@ class BetView: UIView {
             switch self.betOutCome {
             case .active:
                 NotificationCenter.default.post(name: Notification.Name.needOpenActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
-            case .unknow:
-                NotificationCenter.default.post(name: Notification.Name.needOpenNoActiveBetDetails, object: self, userInfo: [Self.betIdKeyForUserInfo: betId])
             default:
                 NotificationCenter.default.post(name: Notification.Name.needOpenBetDetails,
                                                 object: self,
@@ -177,8 +174,8 @@ class BetView: UIView {
         parentView.setshadow()
         parentView.addSubview(label)
         NSLayoutConstraint.activate([
-            label.leftAnchor.constraint(equalTo: parentView.leftAnchor, constant: left ? 15 : 25),
-            label.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: left ? -25 : -15),
+            label.leftAnchor.constraint(equalTo: parentView.leftAnchor, constant: left ? 15 : 20),
+            label.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: left ? -20 : -15),
             label.centerYAnchor.constraint(equalTo: parentView.centerYAnchor)
         ])
         

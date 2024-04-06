@@ -24,10 +24,10 @@ class PicksVController: FeaureVController {
     
     @discardableResult
     func initBetViews() -> UIViewController {
-        activityView.isHidden = false
+        activityView.startAnimating()
         NotificationCenter.default.rx.notification(Notification.Name.needUpdateApp).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
             self?.refresher.endRefreshing()
-            self?.activityView.isHidden = true
+            self?.activityView.stopAnimating()
         }.disposed(by: disposeBag)
         SyncService.shared.refresh() {[weak self] _ in
             guard let self = self else { return }
@@ -36,7 +36,6 @@ class PicksVController: FeaureVController {
                 .observe(on: MainScheduler.instance)
                 .subscribe {[weak self] _ in
                 printAppEvent("call needUpdateBetsScreen at BetsViewModel handler", marker: ">>betServ ")
-                self?.activityView.isHidden = false
                 self?.updateData()
             }.disposed(by: disposeBag)
         }
@@ -92,6 +91,16 @@ class PicksVController: FeaureVController {
             refresher.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 20),
             refresher.centerXAnchor.constraint(equalTo: tableView.centerXAnchor)
         ])
+        refresher.rx.controlEvent(UIControl.Event.valueChanged).bind {[weak self] in
+            self?.didScroll = false
+            SyncService.shared.refresh() {[weak self] hasNew in
+                self?.refresher.endRefreshing()
+                if hasNew {
+                    self?.updateData()
+                }
+            }
+            
+        }.disposed(by: disposeBag)
     }
     
     override func titleName() -> String {
@@ -102,26 +111,13 @@ class PicksVController: FeaureVController {
         R.image.bets()
     }
     
-    override func refreshData() -> Bool {
-        didScroll = false
-        SyncService.shared.refresh() {[weak self] hasNew in
-            if hasNew {
-                self?.updateData()
-            } else {
-                self?.refresher.endRefreshing()
-            }
-        }
-        return true
-    }
-    
     private func updateData() {
         service.load().observe(on: MainScheduler.instance).subscribe {[weak self] betSections in
-            guard let self = self else { return }
-            self.betSections = betSections
-            self.setTitle()
-            self.tableView.reloadData()
-            self.refresher.endRefreshing()
-            self.activityView.isHidden = true
+            self?.betSections = betSections
+            self?.setTitle()
+            self?.tableView.reloadData()
+            self?.refresher.endRefreshing()
+            self?.activityView.stopAnimating()
             if AppSettings.needTourGuidShow {
                 NotificationCenter.default.post(name: Notification.Name.tryToShowTourGuid,
                                                 object: nil)

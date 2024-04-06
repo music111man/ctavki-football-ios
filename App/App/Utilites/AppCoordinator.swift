@@ -66,6 +66,12 @@ final class AppCoordinator: NSObject, PCoordinator {
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needOpenBetDetails).observe(on: MainScheduler.instance).subscribe {[weak self] event in
             guard let betId = event.element?.userInfo?[BetView.betIdKeyForUserInfo] as? Int else { return }
+            guard AppSettings.isAuthorized  else {
+                self?.showAuthScreen { [weak self] in
+                    self?.showBetDetails(betId: betId)
+                }
+                return
+            }
             self?.showBetDetails(betId: betId)
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needOpenActiveBetDetails).observe(on: MainScheduler.instance).subscribe {[weak self] event in
@@ -78,16 +84,7 @@ final class AppCoordinator: NSObject, PCoordinator {
             }
             self?.showActiveBetDetails()
         }.disposed(by: disposeBag)
-        NotificationCenter.default.rx.notification(Notification.Name.needOpenNoActiveBetDetails).observe(on: MainScheduler.instance).subscribe {[weak self] event in
-            guard let betId = event.element?.userInfo?[BetView.betIdKeyForUserInfo] as? Int else { return }
-            guard AppSettings.isAuthorized  else {
-                self?.showAuthScreen { [weak self] in
-                    self?.showActiveBetDetails()
-                }
-                return
-            }
-            self?.showBetDetails(betId: betId)
-        }.disposed(by: disposeBag)
+       
         NotificationCenter.default.rx.notification(Notification.Name.needOpenHistory).observe(on: MainScheduler.instance).subscribe {[weak self] event in
             guard let teamId = event.element?.userInfo?[BetView.teamIdKeyUserInfo] as? Int else {
                 printAppEvent("Unable open history - no arguments")
@@ -146,7 +143,7 @@ final class AppCoordinator: NSObject, PCoordinator {
     }
 
     func startGuidTour() {
-        guard AppSettings.needTourGuidShow, let vc = TourGuidVController.create() else { return }
+        guard let vc = TourGuidVController.create() else { return }
         vc.modalPresentationStyle = .overCurrentContext
         vc.endAction = { [weak self] in
             AppSettings.needTourGuidShow = false

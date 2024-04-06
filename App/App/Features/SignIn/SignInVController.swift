@@ -157,7 +157,17 @@ extension SignInVController: ASAuthorizationControllerPresentationContextProvidi
 }
 
 extension SignInVController: AccountServiceDelegate {
-    func showSettingsWarning() {
+    func showEmailWarning() {
+        showOkCancelAlert(title: R.string.localizable.log_in_with_apple_email(),
+                  message: R.string.localizable.log_in_with_apple_desc(),
+                  okText: R.string.localizable.settings(),
+                  cancelText: R.string.localizable.cancel_Ok()) {
+            let urlString = "App-prefs:APPLE_ACCOUNT&path=PASSWORD_AND_SECURITY"
+            UIApplication.shared.open(URL(string: urlString)!, options: [:], completionHandler: nil)
+        }
+    }
+    
+    func showNameWarning() {
         showOkCancelAlert(title: R.string.localizable.log_in_with_apple(),
                   message: R.string.localizable.log_in_with_apple_desc(),
                   okText: R.string.localizable.settings(),

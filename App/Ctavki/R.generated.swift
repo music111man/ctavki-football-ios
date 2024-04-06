@@ -1187,7 +1187,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 100 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 101 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1389,6 +1389,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk
       static let picks = Rswift.StringResource(key: "picks", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
+      /// en translation: Please use your real email!
+      ///
+      /// Locales: en, ru, uk
+      static let log_in_with_apple_email = Rswift.StringResource(key: "log_in_with_apple_email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk"], comment: nil)
       /// en translation: Prediction odds
       ///
       /// Locales: en, ru, uk
@@ -2360,6 +2364,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("picks", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Please use your real email!
+      ///
+      /// Locales: en, ru, uk
+      static func log_in_with_apple_email(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("log_in_with_apple_email", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "log_in_with_apple_email"
+        }
+
+        return NSLocalizedString("log_in_with_apple_email", bundle: bundle, comment: "")
       }
 
       /// en translation: Prediction odds

@@ -15,6 +15,7 @@ class BetsCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     
     weak var delegate: BetViewDelegate?
+    var eventDateOfActive: Date?
 
     var heightConstraint: NSLayoutConstraint?
     override func awakeFromNib() {
@@ -27,19 +28,9 @@ class BetsCell: UITableViewCell {
         g.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.width - 20, height: 1))
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-//        gradient?.frame = separatorView.bounds
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
     func configure(_ model: BetGroup) {
         containerView.subviews.forEach { $0.removeFromSuperview() }
+        eventDateOfActive = model.active ? model.eventDate : nil
         headerLabel.text = model.active ? Self.getFlexibleTimeLeftToMatch(date: model.eventDate) : model.eventDate.format("d MMMM yyyy")
         var prevView: UIView?
         for bet in model.bets {
@@ -56,6 +47,18 @@ class BetsCell: UITableViewCell {
             view.delegate = self
         }
         containerView.subviews.last?.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        updateStartTime()
+    }
+    
+    func updateStartTime() {
+        guard let eventDate = eventDateOfActive else { return }
+        let titleTime = Self.getFlexibleTimeLeftToMatch(date: eventDate)
+        if titleTime != headerLabel.text {
+            headerLabel.text = titleTime
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
+            self?.updateStartTime()
+        }
     }
     
     static func getFlexibleTimeLeftToMatch(date: Date) -> String {

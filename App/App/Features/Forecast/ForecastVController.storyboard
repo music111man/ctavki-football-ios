@@ -792,7 +792,6 @@
                         <outletCollection property="violetCircles" destination="PSu-K7-DM7" collectionClass="NSMutableArray" id="dCP-bc-RPt"/>
                         <outletCollection property="separators" destination="31w-lM-EjC" collectionClass="NSMutableArray" id="1h4-wk-cC1"/>
                         <outletCollection property="blueGreenCircles" destination="9dR-EG-VZS" collectionClass="NSMutableArray" id="E5S-1L-HD7"/>
-                        <outletCollection property="gradientsBlueGreen" destination="Ef8-aP-ubl" collectionClass="NSMutableArray" id="s54-LM-Ocv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

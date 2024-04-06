@@ -95,9 +95,9 @@ class TourGuidVController: UIViewController {
             icon.widthAnchor.constraint(equalToConstant: 30.0),
             icon.heightAnchor.constraint(equalToConstant: 30.0),
             icon.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-            icon.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: -12),
+            icon.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: -16),
             label.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: 17)
+            label.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: 13)
         ])
         
         return container
@@ -106,11 +106,13 @@ class TourGuidVController: UIViewController {
     func initMenuContainer(_ containerView: UIView, _ iconView: UIView? = nil, _ prevView: UIView? = nil) {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
+        let k = (UIScreen.main.bounds.width * 0.25) - 58 - 8 - UIView.safeAreaHeight
+        printAppEvent("kkk = \(k) safeAreaHeight = \(UIView.safeAreaHeight)")
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: prevView?.trailingAnchor ?? view.leadingAnchor),
             containerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
             containerView.heightAnchor.constraint(equalTo: containerView.widthAnchor),
-            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8)
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: k)
         ])
         guard let iconView = iconView else { return }
         let animationView = UIView()
@@ -136,8 +138,8 @@ class TourGuidVController: UIViewController {
         betsGuidIconContainer.backgroundColor = .white
         view.addSubview(betsGuidIconContainer)
         NSLayoutConstraint.activate([
-            betsGuidIconContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            betsGuidIconContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: UIView.safeAreaHeight + 15),
+            betsGuidIconContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            betsGuidIconContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: (UIView.safeAreaHeight + 80) / 2),
             betsGuidIconContainer.widthAnchor.constraint(equalToConstant: 50),
             betsGuidIconContainer.heightAnchor.constraint(equalToConstant: 50)
         ])

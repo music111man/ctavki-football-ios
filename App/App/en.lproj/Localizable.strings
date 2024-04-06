@@ -84,6 +84,7 @@
 "log_in_unable" = "Sign in using %@ is temporarily unavailable, please try another method.";
 "you_are_logged" = "You have successfully logged in. Now all our free sports predictions are available to you.";
 "get_more_bets" = "Go to predictions";
+"log_in_with_apple_email" = "Please use your real email!";
 "log_in_with_apple_desc" = "To successfully log into your account, you need to reset the previous attempt by logging into your smartphone settings.\nTo do this, go to Settings -> Apple Id -> Sign in and security -> Sign in with Apple -> Forecast Football and click \"Don't use Apple ID \"";
 "sing_out_desc" = "Are you sure you want to log out of your account? When you exit, your account on the server will be deleted.";
 "enter_name" = "Your first and last name";

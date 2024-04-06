@@ -79,7 +79,12 @@ final class ForecastPageVController: UIViewController {
             self?.activityView.stopAnimating()
             self?.models = models
             guard let model = models.first(where: { $0.bet.id == self?.selectedBetId }) else {
-                self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
+                if let betId = self?.selectedBetId {
+                    NotificationCenter.default.post(name: Notification.Name.needOpenBetDetails,
+                                                    object: self,
+                                                    userInfo: [BetView.betIdKeyForUserInfo: betId])
+                }
+                self?.navigationController?.popToRootViewController(animated: false)
                 return
             }
             let vc = self?.pageController.viewControllers?.first as? ForecastVController

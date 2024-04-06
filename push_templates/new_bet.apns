@@ -3,13 +3,13 @@
     "aps": {
         "alert": {
             "body": "новый прогноз с кэф. = 1,63",
-            "title": "Матч Грузия - Греция"
+            "title": "Матч Челси - Манчестер Юн."
         },
 	"sound": "default",
 	"badge": 1
     },
 
     "redirect_to": "REDIR_BET",
-    "redirect_to_tag_id": "681",
+    "redirect_to_tag_id": "690",
     "redirect_to_url": ""
 }

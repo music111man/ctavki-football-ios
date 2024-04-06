@@ -47,7 +47,6 @@ final class MainVController: UIViewController {
         toolBar.initUI { [weak self] action in
             self?.delegate?.pushView(action,needSelectMenu: false)
         }
-
         toolBar.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.backgroundColor = .backgroundMainLight
