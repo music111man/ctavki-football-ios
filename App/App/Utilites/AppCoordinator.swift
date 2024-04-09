@@ -24,6 +24,7 @@ final class AppCoordinator: NSObject, PCoordinator {
     var activeBetToShow: Int?
     var isAuthorized = false
     var wasUpdated = false
+    var needUpdateAppWarning = 0
     var router: UINavigationController? {
         window.rootViewController as? UINavigationController
     }
@@ -58,8 +59,19 @@ final class AppCoordinator: NSObject, PCoordinator {
     }
     
     func initNotificationEventHandlers() {
-        NotificationCenter.default.rx.notification(Notification.Name.needUpdateApp).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
-            self?.router?.showOkAlert(title: R.string.localizable.warning(), message: R.string.localizable.update_app_msg())
+        NotificationCenter.default.rx.notification(Notification.Name.needUpdateApp).subscribe {[weak self] _ in
+            if self?.needUpdateAppWarning == 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {[weak self] in
+                    self?.router?.showOkAlert(title: R.string.localizable.warning(), message: R.string.localizable.update_app_msg())
+                }
+                self?.needUpdateAppWarning = 1
+            }
+        }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(Notification.Name.badNetRequest).subscribe {[weak self] _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
+                    self?.router?.showOkAlert(title: R.string.localizable.net_error())
+                }
+                
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.tapAutozire).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
            self?.showAuthScreen()

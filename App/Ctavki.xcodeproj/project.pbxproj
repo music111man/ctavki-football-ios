@@ -400,6 +400,7 @@
 		F22CE0A52B87D1CE00732FFB /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				F291F1392B96549600BB8E58 /* Cells */,
 				F22CE0AD2B889B5D00732FFB /* Controls */,
 				F291F1352B96250D00BB8E58 /* FeaureVController.swift */,
 			);
@@ -425,6 +426,7 @@
 		F22CE0AD2B889B5D00732FFB /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				F251D6382B974EBD009ABC86 /* BetView.swift */,
 				F22CE0A62B87D3C100732FFB /* MenuButton.swift */,
 				F22CE0A82B87DBB100732FFB /* ToolBarView.swift */,
 				F291F1332B95F96C00BB8E58 /* NavigationTopBarView.swift */,
@@ -446,7 +448,6 @@
 				F2A016332B9E5E8000B532C1 /* NoActiveBets */,
 				F226F9FB2B9B93F900F9D391 /* BetSectionHeader */,
 				F2888DD02B9B647A007F62F2 /* BetResultHeader */,
-				F291F1392B96549600BB8E58 /* Cells */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -463,9 +464,7 @@
 		F291F1392B96549600BB8E58 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				F291F13A2B9654CD00BB8E58 /* BetsCell.swift */,
-				F291F13B2B9654CD00BB8E58 /* BetsCell.xib */,
-				F251D6382B974EBD009ABC86 /* BetView.swift */,
+				F2FD39102BC556DE0083F610 /* Bets */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -607,6 +606,15 @@
 				F2A03FE62B98E9FA00494CD0 /* Localizable.stringsdict */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		F2FD39102BC556DE0083F610 /* Bets */ = {
+			isa = PBXGroup;
+			children = (
+				F291F13A2B9654CD00BB8E58 /* BetsCell.swift */,
+				F291F13B2B9654CD00BB8E58 /* BetsCell.xib */,
+			);
+			path = Bets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

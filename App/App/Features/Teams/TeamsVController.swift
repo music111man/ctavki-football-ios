@@ -16,17 +16,18 @@ final class TeamsVController: FeaureVController {
     var needAnimationOnWillAppend = false
     let stackView = UIStackView()
 
+    @discardableResult
     func initTeamsFeatures() -> UIViewController {
-        activityView.isHidden = false
+        activityView.startAnimating()
         NotificationCenter.default.rx.notification(Notification.Name.needUpdateApp).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
             self?.refresher.endRefreshing()
-            self?.activityView.isHidden = true
+            self?.activityView.stopAnimating()
         }.disposed(by: disposeBag)
         SyncService.shared.refresh {[weak self] _ in
             guard let self = self else { return }
             self.updateTeams()
             NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
-                self?.activityView.isHidden = false
+                self?.activityView.startAnimating()
                 self?.updateTeams()
             }.disposed(by: self.disposeBag)
         }
@@ -85,7 +86,7 @@ final class TeamsVController: FeaureVController {
     private func updateTeams() {
         teamsService.load().observe(on: MainScheduler.instance).subscribe {[weak self] models in
             guard let self = self else {
-                self?.activityView.isHidden = true
+                self?.activityView.stopAnimating()
                 self?.refresher.endRefreshing()
                 return
             }
@@ -99,7 +100,7 @@ final class TeamsVController: FeaureVController {
                 }
                 return views
             }) {[weak self] in
-                    self?.activityView.isHidden = true
+                    self?.activityView.stopAnimating()
                     self?.refresher.endRefreshing()
             }
         }.disposed(by: disposeBag)

@@ -41,12 +41,27 @@ final class SyncService {
         printAppEvent("start sync")
         NetProvider.makeRequest(ApiResponseData.self, .checkForUpdates) {[weak self] responseData in
             guard let responseData = responseData else {
-                complite?(false)
+                DispatchQueue.main.async {[weak self] in
+                    self?.compliteTasks.compactMap{$0}.forEach{ complite in
+                        complite(false)
+                    }
+                    self?.compliteTasks.removeAll()
+                }
                 return
             }
-            if responseData.code != 200 {
+            guard responseData.code == 200,
+                  let newLastTimeDataUpdated = responseData.newLastTimeDataUpdated,
+                  let teams = responseData.teams,
+                  let bets = responseData.bets,
+                  let betTypes = responseData.betTypes,
+                  let faqs = responseData.faqs else {
                 NotificationCenter.default.post(name: NSNotification.Name.badServerResponse, object: nil)
-                complite?(false)
+                DispatchQueue.main.async {[weak self] in
+                    self?.compliteTasks.compactMap{$0}.forEach{ complite in
+                        complite(false)
+                    }
+                    self?.compliteTasks.removeAll()
+                }
                 return
             }
             
@@ -54,30 +69,31 @@ final class SyncService {
                 NotificationCenter.default.post(name: NSNotification.Name.needUpdateApp, object: nil)
                 
             }
-            AppSettings.lastTimeSynced = responseData.newLastTimeDataUpdated
+            AppSettings.lastTimeSynced = newLastTimeDataUpdated
             AppSettings.lastLocaleThenUpdate = Locale.current.identifier
-            AppSettings.defaultFreeBetsCount = responseData.defaultFreeBetsCount
-            AppSettings.giftFreeBetsCount = responseData.giftFreeBetsCount
-            AppSettings.userBetsLeft = responseData.userBetsLeft
-            AppSettings.isSubscribedToTgChannel = responseData.isSubscribedToTgChannel
+            AppSettings.defaultFreeBetsCount = Int(responseData.defaultFreeBetsCount ?? "0") ?? 0
+            AppSettings.giftFreeBetsCount = Int(responseData.giftFreeBetsCount ?? "0") ?? 0
+            //AppSettings.userBetsLeft = Int(responseData.userBetsLeft ?? "0") ?? 0
+            AppSettings.isSubscribedToTgChannel = (responseData.isSubscribedToTgChannel ?? 0) > 0
+
             Repository.async {[weak self] in
-                Repository.refreshData(responseData.teams)
-                Repository.refreshData(responseData.bets)
-                Repository.refreshData(responseData.faqs)
-                Repository.refreshData(responseData.betTypes)
+                Repository.refreshData(teams)
+                Repository.refreshData(bets)
+                Repository.refreshData(faqs)
+                Repository.refreshData(betTypes)
                 
                 
                 
-                if !responseData.faqs.isEmpty {
+                if !faqs.isEmpty {
                     NotificationCenter.default.post(name: NSNotification.Name.needUpdatFaqsScreen, object: nil)
                 }
-                if !responseData.teams.isEmpty || !responseData.bets.isEmpty || !responseData.betTypes.isEmpty {
+                if !teams.isEmpty || !bets.isEmpty || !betTypes.isEmpty {
                     NotificationCenter.default.post(name: NSNotification.Name.needUpdateBetsScreen, object: nil)
                 }
-                let newData = !(responseData.teams.isEmpty
-                                && responseData.bets.isEmpty
-                                && responseData.betTypes.isEmpty
-                                && responseData.faqs.isEmpty)
+                let newData = !(teams.isEmpty
+                                && bets.isEmpty
+                                && betTypes.isEmpty
+                                && faqs.isEmpty)
                 self?.lastUpdateDate = Date()
                 DispatchQueue.main.async {[weak self] in
                     self?.compliteTasks.compactMap{$0}.forEach{ complite in

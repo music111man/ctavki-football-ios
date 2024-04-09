@@ -9,20 +9,20 @@ import Foundation
 
 struct ApiResponseData: Decodable {
     let code: Int
-    let appupdate: AppUpdateAvailable
-    @StringDecodable 
-    var defaultFreeBetsCount: Int
-    @StringDecodable
-    var giftFreeBetsCount: Int
-    let newLastTimeDataUpdated: String
-    @IntOrStringDecodable
-    var userBetsLeft: Int
-    @IntToBoolDecodable
-    var isSubscribedToTgChannel: Bool
+    var appupdate: AppUpdateAvailable?
+    //@StringDecodable
+    var defaultFreeBetsCount: String?
+    //@StringDecodable
+    var giftFreeBetsCount: String?
+    var newLastTimeDataUpdated: String?
+    //@IntOrStringDecodable
+    //var userBetsLeft: String?
+    //@IntToBoolDecodable
+    var isSubscribedToTgChannel: Int?
     
-    let betTypes: [BetType]
-    let teams: [Team]
-    let faqs: [Faq]
-    let bets: [Bet]
+    let betTypes: [BetType]?
+    let teams: [Team]?
+    let faqs: [Faq]?
+    let bets: [Bet]?
     
 }

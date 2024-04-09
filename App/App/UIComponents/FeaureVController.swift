@@ -33,7 +33,7 @@ class FeaureVController: UIViewController {
             self?.activityView.isHidden = true
         }.disposed(by: disposeBag)
         initUI()
-        activityView.hidesWhenStopped = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +50,7 @@ class FeaureVController: UIViewController {
         activityView.translatesAutoresizingMaskIntoConstraints = false
         activityView.color = R.color.shadow()
         activityView.setStyle()
+        activityView.hidesWhenStopped = true
         view.addSubview(activityView)
         NSLayoutConstraint.activate([
             activityView.centerXAnchor.constraint(equalTo: view.centerXAnchor),

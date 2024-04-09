@@ -29,7 +29,8 @@ class PicksVController: FeaureVController {
             self?.refresher.endRefreshing()
             self?.activityView.stopAnimating()
         }.disposed(by: disposeBag)
-        SyncService.shared.refresh() {[weak self] _ in
+        
+        SyncService.shared.refresh() {[weak self] newData in
             guard let self = self else { return }
             self.updateData()
             NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen)
