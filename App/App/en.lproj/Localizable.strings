@@ -8,6 +8,7 @@
 "update_data_msg" = "Updating...";
 "error" = "Error";
 "server_data_error" = "The application cannot process data received from the server.\nContact support.";
+"server_internal_error" = "There was a server failure, the data has not been updated.\nContact support.";
 "net_error" = "Problems with Internet connection";
 "cancel_Ok" = "Cancel";
 "settings" = "Settings";

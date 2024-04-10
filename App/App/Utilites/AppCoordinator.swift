@@ -59,19 +59,26 @@ final class AppCoordinator: NSObject, PCoordinator {
     }
     
     func initNotificationEventHandlers() {
-        NotificationCenter.default.rx.notification(Notification.Name.needUpdateApp).subscribe {[weak self] _ in
-            if self?.needUpdateAppWarning == 0 {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {[weak self] in
-                    self?.router?.showOkAlert(title: R.string.localizable.warning(), message: R.string.localizable.update_app_msg())
-                }
-                self?.needUpdateAppWarning = 1
+        NotificationCenter.default.rx.notification(Notification.Name.needAuthorize).subscribe { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
+                AppSettings.userToken = ""
+                self?.showAuthScreen()
             }
         }.disposed(by: disposeBag)
-        NotificationCenter.default.rx.notification(Notification.Name.badNetRequest).subscribe {[weak self] _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
-                    self?.router?.showOkAlert(title: R.string.localizable.net_error())
-                }
+        NotificationCenter.default.rx.notification(Notification.Name.needUpdateApp).subscribe {[weak self] _ in
+            if let self, self.needUpdateAppWarning <= 0 {
+                self.router?.showOkAlert(title: R.string.localizable.warning(),
+                                         message: R.string.localizable.update_app_msg(), delay: 2.0)
+                self.needUpdateAppWarning = 1
+            }
+        }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(Notification.Name.internalServerError).subscribe {[weak self] _ in
+            self?.router?.showOkAlert(title: R.string.localizable.warning(),
+                                      message: R.string.localizable.server_internal_error(), delay: 1.0)
                 
+        }.disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(Notification.Name.badNetRequest).subscribe {[weak self] _ in
+            self?.router?.showOkAlert(title: R.string.localizable.net_error(), delay: 1.0)
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.tapAutozire).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
            self?.showAuthScreen()

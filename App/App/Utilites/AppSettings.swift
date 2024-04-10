@@ -32,12 +32,6 @@ struct Storage<T> {
 
 final class AppSettings {
     
-    private static let signInMethodKey = "signInMethodKey"
-    private static let tokenFoSignInKey = "tokenForSignIn"
-    private static let appleJWTKey = "appleJWTKey"
-    private static let appleUserEmail = "appleUserEmail"
-    private static let appleUserName = "appleUserName"
-    
     private init(){}
     
 //    public static var isRelease: Bool {
@@ -55,51 +49,55 @@ final class AppSettings {
     static func telegramBotUrl(_ uuid: String) -> URL {
         URL(string: "https://tg.pulse.is/Ctavki_com_bot?start=656da09a90e51fa8e30af51c|uuid=\(uuid)")!
     }
+    
+    @SecureString("tokenFoSignIn")
+    static var tokenFoSignIn: String?
+    @SecureString("appleUserName")
+    static var appleUserName: String?
+    @SecureString("appleUserEmail")
+    static var appleUserEmail: String?
+    @Storage(key: "signInMethod", defaultValue: 0)
+    static var signInMethod: Int
+    
+    
 
     static  var signMethod: SignMethod {
         set {
             switch newValue {
             case .non:
-                UserDefaults.standard.setValue(0, forKey: Self.signInMethodKey)
+                Self.signInMethod = 0
+                Self.tokenFoSignIn = nil
             case let .google(idToken):
-                UserDefaults.standard.setValue(1, forKey: Self.signInMethodKey)
-                UserDefaults.standard.setValue(idToken, forKey: Self.tokenFoSignInKey)
+                Self.signInMethod = 1
+                Self.tokenFoSignIn = idToken
             case let .telegram(uuid):
-                UserDefaults.standard.setValue(2, forKey: Self.signInMethodKey)
-                UserDefaults.standard.setValue(uuid, forKey: Self.tokenFoSignInKey)
-            case .apple(let idToken, let jwt, let userName, let userEmail):
-                UserDefaults.standard.setValue(3, forKey: Self.signInMethodKey)
-                UserDefaults.standard.setValue(idToken, forKey: Self.tokenFoSignInKey)
-                UserDefaults.standard.setValue(jwt, forKey: Self.appleJWTKey)
+                Self.signInMethod = 2
+                Self.tokenFoSignIn = uuid
+            case .apple(let idToken, let userName, let userEmail):
+                Self.signInMethod = 3
+                Self.tokenFoSignIn = idToken
                 if !userName.isEmpty {
-                    UserDefaults.standard.setValue(userName, forKey: Self.appleUserName)
+                    Self.appleUserName = userName
                 }
                 if !userEmail.isEmpty {
-                    UserDefaults.standard.setValue(userEmail, forKey: Self.appleUserEmail)
+                    Self.appleUserEmail = userEmail
                 }
             case .singOutFromApple:
-                UserDefaults.standard.setValue(4, forKey: Self.signInMethodKey)
+                Self.signInMethod = 4
             }
         }
         get {
-            let method =  UserDefaults.standard.integer(forKey: Self.signInMethodKey)
-            switch method {
-            case 1:
-                if let token = UserDefaults.standard.string(forKey: Self.tokenFoSignInKey) {
-                    return .google(idToken: token)
-                }
-                break
-            case 2:
-                if let token = UserDefaults.standard.string(forKey: Self.tokenFoSignInKey) {
-                    return .telegram(uuid: token)
-                }
+            guard let tokenFoSignIn = Self.tokenFoSignIn else { return Self.signInMethod == 4 ? .singOutFromApple : .non }
+            switch Self.signInMethod {
+            case 1: 
+                return .google(idToken: tokenFoSignIn)
+            case 2: 
+                return .telegram(uuid: tokenFoSignIn)
             case 3:
-                if let token = UserDefaults.standard.string(forKey: Self.tokenFoSignInKey),
-                 let jwt = UserDefaults.standard.string(forKey: Self.appleJWTKey) {
-                    let userName = UserDefaults.standard.string(forKey: Self.appleUserName) ?? ""
-                    let userEmail = UserDefaults.standard.string(forKey: Self.appleUserEmail) ?? ""
-                    return .apple(idToken: token, jwt: jwt, userName: userName, userEmail: userEmail)
-                }
+                let userName = Self.appleUserName ?? ""
+                let userEmail = Self.appleUserEmail ?? ""
+                return .apple(idToken: tokenFoSignIn, userName: userName, userEmail: userEmail)
+                
             case 4:
                 return .singOutFromApple
             default:
@@ -110,6 +108,9 @@ final class AppSettings {
             
         }
     }
+    
+    
+    
     
     @Storage(key: "userName", defaultValue: "")
     static var userName: String
@@ -151,14 +152,22 @@ final class AppSettings {
     
     @Storage(key: "isSubscribedToTgChannel", defaultValue: false)
     static var isSubscribedToTgChannel: Bool
+    
+    @SecureString("userToken")
+    static var secureToken: String?
 
+    @Storage(key: "wasSignIn", defaultValue: false)
+    private static var wasSignIn: Bool
+    
     static var userToken: String {
         get {
-            return UserDefaults.standard.string(forKey: "userToken") ?? ""
+            return wasSignIn ? (Self.secureToken ?? "") : ""
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "userToken")
+            Self.secureToken = newValue
+            wasSignIn = true
             lastTimeSynced = ""
+            userName = ""
             authorizeEvent.accept(!newValue.isEmpty)
         }
     }

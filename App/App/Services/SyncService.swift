@@ -11,6 +11,7 @@ import RxCocoa
 import SQLite
 
 extension Notification.Name {
+    static let needAuthorize = Notification.Name("needAuthorize")
     static let needUpdateApp = Notification.Name("needUpdateApp")
     static let badServerResponse = Notification.Name("badServerResponse")
     static let wasSyncBetTypeData = Notification.Name("wasSyncBetTypeData")
@@ -41,12 +42,13 @@ final class SyncService {
         printAppEvent("start sync")
         NetProvider.makeRequest(ApiResponseData.self, .checkForUpdates) {[weak self] responseData in
             guard let responseData = responseData else {
-                DispatchQueue.main.async {[weak self] in
-                    self?.compliteTasks.compactMap{$0}.forEach{ complite in
-                        complite(false)
-                    }
-                    self?.compliteTasks.removeAll()
-                }
+                self?.compliteAll(false)
+                return
+            }
+            //user not authorized
+            if responseData.code == 401 {
+                NotificationCenter.default.post(name: NSNotification.Name.needAuthorize, object: nil)
+                self?.compliteAll(false)
                 return
             }
             guard responseData.code == 200,
@@ -56,12 +58,7 @@ final class SyncService {
                   let betTypes = responseData.betTypes,
                   let faqs = responseData.faqs else {
                 NotificationCenter.default.post(name: NSNotification.Name.badServerResponse, object: nil)
-                DispatchQueue.main.async {[weak self] in
-                    self?.compliteTasks.compactMap{$0}.forEach{ complite in
-                        complite(false)
-                    }
-                    self?.compliteTasks.removeAll()
-                }
+                self?.compliteAll(false)
                 return
             }
             
@@ -95,14 +92,7 @@ final class SyncService {
                                 && betTypes.isEmpty
                                 && faqs.isEmpty)
                 self?.lastUpdateDate = Date()
-                DispatchQueue.main.async {[weak self] in
-                    self?.compliteTasks.compactMap{$0}.forEach{ complite in
-                        complite(newData)
-                    }
-                }
-            
-                printAppEvent("refresh data \(newData)")
-                self?.compliteTasks.removeAll()
+                self?.compliteAll(newData)
             }
             self?.dispatchWorkItem?.cancel()
             let item = DispatchWorkItem {[weak self] in
@@ -111,6 +101,16 @@ final class SyncService {
             self?.dispatchWorkItem = item
             self?.dispatchQueue.asyncAfter(deadline: .now() + AppSettings.syncInterval,
                                            execute: item)
+        }
+    }
+    
+    private func compliteAll(_ newData: Bool) {
+        DispatchQueue.main.async {[weak self] in
+            self?.compliteTasks.compactMap{$0}.forEach{ complite in
+                complite(newData)
+            }
+            printAppEvent("refresh data \(newData)")
+            self?.compliteTasks.removeAll()
         }
     }
 }

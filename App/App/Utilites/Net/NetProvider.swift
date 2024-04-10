@@ -23,7 +23,8 @@ class NetProvider {
             switch result {
             case .success(let response):
                 if response.statusCode != 200 {
-                    printAppEvent("\(target): response status != 200")
+                    printAppEvent("\(target): response status \(response.statusCode)")
+                    printAppEvent("\(String(data: response.data, encoding: String.Encoding.utf8) ?? "no data")")
                     NotificationCenter.default.post(name: NSNotification.Name.internalServerError, object: target)
                     callback?(nil)
                 } else {

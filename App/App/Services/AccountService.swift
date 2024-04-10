@@ -13,7 +13,7 @@ import AuthenticationServices
 enum SignMethod {
     case google(idToken: String)
     case telegram(uuid: String)
-    case apple(idToken: String, jwt: String, userName: String, userEmail: String)
+    case apple(idToken: String, userName: String, userEmail: String)
     case singOutFromApple
     case non
     
@@ -99,8 +99,8 @@ final class AccountService: NSObject {
         case let .google(idToken):
             singInGoogle(idToken)
             return true
-        case .apple(let idToken, let jwt, let userName, let userEmail):
-            singInApple(idToken, jwt, userName, userEmail)
+        case .apple(let idToken, let userName, let userEmail):
+            singInApple(idToken, userName, userEmail)
             return true
         case .singOutFromApple:
             singOutApple()
@@ -146,21 +146,21 @@ final class AccountService: NSObject {
         }
     }
     
-    private func singInApple(_ idToken: String,_ jwt: String, _ userName: String, _ userEmail: String) {
-        if userName.isEmpty {
-            delegate?.showNameWarning()
-            AppSettings.signMethod = .non
-            printAppEvent("can not start sign in apple - no user name")
-            
-            return
-        }
-        if userEmail.isEmpty {
-            delegate?.showEmailWarning()
-            AppSettings.signMethod = .non
-            printAppEvent("can not start sign in apple - fake email")
-            
-            return
-        }
+    private func singInApple(_ idToken: String, _ userName: String, _ userEmail: String) {
+//        if userName.isEmpty {
+//            delegate?.showNameWarning()
+//            AppSettings.signMethod = .non
+//            printAppEvent("can not start sign in apple - no user name")
+//            
+//            return
+//        }
+//        if userEmail.isEmpty {
+//            delegate?.showEmailWarning()
+//            AppSettings.signMethod = .non
+//            printAppEvent("can not start sign in apple - fake email")
+//            
+//            return
+//        }
         
         printAppEvent("start sign in apple as \(userName) with \(userEmail)")
         NetProvider.makeRequest(SignInResponseEntity.self, .signInByApple(idToken: idToken, userName: userName, userEmail: userEmail)) {[weak self] response in
@@ -228,12 +228,12 @@ extension AccountService: ASAuthorizationControllerDelegate {
                 userName = "\(userName) \(familyName)"
             }
         }
-        var userEmail = ""
-        if let email = credential.email, !email.lowercased().contains("@privaterelay.appleid.com") {
-            userEmail = email
-        }
+        var userEmail = credential.email ?? ""
+//        if let email = credential.email, !email.lowercased().contains("@privaterelay.appleid.com") {
+//            userEmail = email
+//        }
         printAppEvent("apple user: \(userName) and email: \(credential.email ?? "none")")
-        AppSettings.signMethod = .apple(idToken: token, jwt: jwt, userName: userName, userEmail: userEmail)
+        AppSettings.signMethod = .apple(idToken: token, userName: userName, userEmail: userEmail)
         signAction()
 
     }

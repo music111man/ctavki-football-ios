@@ -107,7 +107,6 @@ class TourGuidVController: UIViewController {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
         let k = (UIScreen.main.bounds.width * 0.25) - 58 - 8 - UIView.safeAreaHeight
-        printAppEvent("kkk = \(k) safeAreaHeight = \(UIView.safeAreaHeight)")
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: prevView?.trailingAnchor ?? view.leadingAnchor),
             containerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),

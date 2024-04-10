@@ -109,7 +109,7 @@ class SignInVController: UIViewController {
             authorizationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
             stackView.insertArrangedSubview(authorizationButton, at: 0)
             authorizationButton.tap {[weak self] in
-                self?.singInMethodName = SignMethod.apple(idToken: "", jwt: "", userName: "", userEmail: "").toString
+                self?.singInMethodName = SignMethod.apple(idToken: "", userName: "", userEmail: "").toString
                 self?.accountService.signInByApple(presenting: self!)
             }.disposed(by: disposeBag)
             appleBtnView = authorizationButton

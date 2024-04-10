@@ -18,9 +18,9 @@ extension UIViewController {
         return vc
     }
     
-    func showOkAlert(title: String, message: String? = nil, okText: String = "OK",
+    func showOkAlert(title: String, message: String? = nil, delay: TimeInterval = 0, okText: String = "OK",
                    _ okAction: (() -> ())? = nil) {
-        DispatchQueue.main.async { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: okText, style: UIAlertAction.Style.default) {_ in
                 okAction?()
@@ -30,10 +30,10 @@ extension UIViewController {
 
     }
     
-    func showOkCancelAlert(title: String, message: String? = nil, okText: String = "OK", cancelText: String? = nil,
+    func showOkCancelAlert(title: String, message: String? = nil, delay: TimeInterval = 0, okText: String = "OK", cancelText: String? = nil,
                    _ okAction: @escaping(() -> ()),
                    _ cancelAction: (() -> ())? = nil) {
-        DispatchQueue.main.async { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: okText, style: UIAlertAction.Style.default) {_ in
                 okAction()

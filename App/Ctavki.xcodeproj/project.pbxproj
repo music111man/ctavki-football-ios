@@ -96,6 +96,7 @@
 		F2FC033E2B867809001C6BB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC033D2B867809001C6BB3 /* AppDelegate.swift */; };
 		F2FC03422B867809001C6BB3 /* MainVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC03412B867809001C6BB3 /* MainVController.swift */; };
 		F2FC03472B86780B001C6BB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2FC03462B86780B001C6BB3 /* Assets.xcassets */; };
+		F2FD39122BC683AE0083F610 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FD39112BC683AE0083F610 /* SecureStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -209,6 +210,8 @@
 		F2FC03412B867809001C6BB3 /* MainVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVController.swift; sourceTree = "<group>"; };
 		F2FC03462B86780B001C6BB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2FC034B2B86780B001C6BB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2FD39112BC683AE0083F610 /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
+		F2FD39132BC6B33F0083F610 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				F2041A312B91D05C00DA42BB /* Repository.swift */,
+				F2FD39112BC683AE0083F610 /* SecureStorage.swift */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -604,6 +608,7 @@
 				F2FC034B2B86780B001C6BB3 /* Info.plist */,
 				F20704852B87A33800DD6364 /* Localizable.strings */,
 				F2A03FE62B98E9FA00494CD0 /* Localizable.stringsdict */,
+				F2FD39132BC6B33F0083F610 /* PrivacyInfo.xcprivacy */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -791,6 +796,7 @@
 				F22CE0A02B87C5AF00732FFB /* PurchesVController.swift in Sources */,
 				F2045F2D2BA7330300EA6A65 /* ForecastVController.swift in Sources */,
 				F2EA78CC2B909122006B3A1C /* Faq.swift in Sources */,
+				F2FD39122BC683AE0083F610 /* SecureStorage.swift in Sources */,
 				F2EB1A352B9A11520027D782 /* UIViewController.swift in Sources */,
 				F2045F312BA778B700EA6A65 /* ForecastService.swift in Sources */,
 				F2EA78DC2B90CA29006B3A1C /* AppSettings.swift in Sources */,
@@ -1010,7 +1016,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;
@@ -1041,7 +1047,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ctavki/Ctavki.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = W6M6ZN9G8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Info.plist;

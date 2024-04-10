@@ -1173,7 +1173,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 102 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 103 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1507,6 +1507,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
       static let telegram_not_installed = Rswift.StringResource(key: "telegram_not_installed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk", "be", "kk", "ky", "ka"], comment: nil)
+      /// en translation: There was a server failure, the data has not been updated. Contact support.
+      ///
+      /// Locales: en, ru, uk, be, kk, ky, ka
+      static let server_internal_error = Rswift.StringResource(key: "server_internal_error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk", "be", "kk", "ky", "ka"], comment: nil)
       /// en translation: Three defenses
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
@@ -2851,6 +2855,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("telegram_not_installed", bundle: bundle, comment: "")
+      }
+
+      /// en translation: There was a server failure, the data has not been updated. Contact support.
+      ///
+      /// Locales: en, ru, uk, be, kk, ky, ka
+      static func server_internal_error(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("server_internal_error", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "server_internal_error"
+        }
+
+        return NSLocalizedString("server_internal_error", bundle: bundle, comment: "")
       }
 
       /// en translation: Three defenses
