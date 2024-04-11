@@ -230,7 +230,7 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" name="background_white"/>
+                                                <color key="backgroundColor" name="background_main"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="3Rd-VD-FNp" secondAttribute="trailing" id="7Vl-wv-gkX"/>
                                                     <constraint firstAttribute="bottom" secondItem="3Rd-VD-FNp" secondAttribute="bottom" id="Osc-D9-sOC"/>
@@ -310,9 +310,6 @@
         <image name="google" width="256" height="256"/>
         <image name="telegram" width="512" height="512"/>
         <namedColor name="background_main">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="background_white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="bet_group_end">
