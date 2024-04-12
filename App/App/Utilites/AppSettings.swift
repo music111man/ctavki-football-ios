@@ -47,7 +47,7 @@ final class AppSettings {
     }
     
     static func telegramBotUrl(_ uuid: String) -> URL {
-        URL(string: "https://tg.pulse.is/Ctavki_com_bot?start=656da09a90e51fa8e30af51c|uuid=\(uuid)")!
+        URL(string: "https://tg.pulse.is/Ctavki_com_bot?start=6617eb6a2dfa9fc422050608|uuid=\(uuid)")!
     }
     
     @SecureString("tokenFoSignIn")
