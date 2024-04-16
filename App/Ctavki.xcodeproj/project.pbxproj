@@ -45,7 +45,6 @@
 		F22CE0B92B88C2FD00732FFB /* FaqFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0B82B88C2FD00732FFB /* FaqFactory.swift */; };
 		F22CE0BC2B88F0D200732FFB /* TourGuidVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22CE0BB2B88F0D200732FFB /* TourGuidVController.swift */; };
 		F2300A3D2BCE849E000F7E1F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F2FD39132BC6B33F0083F610 /* PrivacyInfo.xcprivacy */; };
-		F2300A3E2BCE84BF000F7E1F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2FC034B2B86780B001C6BB3 /* Info.plist */; };
 		F24C769A2BA07E7800FE7836 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F24C769B2BA07E7800FE7836 /* LaunchScreen.storyboard */; };
 		F251D6392B974EBD009ABC86 /* BetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F251D6382B974EBD009ABC86 /* BetView.swift */; };
 		F251D63B2B977389009ABC86 /* BetSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F251D63A2B977389009ABC86 /* BetSectionHeaderView.swift */; };
@@ -693,7 +692,6 @@
 			files = (
 				F2045F2B2BA732E700EA6A65 /* ForecastVController.storyboard in Resources */,
 				F2A0163B2B9E6A1700B532C1 /* NoActiveBetsCell.xib in Resources */,
-				F2300A3E2BCE84BF000F7E1F /* Info.plist in Resources */,
 				F24C769A2BA07E7800FE7836 /* LaunchScreen.storyboard in Resources */,
 				F20704832B87A33800DD6364 /* Localizable.strings in Resources */,
 				F2218ACD2BA2FCF500C53C46 /* SignInVController.storyboard in Resources */,

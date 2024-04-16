@@ -214,8 +214,7 @@ extension AccountService: ASAuthorizationControllerDelegate {
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
               let tokenData = credential.authorizationCode,
               let token = String(data: tokenData, encoding: .utf8),
-              let identityTokenData = credential.identityToken,
-              let jwt = String(data: identityTokenData, encoding: .utf8) else { return }
+              let identityTokenData = credential.identityToken else { return }
 
         var userName = ""
         if let givenName = credential.fullName?.givenName, !givenName.isEmpty {
@@ -228,7 +227,7 @@ extension AccountService: ASAuthorizationControllerDelegate {
                 userName = "\(userName) \(familyName)"
             }
         }
-        var userEmail = credential.email ?? ""
+        let userEmail = credential.email ?? ""
 //        if let email = credential.email, !email.lowercased().contains("@privaterelay.appleid.com") {
 //            userEmail = email
 //        }

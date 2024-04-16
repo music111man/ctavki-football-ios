@@ -109,6 +109,7 @@ class ForecastVController: UIViewController {
         seriaTeam1Label.text = m.seria1.asString
         seriaTeam2Label.text = m.seria2.asString
         updateMatchTimeLabel()
+        printAppEvent("active bet id=\(m.bet.id)", marker: ">>>>>>")
     }
     
     func updateMatchTimeLabel() {
