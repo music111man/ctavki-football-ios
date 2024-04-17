@@ -15,9 +15,9 @@
 			<key>zero</key>
 			<string>менее минуты</string>
 			<key>one</key>
-			<string>одну минуту</string>
+			<string>%d минуту</string>
 			<key>two</key>
-			<string>два минуты</string>
+			<string>%d минуты</string>
 			<key>few</key>
 			<string>%d минуты</string>
 			<key>many</key>
@@ -37,9 +37,9 @@
 			<key>zero</key>
 			<string>менее часа</string>
 			<key>one</key>
-			<string>один час</string>
+			<string>%d час</string>
 			<key>two</key>
-			<string>два часа</string>
+			<string>%d часа</string>
 			<key>few</key>
 			<string>%d часа</string>
 			<key>many</key>

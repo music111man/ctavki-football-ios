@@ -80,8 +80,8 @@ extension Date {
         return formatter.string(from: self)
     }
     
-    var matchTime: Date {
-        Date().addingTimeInterval(-105 * 60)
+    static var matchTime: Date {
+        Date().addingTimeInterval(-105 * 60) //(-((105 * 60 * 6.5) + 6750))
     }
 }
 

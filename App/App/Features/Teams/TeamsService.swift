@@ -53,7 +53,7 @@ final class TeamsService {
     }
     
     private func createModels(allBets: [Bet], teams: [Team]) -> [TeamsViewModel] {
-        let matchTime = Date().matchTime
+        let matchTime = Date.matchTime
         let activeBets = allBets.filter { $0.isActive && $0.eventDate > matchTime }.sorted { $0.eventDate < $01.eventDate }
         let bets:[Bet] = allBets.filter { !$0.isActive }
         let activeTeams = teams.filter { team in

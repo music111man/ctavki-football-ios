@@ -53,12 +53,12 @@ class HistoryVController: UIViewController {
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needUpdateApp).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
             self?.refresher.endRefreshing()
-            self?.activityView.isHidden = true
+            self?.activityView.startAnimating()
         }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.needUpdateBetsScreen)
             .observe(on: MainScheduler.instance)
             .subscribe {[weak self] _ in
-            self?.activityView.isHidden = false
+                self?.activityView.startAnimating()
             self?.updateData()
         }.disposed(by: disposeBag)
         
@@ -79,7 +79,7 @@ class HistoryVController: UIViewController {
     func updateData() {
         historyService.load().observe(on: MainScheduler.instance).subscribe {[weak self] model in
             self?.refresher.endRefreshing()
-            self?.activityView.isHidden = true
+            self?.activityView.stopAnimating()
             guard let self = self, let model = model else {
                 self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
                 return

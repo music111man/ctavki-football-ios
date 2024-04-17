@@ -52,6 +52,7 @@ class BetsCell: UITableViewCell {
     
     func updateStartTime() {
         guard let eventDate = eventDateOfActive else { return }
+//        printAppEvent("\(Date.matchTime)", marker: "}}=}")
         let titleTime = Self.getFlexibleTimeLeftToMatch(date: eventDate)
         if titleTime != headerLabel.text {
             headerLabel.text = titleTime

@@ -60,18 +60,16 @@ class ForecastVController: UIViewController {
         initGradients()
         teamView1.tap {[weak self] in
             guard let teamId = self?.model?.team1.id else { return }
-            let vc: HistoryVController = .createFromNib { vc in
-                vc.configure(teamId: teamId)
-            }
-            self?.navigationController?.pushViewController(vc, animated: true)
+            NotificationCenter.default.post(name: NSNotification.Name.needOpenHistory, 
+                                            object: nil,
+                                            userInfo: [BetView.teamIdKeyUserInfo : teamId])
             
         }.disposed(by: disposeBag)
         teamView2.tap {[weak self] in
             guard let teamId = self?.model?.team2.id else { return }
-            let vc: HistoryVController = .createFromNib { vc in
-                vc.configure(teamId: teamId)
-            }
-            self?.navigationController?.pushViewController(vc, animated: true)
+            NotificationCenter.default.post(name: NSNotification.Name.needOpenHistory,
+                                            object: nil,
+                                            userInfo: [BetView.teamIdKeyUserInfo : teamId])
         }.disposed(by: disposeBag)
         initModelData()
     }
@@ -114,6 +112,7 @@ class ForecastVController: UIViewController {
     
     func updateMatchTimeLabel() {
         guard let m = model else { return }
+        
         let titleTime = BetsCell.getFlexibleTimeLeftToMatch(date: m.bet.eventDate)
         if titleTime != matchTimeLabel.text {
             matchTimeLabel.text = titleTime

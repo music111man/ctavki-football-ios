@@ -213,8 +213,7 @@ extension AccountService: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
               let tokenData = credential.authorizationCode,
-              let token = String(data: tokenData, encoding: .utf8),
-              let identityTokenData = credential.identityToken else { return }
+              let token = String(data: tokenData, encoding: .utf8) else { return }
 
         var userName = ""
         if let givenName = credential.fullName?.givenName, !givenName.isEmpty {

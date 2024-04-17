@@ -29,6 +29,7 @@ final class SyncService {
     static let shared = SyncService()
     let dispatchQueue = DispatchQueue(label: "syncService", qos: .background)
     var dispatchWorkItem: DispatchWorkItem?
+    var activeBets: [Bet]?
     
     private init() {
     }
@@ -74,11 +75,11 @@ final class SyncService {
             AppSettings.isSubscribedToTgChannel = (responseData.isSubscribedToTgChannel ?? 0) > 0
 
             Repository.async {[weak self] in
+                guard let self else { return }
                 Repository.refreshData(teams)
                 Repository.refreshData(bets)
                 Repository.refreshData(faqs)
                 Repository.refreshData(betTypes)
-                
                 
                 
                 if !faqs.isEmpty {
@@ -91,8 +92,21 @@ final class SyncService {
                                 && bets.isEmpty
                                 && betTypes.isEmpty
                                 && faqs.isEmpty)
-                self?.lastUpdateDate = Date()
-                self?.compliteAll(newData)
+                self.lastUpdateDate = Date()
+                self.compliteAll(newData)
+                if !bets.isEmpty {
+                    self.activeBets = bets.filter({$0.isActive})
+                    self.dispatchQueue.asyncAfter(deadline: .now() + 1) {[weak self] in
+                        self?.observeActiveBets()
+                    }
+                } else {
+                    if self.activeBets == nil || self.activeBets!.isEmpty {
+                        self.activeBets = Repository.select(Bet.table.filter(Bet.eventDateField > Date.matchTime))
+                        self.dispatchQueue.asyncAfter(deadline: .now() + 1) {[weak self] in
+                            self?.observeActiveBets()
+                        }
+                    }
+                }
             }
             self?.dispatchWorkItem?.cancel()
             let item = DispatchWorkItem {[weak self] in
@@ -101,6 +115,18 @@ final class SyncService {
             self?.dispatchWorkItem = item
             self?.dispatchQueue.asyncAfter(deadline: .now() + AppSettings.syncInterval,
                                            execute: item)
+        }
+    }
+    
+    func observeActiveBets() {
+        guard let activeBets = self.activeBets, !activeBets.isEmpty  else { return }
+//        printAppEvent("active bets: \(activeBets.count)", marker: "}}=}")
+        if !activeBets.allSatisfy({ $0.isActive}) {
+            self.activeBets = activeBets.filter { $0.isActive }
+            NotificationCenter.default.post(name: NSNotification.Name.needUpdateBetsScreen, object: nil)
+        }
+        dispatchQueue.asyncAfter(deadline: .now() + 1) {[weak self] in
+            self?.observeActiveBets()
         }
     }
     

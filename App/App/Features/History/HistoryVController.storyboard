@@ -165,7 +165,7 @@
                                     <constraint firstItem="JrV-PY-q4S" firstAttribute="top" secondItem="16K-SW-RkT" secondAttribute="bottom" id="z9S-sO-rdj"/>
                                 </constraints>
                             </view>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="dbD-V2-Czu">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="dbD-V2-Czu">
                                 <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
                                 <color key="color" name="shadow"/>
                             </activityIndicatorView>

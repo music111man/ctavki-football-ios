@@ -18,7 +18,7 @@ final class ForecastService {
     
     func loadModels() -> Single<[ForecastViewModel]> {
         let activeBetsQ: Observable<[Bet]> = Repository.selectObservable(Bet.table.filter( Bet.outcomeField == nil
-                                                    && Bet.eventDateField > Date().matchTime ).order(Bet.eventDateField))
+                                                    && Bet.eventDateField > Date.matchTime ).order(Bet.eventDateField))
         return activeBetsQ
             .flatMap {[weak self] activeBets -> Observable<[ForecastViewModel]> in
                 guard let self = self, !activeBets.isEmpty else { return .just([])}
@@ -129,7 +129,7 @@ final class ForecastService {
         let time = Date()
         let betQ: Observable<Bet?> = Repository.selectTopObservable(Bet.table.filter(Bet.idField == self.betId))
         let activeBetsQ: Observable<[Bet]> = Repository.selectObservable(Bet.table.filter( Bet.outcomeField == nil
-                                                                                           && Bet.eventDateField > Date().matchTime ).order(Bet.eventDateField))
+                                                                                           && Bet.eventDateField > Date.matchTime ).order(Bet.eventDateField))
         
         return Observable.combineLatest(betQ, activeBetsQ).flatMap { (bet, activeBets) -> Observable<ForecastViewModel?> in
             guard let bet = bet, let typeId = bet.typeId else {
