@@ -46,12 +46,13 @@ class SignInVController: UIViewController {
         AppSettings.authorizeEvent.observe(on: MainScheduler.instance).bind {[weak self] isSignIn in
             self?.activityView.stopAnimating()
             self?.titleLabel.text = isSignIn ? AppSettings.userName : R.string.localizable.you_are_not_logged_in()
+            printAppEvent(AppSettings.userName)
             self?.subTitleLabel.text = !isSignIn ? R.string.localizable.we_gift_free_bets_to_new_users() : R.string.localizable.you_are_logged()
             self?.goToView.superview?.isHidden = !isSignIn
             self?.googleBtnView.isHidden = isSignIn
             self?.telegramBtnView.isHidden = isSignIn
             self?.appleBtnView?.isHidden = isSignIn
-            self?.signOutContainerView.isHidden = !AppSettings.enableSignOut
+            self?.signOutContainerView.isHidden = !isSignIn
             if #available(iOS 13.0, *) {
                 self?.stackView.arrangedSubviews.first?.isHidden = isSignIn
             }
@@ -119,16 +120,20 @@ class SignInVController: UIViewController {
             self?.activityView.stopAnimating()
             if let metnodName = self?.singInMethodName {
                 self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.log_in_unable(metnodName))
+            } else {
+                self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.server_internal_error())
             }
          }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.badServerResponse).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
             self?.activityView.stopAnimating()
             if let metnodName = self?.singInMethodName {
                 self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.log_in_unable(metnodName))
+            } else {
+                self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.server_internal_error())
             }
          }.disposed(by: disposeBag)
         NotificationCenter.default.rx.notification(Notification.Name.deserializeError).observe(on: MainScheduler.instance).subscribe {[weak self] _ in
-            self?.activityView.isHidden = true
+            self?.activityView.stopAnimating()
             if self?.singInMethodName != nil {
                 self?.showOkAlert(title: R.string.localizable.error(), message: R.string.localizable.server_data_error())
             }
@@ -144,12 +149,11 @@ class SignInVController: UIViewController {
             activityView.startAnimating()
         }
         signOutLabel.text = R.string.localizable.sign_out()
-        signOutContainerView.isHidden = !AppSettings.enableSignOut
         signOutView.tap {[weak self] in
             self?.showOkCancelAlert(title: R.string.localizable.sign_out(), message: R.string.localizable.sing_out_desc()) {[weak self] in
-                self?.activityView.isHidden = false
-                self?.singInMethodName = SignMethod.singOutFromApple.toString
-                AppSettings.signMethod = .singOutFromApple
+                self?.activityView.startAnimating()
+                self?.singInMethodName = SignMethod.singOut.toString
+                AppSettings.signMethod = .singOut
                 self?.accountService.signAction()
             }
         }.disposed(by: disposeBag)

@@ -14,7 +14,7 @@ enum SignMethod {
     case google(idToken: String)
     case telegram(uuid: String)
     case apple(idToken: String, userName: String, userEmail: String)
-    case singOutFromApple
+    case singOut
     case non
     
     var toString: String? {
@@ -22,7 +22,6 @@ enum SignMethod {
         case .apple: return "Apple"
         case .google: return "Google"
         case .telegram: return "Telegram"
-        case .singOutFromApple: return "Apple"
         default: return nil
         }
     }
@@ -102,7 +101,7 @@ final class AccountService: NSObject {
         case .apple(let idToken, let userName, let userEmail):
             singInApple(idToken, userName, userEmail)
             return true
-        case .singOutFromApple:
+        case .singOut:
             singOutApple()
             return true
         }
@@ -111,7 +110,7 @@ final class AccountService: NSObject {
     private func singOutApple() {
         printAppEvent("start sign out from apple")
         DispatchQueue.global().async {
-            NetProvider.makeRequest(SignOutResponseEntity.self, .signOutFromApple) {response in
+            NetProvider.makeRequest(SignOutResponseEntity.self, .signOut) {response in
                 defer {
                     printAppEvent("reset sing out method to non")
                     AppSettings.signMethod = .non
@@ -122,7 +121,6 @@ final class AccountService: NSObject {
                     AppSettings.authorizeEvent.accept(true)
                     return
                 }
-                AppSettings.enableSignOut = false
                 AppSettings.userName = ""
                 AppSettings.userToken = ""
                 
@@ -147,21 +145,6 @@ final class AccountService: NSObject {
     }
     
     private func singInApple(_ idToken: String, _ userName: String, _ userEmail: String) {
-//        if userName.isEmpty {
-//            delegate?.showNameWarning()
-//            AppSettings.signMethod = .non
-//            printAppEvent("can not start sign in apple - no user name")
-//            
-//            return
-//        }
-//        if userEmail.isEmpty {
-//            delegate?.showEmailWarning()
-//            AppSettings.signMethod = .non
-//            printAppEvent("can not start sign in apple - fake email")
-//            
-//            return
-//        }
-        
         printAppEvent("start sign in apple as \(userName) with \(userEmail)")
         NetProvider.makeRequest(SignInResponseEntity.self, .signInByApple(idToken: idToken, userName: userName, userEmail: userEmail)) {[weak self] response in
             self?.processResponse(response: response, enableSingOut: true)
@@ -200,7 +183,6 @@ final class AccountService: NSObject {
                               alreadyRegistered: alreadyRegistered,
                               subscribed: response.subscribed)
         Repository.refreshData([account])
-        AppSettings.enableSignOut = enableSingOut
         AppSettings.userName = name
         AppSettings.userToken = jwt
 

@@ -82,12 +82,12 @@ final class AppSettings {
                 if !userEmail.isEmpty {
                     Self.appleUserEmail = userEmail
                 }
-            case .singOutFromApple:
+            case .singOut:
                 Self.signInMethod = 4
             }
         }
         get {
-            guard let tokenFoSignIn = Self.tokenFoSignIn else { return Self.signInMethod == 4 ? .singOutFromApple : .non }
+            guard let tokenFoSignIn = Self.tokenFoSignIn else { return Self.signInMethod == 4 ? .singOut : .non }
             switch Self.signInMethod {
             case 1: 
                 return .google(idToken: tokenFoSignIn)
@@ -99,7 +99,7 @@ final class AppSettings {
                 return .apple(idToken: tokenFoSignIn, userName: userName, userEmail: userEmail)
                 
             case 4:
-                return .singOutFromApple
+                return .singOut
             default:
                 break
             }
@@ -157,23 +157,22 @@ final class AppSettings {
     static var secureToken: String?
 
     @Storage(key: "wasSignIn", defaultValue: false)
-    private static var wasSignIn: Bool
+    private static var didActionSignIn: Bool
     
     static var userToken: String {
         get {
-            return wasSignIn ? (Self.secureToken ?? "") : ""
+            return didActionSignIn ? (Self.secureToken ?? "") : ""
         }
         set {
             Self.secureToken = newValue
-            wasSignIn = true
+            didActionSignIn = true
             lastTimeSynced = ""
-            userName = ""
+            if newValue.isEmpty {
+                userName = ""
+            }
             authorizeEvent.accept(!newValue.isEmpty)
         }
     }
-    
-    @Storage(key: "enableSignOut", defaultValue: false)
-    static var enableSignOut: Bool
     
     static var isAuthorized: Bool {
         !Self.userToken.isEmpty
