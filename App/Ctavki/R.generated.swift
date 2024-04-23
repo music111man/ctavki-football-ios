@@ -150,7 +150,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 37 colors.
+  /// This `R.color` struct is generated, and contains static references to 38 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
@@ -182,6 +182,8 @@ struct R: Rswift.Validatable {
     static let blue_gray_400 = Rswift.ColorResource(bundle: R.hostingBundle, name: "blue_gray_400")
     /// Color `blue_gray_500`.
     static let blue_gray_500 = Rswift.ColorResource(bundle: R.hostingBundle, name: "blue_gray_500")
+    /// Color `delete`.
+    static let delete = Rswift.ColorResource(bundle: R.hostingBundle, name: "delete")
     /// Color `event_date`.
     static let event_date = Rswift.ColorResource(bundle: R.hostingBundle, name: "event_date")
     /// Color `gray_656565`.
@@ -359,6 +361,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func blue_gray_500(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.blue_gray_500, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "delete", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func delete(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.delete, compatibleWith: traitCollection)
     }
     #endif
 
@@ -677,6 +688,14 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func blue_gray_500(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.blue_gray_500.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "delete", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func delete(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.delete.name)
     }
     #endif
 
@@ -1181,7 +1200,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 103 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 105 localization keys.
     struct localizable {
       /// en translation: %#@VARIABLE@
       ///
@@ -1203,11 +1222,15 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
       static let accurate_match_prediction = Rswift.StringResource(key: "accurate_match_prediction", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk", "be", "kk", "ky", "ka"], comment: nil)
+      /// en translation: All your account data on the server will be deleted. Are you sure you want to delete your account?
+      ///
+      /// Locales: en, ru, uk, be, kk, ky, ka
+      static let sing_out_delete_desc = Rswift.StringResource(key: "sing_out_delete_desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk", "be", "kk", "ky", "ka"], comment: nil)
       /// en translation: Answers to frequently asked questions related to the operation of our service can be found here.
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
       static let guid_faq = Rswift.StringResource(key: "guid_faq", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk", "be", "kk", "ky", "ka"], comment: nil)
-      /// en translation: Are you sure you want to log out of your account? When you exit, your account on the server will be deleted.
+      /// en translation: Are you sure you want to log out of your account?
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
       static let sing_out_desc = Rswift.StringResource(key: "sing_out_desc", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk", "be", "kk", "ky", "ka"], comment: nil)
@@ -1259,6 +1282,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
       static let current_series = Rswift.StringResource(key: "current_series", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk", "be", "kk", "ky", "ka"], comment: nil)
+      /// en translation: Delete account
+      ///
+      /// Locales: en, ru, uk, be, kk, ky, ka
+      static let sign_out_delete = Rswift.StringResource(key: "sign_out_delete", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk", "be", "kk", "ky", "ka"], comment: nil)
       /// en translation: Donate!
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
@@ -1677,6 +1704,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("accurate_match_prediction", bundle: bundle, comment: "")
       }
 
+      /// en translation: All your account data on the server will be deleted. Are you sure you want to delete your account?
+      ///
+      /// Locales: en, ru, uk, be, kk, ky, ka
+      static func sing_out_delete_desc(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("sing_out_delete_desc", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "sing_out_delete_desc"
+        }
+
+        return NSLocalizedString("sing_out_delete_desc", bundle: bundle, comment: "")
+      }
+
       /// en translation: Answers to frequently asked questions related to the operation of our service can be found here.
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
@@ -1692,7 +1734,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("guid_faq", bundle: bundle, comment: "")
       }
 
-      /// en translation: Are you sure you want to log out of your account? When you exit, your account on the server will be deleted.
+      /// en translation: Are you sure you want to log out of your account?
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
       static func sing_out_desc(preferredLanguages: [String]? = nil) -> String {
@@ -1891,6 +1933,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("current_series", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Delete account
+      ///
+      /// Locales: en, ru, uk, be, kk, ky, ka
+      static func sign_out_delete(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("sign_out_delete", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "sign_out_delete"
+        }
+
+        return NSLocalizedString("sign_out_delete", bundle: bundle, comment: "")
       }
 
       /// en translation: Donate!
@@ -3489,6 +3546,7 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "bet_group_end", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'bet_group_end' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "bet_group_header", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'bet_group_header' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "blue_gray_400", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'blue_gray_400' is used in storyboard 'SignInVController', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "delete", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'delete' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "green_blue_start", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green_blue_start' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "selected_toolbar_item", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'selected_toolbar_item' is used in storyboard 'SignInVController', but couldn't be loaded.") }
           if UIKit.UIColor(named: "shadow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'shadow' is used in storyboard 'SignInVController', but couldn't be loaded.") }

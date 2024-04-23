@@ -9,7 +9,18 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct TeamsViewModel {
+struct TeamsViewModel: Comparable {
+    static func < (lhs: TeamsViewModel, rhs: TeamsViewModel) -> Bool {
+        lhs.teams.count < rhs.teams.count
+    }
+    
+    static func == (lhs: TeamsViewModel, rhs: TeamsViewModel) -> Bool {
+        lhs.teams.count == rhs.teams.count
+    }
+    static func != (lhs: TeamsViewModel, rhs: TeamsViewModel) -> Bool {
+        lhs.teams.count != rhs.teams.count
+    }
+    
     internal init(title: String, teams: [TeamViewModel]) {
         self.title = title
         self.teams = teams

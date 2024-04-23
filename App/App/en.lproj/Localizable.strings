@@ -75,7 +75,8 @@
 "with_bets_history_4_and_less" = "with history of 4 picks and less";
 
 // Sign In
-"sign_out" = "Sign Out";
+"sign_out" = "Sign\nOut";
+"sign_out_delete" = "Delete\naccount";
 "out" = "Sign Out";
 "you_are_not_logged_in" = "Not signed in";
 "we_gift_free_bets_to_new_users" = "You gotta sign in to see some picks";
@@ -88,7 +89,8 @@
 "get_more_bets" = "Go to predictions";
 "log_in_with_apple_email" = "Please use your real email!";
 "log_in_with_apple_desc" = "To successfully log into your account, you need to reset the previous attempt by logging into your smartphone settings.\nTo do this, go to Settings -> Apple Id -> Sign in and security -> Sign in with Apple -> Forecast Football and click \"Don't use Apple ID \"";
-"sing_out_desc" = "Are you sure you want to log out of your account? When you exit, your account on the server will be deleted.";
+"sing_out_desc" = "Are you sure you want to log out of your account?";
+"sing_out_delete_desc" = "All your account data on the server will be deleted.\nAre you sure you want to delete your account?";
 "enter_name" = "Your first and last name";
 "incorrect_user_name" = "The entered data is incorrect. Try again.";
 

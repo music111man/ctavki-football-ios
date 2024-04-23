@@ -11,6 +11,8 @@ import AuthenticationServices
 
 class SignInVController: UIViewController {
 
+    @IBOutlet weak var deleteAccountLabel: UILabel!
+    @IBOutlet weak var deleteAccountView: UIView!
     @IBOutlet weak var signOutLabel: UILabel!
     @IBOutlet weak var signOutView: UIView!
     @IBOutlet weak var signOutContainerView: UIView!
@@ -62,6 +64,7 @@ class SignInVController: UIViewController {
         googleLabel.text = R.string.localizable.log_in_with_google()
         telegramLabel.text = R.string.localizable.log_in_with_telegram()
         goToLabel.text = R.string.localizable.get_more_bets().uppercased()
+        
         goToView.setGradient(start: .greenBlueStart, end: .greenBlueEnd, isLine: true, index: 0).frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 90, height: 50)
         view.tap(animateTapGesture: false) {
            UIView.animate(withDuration: 0.3) {[weak self] in
@@ -149,8 +152,16 @@ class SignInVController: UIViewController {
             activityView.startAnimating()
         }
         signOutLabel.text = R.string.localizable.sign_out()
+        deleteAccountLabel.text = R.string.localizable.sign_out_delete()
         signOutView.tap {[weak self] in
-            self?.showOkCancelAlert(title: R.string.localizable.sign_out(), message: R.string.localizable.sing_out_desc()) {[weak self] in
+            self?.showOkCancelAlert(title: R.string.localizable.warning(),
+                                    message: R.string.localizable.sing_out_desc()) {
+                AppSettings.userToken = ""
+            }
+        }.disposed(by: disposeBag)
+        deleteAccountView.tap {[weak self] in
+            self?.showOkCancelAlert(title: R.string.localizable.warning(),
+                                    message: R.string.localizable.sing_out_delete_desc()) {[weak self] in
                 self?.activityView.startAnimating()
                 self?.singInMethodName = SignMethod.singOut.toString
                 AppSettings.signMethod = .singOut

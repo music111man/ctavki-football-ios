@@ -210,11 +210,11 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LdB-dO-cnR">
                                                 <rect key="frame" x="0.0" y="210.00000000000006" width="303" height="60"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Rd-VD-FNp">
-                                                        <rect key="frame" x="154.33333333333337" y="20.666666666666632" width="148.66666666666663" height="39.333333333333343"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BuW-7G-kFb">
+                                                        <rect key="frame" x="0.0" y="1.6666666666666288" width="93.333333333333329" height="58.333333333333336"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выйти из аккаунта" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4y-3W-E16">
-                                                                <rect key="frame" x="0.0" y="9.9999999999999982" width="148.66666666666666" height="19.333333333333329"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выйти из аккаунта" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epc-XC-Ygj">
+                                                                <rect key="frame" x="10" y="10" width="73.333333333333329" height="38.333333333333336"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                                 <color key="textColor" name="selected_toolbar_item"/>
                                                                 <nil key="highlightedColor"/>
@@ -222,9 +222,28 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="h4y-3W-E16" firstAttribute="leading" secondItem="3Rd-VD-FNp" secondAttribute="leading" id="8Rt-o5-cUa"/>
+                                                            <constraint firstAttribute="trailing" secondItem="epc-XC-Ygj" secondAttribute="trailing" constant="10" id="KbA-xt-PbN"/>
+                                                            <constraint firstAttribute="bottom" secondItem="epc-XC-Ygj" secondAttribute="bottom" constant="10" id="WJa-uw-Jfe"/>
+                                                            <constraint firstItem="epc-XC-Ygj" firstAttribute="leading" secondItem="BuW-7G-kFb" secondAttribute="leading" constant="10" id="jet-Nj-Qcb"/>
+                                                            <constraint firstItem="epc-XC-Ygj" firstAttribute="top" secondItem="BuW-7G-kFb" secondAttribute="top" constant="10" id="nRy-V4-aFk"/>
+                                                            <constraint firstAttribute="bottom" secondItem="epc-XC-Ygj" secondAttribute="bottom" constant="10" id="wLL-5y-XQq"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Rd-VD-FNp">
+                                                        <rect key="frame" x="218.33333333333329" y="1.6666666666666288" width="84.666666666666657" height="58.333333333333336"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Удалить аккаунт" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4y-3W-E16">
+                                                                <rect key="frame" x="10" y="10" width="64.666666666666671" height="38.333333333333336"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                                <color key="textColor" name="delete"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="h4y-3W-E16" firstAttribute="leading" secondItem="3Rd-VD-FNp" secondAttribute="leading" constant="10" id="8Rt-o5-cUa"/>
                                                             <constraint firstAttribute="bottom" secondItem="h4y-3W-E16" secondAttribute="bottom" constant="10" id="GdZ-62-1hU"/>
-                                                            <constraint firstAttribute="trailing" secondItem="h4y-3W-E16" secondAttribute="trailing" id="NcC-Fz-tBB"/>
+                                                            <constraint firstAttribute="trailing" secondItem="h4y-3W-E16" secondAttribute="trailing" constant="10" id="NcC-Fz-tBB"/>
                                                             <constraint firstAttribute="bottom" secondItem="h4y-3W-E16" secondAttribute="bottom" constant="10" id="TS7-xI-CRG"/>
                                                             <constraint firstItem="h4y-3W-E16" firstAttribute="top" secondItem="3Rd-VD-FNp" secondAttribute="top" constant="10" id="wdb-bl-HEo"/>
                                                         </constraints>
@@ -232,9 +251,11 @@
                                                 </subviews>
                                                 <color key="backgroundColor" name="background_main"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="BuW-7G-kFb" secondAttribute="bottom" id="26l-8k-W9G"/>
                                                     <constraint firstAttribute="trailing" secondItem="3Rd-VD-FNp" secondAttribute="trailing" id="7Vl-wv-gkX"/>
                                                     <constraint firstAttribute="bottom" secondItem="3Rd-VD-FNp" secondAttribute="bottom" id="Osc-D9-sOC"/>
                                                     <constraint firstAttribute="height" constant="60" id="h4F-Dw-IPS"/>
+                                                    <constraint firstItem="BuW-7G-kFb" firstAttribute="leading" secondItem="LdB-dO-cnR" secondAttribute="leading" id="s0A-Xb-3nL"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -286,13 +307,15 @@
                         <outlet property="activityView" destination="Mgo-2q-4Wf" id="O6Y-TM-x32"/>
                         <outlet property="closeView" destination="bc0-jx-knS" id="oXo-bq-8ji"/>
                         <outlet property="containerView" destination="m33-Fd-BYC" id="dew-Tt-85O"/>
+                        <outlet property="deleteAccountLabel" destination="h4y-3W-E16" id="TLE-p1-c5O"/>
+                        <outlet property="deleteAccountView" destination="3Rd-VD-FNp" id="ABZ-DA-lXv"/>
                         <outlet property="goToLabel" destination="qjQ-YF-hbq" id="IdV-Kd-nI9"/>
                         <outlet property="goToView" destination="lz1-SM-lns" id="zNe-XF-Asv"/>
                         <outlet property="googleBtnView" destination="OmU-OQ-b73" id="ON7-IQ-f3i"/>
                         <outlet property="googleLabel" destination="y1J-cD-Cq7" id="gpF-QW-btb"/>
                         <outlet property="signOutContainerView" destination="LdB-dO-cnR" id="1mJ-Vr-mW9"/>
-                        <outlet property="signOutLabel" destination="h4y-3W-E16" id="77l-wQ-p1e"/>
-                        <outlet property="signOutView" destination="3Rd-VD-FNp" id="9Qz-ZH-kLZ"/>
+                        <outlet property="signOutLabel" destination="epc-XC-Ygj" id="8ON-Pm-n9s"/>
+                        <outlet property="signOutView" destination="BuW-7G-kFb" id="oeV-oH-Ps8"/>
                         <outlet property="stackView" destination="LS0-Dy-cnC" id="QeD-dF-mTK"/>
                         <outlet property="subTitleLabel" destination="fKA-ru-1fn" id="6SP-FF-VAe"/>
                         <outlet property="telegramBtnView" destination="9nX-Hk-5kd" id="uC2-YS-qUO"/>
@@ -320,6 +343,9 @@
         </namedColor>
         <namedColor name="blue_gray_400">
             <color red="0.47058823529411764" green="0.57647058823529407" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="delete">
+            <color red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="green_blue_start">
             <color red="0.058823529411764705" green="0.43529411764705883" blue="0.70980392156862748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

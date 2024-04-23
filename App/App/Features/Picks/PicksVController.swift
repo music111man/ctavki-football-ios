@@ -51,10 +51,8 @@ class PicksVController: FeaureVController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if isAppeare {
-            SyncService.shared.refresh() {[weak self] hasNew in
-                if hasNew {
-                    self?.updateData()
-                }
+            SyncService.shared.refresh() {[weak self] _ in
+                self?.updateData()
             }
         }
         isAppeare = true
@@ -94,11 +92,8 @@ class PicksVController: FeaureVController {
         ])
         refresher.rx.controlEvent(UIControl.Event.valueChanged).bind {[weak self] in
             self?.didScroll = false
-            SyncService.shared.refresh() {[weak self] hasNew in
-                self?.refresher.endRefreshing()
-                if hasNew {
-                    self?.updateData()
-                }
+            SyncService.shared.refresh() {[weak self] _ in
+                self?.updateData()
             }
             
         }.disposed(by: disposeBag)

@@ -15,6 +15,7 @@ final class TeamsVController: FeaureVController {
     var teamsService = TeamsService()
     var needAnimationOnWillAppend = false
     let stackView = UIStackView()
+    var teamsModels = [TeamsViewModel]()
 
     @discardableResult
     func initTeamsFeatures() -> UIViewController {
@@ -37,12 +38,8 @@ final class TeamsVController: FeaureVController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refresher.rx.controlEvent(UIControl.Event.valueChanged).bind {
-            SyncService.shared.refresh {[weak self] hasNew in
-                if hasNew {
-                    self?.updateTeams()
-                } else {
-                    self?.refresher.endRefreshing()
-                }
+            SyncService.shared.refresh {[weak self] _ in
+                self?.updateTeams()
             }
         }.disposed(by: disposeBag)
     }
@@ -84,13 +81,24 @@ final class TeamsVController: FeaureVController {
     }
     
     private func updateTeams() {
-        teamsService.load().observe(on: MainScheduler.instance).subscribe {[weak self] models in
+        teamsService.load().filter {[weak self] models in
+            guard let self else { return false }
+            if self.teamsModels.count != models.count { return true }
+            for i in 0..<models.count {
+                if models[i] != self.teamsModels[i] { return true }
+            }
+            DispatchQueue.main.async {[weak self] in
+                self?.activityView.stopAnimating()
+                self?.refresher.endRefreshing()
+            }
+            return false
+        }.observe(on: MainScheduler.instance).subscribe {[weak self] models in
             guard let self = self else {
                 self?.activityView.stopAnimating()
                 self?.refresher.endRefreshing()
                 return
             }
-            
+            self.teamsModels = models
             self.stackView.replaceArrangedSubviews({
                 let views = models.map { model in
                     let view = TeamsView().configure(title: model.title, teams: model.teams)
