@@ -98,15 +98,22 @@ class BetDetailsVController: UIViewController {
                                                     .regReplace(pattern: "(?i)home\\s+team", replaceWith: team1.title)
                                                     .regReplace(pattern: "(?i)away\\s+team", replaceWith: team2.title)
                 if var typeArg = bet.typeArg {
+                    self.betTypeLabel.text =  betType.shortTitle.replace("%x%", with: "\(typeArg)")
                     if [34, 38].contains(betType.id) {
                         typeArg += 0.5
-                    } else {
+                    } else if [35, 39].contains(betType.id) {
                         typeArg -= 0.5
+                    } else {
+                        typeArg = -1
                     }
-                    self.betTypeLabel.text =  betType.shortTitle.replace("%x%", with: "\(typeArg)")
-                    self.betTypeDetailsLabel.text = description.replace("%x%", with: "\(typeArg)")
+                    if typeArg != -1 {
+                        self.betTypeDetailsLabel.text = description.replace("%x%", with: "\(Int(typeArg))")
+                    } else {
+                        self.betTypeDetailsLabel.text = description.replace("%x%", with: "")
+                    }
+                    
                 } else {
-                    self.betTypeLabel.text = betType.shortTitle
+                    self.betTypeLabel.text = betType.shortTitle.replace("%x%", with: "")
                     self.betTypeDetailsLabel.text = description
                 }
                 switch outcome {
