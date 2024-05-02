@@ -19,6 +19,7 @@ struct ApiResponseData: Decodable {
     //var userBetsLeft: String?
     //@IntToBoolDecodable
     var isSubscribedToTgChannel: Int?
+    var tgBotLink: String?
     
     let betTypes: [BetType]?
     let teams: [Team]?

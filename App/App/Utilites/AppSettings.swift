@@ -46,8 +46,11 @@ final class AppSettings {
         URL(string: "https://leader4015.work/ctavki_football/api")!
     }
     
+    @Storage(key: "tgBotLink", defaultValue: "https://tg.pulse.is/ctavkicombot?start=6630aba141dea5341f05e481")
+    static var tgBotLink: String
+    
     static func telegramBotUrl(_ uuid: String) -> URL {
-        URL(string: "https://tg.pulse.is/Ctavki_com_bot?start=6617eb6a2dfa9fc422050608|uuid=\(uuid)")!
+        URL(string: "\(Self.tgBotLink)|uuid=\(uuid)")!
     }
     
     @SecureString("tokenFoSignIn")

@@ -71,6 +71,9 @@ final class SyncService {
             AppSettings.lastLocaleThenUpdate = Locale.current.identifier
             AppSettings.defaultFreeBetsCount = Int(responseData.defaultFreeBetsCount ?? "0") ?? 0
             AppSettings.giftFreeBetsCount = Int(responseData.giftFreeBetsCount ?? "0") ?? 0
+            if let tgBotLink = responseData.tgBotLink {
+                AppSettings.tgBotLink = tgBotLink
+            }
             //AppSettings.userBetsLeft = Int(responseData.userBetsLeft ?? "0") ?? 0
             AppSettings.isSubscribedToTgChannel = (responseData.isSubscribedToTgChannel ?? 0) > 0
 
