@@ -1458,6 +1458,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
       static let result = Rswift.StringResource(key: "result", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk", "be", "kk", "ky", "ka"], comment: nil)
+      /// en translation: Return
+      ///
+      /// Locales: en, ru, uk, be, kk, ky, ka
+      static let `return` = Rswift.StringResource(key: "return", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk", "be", "kk", "ky", "ka"], comment: nil)
       /// en translation: SKIP
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
@@ -1606,10 +1610,6 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
       static let my_balance = Rswift.StringResource(key: "my_balance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk", "be", "kk", "ky", "ka"], comment: nil)
-      /// en translation: win
-      ///
-      /// Locales: en, ru, uk, be, kk, ky, ka
-      static let `return` = Rswift.StringResource(key: "return", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru", "uk", "be", "kk", "ky", "ka"], comment: nil)
       /// en translation: with current picks
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
@@ -2607,6 +2607,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("result", bundle: bundle, comment: "")
       }
 
+      /// en translation: Return
+      ///
+      /// Locales: en, ru, uk, be, kk, ky, ka
+      static func `return`(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("return", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "return"
+        }
+
+        return NSLocalizedString("return", bundle: bundle, comment: "")
+      }
+
       /// en translation: SKIP
       ///
       /// Locales: en, ru, uk, be, kk, ky, ka
@@ -3162,21 +3177,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("my_balance", bundle: bundle, comment: "")
-      }
-
-      /// en translation: win
-      ///
-      /// Locales: en, ru, uk, be, kk, ky, ka
-      static func `return`(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("return", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "return"
-        }
-
-        return NSLocalizedString("return", bundle: bundle, comment: "")
       }
 
       /// en translation: with current picks

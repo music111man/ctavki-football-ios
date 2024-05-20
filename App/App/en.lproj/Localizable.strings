@@ -61,7 +61,7 @@
 "odds_col" = "Odds:";
 "result" = "Result:";
 "winnings" = "Win %d";
-"return" = "win";
+"return" = "Return";
 "loss" = "Lost 100";
 "year_at_end" = "%@";
 "expecting" = "Expected";
